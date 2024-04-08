@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var router: Router
     @State var email = ""
     @State var password = ""
-    @State var isTappedPassword = false
+
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .center, spacing: 10) {
             logoView
-            headerView
             emailFieldView
             passwordFieldView
             forgotPasswordButtonView
             loginButtonView
             
             Spacer()
-                .frame(maxHeight: .infinity)
             
             registrationButtonView
         }
@@ -33,83 +32,83 @@ struct LoginView: View {
 
 extension LoginView {
     var logoView: some View {
-        Image("logo")
-            .padding(.vertical, 20)
-    }
-    
-    var headerView: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Group {
-                Text("Welcome Back 👋")
-                    .font(.title)
-                Text("to")
-                    .font(.title) +
-                Text(" CHRONOS")
-                    .font(.largeTitle)
-                    .foregroundStyle(Color.blue)
-            }
-            .fontWeight(.bold)
-            
-            Text("Hello there, login to continue")
-                .foregroundStyle(Color.gray)
-                .font(.callout)
+        HStack(alignment: .bottom, spacing: 0) {
+            Image("logo")
+                .padding(.vertical, 20)
+            Text(LocalizedStringKey(Constant.Key.APP_NAME))
+                .font(.largeTitle)
+                .padding(.bottom, 20)
+                .foregroundStyle(Color.blue)
         }
-        .padding(.bottom)
+        .padding(.bottom, 10)
+        .padding(.top, 10)
     }
     
     var emailFieldView: some View {
-        TextFieldView(
-            text: $email,
-            title: "Email Address"
-        )
+        VStack(alignment: .leading) {
+            Text(LocalizedStringKey(Constant.Key.EMAIL_LABEL))
+            TextFieldView(
+                text: $email,
+                isSecure: false,
+                placeholder: "Type your email",
+                fieldIcon: "envelope"
+            )
+        }
     }
     
     var passwordFieldView: some View {
-        SecureFieldView(
-            password: $password,
-            title: "Password"
-        )
+        VStack(alignment: .leading) {
+            Text(LocalizedStringKey(Constant.Key.PASSWORD_LABEL))
+            TextFieldView(
+                text: $password,
+                isSecure: true,
+                placeholder: "Type your password",
+                fieldIcon: "lock"
+            )
+        }
     }
     
     var forgotPasswordButtonView: some View {
         HStack {
             Spacer()
-            ButtonView(
-                buttonText: "Forgot Password ?",
-                textButtonColor: Color(Constant.CustomColor.DARK_TURQUOISE),
+            MainButton(
+                buttonText: "Forgot Password?",
+                textButtonColor: Color.black.opacity(0.6),
                 action: {
-                    
+                    router.navigateTo(.passwordRecovery)
                 }
             )
         }
     }
     
     var loginButtonView: some View {
-        ButtonView(
+        MainButton(
             buttonText: "Login",
             textButtonColor: Color.white,
             action: {
-                
+                router.navigateTo(.home)
             }
         )
-        .frame(height: 65)
+        .fontWeight(.bold)
+        .frame(height: 45)
         .frame(maxWidth: .infinity)
         .background(Color.blue)
         .cornerRadius(15)
-        .padding(.top)
+        .padding(.top, 50)
     }
     
     var registrationButtonView: some View {
-        HStack {
+        HStack(spacing: 5) {
             Spacer()
-            Text("Didn't have an account?")
-            ButtonView(
+            Text(LocalizedStringKey(Constant.Key.NO_ACCOUNT_QUESTION))
+            MainButton(
                 buttonText: "Register",
                 textButtonColor: Color(Constant.CustomColor.DARK_TURQUOISE),
                 action: {
-                    
+                    router.navigateTo(.registration)
                 }
             )
+            .fontWeight(.bold)
             Spacer()
         }
         .font(.system(size: 15))
@@ -118,4 +117,5 @@ extension LoginView {
 
 #Preview {
     LoginView()
+        .environmentObject(Router())
 }

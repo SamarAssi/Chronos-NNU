@@ -1,13 +1,13 @@
 //
-//  ButtonView.swift
+//  MainButton.swift
 //  Chronos
 //
-//  Created by Samar Assi on 05/04/2024.
+//  Created by Samar Assi on 07/04/2024.
 //
 
 import SwiftUI
 
-struct ButtonView: View {
+struct MainButton: View {
     var buttonText: String?
     var buttonIcon: String?
     var textButtonColor: Color
@@ -27,7 +27,7 @@ struct ButtonView: View {
 }
 
 #Preview {
-    ButtonView(
+    MainButton(
         textButtonColor: Color.black,
         action: {}
     )

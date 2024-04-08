@@ -11,7 +11,8 @@ import SwiftUI
 struct ChronosApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            ContentView()
+                .environmentObject(Router())
         }
     }
 }
