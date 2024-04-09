@@ -12,7 +12,7 @@ struct ChronosApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(Router())
+                .environmentObject(NavigationRouter())
         }
     }
 }
