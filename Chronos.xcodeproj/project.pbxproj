@@ -91,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				2F7942E02BC050A500387D3E /* ChronosApp.swift */,
+				2F79432B2BC4209200387D3E /* ContentView.swift */,
 				2F79433D2BC57F3C00387D3E /* Network */,
 				2F79430E2BC31DC900387D3E /* Routers */,
 				2F7943372BC47EDF00387D3E /* ViewModel */,
@@ -160,7 +161,6 @@
 		2F7943322BC43BCF00387D3E /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2F79432B2BC4209200387D3E /* ContentView.swift */,
 				2F7942F92BC0804400387D3E /* LoginView.swift */,
 			);
 			path = Login;

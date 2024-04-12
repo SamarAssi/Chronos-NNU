@@ -73,7 +73,7 @@ extension LoginView {
             buttonText: "Login",
             textButtonColor: Color.white,
             action: {
-                navigationRouter.navigateTo(.home)
+                navigationRouter.isLoggedIn = true
             }
         )
         .fontWeight(.bold)

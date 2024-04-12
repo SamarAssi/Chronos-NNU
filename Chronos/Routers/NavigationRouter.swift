@@ -8,15 +8,20 @@
 import Foundation
 
 class NavigationRouter: ObservableObject {
-    enum Route {
+
+    enum AuthScreens {
         case login
         case registration
-        case home
     }
-    
-    @Published var currentRoute: Route = .login
-    
-    func navigateTo(_ route: Route) {
-        currentRoute = route
+
+    @Published var isLoggedIn = false
+    @Published var path: [AuthScreens] = []
+
+    func navigateTo(_ route: AuthScreens) {
+        if route == .login {
+            path.removeAll()
+        } else {
+            path.append(route)
+        }
     }
 }
