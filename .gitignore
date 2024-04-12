@@ -5,6 +5,7 @@ Pods/
 Podfile.lock
 
 #Ignore User specific files
+*.xcuserstate
 xcuserdata
 codesigndoc_exports/
 
