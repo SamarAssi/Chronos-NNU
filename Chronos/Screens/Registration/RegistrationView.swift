@@ -27,7 +27,6 @@ struct RegistrationView: View {
                     TextFieldView(
                         text: $firstName,
                         label: "First Name",
-                        fieldIcon: "person",
                         placeholder: "Enter First Name",
                         isSecure: false
                     )
@@ -36,7 +35,6 @@ struct RegistrationView: View {
                     TextFieldView(
                         text: $lastName,
                         label: "Last Name",
-                        fieldIcon: "person",
                         placeholder: "Enter Last Name",
                         isSecure: false
                     )
@@ -45,7 +43,6 @@ struct RegistrationView: View {
                     TextFieldView(
                         text: $email,
                         label: "Email",
-                        fieldIcon: "envelope",
                         placeholder: "Enter Email Address",
                         isSecure: false
                     )
@@ -54,7 +51,6 @@ struct RegistrationView: View {
                     TextFieldView(
                         text: $password,
                         label: "Password",
-                        fieldIcon: "lock",
                         placeholder: "Enter Password",
                         isSecure: true
                     )
@@ -63,7 +59,6 @@ struct RegistrationView: View {
                     TextFieldView(
                         text: $confirmPassword,
                         label: "Confirm Password",
-                        fieldIcon: "lock",
                         placeholder: "Confirm Password",
                         isSecure: true
                     )

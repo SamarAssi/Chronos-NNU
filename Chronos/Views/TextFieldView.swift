@@ -8,81 +8,88 @@
 import SwiftUI
 
 struct TextFieldView: View {
+
     @State private var showPassword = false
     @Binding var text: String
     @FocusState var isFocused: Bool
-    
+
     var label: String
-    var fieldIcon: String
     var placeholder: String
     var isSecure: Bool
-    
+
+    var borderColor: Color {
+        isFocused || !text.isEmpty ?
+        Color.blue :
+        Color.gray
+    }
+
+    var titleColor: Color {
+        isFocused || !text.isEmpty ?
+        Color.blue :
+        Color.black
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(label)
-                .padding(.leading, 10)
-                .font(.subheadline)
-            HStack(spacing: 0) {
-                Image(systemName: fieldIcon)
-                    .foregroundStyle(Color.gray)
-                
-                if isSecure && !showPassword {
-                    secureFieldView
-                } else {
-                    textFieldView
-                }
-                
-                if isSecure {
-                    showPasswordButtonView
-                }
+        HStack {
+            VStack(
+                alignment: .leading,
+                spacing: 0
+            ) {
+                Text(label)
+                    .font(.subheadline)
+                    .foregroundStyle(titleColor)
+
+                currentTextField
             }
-            .padding(.leading, isSecure ? 14 : 8)
-            .overlay {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(isFocused ? Color.darkTurquoise : Color.gray)
+            .padding(.vertical, 6)
+
+            if isSecure {
+                showPasswordButtonView
             }
+        }
+        .padding(.horizontal, 10)
+        .overlay {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(borderColor)
+        }
+        .onTapGesture {
+            isFocused = true
         }
     }
 }
 
 extension TextFieldView {
-    var textFieldView: some View {
-        TextField(placeholder, text: $text)
-            .focused($isFocused)
-            .font(.system(size: 15))
-            .frame(height: 45)
-            .autocapitalization(.none)
-            .padding(.leading, 8)
-    }
-    
-    var secureFieldView: some View {
-        SecureField(placeholder, text: $text)
-            .focused($isFocused)
-            .font(.system(size: 15))
-            .frame(height: 45)
-            .autocapitalization(.none)
-            .padding(.leading, 8)
-        
-    }
-    
-    var showPasswordButtonView: some View {
-        MainButton(
-            buttonIcon: showPassword ? "eye" : "eye.slash",
-            textButtonColor: Color.gray,
-            action: {
-                showPassword.toggle()
+
+    var currentTextField: some View {
+        Group {
+            if isSecure && !showPassword {
+                SecureField(placeholder, text: $text)
+            } else {
+                TextField(placeholder, text: $text)
             }
-        )
-        .padding(.trailing)
+        }
+        .focused($isFocused)
+        .font(.system(size: 15))
+        .frame(height: 20)
+        .autocapitalization(.none)
+        .padding(.vertical, 0)
+    }
+
+    var showPasswordButtonView: some View {
+        Button {
+            showPassword.toggle()
+        } label: {
+            Image(systemName: showPassword ? "eye" : "eye.slash")
+                .foregroundColor(.gray)
+        }
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     TextFieldView(
         text: .constant(""),
         label: "Email",
-        fieldIcon: "envelope",
         placeholder: "Email Address",
-        isSecure: false
+        isSecure: true
     )
 }

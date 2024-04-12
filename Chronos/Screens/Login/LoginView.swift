@@ -22,7 +22,6 @@ struct LoginView: View {
             TextFieldView(
                 text: $email,
                 label: "Email",
-                fieldIcon: "envelope",
                 placeholder: "Type your email",
                 isSecure: false
             )
@@ -32,7 +31,6 @@ struct LoginView: View {
             TextFieldView(
                 text: $password,
                 label: "Password",
-                fieldIcon: "lock",
                 placeholder: "Type your password",
                 isSecure: true
             )
