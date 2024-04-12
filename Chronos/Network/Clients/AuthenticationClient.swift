@@ -8,24 +8,9 @@
 import Foundation
 import Alamofire
 
-class AuthenticationClient {
-    static func login(completion: @escaping ([UserModel]?, Error?) -> Void) {
+class AuthenticationClient: BaseClient {
+    static func login() async throws -> [UserModel] {
         let router: NetworkRouter = .home
-        Alamofire.request(router).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                if let jsonData = try? JSONSerialization.data(withJSONObject: value),
-                   let users = try? JSONDecoder().decode([UserModel].self, from: jsonData) {
-                    completion(users, nil)
-                } else {
-                    completion(
-                        nil,
-                        NSError(domain: "ParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse data"])
-                    )
-                }
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        return try await performRequest(router: router)
     }
 }

@@ -5,20 +5,9 @@
 //  Created by Samar Assi on 08/04/2024.
 //
 
-import Foundation
 import Alamofire
 
-extension ChronosURLRequestConvertible {
-    func asURLRequest() throws -> URLRequest {
-        let url = try URL(string: URLString)
-        var request = URLRequest.init(url: url!)
-        request.httpMethod = method.rawValue
-        request.timeoutInterval = TimeInterval(10 * 1000)
-        return try URLEncoding.default.encode(request,with: parameters)
-    }
-}
-
-enum NetworkRouter: ChronosURLRequestConvertible {
+enum NetworkRouter: BaseRouter {
     case login
     case home
     

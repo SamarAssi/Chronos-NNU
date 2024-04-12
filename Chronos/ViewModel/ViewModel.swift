@@ -6,18 +6,17 @@
 //
 
 import Foundation
-import Alamofire
 
 final class ViewModel: ObservableObject {
     @Published var userList: [UserModel] = []
     
     
     func getUsers() {
-        AuthenticationClient.login { users, error in
-            if let users {
-                self.userList = users
-            } else if let error {
-                print("Error fetching. \(error)")
+        Task {
+            do {
+                let users = try await AuthenticationClient.login()
+            } catch {
+                print(error)
             }
         }
     }

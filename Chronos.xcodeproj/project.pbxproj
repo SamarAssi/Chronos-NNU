@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		140BFABE3F02DBCBC343C676 /* Pods_Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E01F87A7B91D5D8CF1A1C67 /* Pods_Chronos.framework */; };
 		2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7942E02BC050A500387D3E /* ChronosApp.swift */; };
 		2F7942E52BC050A800387D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E42BC050A800387D3E /* Assets.xcassets */; };
 		2F7942E82BC050A800387D3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E72BC050A800387D3E /* Preview Assets.xcassets */; };
@@ -23,16 +22,17 @@
 		2F79433A2BC47F0400387D3E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943392BC47F0400387D3E /* ViewModel.swift */; };
 		2F79433C2BC47F3F00387D3E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F79433B2BC47F3F00387D3E /* UserModel.swift */; };
 		2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943402BC5816800387D3E /* AuthenticationClient.swift */; };
-		2F7943432BC5824400387D3E /* ChronosURLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943422BC5824400387D3E /* ChronosURLRequestConvertible.swift */; };
+		2F7943432BC5824400387D3E /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943422BC5824400387D3E /* BaseRouter.swift */; };
 		2F7943462BC58A5A00387D3E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943452BC58A5A00387D3E /* RegistrationView.swift */; };
 		2F7943482BC5927900387D3E /* FooterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943472BC5927900387D3E /* FooterButton.swift */; };
 		2F7943522BC6B68400387D3E /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943512BC6B68400387D3E /* MainScreen.swift */; };
 		2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */; };
+		8B0810452BC9AA3300CB5930 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810442BC9AA3300CB5930 /* Alamofire */; };
+		8B0810472BC9AA3300CB5930 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810462BC9AA3300CB5930 /* AlamofireDynamic */; };
+		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E01F87A7B91D5D8CF1A1C67 /* Pods_Chronos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chronos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		202E6622DC90E7B59E489BC5 /* Pods-Chronos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chronos.release.xcconfig"; path = "Target Support Files/Pods-Chronos/Pods-Chronos.release.xcconfig"; sourceTree = "<group>"; };
 		2F7942DD2BC050A500387D3E /* Chronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7942E02BC050A500387D3E /* ChronosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronosApp.swift; sourceTree = "<group>"; };
 		2F7942E42BC050A800387D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,12 +49,12 @@
 		2F7943392BC47F0400387D3E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2F79433B2BC47F3F00387D3E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2F7943402BC5816800387D3E /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
-		2F7943422BC5824400387D3E /* ChronosURLRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronosURLRequestConvertible.swift; sourceTree = "<group>"; };
+		2F7943422BC5824400387D3E /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		2F7943452BC58A5A00387D3E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		2F7943472BC5927900387D3E /* FooterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButton.swift; sourceTree = "<group>"; };
 		2F7943512BC6B68400387D3E /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToUnlockView.swift; sourceTree = "<group>"; };
-		985461E269CC98AE8FFD0CE0 /* Pods-Chronos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chronos.debug.xcconfig"; path = "Target Support Files/Pods-Chronos/Pods-Chronos.debug.xcconfig"; sourceTree = "<group>"; };
+		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				140BFABE3F02DBCBC343C676 /* Pods_Chronos.framework in Frameworks */,
+				8B0810452BC9AA3300CB5930 /* Alamofire in Frameworks */,
+				8B0810472BC9AA3300CB5930 /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,8 +75,6 @@
 			children = (
 				2F7942DF2BC050A500387D3E /* Chronos */,
 				2F7942DE2BC050A500387D3E /* Products */,
-				34B8DC426B68723ED07D8D66 /* Pods */,
-				6EAB5F6D8B8CF99CA87E8FDB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,8 +194,8 @@
 		2F79433E2BC57F4B00387D3E /* Routers */ = {
 			isa = PBXGroup;
 			children = (
+				2F7943422BC5824400387D3E /* BaseRouter.swift */,
 				2F7943352BC4657A00387D3E /* NetworkRouter.swift */,
-				2F7943422BC5824400387D3E /* ChronosURLRequestConvertible.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -204,6 +203,7 @@
 		2F79433F2BC57F5400387D3E /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				8B0810482BC9AA7300CB5930 /* BaseClient.swift */,
 				2F7943402BC5816800387D3E /* AuthenticationClient.swift */,
 			);
 			path = Clients;
@@ -226,23 +226,6 @@
 			path = TabViewScreen;
 			sourceTree = "<group>";
 		};
-		34B8DC426B68723ED07D8D66 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				985461E269CC98AE8FFD0CE0 /* Pods-Chronos.debug.xcconfig */,
-				202E6622DC90E7B59E489BC5 /* Pods-Chronos.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		6EAB5F6D8B8CF99CA87E8FDB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1E01F87A7B91D5D8CF1A1C67 /* Pods_Chronos.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,17 +233,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F7942EB2BC050A800387D3E /* Build configuration list for PBXNativeTarget "Chronos" */;
 			buildPhases = (
-				5EF8439B65B04746D0DEA2CE /* [CP] Check Pods Manifest.lock */,
 				2F7942D92BC050A500387D3E /* Sources */,
 				2F7942DA2BC050A500387D3E /* Frameworks */,
 				2F7942DB2BC050A500387D3E /* Resources */,
-				0F43EC22CE2826F54206411F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Chronos;
+			packageProductDependencies = (
+				8B0810442BC9AA3300CB5930 /* Alamofire */,
+				8B0810462BC9AA3300CB5930 /* AlamofireDynamic */,
+			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
 			productType = "com.apple.product-type.application";
@@ -289,6 +274,9 @@
 				Base,
 			);
 			mainGroup = 2F7942D42BC050A500387D3E;
+			packageReferences = (
+				8B0810432BC9AA3300CB5930 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -311,48 +299,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0F43EC22CE2826F54206411F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Chronos/Pods-Chronos-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Chronos/Pods-Chronos-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Chronos/Pods-Chronos-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5EF8439B65B04746D0DEA2CE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Chronos-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		2F7942D92BC050A500387D3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -370,7 +316,8 @@
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
 				2F79432F2BC433A300387D3E /* LogoView.swift in Sources */,
-				2F7943432BC5824400387D3E /* ChronosURLRequestConvertible.swift in Sources */,
+				2F7943432BC5824400387D3E /* BaseRouter.swift in Sources */,
+				8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */,
 				2F79432C2BC4209200387D3E /* ContentView.swift in Sources */,
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,
 				2F7943362BC4657A00387D3E /* NetworkRouter.swift in Sources */,
@@ -502,7 +449,6 @@
 		};
 		2F7942EC2BC050A800387D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 985461E269CC98AE8FFD0CE0 /* Pods-Chronos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -531,7 +477,6 @@
 		};
 		2F7942ED2BC050A800387D3E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 202E6622DC90E7B59E489BC5 /* Pods-Chronos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -580,6 +525,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B0810432BC9AA3300CB5930 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B0810442BC9AA3300CB5930 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B0810432BC9AA3300CB5930 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		8B0810462BC9AA3300CB5930 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B0810432BC9AA3300CB5930 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2F7942D52BC050A500387D3E /* Project object */;
 }
