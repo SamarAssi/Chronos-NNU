@@ -14,8 +14,10 @@ struct ContentView: View {
         switch navigationRouter.currentRoute {
         case .login:
             LoginView()
+        case .registration:
+            RegistrationView()
         case .home:
-            HomeView()
+            MainScreen()
         }
     }
 }

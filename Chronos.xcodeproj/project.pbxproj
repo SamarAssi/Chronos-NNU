@@ -22,6 +22,12 @@
 		2F7943362BC4657A00387D3E /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943352BC4657A00387D3E /* NetworkRouter.swift */; };
 		2F79433A2BC47F0400387D3E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943392BC47F0400387D3E /* ViewModel.swift */; };
 		2F79433C2BC47F3F00387D3E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F79433B2BC47F3F00387D3E /* UserModel.swift */; };
+		2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943402BC5816800387D3E /* AuthenticationClient.swift */; };
+		2F7943432BC5824400387D3E /* ChronosURLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943422BC5824400387D3E /* ChronosURLRequestConvertible.swift */; };
+		2F7943462BC58A5A00387D3E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943452BC58A5A00387D3E /* RegistrationView.swift */; };
+		2F7943482BC5927900387D3E /* FooterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943472BC5927900387D3E /* FooterButton.swift */; };
+		2F7943522BC6B68400387D3E /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943512BC6B68400387D3E /* MainScreen.swift */; };
+		2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,12 @@
 		2F7943352BC4657A00387D3E /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
 		2F7943392BC47F0400387D3E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2F79433B2BC47F3F00387D3E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		2F7943402BC5816800387D3E /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
+		2F7943422BC5824400387D3E /* ChronosURLRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronosURLRequestConvertible.swift; sourceTree = "<group>"; };
+		2F7943452BC58A5A00387D3E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		2F7943472BC5927900387D3E /* FooterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButton.swift; sourceTree = "<group>"; };
+		2F7943512BC6B68400387D3E /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToUnlockView.swift; sourceTree = "<group>"; };
 		985461E269CC98AE8FFD0CE0 /* Pods-Chronos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chronos.debug.xcconfig"; path = "Target Support Files/Pods-Chronos/Pods-Chronos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,8 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				2F7942E02BC050A500387D3E /* ChronosApp.swift */,
+				2F79433D2BC57F3C00387D3E /* Network */,
 				2F79430E2BC31DC900387D3E /* Routers */,
-				2F7943382BC47EE700387D3E /* Model */,
 				2F7943372BC47EDF00387D3E /* ViewModel */,
 				2F79432D2BC4337300387D3E /* Views */,
 				2F7942EE2BC050FD00387D3E /* Screens */,
@@ -102,7 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				2F7943322BC43BCF00387D3E /* Login */,
-				2F7943312BC43BC800387D3E /* Home */,
+				2F7943442BC58A3700387D3E /* Registration */,
+				2F79434E2BC6B60800387D3E /* TabViewScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -111,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				2F7943332BC464CB00387D3E /* NavigationRouter.swift */,
-				2F7943352BC4657A00387D3E /* NetworkRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -122,6 +134,7 @@
 				2F7942F32BC0568500387D3E /* TextFieldView.swift */,
 				2F7943042BC2DDB400387D3E /* MainButton.swift */,
 				2F79432E2BC433A300387D3E /* LogoView.swift */,
+				2F7943472BC5927900387D3E /* FooterButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				2F7943112BC3284900387D3E /* HomeView.swift */,
+				2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -146,8 +160,8 @@
 		2F7943322BC43BCF00387D3E /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2F7942F92BC0804400387D3E /* LoginView.swift */,
 				2F79432B2BC4209200387D3E /* ContentView.swift */,
+				2F7942F92BC0804400387D3E /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -160,12 +174,56 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		2F7943382BC47EE700387D3E /* Model */ = {
+		2F7943382BC47EE700387D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2F79433B2BC47F3F00387D3E /* UserModel.swift */,
 			);
-			path = Model;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F79433D2BC57F3C00387D3E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2F7943382BC47EE700387D3E /* Models */,
+				2F79433F2BC57F5400387D3E /* Clients */,
+				2F79433E2BC57F4B00387D3E /* Routers */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2F79433E2BC57F4B00387D3E /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				2F7943352BC4657A00387D3E /* NetworkRouter.swift */,
+				2F7943422BC5824400387D3E /* ChronosURLRequestConvertible.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		2F79433F2BC57F5400387D3E /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				2F7943402BC5816800387D3E /* AuthenticationClient.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		2F7943442BC58A3700387D3E /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				2F7943452BC58A5A00387D3E /* RegistrationView.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		2F79434E2BC6B60800387D3E /* TabViewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2F7943512BC6B68400387D3E /* MainScreen.swift */,
+				2F7943312BC43BC800387D3E /* Home */,
+			);
+			path = TabViewScreen;
 			sourceTree = "<group>";
 		};
 		34B8DC426B68723ED07D8D66 /* Pods */ = {
@@ -300,13 +358,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F7943522BC6B68400387D3E /* MainScreen.swift in Sources */,
 				2F79433A2BC47F0400387D3E /* ViewModel.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
 				2F7943122BC3284900387D3E /* HomeView.swift in Sources */,
+				2F7943462BC58A5A00387D3E /* RegistrationView.swift in Sources */,
 				2F7943052BC2DDB400387D3E /* MainButton.swift in Sources */,
+				2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */,
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
+				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
+				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
 				2F79432F2BC433A300387D3E /* LogoView.swift in Sources */,
+				2F7943432BC5824400387D3E /* ChronosURLRequestConvertible.swift in Sources */,
 				2F79432C2BC4209200387D3E /* ContentView.swift in Sources */,
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,
 				2F7943362BC4657A00387D3E /* NetworkRouter.swift in Sources */,

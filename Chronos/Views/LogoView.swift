@@ -8,18 +8,32 @@
 import SwiftUI
 
 struct LogoView: View {
+    var title: String
+    
     var body: some View {
-        HStack(alignment: .bottom, spacing: 0) {
+        VStack(alignment: .leading) {
             Image("logo")
-                .padding(.vertical, 20)
-            Text(LocalizedStringKey("AppName"))
-                .font(.largeTitle)
-                .padding(.bottom, 20)
-                .foregroundStyle(Color.blue)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 70)
+                .padding(.bottom)
+            
+            Group {
+                Text(title)
+                    .font(.system(size: 22))
+                Text("to ")
+                    .font(.system(size: 22)) +
+                Text("Chronos")
+                    .font(.system(size: 25))
+                    .foregroundStyle(Color.blue)
+            }
+            .fontWeight(.bold)
         }
     }
 }
 
 #Preview {
-    LogoView()
+    LogoView(
+        title: "Welcome Back"
+    )
 }

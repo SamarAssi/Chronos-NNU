@@ -10,6 +10,7 @@ import Foundation
 class NavigationRouter: ObservableObject {
     enum Route {
         case login
+        case registration
         case home
     }
     

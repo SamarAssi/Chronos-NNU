@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var email = ""
-    @State var password = ""
+    @State private var email = ""
+    @State private var password = ""
     
     @EnvironmentObject var navigationRouter: NavigationRouter
-
+    
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
-            LogoView()
-                .padding(.bottom, 10)
+        VStack(alignment: .leading, spacing: 10) {
+            LogoView(title: "Welcome Back👋")
+                .padding(.bottom, 30)
                 .padding(.top, 10)
             
             TextFieldView(
@@ -42,7 +42,13 @@ struct LoginView: View {
             
             Spacer()
             
-            registrationButtonView
+            FooterButton(
+                title: "Didn't have an account?",
+                buttonText: "Register",
+                action: {
+                    navigationRouter.navigateTo(.registration)
+                }
+            )
         }
         .padding(.horizontal, 20)
         .fontDesign(.rounded)
@@ -60,6 +66,7 @@ extension LoginView {
                     
                 }
             )
+            .font(.subheadline)
         }
     }
     
@@ -77,21 +84,6 @@ extension LoginView {
         .background(Color.blue)
         .cornerRadius(15)
         .padding(.top, 50)
-    }
-    
-    var registrationButtonView: some View {
-        HStack(spacing: 5) {
-            Text(LocalizedStringKey("NoAccountQuestion"))
-            MainButton(
-                buttonText: "Register",
-                textButtonColor: Color.darkTurquoise,
-                action: {
-                    
-                }
-            )
-            .fontWeight(.bold)
-        }
-        .font(.system(size: 15))
     }
 }
 

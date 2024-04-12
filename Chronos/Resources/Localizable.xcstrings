@@ -12,6 +12,9 @@
         }
       }
     },
+    "Chronos" : {
+
+    },
     "EmailLabel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -23,7 +26,16 @@
         }
       }
     },
-    "Hello, inside home view!" : {
+    "hello2" : {
+
+    },
+    "hello3" : {
+
+    },
+    "hello4" : {
+
+    },
+    "hello5" : {
 
     },
     "NoAccountQuestion" : {
@@ -47,6 +59,9 @@
           }
         }
       }
+    },
+    "to " : {
+
     }
   },
   "version" : "1.0"
