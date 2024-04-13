@@ -47,6 +47,7 @@ struct TextFieldView: View {
                 showPasswordButtonView
             }
         }
+        .focused($isFocused)
         .padding(.horizontal, 10)
         .overlay {
             RoundedRectangle(cornerRadius: 10)
@@ -68,7 +69,6 @@ extension TextFieldView {
                 TextField(placeholder, text: $text)
             }
         }
-        .focused($isFocused)
         .font(.system(size: 15))
         .frame(height: 20)
         .autocapitalization(.none)
@@ -77,7 +77,8 @@ extension TextFieldView {
 
     var showPasswordButtonView: some View {
         Button {
-            showPassword.toggle()
+            isFocused = true
+//            showPassword.toggle()
         } label: {
             Image(systemName: showPassword ? "eye" : "eye.slash")
                 .foregroundColor(.gray)

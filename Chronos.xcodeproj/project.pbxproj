@@ -30,6 +30,7 @@
 		8B0810452BC9AA3300CB5930 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810442BC9AA3300CB5930 /* Alamofire */; };
 		8B0810472BC9AA3300CB5930 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810462BC9AA3300CB5930 /* AlamofireDynamic */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
+		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		2F7943512BC6B68400387D3E /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToUnlockView.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
+		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 		2F79433D2BC57F3C00387D3E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */,
 				2F7943382BC47EE700387D3E /* Models */,
 				2F79433F2BC57F5400387D3E /* Clients */,
 				2F79433E2BC57F4B00387D3E /* Routers */,
@@ -314,6 +317,7 @@
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
+				8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */,
 				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
 				2F79432F2BC433A300387D3E /* LogoView.swift in Sources */,
 				2F7943432BC5824400387D3E /* BaseRouter.swift in Sources */,

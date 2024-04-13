@@ -10,16 +10,7 @@ import Alamofire
 enum NetworkRouter: BaseRouter {
     case login
     case home
-    
-    var URLString: String {
-        switch self {
-        case .login:
-            return "https://jsonplaceholder.typicode.com/users"
-        case .home:
-            return "https://jsonplaceholder.typicode.com/users"
-        }
-    }
-    
+        
     var path: String {
         switch self {
         case .login:
