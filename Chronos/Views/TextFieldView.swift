@@ -78,7 +78,7 @@ extension TextFieldView {
     var showPasswordButtonView: some View {
         Button {
             isFocused = true
-//            showPassword.toggle()
+            showPassword.toggle()
         } label: {
             Image(systemName: showPassword ? "eye" : "eye.slash")
                 .foregroundColor(.gray)

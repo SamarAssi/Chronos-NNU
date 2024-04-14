@@ -8,29 +8,25 @@
 import SwiftUI
 
 struct MainButton: View {
-    var buttonText: String?
-    var buttonIcon: String?
-    var textButtonColor: Color
+    var buttonText: String
     var action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            HStack {
-                if let buttonText = buttonText {
-                    Text(buttonText)
-                }
-                if let buttonIcon = buttonIcon {
-                    Image(systemName: buttonIcon)
-                }
-            }
+            Text(buttonText)
         }
-        .foregroundStyle(textButtonColor)
+        .foregroundStyle(Color.white)
+        .fontWeight(.bold)
+        .frame(height: 45)
+        .frame(maxWidth: .infinity)
+        .background(Color.blue)
+        .cornerRadius(15)
     }
 }
 
 #Preview {
     MainButton(
-        textButtonColor: Color.black,
+        buttonText: "Login",
         action: {}
     )
 }

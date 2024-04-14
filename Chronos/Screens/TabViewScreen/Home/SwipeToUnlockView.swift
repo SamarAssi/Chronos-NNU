@@ -40,7 +40,6 @@ struct SwipeToUnlockView: View {
                     }
             ), alignment: .leading
         )
-        .padding(.horizontal, 20)
     }
 }
 

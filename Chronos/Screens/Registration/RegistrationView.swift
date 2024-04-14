@@ -64,7 +64,12 @@ struct RegistrationView: View {
                     )
                     .padding(.bottom, 30)
                     
-                    registrationButtonView
+                    MainButton(
+                        buttonText: "Register",
+                        action: {
+                            //navigationRouter.navigateTo(.home)
+                        }
+                    )
                     
                     Spacer()
                     
@@ -81,23 +86,6 @@ struct RegistrationView: View {
                 .frame(minHeight: geometry.size.height)
             }
         }
-    }
-}
-
-extension RegistrationView {
-    var registrationButtonView: some View {
-        MainButton(
-            buttonText: "Register",
-            textButtonColor: Color.white,
-            action: {
-                //navigationRouter.navigateTo(.home)
-            }
-        )
-        .fontWeight(.bold)
-        .frame(height: 45)
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
-        .cornerRadius(15)
     }
 }
 

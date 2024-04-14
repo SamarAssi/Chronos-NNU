@@ -57,30 +57,23 @@ extension LoginView {
     var forgotPasswordButtonView: some View {
         HStack {
             Spacer()
-            MainButton(
-                buttonText: "Forgot Password?",
-                textButtonColor: Color.black.opacity(0.6),
-                action: {
-                    
-                }
-            )
-            .font(.subheadline)
+            Button {
+                
+            } label: {
+                Text("Forgot Password?")
+                    .foregroundStyle(Color.black.opacity(0.6))
+                    .font(.subheadline)
+            }
         }
     }
     
     var loginButtonView: some View {
         MainButton(
             buttonText: "Login",
-            textButtonColor: Color.white,
             action: {
                 navigationRouter.isLoggedIn = true
             }
         )
-        .fontWeight(.bold)
-        .frame(height: 45)
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
-        .cornerRadius(15)
         .padding(.top, 50)
     }
 }

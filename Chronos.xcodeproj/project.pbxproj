@@ -27,6 +27,10 @@
 		2F7943482BC5927900387D3E /* FooterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943472BC5927900387D3E /* FooterButton.swift */; };
 		2F7943522BC6B68400387D3E /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943512BC6B68400387D3E /* MainScreen.swift */; };
 		2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */; };
+		2F7943602BCAC07900387D3E /* HorizontalCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F79435F2BCAC07900387D3E /* HorizontalCalendarView.swift */; };
+		2F7943622BCAC55000387D3E /* CalendarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943612BCAC55000387D3E /* CalendarItemView.swift */; };
+		2F7943642BCAE6E900387D3E /* AttendanceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943632BCAE6E900387D3E /* AttendanceCardView.swift */; };
+		2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943652BCAFCC700387D3E /* ActivityCardView.swift */; };
 		8B0810452BC9AA3300CB5930 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810442BC9AA3300CB5930 /* Alamofire */; };
 		8B0810472BC9AA3300CB5930 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810462BC9AA3300CB5930 /* AlamofireDynamic */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
@@ -55,6 +59,10 @@
 		2F7943472BC5927900387D3E /* FooterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButton.swift; sourceTree = "<group>"; };
 		2F7943512BC6B68400387D3E /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToUnlockView.swift; sourceTree = "<group>"; };
+		2F79435F2BCAC07900387D3E /* HorizontalCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCalendarView.swift; sourceTree = "<group>"; };
+		2F7943612BCAC55000387D3E /* CalendarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItemView.swift; sourceTree = "<group>"; };
+		2F7943632BCAE6E900387D3E /* AttendanceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCardView.swift; sourceTree = "<group>"; };
+		2F7943652BCAFCC700387D3E /* ActivityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCardView.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +162,10 @@
 			isa = PBXGroup;
 			children = (
 				2F7943112BC3284900387D3E /* HomeView.swift */,
+				2F7943632BCAE6E900387D3E /* AttendanceCardView.swift */,
+				2F7943652BCAFCC700387D3E /* ActivityCardView.swift */,
+				2F7943612BCAC55000387D3E /* CalendarItemView.swift */,
+				2F79435F2BCAC07900387D3E /* HorizontalCalendarView.swift */,
 				2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */,
 			);
 			path = Home;
@@ -308,12 +320,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F7943522BC6B68400387D3E /* MainScreen.swift in Sources */,
+				2F7943642BCAE6E900387D3E /* AttendanceCardView.swift in Sources */,
 				2F79433A2BC47F0400387D3E /* ViewModel.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
 				2F7943122BC3284900387D3E /* HomeView.swift in Sources */,
 				2F7943462BC58A5A00387D3E /* RegistrationView.swift in Sources */,
 				2F7943052BC2DDB400387D3E /* MainButton.swift in Sources */,
+				2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */,
+				2F7943602BCAC07900387D3E /* HorizontalCalendarView.swift in Sources */,
 				2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */,
+				2F7943622BCAC55000387D3E /* CalendarItemView.swift in Sources */,
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,

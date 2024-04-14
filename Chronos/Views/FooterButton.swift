@@ -16,12 +16,13 @@ struct FooterButton: View {
         HStack(spacing: 5) {
             Spacer()
             Text(title)
-            MainButton(
-                buttonText: buttonText,
-                textButtonColor: Color.darkTurquoise,
-                action: action
-            )
-            .fontWeight(.bold)
+            Button {
+                
+            } label: {
+                Text(buttonText)
+                    .foregroundStyle(Color.darkTurquoise)
+                    .fontWeight(.bold)
+            }
             Spacer()
         }
         .font(.system(size: 15))
