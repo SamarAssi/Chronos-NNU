@@ -23,17 +23,11 @@ struct TextFieldView: View {
         Color.clear
     }
 
-    var titleColor: Color {
-        isFocused || !text.isEmpty ?
-        Color.theme :
-        Color.black
-    }
-
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
                 .font(.subheadline)
-                .foregroundStyle(titleColor)
+                .foregroundStyle(Color.black)
                 .padding(.horizontal, 10)
 
             HStack {
@@ -50,6 +44,9 @@ struct TextFieldView: View {
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(borderColor)
+            }
+            .onTapGesture {
+                isFocused = true
             }
         }
     }
