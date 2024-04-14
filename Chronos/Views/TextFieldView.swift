@@ -19,42 +19,38 @@ struct TextFieldView: View {
 
     var borderColor: Color {
         isFocused || !text.isEmpty ?
-        Color.blue :
-        Color.gray
+        Color.theme :
+        Color.clear
     }
 
     var titleColor: Color {
         isFocused || !text.isEmpty ?
-        Color.blue :
+        Color.theme :
         Color.black
     }
 
     var body: some View {
-        HStack {
-            VStack(
-                alignment: .leading,
-                spacing: 0
-            ) {
-                Text(label)
-                    .font(.subheadline)
-                    .foregroundStyle(titleColor)
+        VStack(alignment: .leading, spacing: 4) {
+            Text(label)
+                .font(.subheadline)
+                .foregroundStyle(titleColor)
+                .padding(.horizontal, 10)
 
+            HStack {
                 currentTextField
-            }
-            .padding(.vertical, 6)
 
-            if isSecure {
-                showPasswordButtonView
+                if isSecure {
+                    showPasswordButtonView
+                }
             }
-        }
-        .focused($isFocused)
-        .padding(.horizontal, 10)
-        .overlay {
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(borderColor)
-        }
-        .onTapGesture {
-            isFocused = true
+            .focused($isFocused)
+            .padding(.horizontal, 10)
+            .background(Color.gray.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(borderColor)
+            }
         }
     }
 }
@@ -70,7 +66,7 @@ extension TextFieldView {
             }
         }
         .font(.system(size: 15))
-        .frame(height: 20)
+        .frame(height: 45)
         .autocapitalization(.none)
         .padding(.vertical, 0)
     }

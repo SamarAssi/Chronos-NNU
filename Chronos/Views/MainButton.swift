@@ -19,7 +19,7 @@ struct MainButton: View {
         .fontWeight(.bold)
         .frame(height: 45)
         .frame(maxWidth: .infinity)
-        .background(Color.blue)
+        .background(Color.theme)
         .cornerRadius(15)
     }
 }

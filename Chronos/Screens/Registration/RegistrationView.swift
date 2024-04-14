@@ -20,10 +20,12 @@ struct RegistrationView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 5) {
-                    LogoView(title: "Register Account")
-                        .padding(.bottom, 30)
-                        .padding(.top, 10)
-                    
+
+                    Text("Register")
+                        .foregroundStyle(Color.theme)
+                        .font(.system(size: 40, weight: .bold))
+                        .padding(.bottom, 20)
+
                     TextFieldView(
                         text: $firstName,
                         label: "First Name",
@@ -81,7 +83,7 @@ struct RegistrationView: View {
                         }
                     )
                 }
-                .padding(.horizontal, 20)
+                .padding(20)
                 .fontDesign(.rounded)
                 .frame(minHeight: geometry.size.height)
             }

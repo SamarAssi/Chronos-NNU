@@ -15,9 +15,6 @@
         }
       }
     },
-    "Chronos" : {
-
-    },
     "EmailLabel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -72,7 +69,7 @@
         }
       }
     },
-    "to " : {
+    "Register" : {
 
     },
     "Today Attendance" : {
