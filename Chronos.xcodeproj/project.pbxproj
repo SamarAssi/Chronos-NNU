@@ -34,7 +34,6 @@
 		8B0810472BC9AA3300CB5930 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810462BC9AA3300CB5930 /* AlamofireDynamic */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
-		8BD36B582BCC36FD00348247 /* TopRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD36B572BCC36FD00348247 /* TopRoundedCorners.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +63,6 @@
 		2F7943652BCAFCC700387D3E /* ActivityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCardView.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
-		8BD36B572BCC36FD00348247 /* TopRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRoundedCorners.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +104,6 @@
 				2F7943372BC47EDF00387D3E /* ViewModel */,
 				2F79430E2BC31DC900387D3E /* Routers */,
 				2F79433D2BC57F3C00387D3E /* Network */,
-				8BD36B562BCC36F000348247 /* Shapes */,
 				2F7943302BC43A5100387D3E /* Resources */,
 				2F7942E62BC050A800387D3E /* Preview Content */,
 			);
@@ -241,14 +238,6 @@
 			path = TabViewScreen;
 			sourceTree = "<group>";
 		};
-		8BD36B562BCC36F000348247 /* Shapes */ = {
-			isa = PBXGroup;
-			children = (
-				8BD36B572BCC36FD00348247 /* TopRoundedCorners.swift */,
-			);
-			path = Shapes;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -344,7 +333,6 @@
 				8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */,
 				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
 				2F7943432BC5824400387D3E /* BaseRouter.swift in Sources */,
-				8BD36B582BCC36FD00348247 /* TopRoundedCorners.swift in Sources */,
 				8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */,
 				2F79432C2BC4209200387D3E /* ContentView.swift in Sources */,
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,

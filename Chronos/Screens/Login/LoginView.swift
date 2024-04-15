@@ -14,17 +14,14 @@ struct LoginView: View {
     @EnvironmentObject var navigationRouter: NavigationRouter
     
     var body: some View {
-            VStack(spacing: 10) {
-                headerView
-
-                contentView
-                    .offset(y: -30)
-                    .padding(.bottom, -30)
-            }
-    }
-
-    var contentView: some View {
         VStack(spacing: 10) {
+
+            Image(.logo)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 200)
+                .padding(.horizontal, 20)
+
             TextFieldView(
                 text: $email,
                 label: "Email",
@@ -32,7 +29,6 @@ struct LoginView: View {
                 isSecure: false
             )
             .padding(.bottom, 8)
-
 
             TextFieldView(
                 text: $password,
@@ -54,26 +50,13 @@ struct LoginView: View {
                 }
             )
         }
-        .padding(.all, 20)
-        .padding(.top, 10)
+        .padding(.vertical, 20)
+        .padding(.horizontal, 30)
         .background(Color.white)
-        .clipShape(TopRoundedCorners(radius: 15))
     }
 }
 
 extension LoginView {
-
-    var headerView: some View {
-        HStack {
-            Image(.logo)
-                .resizable()
-                .scaledToFit()
-                .padding(.horizontal, 60)
-        }
-        .padding(.top, 30)
-        .padding(.bottom, 65)
-        .background(.theme)
-    }
 
     var forgotPasswordButtonView: some View {
         HStack {
