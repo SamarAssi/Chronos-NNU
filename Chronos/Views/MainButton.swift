@@ -24,7 +24,7 @@ struct MainButton: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     MainButton(
         buttonText: "Login",
         action: {}

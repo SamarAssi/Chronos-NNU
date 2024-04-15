@@ -19,7 +19,7 @@ struct LoginView: View {
             Image(.logo)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 200)
+                .frame(height: 150)
                 .padding(.horizontal, 20)
 
             TextFieldView(
