@@ -1,5 +1,5 @@
 //
-//  MainScreen.swift
+//  MainView.swift
 //  Chronos
 //
 //  Created by Samar Assi on 10/04/2024.
@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct MainScreen: View {
-    
+struct MainView: View {
     var body: some View {
         TabView {
             HomeView()
@@ -26,9 +25,10 @@ struct MainScreen: View {
             Text("hello4")
                 .tabItem { Image(systemName: "person") }
         }
+        .tint(Color.theme)
     }
 }
 
 #Preview {
-    MainScreen()
+    MainView()
 }

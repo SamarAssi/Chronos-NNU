@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
-    
+    @StateObject var loginViewModel = LoginViewModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
-    
+
     var body: some View {
         VStack(spacing: 10) {
 
@@ -21,19 +19,19 @@ struct LoginView: View {
                 .scaledToFit()
                 .frame(height: 150)
                 .padding(.horizontal, 20)
-
+            
             TextFieldView(
-                text: $email,
-                label: "Email",
-                placeholder: "Type your email",
+                text: $loginViewModel.email,
+                label: LocalizedStringKey("Email"),
+                placeholder: LocalizedStringKey("Type your email"),
                 isSecure: false
             )
             .padding(.bottom, 8)
 
             TextFieldView(
-                text: $password,
-                label: "Password",
-                placeholder: "Type your password",
+                text: $loginViewModel.password,
+                label: LocalizedStringKey("Password"),
+                placeholder: LocalizedStringKey("Type your password"),
                 isSecure: true
             )
 
@@ -43,13 +41,14 @@ struct LoginView: View {
             Spacer()
 
             FooterButton(
-                title: "Didn't have an account?",
-                buttonText: "Register",
+                title: LocalizedStringKey("NoAccountQuestion"),
+                buttonText: LocalizedStringKey("Register"),
                 action: {
                     navigationRouter.navigateTo(.registration)
                 }
             )
         }
+        .fontDesign(.rounded)
         .padding(.vertical, 20)
         .padding(.horizontal, 30)
         .background(Color.white)
@@ -57,14 +56,13 @@ struct LoginView: View {
 }
 
 extension LoginView {
-
     var forgotPasswordButtonView: some View {
         HStack {
             Spacer()
             Button {
                 
             } label: {
-                Text("Forgot Password?")
+                Text(LocalizedStringKey("Forgot Password?"))
                     .foregroundStyle(Color.black.opacity(0.6))
                     .font(.subheadline)
             }
@@ -73,7 +71,7 @@ extension LoginView {
     
     var loginButtonView: some View {
         MainButton(
-            buttonText: "Login",
+            buttonText: LocalizedStringKey("Login"),
             action: {
                 navigationRouter.isLoggedIn = true
             }

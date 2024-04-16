@@ -9,17 +9,17 @@ import SwiftUI
 
 struct AttendanceCardView: View {
     var cardIcon: String
-    var cardTitle: String
-    var time: String
-    var note: String
+    var cardTitle: LocalizedStringKey
+    var time: LocalizedStringKey
+    var note: LocalizedStringKey
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 15) {
                 Image(systemName: cardIcon)
-                    .foregroundStyle(Color.blue)
+                    .foregroundStyle(Color.theme)
                     .frame(width: 40, height: 40)
-                    .background(Color.blue.opacity(0.1))
+                    .background(Color.theme.opacity(0.1))
                     .cornerRadius(10)
                 
                 Text(cardTitle)
@@ -32,7 +32,7 @@ struct AttendanceCardView: View {
             Text(note)
                 .font(.subheadline)
         }
-        .frame(width: 180, height: 150)
+        .frame(width: 172, height: 150)
         .background(Color.white)
         .cornerRadius(25)
     }

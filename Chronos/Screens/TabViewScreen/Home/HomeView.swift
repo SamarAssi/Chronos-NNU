@@ -8,64 +8,47 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var selectedDate: Date = Date()
-    
-    let startDate = Calendar.current.date(byAdding: .day, value: -30, to: Date()) ?? Date()
-    let endDate = Calendar.current.date(byAdding: .day, value: 30, to: Date()) ?? Date()
-    
+    @StateObject var mainViewModel = MainViewModel()
+
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             headerSectionView
                 .padding(.trailing, 30)
-            
-            HorizontalCalendarView(startDate: startDate, endDate: endDate)
-            
-            ScrollView {
-                ZStack(alignment: .topLeading) {
-                    Color("Silver").opacity(0.1)
-                    
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Today Attendance")
-                            .fontWeight(.bold)
-                            .padding(.bottom)
+                .padding(.top)
 
-                        attendanceView
-                        
-                        HStack {
-                            Text("Your Activity")
-                                .fontWeight(.bold)
-                            
-                            Spacer()
-                            Button {
-                                
-                            } label: {
-                                Text("View All")
-                            }
-                            .font(.system(size: 16))
-                        }
-                        .padding(.top, 20)
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.vertical)
-                }
-                .cornerRadius(30)
-            }
-            Spacer()
             
-            SwipeToUnlockView()
-                .transition(
-                    AnyTransition.scale.animation(
-                        .spring(
-                            response: 0.3,
-                            dampingFraction: 0.5
+            if mainViewModel.isShow {
+                horizontalCalenderView
+            }
+            
+            ZStack(alignment: .bottom) {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 15) {
+                        attendanceView
+                        activityView
+                    }
+                    .padding(.top, 30)
+                    .padding(.horizontal, 20)
+
+                    .background(mainViewModel.scrollBackground())
+                }
+                .scrollIndicators(.hidden)
+                
+                SwipeToUnlockView(mainViewModel: mainViewModel)
+                    .transition(
+                        AnyTransition.scale.animation(
+                            .spring(
+                                response: 0.3,
+                                dampingFraction: 0.5
+                            )
                         )
                     )
-                )
-                .padding(.horizontal, 20)
-                
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 20)
+            }
         }
-        .padding(.bottom, 20)
         .fontDesign(.rounded)
+        .animation(.easeInOut, value: mainViewModel.isShow)
     }
 }
 
@@ -79,10 +62,10 @@ extension HomeView {
                 .frame(width: 80)
             
             VStack(alignment: .leading, spacing: 3) {
-                Text("Michael Mitc")
+                Text(LocalizedStringKey("Michael Mitc"))
                     .font(.title3)
                     .fontWeight(.bold)
-                Text("Lead UI/UX Designer")
+                Text(LocalizedStringKey("Lead UI/UX Designer"))
                     .font(.system(size: 15))
             }
             
@@ -95,26 +78,80 @@ extension HomeView {
                         .fill(Color.gray.opacity(0.3))
                         .frame(width: 50, height: 50)
                 )
-                .padding(.top, 10)
-            
+                .padding(.top, 12)
         }
     }
     
+    var horizontalCalenderView: some View {
+        HorizontalCalendarView(
+            mainViewModel: mainViewModel,
+            startDate: mainViewModel.startDate,
+            endDate: mainViewModel.endDate
+        )
+        .padding(.top, 30)
+        .transition(
+            .asymmetric(
+                insertion: .push(from: .top),
+                removal: .push(from: .bottom)
+            )
+        )
+    }
+    
     var attendanceView: some View {
-        HStack {
-            AttendanceCardView(
-                cardIcon: "tray.and.arrow.down",
-                cardTitle: "Check In",
-                time: "10:20 am",
-                note: "On Time"
-            )
+        VStack(alignment: .leading, spacing: 15) {
+            Text(LocalizedStringKey("Today Attendance"))
+                .fontWeight(.bold)
+                .padding(.bottom)
             
-            AttendanceCardView(
-                cardIcon: "tray.and.arrow.up",
-                cardTitle: "Check Out",
-                time: "7:00 am",
-                note: "Go Home"
-            )
+            HStack(spacing: 15) {
+                AttendanceCardView(
+                    cardIcon: "tray.and.arrow.down",
+                    cardTitle: LocalizedStringKey("Check In"),
+                    time: LocalizedStringKey("10:20 am"),
+                    note: LocalizedStringKey("On Time")
+                )
+                .shadow(radius: 2)
+                
+                AttendanceCardView(
+                    cardIcon: "tray.and.arrow.up",
+                    cardTitle: LocalizedStringKey("Check Out"),
+                    time: LocalizedStringKey("7:00 am"),
+                    note: LocalizedStringKey("Go Home")
+                )
+                .shadow(radius: 2)
+            }
+        }
+    }
+    
+    var activityView: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            HStack {
+                Text("Your Activity")
+                    .fontWeight(.bold)
+                
+                Spacer()
+                Button {
+                    
+                } label: {
+                    Text("View All")
+                }
+                .font(.system(size: 16))
+                .foregroundStyle(Color.theme)
+            }
+            .padding(.top, 20)
+            .padding(.bottom)
+            
+            if mainViewModel.activities.isEmpty {
+                Text("There is no activities yet!")
+                    .font(.subheadline)
+            } else {
+                ActivityCardView(
+                    icon: "",
+                    title: "",
+                    time: "",
+                    date: Date()
+                )
+            }
         }
     }
 }

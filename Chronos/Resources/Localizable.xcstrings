@@ -4,6 +4,15 @@
     "%lld" : {
 
     },
+    "7:00 am" : {
+
+    },
+    "10:20 am" : {
+
+    },
+    "Already have an account?" : {
+
+    },
     "AppName" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -14,6 +23,24 @@
           }
         }
       }
+    },
+    "Check In" : {
+
+    },
+    "Check Out" : {
+
+    },
+    "Confirm Password" : {
+
+    },
+    "Dodn't have an account?" : {
+
+    },
+    "Email" : {
+
+    },
+    "Email Address" : {
+
     },
     "EmailLabel" : {
       "extractionState" : "manual",
@@ -26,7 +53,25 @@
         }
       }
     },
+    "Enter Email Address" : {
+
+    },
+    "Enter First Name" : {
+
+    },
+    "Enter Last Name" : {
+
+    },
+    "Enter Password" : {
+
+    },
+    "First Name" : {
+
+    },
     "Forgot Password?" : {
+
+    },
+    "Go Home" : {
 
     },
     "hello2" : {
@@ -41,7 +86,13 @@
     "hello5" : {
 
     },
+    "Last Name" : {
+
+    },
     "Lead UI/UX Designer" : {
+
+    },
+    "Login" : {
 
     },
     "Michael Mitc" : {
@@ -53,10 +104,16 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Didn't have an account?"
+            "value" : "Don't have an account?"
           }
         }
       }
+    },
+    "On Time" : {
+
+    },
+    "Password" : {
+
     },
     "PasswordLabel" : {
       "extractionState" : "manual",
@@ -72,7 +129,16 @@
     "Register" : {
 
     },
+    "There is no activities yet!" : {
+
+    },
     "Today Attendance" : {
+
+    },
+    "Type your email" : {
+
+    },
+    "Type your password" : {
 
     },
     "View All" : {

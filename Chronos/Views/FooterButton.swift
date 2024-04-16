@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct FooterButton: View {
-    var title: String
-    var buttonText: String
+    var title: LocalizedStringKey
+    var buttonText: LocalizedStringKey
     var action: () -> Void
     
     var body: some View {
@@ -17,21 +17,20 @@ struct FooterButton: View {
             Spacer()
             Text(title)
                 .font(.system(size: 15))
-            Button {
-                action()
-            } label: {
+            Button(action: action) {
                 Text(buttonText)
                     .foregroundStyle(Color.theme)
                     .fontWeight(.bold)
             }
             Spacer()
         }
+        .fontDesign(.rounded)
     }
 }
 
 #Preview {
     FooterButton(
-        title: "Didn't have an account?",
+        title: "Don't have an account?",
         buttonText: "Register",
         action: {}
     )

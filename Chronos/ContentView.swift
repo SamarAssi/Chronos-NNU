@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         
         if navigationRouter.isLoggedIn {
-            HomeView()
+            MainView()
         } else {
             NavigationStack(path: $navigationRouter.path) {
                 LoginView()

@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct TextFieldView: View {
-
-    @State private var showPassword = false
+    @State var showPassword = false
     @Binding var text: String
     @FocusState var isFocused: Bool
 
-    var label: String
-    var placeholder: String
+    var label: LocalizedStringKey
+    var placeholder: LocalizedStringKey
     var isSecure: Bool
 
     var borderColor: Color {
@@ -22,7 +21,7 @@ struct TextFieldView: View {
         Color.theme :
         Color.clear
     }
-
+        
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
@@ -45,17 +44,13 @@ struct TextFieldView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(borderColor)
             }
-            .onTapGesture {
-                isFocused = true
-            }
         }
     }
 }
 
 extension TextFieldView {
-
     var currentTextField: some View {
-        Group {
+        VStack {
             if isSecure && !showPassword {
                 SecureField(placeholder, text: $text)
             } else {
@@ -84,6 +79,6 @@ extension TextFieldView {
         text: .constant(""),
         label: "Email",
         placeholder: "Email Address",
-        isSecure: true
+        isSecure: false
     )
 }
