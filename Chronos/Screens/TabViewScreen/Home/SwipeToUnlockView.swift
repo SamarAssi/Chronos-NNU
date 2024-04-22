@@ -45,6 +45,9 @@ struct SwipeToUnlockView<SwipeButtonProvider: SwipeButton>: View {
                     }
             ), alignment: .leading
         )
+        .onAppear {
+            swipeButtonProvider.width = UIScreen.main.bounds.size.width
+        }
     }
 
     func setSwipeButtonColor() -> LinearGradient {
