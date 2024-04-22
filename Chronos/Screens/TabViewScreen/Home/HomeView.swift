@@ -67,6 +67,9 @@ struct HomeView: View {
                         )
                     )
                     .padding(.bottom, 20)
+                    .onAppear {
+                        viewModel.width = 360
+                    }
             }
         }
         .fontDesign(.rounded)

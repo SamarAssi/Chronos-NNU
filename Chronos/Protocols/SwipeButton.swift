@@ -11,6 +11,7 @@ import SwiftUI
 protocol SwipeButton: ObservableObject {
     var currentDragOffsetX: CGFloat { get set }
     var isReached: Bool { get set }
+    var width: CGFloat { get set }
 
     func getSwipeButtonText() -> String
     func setSwipeButtonLimintation() -> CGFloat

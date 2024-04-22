@@ -14,7 +14,8 @@ struct SwipeToUnlockView<SwipeButtonProvider: SwipeButton>: View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
                 .fill(setSwipeButtonColor())
-                .frame(width: 360, height: 60)
+                .frame(maxWidth: swipeButtonProvider.width)
+                .frame(height: 60)
 
             Text(swipeButtonProvider.getSwipeButtonText())
                 .foregroundStyle(Color.white)

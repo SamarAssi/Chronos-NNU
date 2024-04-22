@@ -15,6 +15,7 @@ final class ViewModel: ObservableObject, Home, CalendarItem, SwipeButton {
     @Published var currentDragOffsetX: CGFloat = 0.0
     @Published var isReached = false
     @Published var isShowProfileHeader = true
+    @Published var width: CGFloat = 0
 
     let startDate = Calendar.current.date(byAdding: .day, value: -30, to: Date()) ?? Date()
     let endDate = Calendar.current.date(byAdding: .day, value: 30, to: Date()) ?? Date()
@@ -85,7 +86,7 @@ extension ViewModel {
     func setSwipeButtonLimintation() -> CGFloat {
         return min(
             max(currentDragOffsetX, 0),
-            UIScreen.main.bounds.width - 95
+            UIScreen.main.bounds.width - getRemainderOfHalfScreen() - 60
         )
     }
 
@@ -98,11 +99,15 @@ extension ViewModel {
     }
 
     func handleDragEnded() {
-        if currentDragOffsetX >= UIScreen.main.bounds.width - 95 {
+        if currentDragOffsetX >= UIScreen.main.bounds.width - getRemainderOfHalfScreen() - 60 {
             isReached.toggle()
         }
 
         currentDragOffsetX = 0
+    }
+    
+    private func getRemainderOfHalfScreen() -> CGFloat {
+        return UIScreen.main.bounds.size.width - width
     }
 }
 
