@@ -10,7 +10,7 @@ import SwiftUI
 struct MainButton: View {
     var buttonText: LocalizedStringKey
     var action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             Text(buttonText)

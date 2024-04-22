@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var navigationRouter: NavigationRouter
-    
+
     var body: some View {
-        
+
         if navigationRouter.isLoggedIn {
             MainView()
         } else {

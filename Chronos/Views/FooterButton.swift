@@ -11,7 +11,7 @@ struct FooterButton: View {
     var title: LocalizedStringKey
     var buttonText: LocalizedStringKey
     var action: () -> Void
-    
+
     var body: some View {
         HStack(spacing: 5) {
             Spacer()

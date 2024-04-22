@@ -8,18 +8,29 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var mainViewModel = MainViewModel()
+    @StateObject var viewModel = ViewModel()
 
+    var allActivitiesButtonColor: Color {
+        viewModel.activities.isEmpty ?
+        Color.gray :
+        Color.theme
+    }
+    
+    var isAllActivitiesButtonDisabled: Bool {
+        viewModel.activities.isEmpty ?
+        true :
+        false
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
-            headerSectionView
-                .padding(.trailing, 30)
-                .padding(.top)
-
-            
-            if mainViewModel.isShow {
-                horizontalCalenderView
+            if viewModel.isShowProfileHeader {
+                ProfileHeaderView()
+                    .padding(.trailing, 30)
+                    .padding(.top)
             }
+            
+            horizontalCalenderView
             
             ZStack(alignment: .bottom) {
                 ScrollView {
@@ -27,14 +38,26 @@ struct HomeView: View {
                         attendanceView
                         activityView
                     }
-                    .padding(.top, 30)
+                    .padding(.top, 20)
+                    .padding(.bottom, 100)
                     .padding(.horizontal, 20)
-
-                    .background(mainViewModel.scrollBackground())
+                    .background(
+                        GeometryReader { proxy in
+                            Color.clear
+                                .onChange(
+                                    of: viewModel.calculateVerticalContentOffset(proxy)
+                                ) { oldVal, newVal in
+                                    viewModel.adjustShowCalendarState(
+                                        from: oldVal,
+                                        to: newVal
+                                    )
+                                }
+                        }
+                    )
                 }
                 .scrollIndicators(.hidden)
-                
-                SwipeToUnlockView(mainViewModel: mainViewModel)
+
+                SwipeToUnlockView(swipeButtonProvider: viewModel)
                     .transition(
                         AnyTransition.scale.animation(
                             .spring(
@@ -43,66 +66,30 @@ struct HomeView: View {
                             )
                         )
                     )
-                    .padding(.horizontal, 20)
                     .padding(.bottom, 20)
             }
         }
         .fontDesign(.rounded)
-        .animation(.easeInOut, value: mainViewModel.isShow)
+        .animation(.easeInOut, value: viewModel.isShowProfileHeader)
     }
 }
 
 extension HomeView {
-    var headerSectionView: some View {
-        HStack(alignment: .top) {
-            Image("moon")
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
-                .frame(width: 80)
-            
-            VStack(alignment: .leading, spacing: 3) {
-                Text(LocalizedStringKey("Michael Mitc"))
-                    .font(.title3)
-                    .fontWeight(.bold)
-                Text(LocalizedStringKey("Lead UI/UX Designer"))
-                    .font(.system(size: 15))
-            }
-            
-            Spacer()
-            Image(systemName: "bell")
-                .font(.title3)
-                .background(
-                    RoundedRectangle(cornerRadius: 50)
-                        .stroke()
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(width: 50, height: 50)
-                )
-                .padding(.top, 12)
-        }
-    }
-    
     var horizontalCalenderView: some View {
         HorizontalCalendarView(
-            mainViewModel: mainViewModel,
-            startDate: mainViewModel.startDate,
-            endDate: mainViewModel.endDate
+            viewModel: viewModel,
+            startDate: viewModel.startDate,
+            endDate: viewModel.endDate
         )
-        .padding(.top, 30)
-        .transition(
-            .asymmetric(
-                insertion: .push(from: .top),
-                removal: .push(from: .bottom)
-            )
-        )
+        .padding(.top, 20)
     }
-    
+
     var attendanceView: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text(LocalizedStringKey("Today Attendance"))
                 .fontWeight(.bold)
                 .padding(.bottom)
-            
+
             HStack(spacing: 15) {
                 AttendanceCardView(
                     cardIcon: "tray.and.arrow.down",
@@ -110,38 +97,40 @@ extension HomeView {
                     time: LocalizedStringKey("10:20 am"),
                     note: LocalizedStringKey("On Time")
                 )
-                .shadow(radius: 2)
-                
+                .shadow(radius: 1)
+
                 AttendanceCardView(
                     cardIcon: "tray.and.arrow.up",
                     cardTitle: LocalizedStringKey("Check Out"),
                     time: LocalizedStringKey("7:00 am"),
                     note: LocalizedStringKey("Go Home")
                 )
-                .shadow(radius: 2)
+                .shadow(radius: 1)
             }
         }
     }
-    
+
     var activityView: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
                 Text("Your Activity")
                     .fontWeight(.bold)
-                
+
                 Spacer()
+
                 Button {
-                    
+
                 } label: {
                     Text("View All")
                 }
                 .font(.system(size: 16))
-                .foregroundStyle(Color.theme)
+                .foregroundStyle(allActivitiesButtonColor)
+                .disabled(isAllActivitiesButtonDisabled)
             }
             .padding(.top, 20)
             .padding(.bottom)
-            
-            if mainViewModel.activities.isEmpty {
+
+            if viewModel.activities.isEmpty {
                 Text("There is no activities yet!")
                     .font(.subheadline)
             } else {
@@ -153,6 +142,16 @@ extension HomeView {
                 )
             }
         }
+    }
+}
+
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    typealias Value = CGFloat
+    
+    static var defaultValue: CGFloat = 0.0
+    
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }
 

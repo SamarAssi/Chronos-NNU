@@ -12,7 +12,7 @@ struct AttendanceCardView: View {
     var cardTitle: LocalizedStringKey
     var time: LocalizedStringKey
     var note: LocalizedStringKey
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 15) {
@@ -21,19 +21,20 @@ struct AttendanceCardView: View {
                     .frame(width: 40, height: 40)
                     .background(Color.theme.opacity(0.1))
                     .cornerRadius(10)
-                
+
                 Text(cardTitle)
             }
             .padding(.bottom)
-            
+
             Text(time)
                 .font(.title3)
                 .fontWeight(.bold)
             Text(note)
                 .font(.subheadline)
         }
+        .foregroundStyle(Color.primary)
         .frame(width: 172, height: 150)
-        .background(Color.white)
+        .background(Color.whiteAndBlack)
         .cornerRadius(25)
     }
 }

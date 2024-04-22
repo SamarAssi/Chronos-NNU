@@ -7,17 +7,16 @@
 
 import SwiftUI
 
-struct SwipeToUnlockView: View {
-    @ObservedObject var mainViewModel: MainViewModel
-    
+struct SwipeToUnlockView<SwipeButtonProvider: SwipeButton>: View {
+    @ObservedObject var swipeButtonProvider: SwipeButtonProvider
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
-                .fill(mainViewModel.setColor())
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-            
-            Text(mainViewModel.setText())
+                .fill(setSwipeButtonColor())
+                .frame(width: 360, height: 60)
+
+            Text(swipeButtonProvider.getSwipeButtonText())
                 .foregroundStyle(Color.white)
         }
         .overlay(
@@ -25,23 +24,43 @@ struct SwipeToUnlockView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.white)
                     .frame(width: 50, height: 50)
-                
+
                 Image(systemName: "arrow.right")
-                    .foregroundStyle(mainViewModel.setColor())
+                    .foregroundStyle(setSwipeButtonColor())
             }
             .padding(.leading, 5)
-            .offset(x: mainViewModel.setSwipeLimitation())
+            .offset(x: swipeButtonProvider.setSwipeButtonLimintation())
             .gesture(
                 DragGesture()
-                    .onChanged(mainViewModel.handleDragChanged)
+                    .onChanged(
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                            swipeButtonProvider.handleDragChanged
+                        }
+                    )
                     .onEnded { _ in
-                        mainViewModel.handleDragEnded()
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                            swipeButtonProvider.handleDragEnded()
+                        }
                     }
             ), alignment: .leading
+        )
+    }
+
+    func setSwipeButtonColor() -> LinearGradient {
+        swipeButtonProvider.isReached ?
+        LinearGradient(
+            colors: [Color.red, Color.red.opacity(0.5)],
+            startPoint: .top,
+            endPoint: .bottomTrailing
+        ) :
+        LinearGradient(
+            colors: [Color.theme, Color.theme.opacity(0.5)],
+            startPoint: .top,
+            endPoint: .bottomTrailing
         )
     }
 }
 
 #Preview {
-    SwipeToUnlockView(mainViewModel: MainViewModel())
+    SwipeToUnlockView(swipeButtonProvider: ViewModel())
 }

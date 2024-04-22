@@ -17,7 +17,7 @@ protocol BaseRouter: URLRequestConvertible, RequestInterceptor {
 
 extension BaseRouter {
 
-    /**
+    /*
      API Router: the endpoint builder
      It is important to have an API request builder component which presents an endpoint.
      The router will present an endpoint using HTTP method, HTTP headers, path and parameters
@@ -54,10 +54,9 @@ extension BaseRouter {
         completion: @escaping (Result<URLRequest, Error>) -> Void
     ) {
 
-        var request = urlRequest
+        let request = urlRequest
         completion(.success(request))
     }
-
 
     /**
      Retry function.  in this function first we check that our
@@ -87,16 +86,12 @@ extension BaseRouter {
         switch statusCode {
         case NetworkConstants.HttpStatusCode.success:
             completion(.doNotRetry)
-            break
         case NetworkConstants.HttpStatusCode.unAuthorized:
             completion(.doNotRetry)
-            break
         case NetworkConstants.HttpStatusCode.forbidden:
             completion(.doNotRetry)
-            break
         default:
             completion(.doNotRetry)
-            break
         }
     }
 

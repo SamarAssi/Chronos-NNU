@@ -18,7 +18,7 @@ struct RegistrationView: View {
                 .font(.system(size: 40, weight: .bold))
                 .padding(.vertical, 30)
                 .padding(.horizontal, 30)
-            
+
             List(registrationViewModel.textFieldList.indices, id: \.self) { index in
                 TextFieldView(
                     text: Binding<String>(
@@ -36,19 +36,19 @@ struct RegistrationView: View {
                 .padding(.horizontal, 10)
             }
             .listStyle(PlainListStyle())
-            
+
             MainButton(
                 buttonText: LocalizedStringKey("Register"),
                 action: {
-                    //navigationRouter.navigateTo(.home)
+                    // navigationRouter.navigateTo(.home)
                 }
             )
             .padding(30)
         }
         .fontDesign(.rounded)
-        
+
         Spacer()
-        
+
         FooterButton(
             title: LocalizedStringKey("Already have an account?"),
             buttonText: LocalizedStringKey("Login"),

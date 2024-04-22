@@ -7,40 +7,50 @@
 
 import SwiftUI
 
-struct CalendarItemView: View {
-    @ObservedObject var mainViewModel: MainViewModel
+struct CalendarItemView<CalendarItemProvider: CalendarItem>: View {
+    @ObservedObject var calendarItemProvider: CalendarItemProvider
     var date: Date
-    
+
     var itemColor: Color {
-        mainViewModel.selectedDate == date ?
+        calendarItemProvider.selectedDate == date ?
         Color.white :
-        Color.black
+        Color.primary
     }
-    
+
     var body: some View {
         VStack(spacing: 5) {
             Text("\(date.day)")
                 .font(.title3)
                 .fontWeight(.bold)
-            
-            Text(mainViewModel.getDay(date.weekday))
+
+            Text(calendarItemProvider.getDay(date.weekday))
                 .font(.system(size: 14))
         }
         .foregroundStyle(itemColor)
         .frame(width: 80, height: 80)
-        .background(mainViewModel.cardBackground(date: date))
+        .background(adjustCalendarItemBackground(date: date))
         .onTapGesture {
-            mainViewModel.selectedDate = date
+            calendarItemProvider.selectedDate = date
         }
         .onAppear {
-            mainViewModel.setSelectedDate(date: date)
+            calendarItemProvider.setSelectedDate(date: date)
+        }
+    }
+
+    func adjustCalendarItemBackground(date: Date) -> some View {
+        HStack {
+            if calendarItemProvider.selectedDate == date {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.theme)
+            } else {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(lineWidth: 2)
+                    .fill(Color.gray.opacity(0.3))
+            }
         }
     }
 }
 
 #Preview {
-    CalendarItemView(
-        mainViewModel: MainViewModel(),
-        date: Date()
-    )
+    CalendarItemView(calendarItemProvider: ViewModel(), date: Date())
 }

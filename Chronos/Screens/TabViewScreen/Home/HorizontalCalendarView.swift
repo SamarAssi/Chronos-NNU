@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct HorizontalCalendarView: View {
-    @ObservedObject var mainViewModel: MainViewModel
-    
+    @ObservedObject var viewModel: ViewModel
+
     var startDate: Date
     var endDate: Date
+
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(Date.generateDates(from: startDate, to: endDate), id: \.self) { date in
                         CalendarItemView(
-                            mainViewModel: mainViewModel,
+                            calendarItemProvider: viewModel,
                             date: date
                         )
                         .onAppear {
                             if Date.isSameDay(date, as: Date()) {
-                                withAnimation {
-                                    proxy.scrollTo(date, anchor: .center)
-                                }
+                                proxy.scrollTo(date, anchor: .center)
                             }
                         }
                     }
                 }
+                .padding(.horizontal)
             }
         }
     }
@@ -37,7 +37,7 @@ struct HorizontalCalendarView: View {
 
 #Preview {
     HorizontalCalendarView(
-        mainViewModel: MainViewModel(),
+        viewModel: ViewModel(),
         startDate: Date(),
         endDate: Date()
     )

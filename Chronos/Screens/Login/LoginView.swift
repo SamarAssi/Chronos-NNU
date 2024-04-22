@@ -19,7 +19,7 @@ struct LoginView: View {
                 .scaledToFit()
                 .frame(height: 150)
                 .padding(.horizontal, 20)
-            
+
             TextFieldView(
                 text: $loginViewModel.email,
                 label: LocalizedStringKey("Email"),
@@ -60,7 +60,7 @@ extension LoginView {
         HStack {
             Spacer()
             Button {
-                
+
             } label: {
                 Text(LocalizedStringKey("Forgot Password?"))
                     .foregroundStyle(Color.black.opacity(0.6))
@@ -68,7 +68,7 @@ extension LoginView {
             }
         }
     }
-    
+
     var loginButtonView: some View {
         MainButton(
             buttonText: LocalizedStringKey("Login"),

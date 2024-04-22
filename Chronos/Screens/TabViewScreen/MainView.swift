@@ -12,16 +12,16 @@ struct MainView: View {
         TabView {
             HomeView()
                 .tabItem { Image(systemName: "house") }
-            
+
             Text("hello2")
                 .tabItem { Image(systemName: "list.clipboard") }
-            
+
             Text("hello3")
                 .tabItem { Image(systemName: "person.2") }
-        
+
             Text("hello5")
                 .tabItem { Image(systemName: "figure.open.water.swim") }
-            
+
             Text("hello4")
                 .tabItem { Image(systemName: "person") }
         }

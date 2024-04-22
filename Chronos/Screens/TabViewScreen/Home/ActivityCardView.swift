@@ -12,10 +12,10 @@ struct ActivityCardView: View {
     var title: String
     var time: String
     var date: Date
-    
+
     var body: some View {
         HStack {
-            
+
         }
     }
 }

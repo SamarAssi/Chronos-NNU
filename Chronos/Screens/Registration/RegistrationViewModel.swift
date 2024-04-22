@@ -44,7 +44,6 @@ final class RegistrationViewModel: ObservableObject {
     ]
 }
 
-
 struct TextFieldModel: Identifiable {
     let id = UUID().uuidString
     var text: String

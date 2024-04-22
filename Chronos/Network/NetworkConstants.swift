@@ -9,7 +9,7 @@ import Foundation
 
 struct NetworkConstants {
 
-    struct HTTPHeaderField  {
+    struct HTTPHeaderField {
         static let authentication = "Authorization"
         static let contentType = "Content-Type"
         static let acceptType = "Accept"
@@ -23,7 +23,7 @@ struct NetworkConstants {
         static let switchToken = "Switch-Token"
     }
 
-    struct ContentType  {
+    struct ContentType {
         static let json = "application/json"
     }
 

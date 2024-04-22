@@ -10,7 +10,7 @@ import Alamofire
 enum NetworkRouter: BaseRouter {
     case login
     case home
-        
+
     var path: String {
         switch self {
         case .login:
@@ -19,7 +19,7 @@ enum NetworkRouter: BaseRouter {
             return "home"
         }
     }
-    
+
     var method: HTTPMethod {
         switch self {
         case .login:
@@ -28,7 +28,7 @@ enum NetworkRouter: BaseRouter {
             return .get
         }
     }
-    
+
     var parameters: Parameters? {
         switch self {
         case .login:

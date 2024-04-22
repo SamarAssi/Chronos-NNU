@@ -21,12 +21,11 @@ struct TextFieldView: View {
         Color.theme :
         Color.clear
     }
-        
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
                 .font(.subheadline)
-                .foregroundStyle(Color.black)
                 .padding(.horizontal, 10)
 
             HStack {
