@@ -28,6 +28,12 @@ struct HomeView: View {
                 ProfileHeaderView()
                     .padding(.trailing, 30)
                     .padding(.top)
+                    .transition(
+                        .asymmetric(
+                            insertion: .move(edge: .top),
+                            removal: .move(edge: .top).combined(with: .opacity)
+                        )
+                    )
             }
 
             horizontalCalenderView
