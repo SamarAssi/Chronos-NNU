@@ -30,7 +30,7 @@ struct HomeView: View {
                     .padding(.top)
                     .transition(
                         .asymmetric(
-                            insertion: .move(edge: .top),
+                            insertion: .move(edge: .top).combined(with: .opacity),
                             removal: .move(edge: .top).combined(with: .opacity)
                         )
                     )
