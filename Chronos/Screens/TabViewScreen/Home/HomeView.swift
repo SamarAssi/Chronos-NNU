@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel = MainViewModel()
 
     var allActivitiesButtonColor: Color {
         viewModel.activities.isEmpty ?
         Color.gray :
         Color.theme
     }
-    
+
     var isAllActivitiesButtonDisabled: Bool {
         viewModel.activities.isEmpty ?
         true :
         false
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             if viewModel.isShowProfileHeader {
@@ -29,9 +29,9 @@ struct HomeView: View {
                     .padding(.trailing, 30)
                     .padding(.top)
             }
-            
+
             horizontalCalenderView
-            
+
             ZStack(alignment: .bottom) {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 15) {
@@ -57,19 +57,18 @@ struct HomeView: View {
                 }
                 .scrollIndicators(.hidden)
 
-                SwipeToUnlockView(swipeButtonProvider: viewModel)
-                    .transition(
-                        AnyTransition.scale.animation(
-                            .spring(
-                                response: 0.3,
-                                dampingFraction: 0.5
-                            )
+                SwipeToUnlockView(
+                    width: 360
+                )
+                .transition(
+                    AnyTransition.scale.animation(
+                        .spring(
+                            response: 0.3,
+                            dampingFraction: 0.5
                         )
                     )
-                    .padding(.bottom, 20)
-                    .onAppear {
-                        viewModel.width = 360
-                    }
+                )
+                .padding(.bottom, 20)
             }
         }
         .fontDesign(.rounded)
@@ -80,7 +79,6 @@ struct HomeView: View {
 extension HomeView {
     var horizontalCalenderView: some View {
         HorizontalCalendarView(
-            viewModel: viewModel,
             startDate: viewModel.startDate,
             endDate: viewModel.endDate
         )

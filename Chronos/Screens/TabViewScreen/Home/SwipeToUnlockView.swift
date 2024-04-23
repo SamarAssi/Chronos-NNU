@@ -7,17 +7,19 @@
 
 import SwiftUI
 
-struct SwipeToUnlockView<SwipeButtonProvider: SwipeButton>: View {
-    @ObservedObject var swipeButtonProvider: SwipeButtonProvider
+struct SwipeToUnlockView: View {
+    @State var isReached: Bool = false
+    @State var currentDragOffsetX: CGFloat = 0
+    var width: CGFloat
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
                 .fill(setSwipeButtonColor())
-                .frame(maxWidth: swipeButtonProvider.width)
+                .frame(maxWidth: width)
                 .frame(height: 60)
 
-            Text(swipeButtonProvider.getSwipeButtonText())
+            Text(getSwipeButtonText())
                 .foregroundStyle(Color.white)
         }
         .overlay(
@@ -30,28 +32,27 @@ struct SwipeToUnlockView<SwipeButtonProvider: SwipeButton>: View {
                     .foregroundStyle(setSwipeButtonColor())
             }
             .padding(.leading, 5)
-            .offset(x: swipeButtonProvider.setSwipeButtonLimintation())
+            .offset(x: setSwipeButtonLimintation())
             .gesture(
                 DragGesture()
                     .onChanged(
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                            swipeButtonProvider.handleDragChanged
+                            handleDragChanged
                         }
                     )
                     .onEnded { _ in
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                            swipeButtonProvider.handleDragEnded()
+                            handleDragEnded()
                         }
                     }
             ), alignment: .leading
         )
-        .onAppear {
-            swipeButtonProvider.width = UIScreen.main.bounds.size.width
-        }
     }
+}
 
+extension SwipeToUnlockView {
     func setSwipeButtonColor() -> LinearGradient {
-        swipeButtonProvider.isReached ?
+        isReached ?
         LinearGradient(
             colors: [Color.red, Color.red.opacity(0.5)],
             startPoint: .top,
@@ -63,8 +64,35 @@ struct SwipeToUnlockView<SwipeButtonProvider: SwipeButton>: View {
             endPoint: .bottomTrailing
         )
     }
+
+    func setSwipeButtonLimintation() -> CGFloat {
+        return min(
+            max(currentDragOffsetX, 0),
+            UIScreen.main.bounds.width - getRemainderOfHalfScreen() - 60
+        )
+    }
+
+    func getSwipeButtonText() -> String {
+        isReached ? "Swipe to Check Out" : "Swipe to Check In"
+    }
+
+    func handleDragChanged(value: DragGesture.Value) {
+        currentDragOffsetX = value.translation.width
+    }
+
+    func handleDragEnded() {
+        if currentDragOffsetX >= UIScreen.main.bounds.width - getRemainderOfHalfScreen() - 60 {
+            isReached.toggle()
+        }
+
+        currentDragOffsetX = 0
+    }
+
+    private func getRemainderOfHalfScreen() -> CGFloat {
+        return UIScreen.main.bounds.size.width - width
+    }
 }
 
 #Preview {
-    SwipeToUnlockView(swipeButtonProvider: ViewModel())
+    SwipeToUnlockView(width: UIScreen.main.bounds.width)
 }

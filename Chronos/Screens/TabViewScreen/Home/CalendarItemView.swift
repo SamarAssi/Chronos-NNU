@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct CalendarItemView<CalendarItemProvider: CalendarItem>: View {
-    @ObservedObject var calendarItemProvider: CalendarItemProvider
+struct CalendarItemView: View {
+    @Binding var selectedDate: Date?
     var date: Date
 
     var itemColor: Color {
-        calendarItemProvider.selectedDate == date ?
+        selectedDate == date ?
         Color.white :
         Color.primary
     }
@@ -23,23 +23,22 @@ struct CalendarItemView<CalendarItemProvider: CalendarItem>: View {
                 .font(.title3)
                 .fontWeight(.bold)
 
-            Text(calendarItemProvider.getDay(date.weekday))
+            Text(getDay(date.weekday))
                 .font(.system(size: 14))
         }
         .foregroundStyle(itemColor)
         .frame(width: 80, height: 80)
         .background(adjustCalendarItemBackground(date: date))
-        .onTapGesture {
-            calendarItemProvider.selectedDate = date
-        }
         .onAppear {
-            calendarItemProvider.setSelectedDate(date: date)
+            setSelectedDate()
         }
     }
+}
 
+extension CalendarItemView {
     func adjustCalendarItemBackground(date: Date) -> some View {
         HStack {
-            if calendarItemProvider.selectedDate == date {
+            if selectedDate == date {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.theme)
             } else {
@@ -49,8 +48,45 @@ struct CalendarItemView<CalendarItemProvider: CalendarItem>: View {
             }
         }
     }
+
+    enum WeekDay: String {
+        case saturday = "Sat"
+        case sunday = "Sun"
+        case monday = "Mon"
+        case tuesday = "Tue"
+        case wednesday = "Wed"
+        case thursday = "Thu"
+        case friday = "Fri"
+    }
+
+    func setSelectedDate() {
+        if selectedDate == nil && Date.isSameDay(date, as: Date()) {
+            selectedDate = date
+        }
+    }
+
+    func getDay(_ weekDay: Int) -> String {
+        switch weekDay {
+        case 1:
+            return WeekDay.sunday.rawValue
+        case 2:
+            return WeekDay.monday.rawValue
+        case 3:
+            return WeekDay.tuesday.rawValue
+        case 4:
+            return WeekDay.wednesday.rawValue
+        case 5:
+            return WeekDay.thursday.rawValue
+        case 6:
+            return WeekDay.friday.rawValue
+        case 7:
+            return WeekDay.saturday.rawValue
+        default:
+            return ""
+        }
+    }
 }
 
 #Preview {
-    CalendarItemView(calendarItemProvider: ViewModel(), date: Date())
+    CalendarItemView(selectedDate: .constant(nil), date: Date())
 }
