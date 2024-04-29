@@ -8,13 +8,13 @@
 import Alamofire
 
 enum NetworkRouter: BaseRouter {
-    case login
+    case login(username: String, password: String)
     case home
 
     var path: String {
         switch self {
         case .login:
-            return "login"
+            return "https://timeshift-420211.ew.r.appspot.com/auth/login"
         case .home:
             return "home"
         }
@@ -31,8 +31,8 @@ enum NetworkRouter: BaseRouter {
 
     var parameters: Parameters? {
         switch self {
-        case .login:
-            return [:]
+        case .login(let username, let password):
+            return ["username": username, "password": password]
         default:
             return nil
         }

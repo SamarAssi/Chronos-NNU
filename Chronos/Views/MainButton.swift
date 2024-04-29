@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainButton: View {
     var buttonText: LocalizedStringKey
+    var backgroundColor: Color
     var action: () -> Void
 
     var body: some View {
@@ -18,7 +19,7 @@ struct MainButton: View {
                 .fontWeight(.bold)
                 .frame(height: 45)
                 .frame(maxWidth: .infinity)
-                .background(Color.theme)
+                .background(backgroundColor)
                 .cornerRadius(15)
         }
     }
@@ -27,6 +28,7 @@ struct MainButton: View {
 #Preview(traits: .sizeThatFitsLayout) {
     MainButton(
         buttonText: "Login",
+        backgroundColor: Color.theme,
         action: {}
     )
 }

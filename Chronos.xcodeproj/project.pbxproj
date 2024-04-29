@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F1C0E592BD9D04100960980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F1C0E582BD9D04100960980 /* LaunchScreen.storyboard */; };
+		2F1C0E6A2BDD7CD000960980 /* AccessTokenContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C0E682BDD7CD000960980 /* AccessTokenContainer.xcdatamodeld */; };
+		2F1C0E6E2BDD7D6F00960980 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C0E6D2BDD7D6F00960980 /* CoreDataManager.swift */; };
+		2F1C0E732BDDC87B00960980 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 2F1C0E722BDDC87B00960980 /* NVActivityIndicatorView */; };
+		2F1C0E752BDDC87B00960980 /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 2F1C0E742BDDC87B00960980 /* NVActivityIndicatorViewExtended */; };
+		2F1C0E772BDF0DC000960980 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C0E762BDF0DC000960980 /* LoginRequest.swift */; };
+		2F1C0E792BDF0DF400960980 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C0E782BDF0DF400960980 /* LoginResponse.swift */; };
+		2F1C0E7B2BDFBAFF00960980 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C0E7A2BDFBAFF00960980 /* ActivityIndicatorView.swift */; };
 		2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7942E02BC050A500387D3E /* ChronosApp.swift */; };
 		2F7942E52BC050A800387D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E42BC050A800387D3E /* Assets.xcassets */; };
 		2F7942E82BC050A800387D3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E72BC050A800387D3E /* Preview Assets.xcassets */; };
@@ -40,6 +48,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F1C0E582BD9D04100960980 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2F1C0E692BDD7CD000960980 /* AccessTokenContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccessTokenContainer.xcdatamodel; sourceTree = "<group>"; };
+		2F1C0E6D2BDD7D6F00960980 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		2F1C0E762BDF0DC000960980 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		2F1C0E782BDF0DF400960980 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		2F1C0E7A2BDFBAFF00960980 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		2F7942DD2BC050A500387D3E /* Chronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7942E02BC050A500387D3E /* ChronosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronosApp.swift; sourceTree = "<group>"; };
 		2F7942E42BC050A800387D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,13 +91,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B0810452BC9AA3300CB5930 /* Alamofire in Frameworks */,
+				2F1C0E752BDDC87B00960980 /* NVActivityIndicatorViewExtended in Frameworks */,
 				8B0810472BC9AA3300CB5930 /* AlamofireDynamic in Frameworks */,
+				2F1C0E732BDDC87B00960980 /* NVActivityIndicatorView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F1C0E672BDD7C6F00960980 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2F1C0E6C2BDD7D5A00960980 /* CoreDataManager */,
+				2F1C0E6B2BDD7D4D00960980 /* CoreDataContainers */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2F1C0E6B2BDD7D4D00960980 /* CoreDataContainers */ = {
+			isa = PBXGroup;
+			children = (
+				2F1C0E682BDD7CD000960980 /* AccessTokenContainer.xcdatamodeld */,
+			);
+			path = CoreDataContainers;
+			sourceTree = "<group>";
+		};
+		2F1C0E6C2BDD7D5A00960980 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				2F1C0E6D2BDD7D6F00960980 /* CoreDataManager.swift */,
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
 		2F7942D42BC050A500387D3E = {
 			isa = PBXGroup;
 			children = (
@@ -104,7 +145,9 @@
 			isa = PBXGroup;
 			children = (
 				2F7942E02BC050A500387D3E /* ChronosApp.swift */,
+				2F1C0E582BD9D04100960980 /* LaunchScreen.storyboard */,
 				2F79432B2BC4209200387D3E /* ContentView.swift */,
+				2F1C0E672BDD7C6F00960980 /* CoreData */,
 				2F7942EE2BC050FD00387D3E /* Screens */,
 				2F79432D2BC4337300387D3E /* Views */,
 				2F928D4C2BD11839004AAED3 /* Modifiers */,
@@ -148,6 +191,7 @@
 				2F7942F32BC0568500387D3E /* TextFieldView.swift */,
 				2F7943042BC2DDB400387D3E /* MainButton.swift */,
 				2F7943472BC5927900387D3E /* FooterButton.swift */,
+				2F1C0E7A2BDFBAFF00960980 /* ActivityIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +231,8 @@
 		2F7943382BC47EE700387D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F1C0E762BDF0DC000960980 /* LoginRequest.swift */,
+				2F1C0E782BDF0DF400960980 /* LoginResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +312,8 @@
 			packageProductDependencies = (
 				8B0810442BC9AA3300CB5930 /* Alamofire */,
 				8B0810462BC9AA3300CB5930 /* AlamofireDynamic */,
+				2F1C0E722BDDC87B00960980 /* NVActivityIndicatorView */,
+				2F1C0E742BDDC87B00960980 /* NVActivityIndicatorViewExtended */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -297,6 +345,7 @@
 			mainGroup = 2F7942D42BC050A500387D3E;
 			packageReferences = (
 				8B0810432BC9AA3300CB5930 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2F1C0E712BDDC87B00960980 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -313,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F7942E82BC050A800387D3E /* Preview Assets.xcassets in Resources */,
+				2F1C0E592BD9D04100960980 /* LaunchScreen.storyboard in Resources */,
 				2F7942E52BC050A800387D3E /* Assets.xcassets in Resources */,
 				2F7943092BC2E5F600387D3E /* Localizable.xcstrings in Resources */,
 			);
@@ -327,6 +377,8 @@
 			files = (
 				2F97D6A02BCD7C0800F654B3 /* MainView.swift in Sources */,
 				2F97D69C2BCD72D100F654B3 /* RegistrationViewModel.swift in Sources */,
+				2F1C0E6A2BDD7CD000960980 /* AccessTokenContainer.xcdatamodeld in Sources */,
+				2F1C0E772BDF0DC000960980 /* LoginRequest.swift in Sources */,
 				2F7943642BCAE6E900387D3E /* AttendanceCardView.swift in Sources */,
 				2F928D4E2BD1189D004AAED3 /* ProgressLoader.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
@@ -337,18 +389,21 @@
 				2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */,
 				2F7943602BCAC07900387D3E /* HorizontalCalendarView.swift in Sources */,
 				2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */,
+				2F1C0E792BDF0DF400960980 /* LoginResponse.swift in Sources */,
 				2F7943622BCAC55000387D3E /* CalendarItemView.swift in Sources */,
 				2F928D542BD32DB7004AAED3 /* ProfileHeaderView.swift in Sources */,
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */,
+				2F1C0E7B2BDFBAFF00960980 /* ActivityIndicatorView.swift in Sources */,
 				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
 				2F7943432BC5824400387D3E /* BaseRouter.swift in Sources */,
 				8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */,
 				2F79432C2BC4209200387D3E /* ContentView.swift in Sources */,
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,
 				2F7943362BC4657A00387D3E /* NetworkRouter.swift in Sources */,
+				2F1C0E6E2BDD7D6F00960980 /* CoreDataManager.swift in Sources */,
 				2F97D69A2BCD72C000F654B3 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +545,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -518,6 +574,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -557,6 +614,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2F1C0E712BDDC87B00960980 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
 		8B0810432BC9AA3300CB5930 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -568,6 +633,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2F1C0E722BDDC87B00960980 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F1C0E712BDDC87B00960980 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		2F1C0E742BDDC87B00960980 /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F1C0E712BDDC87B00960980 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
+		};
 		8B0810442BC9AA3300CB5930 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B0810432BC9AA3300CB5930 /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -579,6 +654,19 @@
 			productName = AlamofireDynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2F1C0E682BDD7CD000960980 /* AccessTokenContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2F1C0E692BDD7CD000960980 /* AccessTokenContainer.xcdatamodel */,
+			);
+			currentVersion = 2F1C0E692BDD7CD000960980 /* AccessTokenContainer.xcdatamodel */;
+			path = AccessTokenContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2F7942D52BC050A500387D3E /* Project object */;
 }

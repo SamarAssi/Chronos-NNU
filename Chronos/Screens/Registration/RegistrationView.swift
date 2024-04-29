@@ -39,6 +39,7 @@ struct RegistrationView: View {
 
             MainButton(
                 buttonText: LocalizedStringKey("Register"),
+                backgroundColor: Color.theme,
                 action: {
                     // navigationRouter.navigateTo(.home)
                 }

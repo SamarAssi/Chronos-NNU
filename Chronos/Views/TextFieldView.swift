@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TextFieldView: View {
-    @State var showPassword = false
+    @State private var showPassword = false
     @Binding var text: String
     @FocusState var isFocused: Bool
 

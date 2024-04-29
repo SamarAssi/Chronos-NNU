@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HorizontalCalendarView: View {
-    @State var selectedDate: Date?
+    @State private var selectedDate: Date?
     var startDate: Date
     var endDate: Date
 

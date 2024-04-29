@@ -9,8 +9,11 @@ import Foundation
 import Alamofire
 
 class AuthenticationClient: BaseClient {
-//    static func login() async throws -> [UserModel] {
-//        let router: NetworkRouter = .home
-//        return try await performRequest(router: router)
-//    }
+    static func login(
+        email: String,
+        password: String
+    ) async throws -> LoginResponse {
+        let router: NetworkRouter = .login(username: email, password: password)
+        return try await performRequest(router: router)
+    }
 }

@@ -10,18 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var viewModel = MainViewModel()
 
-    var allActivitiesButtonColor: Color {
-        viewModel.activities.isEmpty ?
-        Color.gray :
-        Color.theme
-    }
-
-    var isAllActivitiesButtonDisabled: Bool {
-        viewModel.activities.isEmpty ?
-        true :
-        false
-    }
-
     var body: some View {
         VStack(spacing: 0) {
             if viewModel.isShowProfileHeader {
@@ -37,10 +25,21 @@ struct HomeView: View {
             }
 
             horizontalCalenderView
+                .padding(.bottom)
 
             ZStack(alignment: .bottom) {
+                Color.silver
+                    .opacity(0.1)
+                    .clipShape(RoundedRectangle(cornerRadius: 20.0))
+                    .ignoresSafeArea(edges: .bottom)
+
                 ScrollView {
                     VStack(alignment: .leading, spacing: 15) {
+                        attendanceView
+                        attendanceView
+                        attendanceView
+                        attendanceView
+                        attendanceView
                         attendanceView
                         activityView
                     }
@@ -125,14 +124,15 @@ extension HomeView {
 
                 Spacer()
 
-                Button {
+                if !viewModel.activities.isEmpty {
+                    Button {
 
-                } label: {
-                    Text("View All")
+                    } label: {
+                        Text("View All")
+                    }
+                    .font(.system(size: 16))
+                    .foregroundStyle(Color.theme)
                 }
-                .font(.system(size: 16))
-                .foregroundStyle(allActivitiesButtonColor)
-                .disabled(isAllActivitiesButtonDisabled)
             }
             .padding(.top, 20)
             .padding(.bottom)

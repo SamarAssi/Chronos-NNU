@@ -26,7 +26,9 @@ extension BaseRouter {
 
     // MARK: - Default Headers
     internal var defaultHeaders: HTTPHeaders {
-        return [:]
+        return [
+            "Content-Type": NetworkConstants.ContentType.json
+        ]
     }
 
     // MARK: - Number of retry
@@ -83,6 +85,7 @@ extension BaseRouter {
             completion(.doNotRetry)
             return
         }
+
         switch statusCode {
         case NetworkConstants.HttpStatusCode.success:
             completion(.doNotRetry)

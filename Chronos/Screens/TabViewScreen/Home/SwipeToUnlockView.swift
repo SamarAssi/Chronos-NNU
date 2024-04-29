@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SwipeToUnlockView: View {
-    @State var isReached: Bool = false
-    @State var currentDragOffsetX: CGFloat = 0
+    @State private var isReached: Bool = false
+    @State private var currentDragOffsetX: CGFloat = 0
     var width: CGFloat
 
     var body: some View {
