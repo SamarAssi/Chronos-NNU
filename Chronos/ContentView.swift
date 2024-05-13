@@ -11,21 +11,25 @@ struct ContentView: View {
     @EnvironmentObject var navigationRouter: NavigationRouter
 
     var body: some View {
-
-        if navigationRouter.isLoggedIn {
-            MainView()
-        } else {
-            NavigationStack(path: $navigationRouter.path) {
-                LoginView()
-                    .navigationDestination(for: NavigationRouter.AuthScreens.self) { value in
-                        switch value {
-                        case .login:
-                            LoginView()
-                        case .registration:
-                            RegistrationView()
-                                .navigationBarBackButtonHidden(true)
+        VStack {
+            if navigationRouter.isLoggedIn {
+                DashboardTabView()
+            } else {
+                NavigationStack(path: $navigationRouter.path) {
+                    LoginView()
+                        .navigationDestination(for: NavigationRouter.AuthScreens.self) { value in
+                            switch value {
+                            case .login:
+                                LoginView()
+                            case .registration:
+                                RegistrationView()
+                                    .navigationBarBackButtonHidden(true)
+                            case .onboarding:
+                                OnboardingView(showFullScreen: .constant(false))
+                                    .navigationBarBackButtonHidden(true)
+                            }
                         }
-                    }
+                }
             }
         }
     }

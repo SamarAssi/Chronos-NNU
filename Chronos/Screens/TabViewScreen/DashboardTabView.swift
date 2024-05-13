@@ -1,13 +1,13 @@
 //
-//  MainView.swift
+//  DashboardTabView.swift
 //  Chronos
 //
-//  Created by Samar Assi on 10/04/2024.
+//  Created by Samar Assi on 05/05/2024.
 //
 
 import SwiftUI
 
-struct MainView: View {
+struct DashboardTabView: View {
     var body: some View {
         TabView {
             HomeView()
@@ -22,7 +22,7 @@ struct MainView: View {
             Text("hello5")
                 .tabItem { Image(systemName: "figure.open.water.swim") }
 
-            Text("hello4")
+            ProfileView()
                 .tabItem { Image(systemName: "person") }
         }
         .tint(Color.theme)
@@ -30,5 +30,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    DashboardTabView()
 }

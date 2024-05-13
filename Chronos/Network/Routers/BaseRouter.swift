@@ -27,7 +27,7 @@ extension BaseRouter {
     // MARK: - Default Headers
     internal var defaultHeaders: HTTPHeaders {
         return [
-            "Content-Type": NetworkConstants.ContentType.json
+            NetworkConstants.HTTPHeaderField.contentType: NetworkConstants.ContentType.json
         ]
     }
 
@@ -55,8 +55,14 @@ extension BaseRouter {
         for session: Session,
         completion: @escaping (Result<URLRequest, Error>) -> Void
     ) {
+        var request = urlRequest
+        if let token = KeychainManager.shared.fetch(key: KeychainKeys.accessToken.rawValue) {
+            request.setValue(
+                "Bearer \(token)",
+                forHTTPHeaderField: NetworkConstants.HTTPHeaderField.authentication
+            )
+        }
 
-        let request = urlRequest
         completion(.success(request))
     }
 

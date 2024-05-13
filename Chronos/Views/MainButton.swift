@@ -21,6 +21,7 @@ struct MainButton: View {
                 .frame(maxWidth: .infinity)
                 .background(backgroundColor)
                 .cornerRadius(15)
+                .fontDesign(.rounded)
         }
     }
 }

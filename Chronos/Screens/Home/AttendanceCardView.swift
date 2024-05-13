@@ -10,12 +10,12 @@ import SwiftUI
 struct AttendanceCardView: View {
     var cardIcon: String
     var cardTitle: LocalizedStringKey
-    var time: LocalizedStringKey
+    var time: Date
     var note: LocalizedStringKey
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 15) {
+            HStack(spacing: 8) {
                 Image(systemName: cardIcon)
                     .foregroundStyle(Color.theme)
                     .frame(width: 40, height: 40)
@@ -24,18 +24,20 @@ struct AttendanceCardView: View {
 
                 Text(cardTitle)
             }
-            .padding(.bottom)
+            .padding(.bottom, 8)
 
-            Text(time)
+            Text(time, style: .time)
                 .font(.title3)
                 .fontWeight(.bold)
+
             Text(note)
                 .font(.subheadline)
         }
+        .frame(width: 130)
+        .padding(16)
         .foregroundStyle(Color.primary)
-        .frame(width: 172, height: 150)
         .background(Color.whiteAndBlack)
-        .cornerRadius(25)
+        .clipShape(RoundedRectangle(cornerRadius: 25.0))
     }
 }
 
@@ -43,7 +45,7 @@ struct AttendanceCardView: View {
     AttendanceCardView(
         cardIcon: "tray.and.arrow.down",
         cardTitle: "Check In",
-        time: "10:20 am",
+        time: Date(),
         note: "On Time"
     )
 }

@@ -15,13 +15,16 @@ struct FooterButton: View {
     var body: some View {
         HStack(spacing: 5) {
             Spacer()
+
             Text(title)
                 .font(.system(size: 15))
+
             Button(action: action) {
                 Text(buttonText)
                     .foregroundStyle(Color.theme)
                     .fontWeight(.bold)
             }
+
             Spacer()
         }
         .fontDesign(.rounded)

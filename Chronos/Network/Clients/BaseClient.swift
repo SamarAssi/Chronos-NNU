@@ -29,7 +29,8 @@ class BaseClient: NetworkClientProtocol {
     internal static func performRequest<T: Decodable> (router: BaseRouter) async throws -> T {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(
-                router
+                router,
+                interceptor: router.interceptor
             )
             .validate()
             .responseDecodable { (response: DataResponse<T, AFError>) in

@@ -1,13 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lld" : {
-
-    },
-    "7:00 am" : {
-
-    },
-    "10:20 am" : {
+    " (Optional)" : {
 
     },
     "Already have an account?" : {
@@ -24,16 +18,34 @@
         }
       }
     },
+    "Are you sure you want to log out?" : {
+
+    },
+    "Cancel" : {
+
+    },
     "Check In" : {
 
     },
-    "Check Out" : {
+    "Company Name:" : {
+
+    },
+    "Confirm password" : {
 
     },
     "Confirm Password" : {
 
     },
+    "Description" : {
+
+    },
+    "Destination View" : {
+
+    },
     "Don't have an account?" : {
+
+    },
+    "Edit" : {
 
     },
     "Email" : {
@@ -53,19 +65,46 @@
         }
       }
     },
-    "Enter Email Address" : {
+    "Employee" : {
 
     },
-    "Enter First Name" : {
+    "End Time" : {
 
     },
-    "Enter Last Name" : {
+    "Enroll to Chronos" : {
 
     },
-    "Enter Password" : {
+    "Enroll to Company" : {
+
+    },
+    "Enter company description" : {
+
+    },
+    "Enter company ID" : {
+
+    },
+    "Enter company name" : {
+
+    },
+    "Enter first name" : {
+
+    },
+    "Enter last name" : {
+
+    },
+    "Enter password" : {
+
+    },
+    "Enter username" : {
+
+    },
+    "Enter your phone number" : {
 
     },
     "First Name" : {
+
+    },
+    "Foothill Technology Solutions" : {
 
     },
     "Forgot Password?" : {
@@ -80,13 +119,22 @@
     "hello3" : {
 
     },
-    "hello4" : {
-
-    },
     "hello5" : {
 
     },
+    "ID:" : {
+
+    },
     "Incorrect email or password" : {
+
+    },
+    "Invalid number" : {
+
+    },
+    "Invalid phone number" : {
+
+    },
+    "Join your team tody" : {
 
     },
     "Last Name" : {
@@ -95,10 +143,28 @@
     "Lead UI/UX Designer" : {
 
     },
+    "Log out" : {
+
+    },
+    "Log Out" : {
+
+    },
     "Login" : {
 
     },
+    "Manage your team effortlessly" : {
+
+    },
+    "Manager" : {
+
+    },
     "Michael Mitc" : {
+
+    },
+    "My Profile" : {
+
+    },
+    "Next" : {
 
     },
     "NoAccountQuestion" : {
@@ -118,6 +184,9 @@
     "Password" : {
 
     },
+    "Password mismatch" : {
+
+    },
     "PasswordLabel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -129,10 +198,37 @@
         }
       }
     },
+    "Phone Number" : {
+
+    },
+    "Privacy Policy" : {
+
+    },
     "Register" : {
 
     },
+    "Register Company" : {
+
+    },
+    "Select your role:" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Start Time" : {
+
+    },
+    "Teams & Conditions" : {
+
+    },
     "There is no activities yet!" : {
+
+    },
+    "This is a programming company created in 2014." : {
+
+    },
+    "This is a wrong id" : {
 
     },
     "Today Attendance" : {
@@ -144,7 +240,13 @@
     "Type your password" : {
 
     },
-    "View All" : {
+    "Update" : {
+
+    },
+    "Username" : {
+
+    },
+    "Username is invalid" : {
 
     },
     "Your Activity" : {

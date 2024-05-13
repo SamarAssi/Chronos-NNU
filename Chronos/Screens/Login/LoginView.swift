@@ -9,17 +9,22 @@ import SwiftUI
 import NVActivityIndicatorView
 
 struct LoginView: View {
-    @StateObject var loginViewModel = LoginViewModel()
+    @State private var isLoading = false
+    @State private var isCorrectInputs = true
+    @State private var response: LoginResponse?
+    @State private var email = ""
+    @State private var password = ""
+
     @EnvironmentObject var navigationRouter: NavigationRouter
 
     var isLoginButtonDisabled: Bool {
-        loginViewModel.isEmptyFields() ?
+        isEmptyFields() ?
         true :
         false
     }
 
     var loginButtonColor: Color {
-        loginViewModel.isEmptyFields() ?
+        isEmptyFields() ?
         Color.theme.opacity(0.5) :
         Color.theme
     }
@@ -33,21 +38,24 @@ struct LoginView: View {
                 .padding(.horizontal, 20)
 
             TextFieldView(
-                text: $loginViewModel.email,
+                text: $email,
                 label: LocalizedStringKey("Email"),
                 placeholder: LocalizedStringKey("Type your email"),
-                isSecure: false
+                isSecure: false,
+                isOptionl: false
             )
             .padding(.bottom, 8)
 
             TextFieldView(
-                text: $loginViewModel.password,
+                text: $password,
                 label: LocalizedStringKey("Password"),
                 placeholder: LocalizedStringKey("Type your password"),
-                isSecure: true
+                isSecure: true,
+                isOptionl: false
             )
 
             loginFeedbackAndRecoveryButtonView
+
             loginButtonView
 
             Spacer()
@@ -70,13 +78,16 @@ struct LoginView: View {
 extension LoginView {
     var loginFeedbackAndRecoveryButtonView: some View {
         HStack {
-            if !loginViewModel.isCorrectInputs {
+            if !isCorrectInputs {
                 Text(LocalizedStringKey("Incorrect email or password"))
+                    .font(.subheadline)
                     .foregroundStyle(Color.red)
             }
-            Spacer()
-            Button {
 
+            Spacer()
+
+            Button {
+                // TODO: forget password button action
             } label: {
                 Text(LocalizedStringKey("Forgot Password?"))
                     .foregroundStyle(Color.black.opacity(0.6))
@@ -87,8 +98,8 @@ extension LoginView {
 
     var loginButtonView: some View {
         VStack(alignment: .center) {
-            if loginViewModel.isLoading {
-                ActivityIndicatorView(type: .circleStrokeSpin, color: .theme)
+            if isLoading {
+                ActivityIndicatorView(type: .ballRotateChase, color: .theme)
                     .padding(.top, 70)
                     .padding(.horizontal, UIScreen.main.bounds.width / 2)
             } else {
@@ -96,7 +107,7 @@ extension LoginView {
                     buttonText: LocalizedStringKey("Login"),
                     backgroundColor: loginButtonColor,
                     action: {
-                        loginAction()
+                        login()
                     }
                 )
                 .padding(.top, 50)
@@ -104,10 +115,52 @@ extension LoginView {
             }
         }
     }
+}
 
-    private func loginAction() {
-        loginViewModel.loginAction { success in
-            navigationRouter.isLoggedIn = success
+extension LoginView {
+    private func isEmptyFields() -> Bool {
+        return email.isEmpty || password.isEmpty
+    }
+
+    private func login() {
+        handleLoginResponse { success in
+            if response?.employeeDetails.employeeType != -1 {
+                navigationRouter.isLoggedIn = success
+            } else {
+                navigationRouter.navigateTo(.onboarding)
+            }
+        }
+    }
+
+    private func handleLoginResponse(completion: @escaping (Bool) -> Void) {
+        isLoading = true
+
+        Task {
+            do {
+                response = try await performLoginRequest()
+                isCorrectInputs = true
+                isLoading = false
+                saveAccessToken()
+                completion(true)
+            } catch let error {
+                print(error)
+                isCorrectInputs = false
+                isLoading = false
+                completion(false)
+            }
+        }
+    }
+
+    private func performLoginRequest() async throws -> LoginResponse {
+        return try await AuthenticationClient.login(email: email, password: password)
+    }
+
+    private func saveAccessToken() {
+        if let response = response {
+            KeychainManager.shared.save(
+                response.accessToken,
+                key: KeychainKeys.accessToken.rawValue
+            )
         }
     }
 }

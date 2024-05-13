@@ -15,6 +15,7 @@ struct TextFieldView: View {
     var label: LocalizedStringKey
     var placeholder: LocalizedStringKey
     var isSecure: Bool
+    var isOptionl: Bool
 
     var borderColor: Color {
         isFocused || !text.isEmpty ?
@@ -24,9 +25,20 @@ struct TextFieldView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(label)
-                .font(.subheadline)
-                .padding(.horizontal, 10)
+            VStack {
+                if !isOptionl {
+                    Text(label)
+                        .font(.system(size: 15))
+                } else {
+                    Text(label)
+                        .font(.subheadline)
+                    +
+                    Text(" (Optional)")
+                        .font(.system(size: 13))
+                        .foregroundStyle(Color.black.opacity(0.8))
+                }
+            }
+            .padding(.horizontal, 10)
 
             HStack {
                 currentTextField
@@ -58,8 +70,7 @@ extension TextFieldView {
         }
         .font(.system(size: 15))
         .frame(height: 45)
-        .autocapitalization(.none)
-        .padding(.vertical, 0)
+        .textInputAutocapitalization(.never)
     }
 
     var showPasswordButtonView: some View {
@@ -78,6 +89,7 @@ extension TextFieldView {
         text: .constant(""),
         label: "Email",
         placeholder: "Email Address",
-        isSecure: false
+        isSecure: false,
+        isOptionl: true
     )
 }
