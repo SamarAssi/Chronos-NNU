@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct EmployeeView: View {
+
     @State private var isLoading = false
     @State private var isCorrectId = true
     @State private var employeeResponse: OnboardingEmployeeRespone?
     @State private var id = ""
+
     @Binding var showFullScreen: Bool
 
     @EnvironmentObject var navigationRouter: NavigationRouter
@@ -30,34 +32,38 @@ struct EmployeeView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(LocalizedStringKey("Enroll to Company"))
-                .font(.system(size: 25, weight: .bold, design: .rounded))
-                .padding(.horizontal, 30)
-
-            TextFieldView(
-                text: $id,
-                label: LocalizedStringKey("ID:"),
-                placeholder: LocalizedStringKey("Enter company ID"),
-                isSecure: false,
-                isOptionl: false
-            )
-            .padding(.top)
-            .padding(.horizontal, 30)
-
-            if !isCorrectId {
-                Text(LocalizedStringKey("This is a wrong id"))
-                    .font(.subheadline)
-                    .foregroundStyle(Color.red)
-                    .fontDesign(.rounded)
+        VStack {
+            VStack(
+                alignment: .leading,
+                spacing: 10
+            ) {
+                Text(LocalizedStringKey("Enroll to Company"))
+                    .font(.system(size: 25, weight: .bold, design: .rounded))
                     .padding(.horizontal, 30)
+                
+                TextFieldView(
+                    text: $id,
+                    label: LocalizedStringKey("ID:"),
+                    placeholder: LocalizedStringKey("Enter company ID"),
+                    isSecure: false,
+                    isOptionl: false
+                )
+                .padding(.top)
+                .padding(.horizontal, 30)
+                
+                if !isCorrectId {
+                    Text(LocalizedStringKey("This is a wrong id"))
+                        .font(.subheadline)
+                        .foregroundStyle(Color.red)
+                        .fontDesign(.rounded)
+                        .padding(.horizontal, 30)
+                }
             }
-
             Spacer()
-
+            
             nextButtonView
         }
-        .padding(.bottom, 20)
+        .padding(.vertical, 20)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Image(systemName: "lessthan")
@@ -73,23 +79,17 @@ struct EmployeeView: View {
 
 extension EmployeeView {
     var nextButtonView: some View {
-        VStack(alignment: .center) {
-            if isLoading {
-                ActivityIndicatorView(type: .ballRotateChase, color: .theme)
-                    .padding(.top, 510)
-                    .padding(.horizontal, UIScreen.main.bounds.width / 2)
-            } else {
-                MainButton(
-                    buttonText: LocalizedStringKey("Next"),
-                    backgroundColor: nextButtonBackgroundColor,
-                    action: {
-                        onboardingAction()
-                    }
-                )
-                .disabled(isDisabledNextButton)
-                .padding(.horizontal, 30)
+        MainButton(
+            isLoading: $isLoading,
+            buttonText: LocalizedStringKey("Next"),
+            backgroundColor: nextButtonBackgroundColor,
+            action: {
+                onboardingAction()
             }
-        }
+        )
+        .disabled(isDisabledNextButton)
+        .padding(.horizontal, 30)
+        .frame(height: 60)
     }
 
     private func onboardingAction() {

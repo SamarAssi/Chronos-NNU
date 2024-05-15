@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct FilteredCalendarCollectionView: View {
-    @Binding var selectedDate: Date?
+
+    @Binding var selectedDate: Date
+    @Binding var dashboardResponse: DashboardResponse?
+    @Binding var isLoading: Bool
     var startDate: Date
     var endDate: Date
-    var onUpdateSelectedDate: () -> Void
 
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal) {
-                HStack(spacing: 10) {
+                HStack(
+                    spacing: 10
+                ) {
                     ForEach(
                         Date.generateDates(from: startDate, to: endDate),
                         id: \.self
@@ -28,15 +32,12 @@ struct FilteredCalendarCollectionView: View {
                         .background(adjustCalendarItemBackground(date: date))
                         .onTapGesture {
                             selectedDate = date
-                            onUpdateSelectedDate()
                         }
                         .onAppear {
-                            if let selectedDate = selectedDate {
-                                proxy.scrollTo(selectedDate, anchor: .center)
-                            } else {
+                            if Date.isSameDay(date, as: Date()) {
                                 proxy.scrollTo(date, anchor: .center)
+                                selectedDate = date
                             }
-                            setSelectedDate(date: date)
                         }
                     }
                 }
@@ -44,11 +45,20 @@ struct FilteredCalendarCollectionView: View {
             }
             .scrollIndicators(.hidden)
         }
+        .onChange(of: selectedDate) {
+            Task {
+                showLoading()
+                dashboardResponse = try await performDashboardRequest()
+                hideLoading()
+            }
+        }
     }
 }
 
 extension FilteredCalendarCollectionView {
-    private func adjustCalendarItemBackground(date: Date) -> some View {
+    private func adjustCalendarItemBackground(
+        date: Date
+    ) -> some View {
         HStack {
             if selectedDate == date {
                 RoundedRectangle(cornerRadius: 10)
@@ -60,19 +70,29 @@ extension FilteredCalendarCollectionView {
             }
         }
     }
+    
+    private func performDashboardRequest() async throws -> DashboardResponse {
+        return try await AuthenticationClient.dashboard(
+            date: Int(selectedDate.timeIntervalSince1970)
+        )
+    }
 
-    private func setSelectedDate(date: Date) {
-        if selectedDate == nil && Date.isSameDay(date, as: Date()) {
-            selectedDate = date
-        }
+    private func showLoading() {
+        isLoading = true
+    }
+
+    private func hideLoading() {
+        isLoading = false
     }
 }
 
 #Preview {
     FilteredCalendarCollectionView(
         selectedDate: .constant(Date()),
+        dashboardResponse: .constant(nil),
+        isLoading: .constant(false),
         startDate: Date(),
-        endDate: Date(),
-        onUpdateSelectedDate: {}
+        endDate: Date()
     )
 }
+

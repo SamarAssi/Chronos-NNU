@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ActivityCardView: View {
+
     var icon: String
     var title: LocalizedStringKey
     var date: Date
@@ -19,7 +20,9 @@ struct ActivityCardView: View {
     }
 
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(
+            spacing: 10
+        ) {
             Image(systemName: icon)
                 .foregroundStyle(Color.theme)
                 .frame(width: 45, height: 45)

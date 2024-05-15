@@ -9,12 +9,13 @@ import SwiftUI
 import SimpleToast
 
 struct RegistrationView: View {
-    @State private var isPhoneNumberInvalid = false
+    
     @State private var isLoading = false
+    @State private var isPhoneNumberInvalid = false
     @State private var isSamePassword = false
     @State private var isUsernameInvalid = false
     @State private var response: LoginResponse?
-    @State private var textFields: [TextFieldModel] = []
+    @State private var textFields: [TextFieldModel] = TextFieldModel.registrationData
 
     @EnvironmentObject var navigationRouter: NavigationRouter
 
@@ -39,17 +40,16 @@ struct RegistrationView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(LocalizedStringKey("Register"))
-                .foregroundStyle(Color.theme)
-                .font(.system(size: 40, weight: .bold))
-                .padding(.vertical, 20)
-                .padding(.horizontal, 30)
-
-            textFieldListView
-
+        VStack {
+            VStack(
+                alignment: .leading,
+                spacing: 5
+            ) {
+                titleView
+                textFieldListView
+            }
             registerButtonView
-
+            
             FooterButton(
                 title: LocalizedStringKey("Already have an account?"),
                 buttonText: LocalizedStringKey("Login"),
@@ -60,34 +60,27 @@ struct RegistrationView: View {
             .padding(.bottom)
         }
         .fontDesign(.rounded)
-        .onAppear {
-            setTextFields()
-        }
         .simpleToast(isPresented: $isPhoneNumberInvalid, options: toastOptions) {
-            ToastView(
-                type: .error,
-                message: LocalizedStringKey("Invalid phone number")
-            )
-            .padding(.horizontal, 30)
+            invalidPhoneNumberToast
         }
         .simpleToast(isPresented: $isSamePassword, options: toastOptions) {
-            ToastView(
-                type: .error,
-                message: LocalizedStringKey("Password mismatch")
-            )
-            .padding(.horizontal, 30)
+            passwordMismatchToast
         }
         .simpleToast(isPresented: $isUsernameInvalid, options: toastOptions) {
-            ToastView(
-                type: .error,
-                message: LocalizedStringKey("Username is invalid")
-            )
-            .padding(.horizontal, 30)
+            invalidUsernameToast
         }
     }
 }
 
 extension RegistrationView {
+    var titleView: some View {
+        Text(LocalizedStringKey("Register"))
+            .foregroundStyle(Color.theme)
+            .font(.system(size: 40, weight: .bold))
+            .padding(.vertical, 20)
+            .padding(.horizontal, 30)
+    }
+    
     var textFieldListView: some View {
         List(textFields.indices, id: \.self) { index in
             TextFieldView(
@@ -111,28 +104,45 @@ extension RegistrationView {
     }
 
     var registerButtonView: some View {
-        VStack(alignment: .center) {
-            if isLoading {
-                ActivityIndicatorView(type: .ballRotateChase, color: .theme)
-                    .padding(.top, 45)
-                    .padding(.horizontal, UIScreen.main.bounds.width / 2)
-            } else {
-                MainButton(
-                    buttonText: LocalizedStringKey("Register"),
-                    backgroundColor: registerButtonBackgroundColor,
-                    action: {
-                        isPhoneNumberInvalid = !isValidPhoneNumber(textFields[3].text)
-                        isSamePassword = !checkIsSamePassword()
-                        if !isPhoneNumberInvalid && checkIsSamePassword() {
-                            register()
-                        }
-                    }
-                )
-                .padding(.horizontal, 30)
-                .disabled(isDisabledRegisterButton)
+        MainButton(
+            isLoading: $isLoading,
+            buttonText: LocalizedStringKey("Register"),
+            backgroundColor: registerButtonBackgroundColor,
+            action: {
+                isPhoneNumberInvalid = !isValidPhoneNumber(textFields[3].text)
+                isSamePassword = !checkIsSamePassword()
+                if !isPhoneNumberInvalid && checkIsSamePassword() {
+                    register()
+                }
             }
-        }
+        )
+        .padding(.horizontal, 30)
+        .disabled(isDisabledRegisterButton)
         .frame(height: 90)
+    }
+    
+    var invalidPhoneNumberToast: some View {
+        ToastView(
+            type: .error,
+            message: LocalizedStringKey("Invalid phone number")
+        )
+        .padding(.horizontal, 30)
+    }
+    
+    var passwordMismatchToast: some View {
+        ToastView(
+            type: .error,
+            message: LocalizedStringKey("Password mismatch")
+        )
+        .padding(.horizontal, 30)
+    }
+    
+    var invalidUsernameToast: some View {
+        ToastView(
+            type: .error,
+            message: LocalizedStringKey("Username is invalid")
+        )
+        .padding(.horizontal, 30)
     }
 }
 
@@ -158,7 +168,9 @@ extension RegistrationView {
         }
     }
 
-    private func handleRegistrationResponse(completion: @escaping (Bool) -> Void) {
+    private func handleRegistrationResponse(
+        completion: @escaping (Bool) -> Void
+    ) {
         isLoading = true
 
         Task {
@@ -195,65 +207,6 @@ extension RegistrationView {
         let phoneRegex = #"^\d{10}$"#
         let predicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         return predicate.evaluate(with: value)
-    }
-
-    private func setTextFields() {
-        textFields = [
-            TextFieldModel(
-                text: "",
-                label: LocalizedStringKey("First Name"),
-                placeholder: "Enter first name",
-                isSecure: false,
-                keyboardType: .asciiCapable,
-                isDisabled: false,
-                isOptional: false
-            ),
-            TextFieldModel(
-                text: "",
-                label: "Last Name",
-                placeholder: "Enter last name",
-                isSecure: false,
-                keyboardType: .asciiCapable,
-                isDisabled: false,
-                isOptional: false
-            ),
-            TextFieldModel(
-                text: "",
-                label: "Username",
-                placeholder: "Enter username",
-                isSecure: false,
-                keyboardType: .asciiCapable,
-                isDisabled: false,
-                isOptional: false
-            ),
-            TextFieldModel(
-                text: "",
-                label: "Phone Number",
-                placeholder: "Enter your phone number",
-                isSecure: false,
-                keyboardType: .phonePad,
-                isDisabled: false,
-                isOptional: true
-            ),
-            TextFieldModel(
-                text: "",
-                label: "Password",
-                placeholder: "Enter password",
-                isSecure: true,
-                keyboardType: .asciiCapable,
-                isDisabled: false,
-                isOptional: false
-            ),
-            TextFieldModel(
-                text: "",
-                label: "Confirm Password",
-                placeholder: "Confirm password",
-                isSecure: true,
-                keyboardType: .asciiCapable,
-                isDisabled: false,
-                isOptional: false
-            )
-        ]
     }
 }
 

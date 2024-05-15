@@ -21,12 +21,16 @@ struct TextEditorView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(
+            alignment: .leading
+        ) {
             Text(label)
                 .font(.subheadline)
                 .padding(.horizontal, 10)
 
-            ZStack(alignment: .topLeading) {
+            ZStack(
+                alignment: .topLeading
+            ) {
                 if text.isEmpty {
                     Text(placeholder)
                         .font(.system(size: 15))

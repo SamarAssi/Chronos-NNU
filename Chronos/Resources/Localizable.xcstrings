@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     " (Optional)" : {
 
     },
@@ -21,6 +24,12 @@
     "Are you sure you want to log out?" : {
 
     },
+    "Availability" : {
+
+    },
+    "Available all-day on Sun, Mon, Tue, Wed and Thu." : {
+
+    },
     "Cancel" : {
 
     },
@@ -37,9 +46,6 @@
 
     },
     "Description" : {
-
-    },
-    "Destination View" : {
 
     },
     "Don't have an account?" : {
@@ -69,6 +75,9 @@
 
     },
     "End Time" : {
+
+    },
+    "END TIME" : {
 
     },
     "Enroll to Chronos" : {
@@ -104,10 +113,10 @@
     "First Name" : {
 
     },
-    "Foothill Technology Solutions" : {
+    "Forgot Password?" : {
 
     },
-    "Forgot Password?" : {
+    "From API." : {
 
     },
     "Go Home" : {
@@ -117,9 +126,6 @@
 
     },
     "hello3" : {
-
-    },
-    "hello5" : {
 
     },
     "ID:" : {
@@ -213,19 +219,25 @@
     "Select your role:" : {
 
     },
+    "Send Request" : {
+
+    },
     "Settings" : {
 
     },
     "Start Time" : {
 
     },
+    "START TIME" : {
+
+    },
+    "Summary" : {
+
+    },
     "Teams & Conditions" : {
 
     },
     "There is no activities yet!" : {
-
-    },
-    "This is a programming company created in 2014." : {
 
     },
     "This is a wrong id" : {
@@ -238,6 +250,9 @@
 
     },
     "Type your password" : {
+
+    },
+    "Unavailable on Fri and Sat." : {
 
     },
     "Update" : {

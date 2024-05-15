@@ -24,21 +24,11 @@ struct TextFieldView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            VStack {
-                if !isOptionl {
-                    Text(label)
-                        .font(.system(size: 15))
-                } else {
-                    Text(label)
-                        .font(.subheadline)
-                    +
-                    Text(" (Optional)")
-                        .font(.system(size: 13))
-                        .foregroundStyle(Color.black.opacity(0.8))
-                }
-            }
-            .padding(.horizontal, 10)
+        VStack(
+            alignment: .leading,
+            spacing: 4
+        ) {
+            labelView
 
             HStack {
                 currentTextField
@@ -60,6 +50,23 @@ struct TextFieldView: View {
 }
 
 extension TextFieldView {
+    var labelView: some View {
+        VStack {
+            if !isOptionl {
+                Text(label)
+                    .font(.system(size: 15))
+            } else {
+                Text(label)
+                    .font(.subheadline)
+                +
+                Text(" (Optional)")
+                    .font(.system(size: 13))
+                    .foregroundStyle(Color.black.opacity(0.8))
+            }
+        }
+        .padding(.horizontal, 10)
+    }
+
     var currentTextField: some View {
         VStack {
             if isSecure && !showPassword {

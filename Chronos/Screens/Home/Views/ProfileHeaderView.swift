@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ProfileHeaderView: View {
+
     var body: some View {
-        HStack(spacing: 5) {
+        HStack(
+            spacing: 5
+        ) {
             Image(.logo)
                 .resizable()
                 .scaledToFit()
@@ -34,7 +37,10 @@ struct ProfileHeaderView: View {
 
 extension ProfileHeaderView {
     var userInfoView: some View {
-        VStack(alignment: .leading, spacing: 3) {
+        VStack(
+            alignment: .leading,
+            spacing: 3
+        ) {
             Text(LocalizedStringKey("Michael Mitc"))
                 .font(.title3)
                 .fontWeight(.bold)

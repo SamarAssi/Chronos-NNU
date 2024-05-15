@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct ShiftView: View {
+    
     @State private var attendanceCards: [AttendanceCardModel] = []
     var shift: DashboardResponse.Shift
 
     var body: some View {
-        HStack(spacing: 15) {
+        HStack(
+            spacing: 15
+        ) {
             ForEach(attendanceCards) { attendanceCard in
                 AttendanceCardView(
                     cardIcon: attendanceCard.cardIcon,

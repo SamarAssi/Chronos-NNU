@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ManagerView: View {
+    
     @State private var isLoading = false
     @State private var name = ""
     @State private var description = ""
     @State private var managerResponse: ManagerOnboardingResponse?
+
     @Binding var showFullScreen: Bool
 
     @EnvironmentObject var navigationRouter: NavigationRouter
@@ -31,7 +33,10 @@ struct ManagerView: View {
 
     var body: some View {
         VStack {
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(
+                alignment: .leading,
+                spacing: 10
+            ) {
                 Text(LocalizedStringKey("Register Company"))
                     .font(.system(size: 25, weight: .bold, design: .rounded))
 
@@ -56,7 +61,7 @@ struct ManagerView: View {
             registerButtonView
         }
         .padding(.horizontal, 30)
-        .padding(.bottom, 20)
+        .padding(.vertical, 20)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Image(systemName: "lessthan")
@@ -72,22 +77,16 @@ struct ManagerView: View {
 
 extension ManagerView {
     var registerButtonView: some View {
-        VStack(alignment: .center) {
-            if isLoading {
-                ActivityIndicatorView(type: .ballRotateChase, color: .theme)
-                    .padding(.top, 210)
-                    .padding(.horizontal, UIScreen.main.bounds.width / 2)
-            } else {
-                MainButton(
-                    buttonText: LocalizedStringKey("Register"),
-                    backgroundColor: registerButtonBackgroundColor,
-                    action: {
-                        onboardingAction()
-                    }
-                )
-                .disabled(isDisabledRegisterButton)
+        MainButton(
+            isLoading: $isLoading,
+            buttonText: LocalizedStringKey("Register"),
+            backgroundColor: registerButtonBackgroundColor,
+            action: {
+                onboardingAction()
             }
-        }
+        )
+        .disabled(isDisabledRegisterButton)
+        .frame(height: 60)
     }
 
     private func onboardingAction() {

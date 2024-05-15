@@ -19,10 +19,10 @@ struct DashboardTabView: View {
             Text("hello3")
                 .tabItem { Image(systemName: "person.2") }
 
-            Text("hello5")
+            AvailabilityView()
                 .tabItem { Image(systemName: "figure.open.water.swim") }
 
-            ProfileView()
+            ProfileView() // here
                 .tabItem { Image(systemName: "person") }
         }
         .tint(Color.theme)

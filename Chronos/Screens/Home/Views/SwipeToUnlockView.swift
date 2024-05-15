@@ -8,18 +8,10 @@
 import SwiftUI
 
 struct SwipeToUnlockView: View {
-    @State private var isCheckedIn: Bool = false
     @State private var currentDragOffsetX: CGFloat = 0
-    @Binding var selectedDate: Date?
+    @Binding var isCheckedIn: Bool
+
     var width: CGFloat
-
-    var isDisabledSwipeButton: Bool {
-        if let selectedDate = selectedDate {
-            return selectedDate < Date()
-        }
-
-        return false
-    }
 
     var body: some View {
         ZStack {
@@ -32,15 +24,6 @@ struct SwipeToUnlockView: View {
                 .foregroundStyle(Color.white)
         }
         .overlay(overlayContentView, alignment: .leading)
-        .transition(
-            AnyTransition.scale.animation(
-                .spring(
-                    response: 0.3,
-                    dampingFraction: 0.5
-                )
-            )
-        )
-        .disabled(isDisabledSwipeButton)
     }
 }
 
@@ -66,29 +49,17 @@ extension SwipeToUnlockView {
     }
 
     var swipeButtonColor: LinearGradient {
-        if let selectedDate = selectedDate {
-            if selectedDate < Date() {
-                return LinearGradient(
-                    colors: [Color.theme.opacity(0.5)],
-                    startPoint: .top,
-                    endPoint: .bottomTrailing
-                )
-            }
-        }
-
-        if isCheckedIn {
-            return LinearGradient(
-                colors: [Color.red, Color.red.opacity(0.5)],
-                startPoint: .top,
-                endPoint: .bottomTrailing
-            )
-        } else {
-            return LinearGradient(
-                colors: [Color.theme, Color.theme.opacity(0.5)],
-                startPoint: .top,
-                endPoint: .bottomTrailing
-            )
-        }
+        isCheckedIn ?
+        LinearGradient(
+            colors: [Color.red, Color.red.opacity(0.5)],
+            startPoint: .top,
+            endPoint: .bottomTrailing
+        ) :
+        LinearGradient(
+            colors: [Color.theme, Color.theme.opacity(0.5)],
+            startPoint: .top,
+            endPoint: .bottomTrailing
+        )
     }
 }
 
@@ -144,5 +115,8 @@ extension SwipeToUnlockView {
 }
 
 #Preview {
-    SwipeToUnlockView(selectedDate: .constant(nil), width: UIScreen.main.bounds.width)
+    SwipeToUnlockView(
+        isCheckedIn: .constant(false),
+        width: UIScreen.main.bounds.width
+    )
 }

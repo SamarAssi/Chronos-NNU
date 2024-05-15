@@ -40,7 +40,9 @@ struct ToastView: View {
     }
 
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(
+            spacing: 8
+        ) {
             Image(systemName: iconName)
                 .foregroundStyle(itemsColor)
                 .font(.title3)

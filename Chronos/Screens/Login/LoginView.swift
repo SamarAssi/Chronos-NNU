@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import NVActivityIndicatorView
 
 struct LoginView: View {
+    
     @State private var isLoading = false
     @State private var isCorrectInputs = true
     @State private var response: LoginResponse?
@@ -30,7 +30,9 @@ struct LoginView: View {
     }
 
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(
+            spacing: 10
+        ) {
             Image(.logo)
                 .resizable()
                 .scaledToFit()
@@ -97,23 +99,17 @@ extension LoginView {
     }
 
     var loginButtonView: some View {
-        VStack(alignment: .center) {
-            if isLoading {
-                ActivityIndicatorView(type: .ballRotateChase, color: .theme)
-                    .padding(.top, 70)
-                    .padding(.horizontal, UIScreen.main.bounds.width / 2)
-            } else {
-                MainButton(
-                    buttonText: LocalizedStringKey("Login"),
-                    backgroundColor: loginButtonColor,
-                    action: {
-                        login()
-                    }
-                )
-                .padding(.top, 50)
-                .disabled(isLoginButtonDisabled)
+        MainButton(
+            isLoading: $isLoading,
+            buttonText: LocalizedStringKey("Login"),
+            backgroundColor: loginButtonColor,
+            action: {
+                login()
             }
-        }
+        )
+        .padding(.top, 50)
+        .disabled(isLoginButtonDisabled)
+        .frame(height: 90)
     }
 }
 

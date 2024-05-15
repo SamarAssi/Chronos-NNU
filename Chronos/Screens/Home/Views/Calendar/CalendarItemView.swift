@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct CalendarItemView: View {
+
     var date: Date
     let dateFormatter = DateFormatter()
 
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(
+            spacing: 5
+        ) {
             Text(date, format: .dateTime.day())
                 .font(.title3)
                 .fontWeight(.bold)

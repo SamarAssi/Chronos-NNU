@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RadioButtonView: View {
-    @Binding var isSelected: Bool
+    var isSelected: Bool
     let label: LocalizedStringKey
     let details: LocalizedStringKey
 
@@ -31,20 +31,12 @@ struct RadioButtonView: View {
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 10) {
+        HStack(
+            alignment: .center,
+            spacing: 10
+        ) {
             circleView
-                .onTapGesture {
-                    isSelected.toggle()
-                }
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(label)
-                    .font(.system(size: 15))
-
-                Text(details)
-                    .foregroundStyle(Color.secondary)
-                    .font(.system(size: 13))
-            }
+            descriptionView
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -67,11 +59,25 @@ extension RadioButtonView {
             )
             .frame(width: 20, height: 20)
     }
+    
+    var descriptionView: some View {
+        VStack(
+            alignment: .leading,
+            spacing: 2
+        ) {
+            Text(label)
+                .font(.system(size: 15))
+
+            Text(details)
+                .foregroundStyle(Color.secondary)
+                .font(.system(size: 13))
+        }
+    }
 }
 
 #Preview {
     RadioButtonView(
-        isSelected: .constant(false),
+        isSelected: false,
         label: "Manager",
         details: "Manage your team effortlessly"
     )

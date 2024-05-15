@@ -13,7 +13,9 @@ struct FooterButton: View {
     var action: () -> Void
 
     var body: some View {
-        HStack(spacing: 5) {
+        HStack(
+            spacing: 5
+        ) {
             Spacer()
 
             Text(title)
