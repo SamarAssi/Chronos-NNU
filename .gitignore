@@ -4,6 +4,12 @@
 Pods/
 Podfile.lock
 
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
 #Ignore User specific files
 *.xcuserstate
 xcuserdata
