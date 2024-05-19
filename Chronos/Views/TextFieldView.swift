@@ -9,16 +9,12 @@ import SwiftUI
 
 struct TextFieldView: View {
     @State private var showPassword = false
-    @Binding var text: String
     @FocusState var isFocused: Bool
 
-    var label: LocalizedStringKey
-    var placeholder: LocalizedStringKey
-    var isSecure: Bool
-    var isOptionl: Bool
+    @ObservedObject var textFieldModel: TextFieldModel
 
     var borderColor: Color {
-        isFocused || !text.isEmpty ?
+        isFocused || !textFieldModel.text.isEmpty ?
         Color.theme :
         Color.clear
     }
@@ -33,7 +29,7 @@ struct TextFieldView: View {
             HStack {
                 currentTextField
 
-                if isSecure {
+                if textFieldModel.isSecure {
                     showPasswordButtonView
                 }
             }
@@ -46,17 +42,18 @@ struct TextFieldView: View {
                     .stroke(borderColor)
             }
         }
+        .keyboardType(textFieldModel.keyboardType)
     }
 }
 
 extension TextFieldView {
     var labelView: some View {
         VStack {
-            if !isOptionl {
-                Text(label)
+            if !textFieldModel.isOptional {
+                Text(textFieldModel.label)
                     .font(.system(size: 15))
             } else {
-                Text(label)
+                Text(textFieldModel.label)
                     .font(.subheadline)
                 +
                 Text(" (Optional)")
@@ -69,10 +66,16 @@ extension TextFieldView {
 
     var currentTextField: some View {
         VStack {
-            if isSecure && !showPassword {
-                SecureField(placeholder, text: $text)
+            if textFieldModel.isSecure && !showPassword {
+                SecureField(
+                    textFieldModel.placeholder,
+                    text: $textFieldModel.text
+                )
             } else {
-                TextField(placeholder, text: $text)
+                TextField(
+                    textFieldModel.placeholder,
+                    text: $textFieldModel.text
+                )
             }
         }
         .font(.system(size: 15))
@@ -93,10 +96,14 @@ extension TextFieldView {
 
 #Preview(traits: .sizeThatFitsLayout) {
     TextFieldView(
-        text: .constant(""),
-        label: "Email",
-        placeholder: "Email Address",
-        isSecure: false,
-        isOptionl: true
+        textFieldModel: TextFieldModel(
+            text: "",
+            label: "",
+            placeholder: "",
+            isSecure: true,
+            keyboardType: .alphabet,
+            isDisabled: true,
+            isOptional: true
+        )
     )
 }

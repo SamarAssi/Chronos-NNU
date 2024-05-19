@@ -8,21 +8,18 @@
 import SwiftUI
 
 struct EditProfileView: View {
-
     @State private var isLoading = false
-    @State private var textFields: [TextFieldModel] = TextFieldModel.editingData
+    @State private var textFieldModels: [TextFieldModel] = TextFieldModel.editingData
 
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        VStack {
-            VStack(
-                alignment: .leading,
-                spacing: 5
-            ) {
-                headerSectionView
-                textFieldListView
-            }
+        VStack(
+            alignment: .leading,
+            spacing: 5
+        ) {
+            headerSectionView
+            textFieldListView
             registerButtonView
         }
         .fontDesign(.rounded)
@@ -56,23 +53,13 @@ extension EditProfileView {
     }
 
     var textFieldListView: some View {
-        List(textFields.indices, id: \.self) { index in
+        List(textFieldModels) { textFieldModel in
             TextFieldView(
-                text: Binding<String>(
-                    get: { textFields[index].text },
-                    set: { newValue in
-                        textFields[index].text = newValue
-                    }
-                ),
-                label: textFields[index].label,
-                placeholder: textFields[index].placeholder,
-                isSecure: textFields[index].isSecure,
-                isOptionl: textFields[index].isOptional
+                textFieldModel: textFieldModel
             )
             .listRowSeparator(.hidden)
             .scrollIndicators(.hidden)
             .padding(.horizontal, 10)
-            .keyboardType(textFields[index].keyboardType)
         }
         .listStyle(PlainListStyle())
     }
@@ -86,6 +73,7 @@ extension EditProfileView {
                 // TODO: update your personal information
             }
         )
+        .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal, 30)
         .padding(.bottom)
         .frame(height: 60)

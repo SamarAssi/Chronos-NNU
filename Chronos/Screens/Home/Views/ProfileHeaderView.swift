@@ -8,22 +8,13 @@
 import SwiftUI
 
 struct ProfileHeaderView: View {
-
     var body: some View {
         HStack(
             spacing: 5
         ) {
-            Image(.logo)
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
-                .frame(width: 60)
-                .padding(.leading, 8)
-
+            profileImage
             userInfoView
-
             Spacer()
-
             notificationsBellView
         }
         .transition(
@@ -36,6 +27,15 @@ struct ProfileHeaderView: View {
 }
 
 extension ProfileHeaderView {
+    var profileImage: some View {
+        Image(.logo)
+            .resizable()
+            .scaledToFit()
+            .clipShape(Circle())
+            .frame(width: 60)
+            .padding(.leading, 8)
+    }
+
     var userInfoView: some View {
         VStack(
             alignment: .leading,

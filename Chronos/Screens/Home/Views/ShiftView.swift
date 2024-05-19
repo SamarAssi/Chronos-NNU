@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ShiftView: View {
-    
     @State private var attendanceCards: [AttendanceCardModel] = []
+
     var shift: DashboardResponse.Shift
 
     var body: some View {

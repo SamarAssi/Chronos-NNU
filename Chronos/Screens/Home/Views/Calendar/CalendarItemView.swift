@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CalendarItemView: View {
-
     var date: Date
     let dateFormatter = DateFormatter()
 

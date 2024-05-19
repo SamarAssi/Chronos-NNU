@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AttendanceCardView: View {
-
     var cardIcon: String
     var cardTitle: LocalizedStringKey
     var time: Date

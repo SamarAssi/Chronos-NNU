@@ -10,7 +10,7 @@ import Foundation
 class HomeModel: ObservableObject {
     @Published var dashboardResponse: DashboardResponse?
     @Published var isLoading = false
-    
+
     @MainActor
     func handleDashboardResponse(selectedDate: Date) async {
         do {
@@ -19,19 +19,20 @@ class HomeModel: ObservableObject {
             hideLoading()
         } catch let error {
             print(error)
+            hideLoading()
         }
     }
-    
-    func performDashboardRequest(selectedDate: Date) async throws -> DashboardResponse {
+
+    private func performDashboardRequest(selectedDate: Date) async throws -> DashboardResponse {
         return try await AuthenticationClient.dashboard(
             date: Int(selectedDate.timeIntervalSince1970)
         )
     }
-    
-    func showLoading() {
+
+    private func showLoading() {
         isLoading = true
     }
-    
+
     private func hideLoading() {
         isLoading = false
     }

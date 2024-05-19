@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProfileView: View {
-
     @State private var profileRowModel: [ProfileRowModel] = ProfileRowModel.data
     @State private var isShowAlert = false
 

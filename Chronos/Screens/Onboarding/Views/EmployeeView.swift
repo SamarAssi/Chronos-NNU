@@ -8,25 +8,20 @@
 import SwiftUI
 
 struct EmployeeView: View {
-
-    @State private var isLoading = false
-    @State private var isCorrectId = true
-    @State private var employeeResponse: OnboardingEmployeeRespone?
-    @State private var id = ""
-
     @Binding var showFullScreen: Bool
 
+    @StateObject var employeeModel = EmployeeModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
     @Environment(\.dismiss) var dismiss
 
     var isDisabledNextButton: Bool {
-        id.isEmpty ?
+        isEmptyField() ?
         true :
         false
     }
 
     var nextButtonBackgroundColor: Color {
-        id.isEmpty ?
+        isEmptyField() ?
         Color.theme.opacity(0.5) :
         Color.theme
     }
@@ -40,18 +35,12 @@ struct EmployeeView: View {
                 Text(LocalizedStringKey("Enroll to Company"))
                     .font(.system(size: 25, weight: .bold, design: .rounded))
                     .padding(.horizontal, 30)
-                
-                TextFieldView(
-                    text: $id,
-                    label: LocalizedStringKey("ID:"),
-                    placeholder: LocalizedStringKey("Enter company ID"),
-                    isSecure: false,
-                    isOptionl: false
-                )
-                .padding(.top)
-                .padding(.horizontal, 30)
-                
-                if !isCorrectId {
+
+                TextFieldView(textFieldModel: employeeModel.textFieldModels)
+                    .padding(.top)
+                    .padding(.horizontal, 30)
+
+                if !employeeModel.isCorrectId {
                     Text(LocalizedStringKey("This is a wrong id"))
                         .font(.subheadline)
                         .foregroundStyle(Color.red)
@@ -59,8 +48,9 @@ struct EmployeeView: View {
                         .padding(.horizontal, 30)
                 }
             }
+
             Spacer()
-            
+
             nextButtonView
         }
         .padding(.vertical, 20)
@@ -80,20 +70,20 @@ struct EmployeeView: View {
 extension EmployeeView {
     var nextButtonView: some View {
         MainButton(
-            isLoading: $isLoading,
+            isLoading: $employeeModel.isLoading,
             buttonText: LocalizedStringKey("Next"),
             backgroundColor: nextButtonBackgroundColor,
             action: {
                 onboardingAction()
             }
         )
-        .disabled(isDisabledNextButton)
+        // .disabled(isDisabledNextButton)
         .padding(.horizontal, 30)
         .frame(height: 60)
     }
 
     private func onboardingAction() {
-        handleEmployeeOnboardingResponse { success in
+        employeeModel.handleEmployeeOnboardingResponse { success in
             if success {
                 showFullScreen = !success
                 navigationRouter.isLoggedIn = success
@@ -101,28 +91,8 @@ extension EmployeeView {
         }
     }
 
-    private func handleEmployeeOnboardingResponse(
-        completion: @escaping (Bool) -> Void
-    ) {
-        isLoading = true
-
-        Task {
-            do {
-                employeeResponse = try await performEmployeeOnboardingRequest()
-                isLoading = false
-                isCorrectId = true
-                completion(true)
-            } catch let error {
-                print(error)
-                isLoading = false
-                isCorrectId = false
-                completion(false)
-            }
-        }
-    }
-
-    private func performEmployeeOnboardingRequest() async throws -> OnboardingEmployeeRespone {
-        return try await AuthenticationClient.onboardingEmployee(id: id)
+    private func isEmptyField() -> Bool {
+        return employeeModel.textFieldModels.text.isEmpty
     }
 }
 

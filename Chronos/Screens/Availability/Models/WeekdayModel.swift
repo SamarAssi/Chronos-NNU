@@ -8,34 +8,84 @@
 import Foundation
 import SwiftUI
 
-struct WeekdayModel: Identifiable {
+struct Weekday: Codable {
+    let monday, tuesday, wednesday, thursday: Day
+    let friday, saturday, sunday: Day
+
+    struct Day: Codable {
+        let start, end: Int
+        let isAvailableAllDay, isNotAvailable: Bool
+    }
+}
+
+struct WeekdayModel: Identifiable, Equatable {
     let id = UUID().uuidString
-    let dayName: LocalizedStringKey
+    let dayName: String
+    let prefix: Int
+    let order: Int
+    var toggleIsOn: Bool
+    var startTime: Date
+    var endTime: Date
 }
 
 extension WeekdayModel {
     static var weekdays: [WeekdayModel] {
         [
             WeekdayModel(
-                dayName: LocalizedStringKey(Weekdays.sunday.rawValue)
+                dayName: Weekdays.sunday.rawValue,
+                prefix: 2,
+                order: 1,
+                toggleIsOn: false,
+                startTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date(),
+                endTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
             ),
             WeekdayModel(
-                dayName: LocalizedStringKey(Weekdays.monday.rawValue)
+                dayName: Weekdays.monday.rawValue,
+                prefix: 1,
+                order: 2,
+                toggleIsOn: false,
+                startTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date(),
+                endTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
             ),
             WeekdayModel(
-                dayName: LocalizedStringKey(Weekdays.tuesday.rawValue)
+                dayName: Weekdays.tuesday.rawValue,
+                prefix: 2,
+                order: 3,
+                toggleIsOn: false,
+                startTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date(),
+                endTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
             ),
             WeekdayModel(
-                dayName: LocalizedStringKey(Weekdays.wednesday.rawValue)
+                dayName: Weekdays.wednesday.rawValue,
+                prefix: 1,
+                order: 4,
+                toggleIsOn: false,
+                startTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date(),
+                endTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
             ),
             WeekdayModel(
-                dayName: LocalizedStringKey(Weekdays.thursday.rawValue)
+                dayName: Weekdays.thursday.rawValue,
+                prefix: 2,
+                order: 5,
+                toggleIsOn: false,
+                startTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date(),
+                endTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
             ),
             WeekdayModel(
-                dayName: LocalizedStringKey(Weekdays.friday.rawValue)
+                dayName: Weekdays.friday.rawValue,
+                prefix: 1,
+                order: 6,
+                toggleIsOn: false,
+                startTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date(),
+                endTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
             ),
             WeekdayModel(
-                dayName: LocalizedStringKey(Weekdays.saturday.rawValue)
+                dayName: Weekdays.saturday.rawValue,
+                prefix: 2,
+                order: 7,
+                toggleIsOn: false,
+                startTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date(),
+                endTime: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
             )
         ]
     }

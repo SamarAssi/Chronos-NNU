@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct MainButton: View {
-    
     @Binding var isLoading: Bool
-    
+
     var buttonText: LocalizedStringKey
     var backgroundColor: Color
     var action: () -> Void

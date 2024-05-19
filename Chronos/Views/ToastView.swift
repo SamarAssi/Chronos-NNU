@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ToastView: View {
-    @Environment(\.dismiss) var dismiss
-
     var type: ToastTypes
     var message: LocalizedStringKey
 

@@ -15,19 +15,19 @@ struct HomeView: View {
 
     @StateObject var homeModel = HomeModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
-    
+
     let startDate = Calendar.current.date(
         byAdding: .day,
         value: -30,
         to: Date()
     ) ?? Date()
-    
+
     let endDate = Calendar.current.date(
         byAdding: .day,
         value: 30,
         to: Date()
     ) ?? Date()
-    
+
     var body: some View {
         VStack(
             spacing: 0
@@ -37,7 +37,7 @@ struct HomeView: View {
                     .padding(.trailing, 30)
                     .padding(.top)
             }
-            
+
             FilteredCalendarCollectionView(
                 selectedDate: $selectedDate,
                 dashboardResponse: $homeModel.dashboardResponse,
@@ -47,7 +47,7 @@ struct HomeView: View {
             )
             .padding(.top, 20)
             .padding(.bottom)
-            
+
             dashboardContent
         }
         .fontDesign(.rounded)
@@ -84,7 +84,7 @@ extension HomeView {
                     Spacer()
                 }
             }
-            
+
             if getDate(date: selectedDate) == getDate(date: Date()) {
                 SwipeToUnlockView(
                     isCheckedIn: $isCheckedIn,
@@ -93,15 +93,15 @@ extension HomeView {
                 .padding(.bottom, 20)
             }
         }
-        .frame(maxWidth: .infinity)
         .background(
             Color.silver
+                .frame(width: UIScreen.main.bounds.width)
                 .opacity(0.1)
                 .clipShape(RoundedRectangle(cornerRadius: 20.0))
                 .ignoresSafeArea(edges: .bottom)
         )
     }
-    
+
     var activityScrollView: some View {
         ScrollView {
             LazyVStack(
@@ -113,21 +113,22 @@ extension HomeView {
             }
             .padding(.top, 20)
             .padding(.bottom, 100)
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 18)
             .background(
                 GeometryReader { proxy in
                     Color.clear
                         .onChange(
-                            of: calculateVerticalContentOffset(proxy)
-                        ) { oldVal, newVal in
-                            adjustShowCalendarState(
-                                from: oldVal,
-                                to: newVal
+                            of: proxy.frame(in: .named("ScrollView")).minY
+                        ) { newValue, oldValue in
+                            adjustShowHeaderState(
+                                oldVal: oldValue,
+                                newVal: newValue
                             )
                         }
                 }
             )
         }
+        .coordinateSpace(name: "ScrollView")
         .scrollIndicators(.hidden)
         .onAppear {
             isShowProfileHeader = true
@@ -139,7 +140,7 @@ extension HomeView {
             checkIn()
         }
     }
-    
+
     var attendanceView: some View {
         VStack(
             alignment: .leading,
@@ -148,15 +149,15 @@ extension HomeView {
             Text(LocalizedStringKey("Today Attendance"))
                 .fontWeight(.bold)
                 .padding(.bottom)
-            
+
             if let dashboardResponse = homeModel.dashboardResponse {
-                List(dashboardResponse.shifts, id: \.self) { shift in
+                ForEach(dashboardResponse.shifts, id: \.self) { shift in
                     ShiftView(shift: shift)
                 }
             }
         }
     }
-    
+
     var activityView: some View {
         VStack(
             alignment: .leading,
@@ -166,7 +167,7 @@ extension HomeView {
                 .fontWeight(.bold)
                 .padding(.top, 20)
                 .padding(.bottom)
-            
+
             if let dashboardResponse = homeModel.dashboardResponse {
                 if dashboardResponse.activities.isEmpty {
                     Text(LocalizedStringKey("There is no activities yet!"))
@@ -186,48 +187,31 @@ extension HomeView {
     private func activitiesListView(
         dashboardResponse: DashboardResponse
     ) -> some View {
-//        List(dashboardResponse.activities, id: \.self) { activity in
-//            ActivityCardView(
-//                icon: "tray.and.arrow.down",
-//                title: LocalizedStringKey("Check In"),
-//                date: Date(timeIntervalSince1970: Double(activity.checkInTime / 1000))
-//            )
-//            .shadow(radius: 1)
-//            .padding(5)
-//        }
-        ScrollView {
-            LazyVStack(spacing: 8) {
-                ForEach(dashboardResponse.activities, id: \.self) { activity in
-                    ActivityCardView(
-                        icon: "tray.and.arrow.down",
-                        title: LocalizedStringKey("Check In"),
-                        date: Date(timeIntervalSince1970: Double(activity.checkInTime / 1000))
-                    )
-                    .shadow(radius: 1)
-                    .padding(5)
-                }
+        LazyVStack(spacing: 8) {
+            ForEach(dashboardResponse.activities, id: \.self) { activity in
+                ActivityCardView(
+                    icon: "tray.and.arrow.down",
+                    title: LocalizedStringKey("Check In"),
+                    date: Date(timeIntervalSince1970: Double(activity.checkInTime / 1000))
+                )
+                .shadow(radius: 1)
+                .padding(.vertical, 5)
             }
         }
     }
-    
-    private func calculateVerticalContentOffset(
-        _ proxy: GeometryProxy
-    ) -> CGFloat {
-        return max(
-            min(0, proxy.frame(in: .named("ScrollView")).minY),
-            UIScreen.main.bounds.height - proxy.size.height
-        )
-    }
-    
-    private func adjustShowCalendarState<T: Comparable & Equatable>(
-        from oldVal: T,
-        to newVal: T
+
+    private func adjustShowHeaderState(
+        oldVal: CGFloat,
+        newVal: CGFloat
     ) {
-        if (isShowProfileHeader && newVal < oldVal) || (!isShowProfileHeader && newVal > oldVal) {
-            isShowProfileHeader = newVal > oldVal
+        let threshold: CGFloat = 18
+        if newVal < -threshold && newVal > oldVal {
+            isShowProfileHeader = false
+        } else if newVal > 0 {
+            isShowProfileHeader = true
         }
     }
-    
+
     private func getDate(
         date: Date
     ) -> String {
@@ -235,12 +219,14 @@ extension HomeView {
         formatter.dateFormat = "MMMM dd,yyyy"
         return formatter.string(from: date)
     }
-    
+
     private func checkIn() {
-        if homeModel.dashboardResponse?.activities.last?.checkOutTime == nil {
-            isCheckedIn = true
-        } else {
-            isCheckedIn = false
+        if let dashboardResponse = homeModel.dashboardResponse {
+            if !dashboardResponse.activities.isEmpty && dashboardResponse.activities.last?.checkOutTime == nil {
+                isCheckedIn = true
+            } else {
+                isCheckedIn = false
+            }
         }
     }
 }

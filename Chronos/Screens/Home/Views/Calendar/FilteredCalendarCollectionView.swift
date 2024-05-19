@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct FilteredCalendarCollectionView: View {
-
     @Binding var selectedDate: Date
     @Binding var dashboardResponse: DashboardResponse?
     @Binding var isLoading: Bool
+
     var startDate: Date
     var endDate: Date
 
@@ -70,7 +70,7 @@ extension FilteredCalendarCollectionView {
             }
         }
     }
-    
+
     private func performDashboardRequest() async throws -> DashboardResponse {
         return try await AuthenticationClient.dashboard(
             date: Int(selectedDate.timeIntervalSince1970)
@@ -95,4 +95,3 @@ extension FilteredCalendarCollectionView {
         endDate: Date()
     )
 }
-

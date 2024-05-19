@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ActivityCardView: View {
-
     var icon: String
     var title: LocalizedStringKey
     var date: Date

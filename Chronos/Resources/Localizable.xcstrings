@@ -27,9 +27,6 @@
     "Availability" : {
 
     },
-    "Available all-day on Sun, Mon, Tue, Wed and Thu." : {
-
-    },
     "Cancel" : {
 
     },
@@ -57,9 +54,6 @@
     "Email" : {
 
     },
-    "Email Address" : {
-
-    },
     "EmailLabel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -75,9 +69,6 @@
 
     },
     "End Time" : {
-
-    },
-    "END TIME" : {
 
     },
     "Enroll to Chronos" : {
@@ -114,9 +105,6 @@
 
     },
     "Forgot Password?" : {
-
-    },
-    "From API." : {
 
     },
     "Go Home" : {
@@ -228,12 +216,6 @@
     "Start Time" : {
 
     },
-    "START TIME" : {
-
-    },
-    "Summary" : {
-
-    },
     "Teams & Conditions" : {
 
     },
@@ -252,9 +234,6 @@
     "Type your password" : {
 
     },
-    "Unavailable on Fri and Sat." : {
-
-    },
     "Update" : {
 
     },
@@ -262,6 +241,9 @@
 
     },
     "Username is invalid" : {
+
+    },
+    "You're unavailable for all days" : {
 
     },
     "Your Activity" : {

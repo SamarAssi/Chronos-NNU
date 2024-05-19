@@ -59,7 +59,7 @@ extension RadioButtonView {
             )
             .frame(width: 20, height: 20)
     }
-    
+
     var descriptionView: some View {
         VStack(
             alignment: .leading,

@@ -61,8 +61,12 @@
 		2FF8ADCB2BF41B9600DB9C4E /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADCA2BF41B9600DB9C4E /* HomeModel.swift */; };
 		2FF8ADD22BF4D12800DB9C4E /* AvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADD12BF4D12800DB9C4E /* AvailabilityView.swift */; };
 		2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADD72BF51DF300DB9C4E /* WeekdaysView.swift */; };
-		2FF8ADDA2BF51E3500DB9C4E /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADD92BF51E3500DB9C4E /* DayView.swift */; };
 		2FF8ADDE2BF51F7D00DB9C4E /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADDD2BF51F7D00DB9C4E /* WeekdayModel.swift */; };
+		2FF8ADE02BF6046900DB9C4E /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADDF2BF6046900DB9C4E /* RegistrationModel.swift */; };
+		2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADE52BF607D600DB9C4E /* LoginModel.swift */; };
+		2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */; };
+		2FF8ADEC2BF924B900DB9C4E /* ManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADEB2BF924B900DB9C4E /* ManagerModel.swift */; };
+		2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */; };
 		8B0810452BC9AA3300CB5930 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810442BC9AA3300CB5930 /* Alamofire */; };
 		8B0810472BC9AA3300CB5930 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810462BC9AA3300CB5930 /* AlamofireDynamic */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
@@ -123,8 +127,12 @@
 		2FF8ADCA2BF41B9600DB9C4E /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		2FF8ADD12BF4D12800DB9C4E /* AvailabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityView.swift; sourceTree = "<group>"; };
 		2FF8ADD72BF51DF300DB9C4E /* WeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
-		2FF8ADD92BF51E3500DB9C4E /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		2FF8ADDD2BF51F7D00DB9C4E /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
+		2FF8ADDF2BF6046900DB9C4E /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
+		2FF8ADE52BF607D600DB9C4E /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
+		2FF8ADEB2BF924B900DB9C4E /* ManagerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerModel.swift; sourceTree = "<group>"; };
+		2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,6 +253,7 @@
 				2F7943472BC5927900387D3E /* FooterButton.swift */,
 				2F41CBC02BE7E659000AC5B0 /* RadioButtonView.swift */,
 				2FDECA852BE974A600B3129B /* ToastView.swift */,
+				2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -270,7 +279,8 @@
 		2F7943322BC43BCF00387D3E /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2F7942F92BC0804400387D3E /* LoginView.swift */,
+				2FF8ADE42BF607C800DB9C4E /* Models */,
+				2FF8ADE32BF607C100DB9C4E /* Views */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -317,8 +327,8 @@
 		2F7943442BC58A3700387D3E /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				2F7943452BC58A5A00387D3E /* RegistrationView.swift */,
-				2F41CBDF2BE832B7000AC5B0 /* TextFieldModel.swift */,
+				2FF8ADE22BF6072800DB9C4E /* Models */,
+				2FF8ADE12BF6072000DB9C4E /* Views */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -401,6 +411,8 @@
 			isa = PBXGroup;
 			children = (
 				2F41CBE32BE83381000AC5B0 /* RadioButtonModel.swift */,
+				2FF8ADEB2BF924B900DB9C4E /* ManagerModel.swift */,
+				2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -450,7 +462,6 @@
 			children = (
 				2FF8ADD12BF4D12800DB9C4E /* AvailabilityView.swift */,
 				2FF8ADD72BF51DF300DB9C4E /* WeekdaysView.swift */,
-				2FF8ADD92BF51E3500DB9C4E /* DayView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -459,6 +470,39 @@
 			isa = PBXGroup;
 			children = (
 				2FF8ADDD2BF51F7D00DB9C4E /* WeekdayModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2FF8ADE12BF6072000DB9C4E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F7943452BC58A5A00387D3E /* RegistrationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2FF8ADE22BF6072800DB9C4E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2FF8ADDF2BF6046900DB9C4E /* RegistrationModel.swift */,
+				2F41CBDF2BE832B7000AC5B0 /* TextFieldModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2FF8ADE32BF607C100DB9C4E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F7942F92BC0804400387D3E /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2FF8ADE42BF607C800DB9C4E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2FF8ADE52BF607D600DB9C4E /* LoginModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -547,11 +591,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FDECA9D2BEFB2CD00B3129B /* CheckInOutResponse.swift in Sources */,
+				2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */,
 				2F41CBDE2BE82C51000AC5B0 /* ExtensionForDate.swift in Sources */,
 				2F41CBC52BE7F94A000AC5B0 /* ManagerView.swift in Sources */,
 				2F41CBC92BE8060B000AC5B0 /* TextEditorView.swift in Sources */,
 				2F7943642BCAE6E900387D3E /* AttendanceCardView.swift in Sources */,
 				2F928D4E2BD1189D004AAED3 /* ProgressLoader.swift in Sources */,
+				2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */,
 				2FDECAA12BEFB40A00B3129B /* DashboardResponse.swift in Sources */,
 				2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
@@ -572,13 +618,14 @@
 				2FDECAA32BEFBD0800B3129B /* OnboardingEmployeeRespone.swift in Sources */,
 				2FDECA8B2BEBC55B00B3129B /* KeychainKeys.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
+				2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */,
 				2F41CBD12BE810FC000AC5B0 /* KeychainManager.swift in Sources */,
 				2FDECA862BE974A600B3129B /* ToastView.swift in Sources */,
 				2FF8ADDE2BF51F7D00DB9C4E /* WeekdayModel.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				2FDECA7E2BE9132B00B3129B /* OnboardingEmployeeRequest.swift in Sources */,
+				2FF8ADEC2BF924B900DB9C4E /* ManagerModel.swift in Sources */,
 				2F41CBE02BE832B7000AC5B0 /* TextFieldModel.swift in Sources */,
-				2FF8ADDA2BF51E3500DB9C4E /* DayView.swift in Sources */,
 				2F41CBD82BE81BEA000AC5B0 /* DashboardTabView.swift in Sources */,
 				2F41CBE42BE83381000AC5B0 /* RadioButtonModel.swift in Sources */,
 				2F41CBBF2BE7E30F000AC5B0 /* OnboardingView.swift in Sources */,
@@ -589,6 +636,7 @@
 				2FF8ADCB2BF41B9600DB9C4E /* HomeModel.swift in Sources */,
 				2FDECAA72BF0D0C500B3129B /* ShiftView.swift in Sources */,
 				2FF8ADC42BF3965800DB9C4E /* ProfileRowModel.swift in Sources */,
+				2FF8ADE02BF6046900DB9C4E /* RegistrationModel.swift in Sources */,
 				2F7943432BC5824400387D3E /* BaseRouter.swift in Sources */,
 				8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */,
 				2FDECAA52BF014B700B3129B /* LoginRequest.swift in Sources */,

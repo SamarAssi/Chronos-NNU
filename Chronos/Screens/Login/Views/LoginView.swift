@@ -8,14 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
-    
-    @State private var isLoading = false
-    @State private var isCorrectInputs = true
-    @State private var response: LoginResponse?
-    @State private var email = ""
-    @State private var password = ""
-
+    @StateObject var loginModel = LoginModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
+    @State var textFieldModel = TextFieldModel.loginData
 
     var isLoginButtonDisabled: Bool {
         isEmptyFields() ?
@@ -39,22 +34,11 @@ struct LoginView: View {
                 .frame(height: 150)
                 .padding(.horizontal, 20)
 
-            TextFieldView(
-                text: $email,
-                label: LocalizedStringKey("Email"),
-                placeholder: LocalizedStringKey("Type your email"),
-                isSecure: false,
-                isOptionl: false
-            )
-            .padding(.bottom, 8)
-
-            TextFieldView(
-                text: $password,
-                label: LocalizedStringKey("Password"),
-                placeholder: LocalizedStringKey("Type your password"),
-                isSecure: true,
-                isOptionl: false
-            )
+            VStack(spacing: 20) {
+                ForEach(loginModel.textFieldModels) { textFieldModel in
+                    TextFieldView(textFieldModel: textFieldModel)
+                }
+            }
 
             loginFeedbackAndRecoveryButtonView
 
@@ -80,7 +64,7 @@ struct LoginView: View {
 extension LoginView {
     var loginFeedbackAndRecoveryButtonView: some View {
         HStack {
-            if !isCorrectInputs {
+            if !loginModel.isCorrectInputs {
                 Text(LocalizedStringKey("Incorrect email or password"))
                     .font(.subheadline)
                     .foregroundStyle(Color.red)
@@ -100,7 +84,7 @@ extension LoginView {
 
     var loginButtonView: some View {
         MainButton(
-            isLoading: $isLoading,
+            isLoading: $loginModel.isLoading,
             buttonText: LocalizedStringKey("Login"),
             backgroundColor: loginButtonColor,
             action: {
@@ -115,48 +99,16 @@ extension LoginView {
 
 extension LoginView {
     private func isEmptyFields() -> Bool {
-        return email.isEmpty || password.isEmpty
+        return loginModel.textFieldModels[0].text.isEmpty || loginModel.textFieldModels[1].text.isEmpty
     }
 
     private func login() {
-        handleLoginResponse { success in
-            if response?.employeeDetails.employeeType != -1 {
+        loginModel.handleLoginResponse { success in
+            if loginModel.response?.employeeDetails.employeeType != -1 {
                 navigationRouter.isLoggedIn = success
             } else {
                 navigationRouter.navigateTo(.onboarding)
             }
-        }
-    }
-
-    private func handleLoginResponse(completion: @escaping (Bool) -> Void) {
-        isLoading = true
-
-        Task {
-            do {
-                response = try await performLoginRequest()
-                isCorrectInputs = true
-                isLoading = false
-                saveAccessToken()
-                completion(true)
-            } catch let error {
-                print(error)
-                isCorrectInputs = false
-                isLoading = false
-                completion(false)
-            }
-        }
-    }
-
-    private func performLoginRequest() async throws -> LoginResponse {
-        return try await AuthenticationClient.login(email: email, password: password)
-    }
-
-    private func saveAccessToken() {
-        if let response = response {
-            KeychainManager.shared.save(
-                response.accessToken,
-                key: KeychainKeys.accessToken.rawValue
-            )
         }
     }
 }

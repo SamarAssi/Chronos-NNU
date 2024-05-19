@@ -9,14 +9,10 @@ import SwiftUI
 import SimpleToast
 
 struct RegistrationView: View {
-    
-    @State private var isLoading = false
     @State private var isPhoneNumberInvalid = false
     @State private var isSamePassword = false
-    @State private var isUsernameInvalid = false
-    @State private var response: LoginResponse?
-    @State private var textFields: [TextFieldModel] = TextFieldModel.registrationData
 
+    @StateObject var registrationModel = RegistrationModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
 
     private let toastOptions = SimpleToastOptions(
@@ -49,7 +45,7 @@ struct RegistrationView: View {
                 textFieldListView
             }
             registerButtonView
-            
+
             FooterButton(
                 title: LocalizedStringKey("Already have an account?"),
                 buttonText: LocalizedStringKey("Login"),
@@ -60,13 +56,22 @@ struct RegistrationView: View {
             .padding(.bottom)
         }
         .fontDesign(.rounded)
-        .simpleToast(isPresented: $isPhoneNumberInvalid, options: toastOptions) {
+        .simpleToast(
+            isPresented: $isPhoneNumberInvalid,
+            options: toastOptions
+        ) {
             invalidPhoneNumberToast
         }
-        .simpleToast(isPresented: $isSamePassword, options: toastOptions) {
+        .simpleToast(
+            isPresented: $isSamePassword,
+            options: toastOptions
+        ) {
             passwordMismatchToast
         }
-        .simpleToast(isPresented: $isUsernameInvalid, options: toastOptions) {
+        .simpleToast(
+            isPresented: $registrationModel.isUsernameInvalid,
+            options: toastOptions
+        ) {
             invalidUsernameToast
         }
     }
@@ -80,36 +85,24 @@ extension RegistrationView {
             .padding(.vertical, 20)
             .padding(.horizontal, 30)
     }
-    
+
     var textFieldListView: some View {
-        List(textFields.indices, id: \.self) { index in
-            TextFieldView(
-                text: Binding<String>(
-                    get: { textFields[index].text },
-                    set: { newValue in
-                        textFields[index].text = newValue
-                    }
-                ),
-                label: textFields[index].label,
-                placeholder: textFields[index].placeholder,
-                isSecure: textFields[index].isSecure,
-                isOptionl: textFields[index].isOptional
-            )
-            .listRowSeparator(.hidden)
-            .scrollIndicators(.hidden)
-            .padding(.horizontal, 10)
-            .keyboardType(textFields[index].keyboardType)
+        List(registrationModel.textFieldModels) { textFieldModel in
+            TextFieldView(textFieldModel: textFieldModel)
+                .listRowSeparator(.hidden)
+                .scrollIndicators(.hidden)
+                .padding(.horizontal, 10)
         }
         .listStyle(PlainListStyle())
     }
 
     var registerButtonView: some View {
         MainButton(
-            isLoading: $isLoading,
+            isLoading: $registrationModel.isLoading,
             buttonText: LocalizedStringKey("Register"),
             backgroundColor: registerButtonBackgroundColor,
             action: {
-                isPhoneNumberInvalid = !isValidPhoneNumber(textFields[3].text)
+                isPhoneNumberInvalid = !isValidPhoneNumber(registrationModel.textFieldModels[3].text)
                 isSamePassword = !checkIsSamePassword()
                 if !isPhoneNumberInvalid && checkIsSamePassword() {
                     register()
@@ -117,10 +110,10 @@ extension RegistrationView {
             }
         )
         .padding(.horizontal, 30)
-        .disabled(isDisabledRegisterButton)
+        // .disabled(isDisabledRegisterButton)
         .frame(height: 90)
     }
-    
+
     var invalidPhoneNumberToast: some View {
         ToastView(
             type: .error,
@@ -128,7 +121,7 @@ extension RegistrationView {
         )
         .padding(.horizontal, 30)
     }
-    
+
     var passwordMismatchToast: some View {
         ToastView(
             type: .error,
@@ -136,7 +129,7 @@ extension RegistrationView {
         )
         .padding(.horizontal, 30)
     }
-    
+
     var invalidUsernameToast: some View {
         ToastView(
             type: .error,
@@ -148,8 +141,8 @@ extension RegistrationView {
 
 extension RegistrationView {
     private func areEmptyFields() -> Bool {
-        for index in textFields.indices {
-            if textFields[index].text.isEmpty && index != 3 {
+        for index in registrationModel.textFieldModels.indices {
+            if registrationModel.textFieldModels[index].text.isEmpty && index != 3 {
                 return true
             }
         }
@@ -157,48 +150,14 @@ extension RegistrationView {
     }
 
     private func checkIsSamePassword() -> Bool {
-        return textFields[4].text == textFields[5].text
+        return registrationModel.textFieldModels[4].text == registrationModel.textFieldModels[5].text
     }
 
     private func register() {
-        handleRegistrationResponse { success in
+        registrationModel.handleRegistrationResponse { success in
             if success {
                 navigationRouter.navigateTo(.onboarding)
             }
-        }
-    }
-
-    private func handleRegistrationResponse(
-        completion: @escaping (Bool) -> Void
-    ) {
-        isLoading = true
-
-        Task {
-            do {
-                response = try await performLoginRequest()
-                saveAccessToken()
-                isLoading = false
-                isUsernameInvalid = false
-                completion(true)
-            } catch let error {
-                print(error)
-                isLoading = false
-                isUsernameInvalid = true
-                completion(false)
-            }
-        }
-    }
-
-    private func performLoginRequest() async throws -> LoginResponse {
-        return try await AuthenticationClient.register(textFields: textFields)
-    }
-
-    private func saveAccessToken() {
-        if let response = response {
-            KeychainManager.shared.save(
-                response.accessToken,
-                key: KeychainKeys.accessToken.rawValue
-            )
         }
     }
 

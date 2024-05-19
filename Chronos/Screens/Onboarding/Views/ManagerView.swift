@@ -8,14 +8,9 @@
 import SwiftUI
 
 struct ManagerView: View {
-    
-    @State private var isLoading = false
-    @State private var name = ""
-    @State private var description = ""
-    @State private var managerResponse: ManagerOnboardingResponse?
-
     @Binding var showFullScreen: Bool
 
+    @StateObject var managerModel = ManagerModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
     @Environment(\.dismiss) var dismiss
 
@@ -32,29 +27,27 @@ struct ManagerView: View {
     }
 
     var body: some View {
-        VStack {
-            VStack(
-                alignment: .leading,
-                spacing: 10
-            ) {
-                Text(LocalizedStringKey("Register Company"))
-                    .font(.system(size: 25, weight: .bold, design: .rounded))
+        VStack(
+            alignment: .leading,
+            spacing: 10
+        ) {
+            Text(LocalizedStringKey("Register Company"))
+                .font(.system(
+                    size: 25,
+                    weight: .bold,
+                    design: .rounded
+                ))
 
-                TextFieldView(
-                    text: $name,
-                    label: LocalizedStringKey("Company Name:"),
-                    placeholder: LocalizedStringKey("Enter company name"),
-                    isSecure: false,
-                    isOptionl: false
-                )
-                .padding(.top)
+            TextFieldView(
+                textFieldModel: managerModel.textFieldModels
+            )
+            .padding(.top)
 
-                TextEditorView(
-                    text: $description,
-                    label: LocalizedStringKey("Description"),
-                    placeholder: LocalizedStringKey("Enter company description")
-                )
-            }
+            TextEditorView(
+                text: $managerModel.description,
+                label: LocalizedStringKey("Description"),
+                placeholder: LocalizedStringKey("Enter company description")
+            )
 
             Spacer()
 
@@ -78,61 +71,27 @@ struct ManagerView: View {
 extension ManagerView {
     var registerButtonView: some View {
         MainButton(
-            isLoading: $isLoading,
+            isLoading: $managerModel.isLoading,
             buttonText: LocalizedStringKey("Register"),
             backgroundColor: registerButtonBackgroundColor,
             action: {
                 onboardingAction()
             }
         )
-        .disabled(isDisabledRegisterButton)
+        // .disabled(isDisabledRegisterButton)
         .frame(height: 60)
+        .frame(maxWidth: .infinity, alignment: .center)
     }
 
     private func onboardingAction() {
-        handleManagerOnboardingResponse { success in
+        managerModel.handleManagerOnboardingResponse { success in
             showFullScreen = !showFullScreen
             navigationRouter.isLoggedIn = success
         }
     }
 
-    private func handleManagerOnboardingResponse(
-        completion: @escaping (Bool) -> Void
-    ) {
-        isLoading = true
-
-        Task {
-            do {
-                managerResponse = try await performManagerOnboardingRequest()
-                isLoading = false
-                saveCompanyInvitationId()
-                completion(true)
-            } catch let error {
-                print(error)
-                isLoading = false
-                completion(false)
-            }
-        }
-    }
-
-    private func performManagerOnboardingRequest() async throws -> ManagerOnboardingResponse {
-        return try await AuthenticationClient.onboardingManager(
-            name: name,
-            description: description
-        )
-    }
-
     private func isEmptyFields() -> Bool {
-        return name.isEmpty || description.isEmpty
-    }
-
-    private func saveCompanyInvitationId() {
-        if let response = managerResponse {
-            KeychainManager.shared.save(
-                response.companyInvitationId,
-                key: KeychainKeys.companyInvitationId.rawValue
-            )
-        }
+        return managerModel.textFieldModels.text.isEmpty || managerModel.description.isEmpty
     }
 }
 
