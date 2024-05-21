@@ -8,59 +8,54 @@
 import SwiftUI
 
 struct WeekdaysView: View {
-    @State private var weekdays: [WeekdayModel] = WeekdayModel.weekdays
-    @Binding var selectedDays: [WeekdayModel]
+    @ObservedObject var weekdayModel: WeekdayModel
 
     var body: some View {
-        HStack(
-            spacing: 10
-        ) {
-            ForEach(weekdays) { weekday in
-                Circle()
-                    .fill(getBackgroundColor(of: weekday))
-                    .overlay(
-                        Text(
-                            weekday.dayName
-                                .prefix(weekday.prefix)
-                                .capitalized
-                        )
-                        .fontWeight(.bold)
-                        .foregroundStyle(getForegroundColor(of: weekday))
-                    )
-                    .onTapGesture {
-                        withAnimation {
-                            toggleSelection(of: weekday)
-                        }
+        VStack {
+            Divider()
+            HStack {
+                ForEach(weekdayModel.weekdays.indices, id:\.self) { index in
+                    HStack {
+                        dayButton(index: index)
                     }
+                }
             }
+            .padding(.horizontal)
+            Divider()
+        }
+    }
+
+    func dayButton(index: Int) -> some View {
+        Button(action: {
+            weekdayModel.weekdays[index].isAvailable.toggle()
+        }) {
+            Circle()
+                .fill(getBackgroundColor(index))
+                .overlay(
+                    Text(
+                        weekdayModel.weekdays[index].dayName
+                            .prefix(weekdayModel.weekdays[index].prefix)
+                            .capitalized
+                    )
+                    .fontWeight(.bold)
+                    .foregroundStyle(getForegroundColor(index))
+                )
+                .padding(4)
         }
     }
 }
 
 extension WeekdaysView {
-    private func toggleSelection(
-        of weekday: WeekdayModel
-    ) {
-        if let index = selectedDays.firstIndex(of: weekday) {
-            selectedDays.remove(at: index)
-        } else {
-            selectedDays.append(weekday)
-        }
+    private func getForegroundColor(_ index: Int) -> Color {
+        weekdayModel.weekdays[index].isAvailable ? Color.white : Color.gray
     }
 
-    private func getForegroundColor(
-        of weekday: WeekdayModel
-    ) -> Color {
-        selectedDays.contains(weekday) ? Color.white : Color.gray
-    }
-
-    private func getBackgroundColor(
-        of weekday: WeekdayModel
-    ) -> Color {
-        selectedDays.contains(weekday) ? Color.theme : Color.white
+    private func getBackgroundColor(_ index: Int) -> Color {
+        weekdayModel.weekdays[index].isAvailable ? Color.theme : Color.clear
     }
 }
 
 #Preview {
-    WeekdaysView(selectedDays: .constant([]))
+    WeekdaysView(weekdayModel: WeekdayModel())
 }
+

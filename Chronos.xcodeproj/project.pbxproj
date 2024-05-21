@@ -61,7 +61,7 @@
 		2FF8ADCB2BF41B9600DB9C4E /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADCA2BF41B9600DB9C4E /* HomeModel.swift */; };
 		2FF8ADD22BF4D12800DB9C4E /* AvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADD12BF4D12800DB9C4E /* AvailabilityView.swift */; };
 		2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADD72BF51DF300DB9C4E /* WeekdaysView.swift */; };
-		2FF8ADDE2BF51F7D00DB9C4E /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADDD2BF51F7D00DB9C4E /* WeekdayModel.swift */; };
+		2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADDD2BF51F7D00DB9C4E /* Weekday.swift */; };
 		2FF8ADE02BF6046900DB9C4E /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADDF2BF6046900DB9C4E /* RegistrationModel.swift */; };
 		2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADE52BF607D600DB9C4E /* LoginModel.swift */; };
 		2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */; };
@@ -71,6 +71,7 @@
 		8B0810472BC9AA3300CB5930 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0810462BC9AA3300CB5930 /* AlamofireDynamic */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
+		8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,7 +128,7 @@
 		2FF8ADCA2BF41B9600DB9C4E /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		2FF8ADD12BF4D12800DB9C4E /* AvailabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityView.swift; sourceTree = "<group>"; };
 		2FF8ADD72BF51DF300DB9C4E /* WeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
-		2FF8ADDD2BF51F7D00DB9C4E /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
+		2FF8ADDD2BF51F7D00DB9C4E /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		2FF8ADDF2BF6046900DB9C4E /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		2FF8ADE52BF607D600DB9C4E /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 		2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -469,7 +471,8 @@
 		2FF8ADDC2BF51F5E00DB9C4E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2FF8ADDD2BF51F7D00DB9C4E /* WeekdayModel.swift */,
+				2FF8ADDD2BF51F7D00DB9C4E /* Weekday.swift */,
+				8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -620,8 +623,9 @@
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
 				2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */,
 				2F41CBD12BE810FC000AC5B0 /* KeychainManager.swift in Sources */,
+				8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */,
 				2FDECA862BE974A600B3129B /* ToastView.swift in Sources */,
-				2FF8ADDE2BF51F7D00DB9C4E /* WeekdayModel.swift in Sources */,
+				2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				2FDECA7E2BE9132B00B3129B /* OnboardingEmployeeRequest.swift in Sources */,
 				2FF8ADEC2BF924B900DB9C4E /* ManagerModel.swift in Sources */,

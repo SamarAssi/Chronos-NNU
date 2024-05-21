@@ -8,68 +8,52 @@
 import SwiftUI
 
 struct AvailabilityView: View {
-    @State private var selectedDays: [WeekdayModel] = []
-    
-    var sortedSelectedDays: [WeekdayModel] {
-        selectedDays.sorted { $0.order < $1.order }
-    }
+    @StateObject private var weekdayModel = WeekdayModel()
 
     var body: some View {
         VStack(
             alignment: .leading
         ) {
             titleView
-                .padding(.horizontal)
-            horizontalDividerView
-            WeekdaysView(selectedDays: $selectedDays)
-                .padding(.horizontal)
-            horizontalDividerView
+            WeekdaysView(weekdayModel: weekdayModel)
             schedulingView
             sendRequestButtonView
-                .padding()
         }
         .fontDesign(.rounded)
     }
 }
 
 extension AvailabilityView {
+
     var titleView: some View {
         Text(LocalizedStringKey("Availability"))
             .font(.title2)
             .fontWeight(.bold)
-    }
-
-    var horizontalDividerView: some View {
-        Rectangle()
-            .fill(Color.gray.opacity(0.5))
-            .frame(height: 1)
-    }
-
-    var verticalDividerView: some View {
-        Rectangle()
-            .fill(Color.gray.opacity(0.5))
-            .frame(width: 1)
+            .padding(.horizontal)
     }
 
     var schedulingView: some View {
-        VStack {
-            if selectedDays.isEmpty {
-                Spacer()
+        Group {
+            if weekdayModel.selectedIndices.isEmpty {
                 Text(LocalizedStringKey("You're unavailable for all days"))
-                    .frame(maxWidth: .infinity, alignment: .center)
-                Spacer()
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity,
+                        alignment: .center
+                    )
+                    .foregroundStyle(Color.gray)
             } else {
-                List(sortedSelectedDays) { selectedDay in
-                    schedule(of: selectedDay)
+                List(
+                    weekdayModel.selectedIndices,
+                    id: \.self
+                ) { index in
+                    schedule(index: index)
                         .listRowSeparator(.hidden)
                 }
-                .padding()
                 .listStyle(PlainListStyle())
                 .scrollIndicators(.hidden)
-               // horizontalDividerView
             }
         }
-        .foregroundStyle(Color.gray)
     }
 
     var sendRequestButtonView: some View {
@@ -81,20 +65,14 @@ extension AvailabilityView {
                // TODO: implement send request action
             }
         )
+        .padding()
     }
 
-    private func datePickerView(for selectedDay: WeekdayModel) -> some View {
+    private func datePickerView(index: Int) -> some View {
         HStack(spacing: 10) {
             DatePicker(
-                "",
-                selection: Binding(
-                    get: { selectedDay.startTime },
-                    set: { newValue in
-                        if let index = selectedDays.firstIndex(of: selectedDay) {
-                            selectedDays[index].startTime = newValue
-                        }
-                    }
-                ),
+                "Start Time",
+                selection: $weekdayModel.weekdays[index].startTime,
                 displayedComponents: .hourAndMinute
             )
             .labelsHidden()
@@ -102,61 +80,34 @@ extension AvailabilityView {
                 .fontWeight(.bold)
                 .foregroundStyle(Color.theme)
             DatePicker(
-                "",
-                selection: Binding(
-                    get: { selectedDay.endTime },
-                    set: { newValue in
-                        if let index = selectedDays.firstIndex(of: selectedDay) {
-                            selectedDays[index].endTime = newValue
-                        }
-                    }
-                ),
+                "End Time",
+                selection:  $weekdayModel.weekdays[index].endTime,
                 displayedComponents: .hourAndMinute
             )
             .labelsHidden()
         }
     }
 
-
-    private func schedule(of selectedDay: WeekdayModel) -> some View {
-        HStack(
-            spacing: 25
-        ) {
+    private func schedule(index: Int) -> some View {
+        HStack {
             Text(
-                selectedDay.dayName
+                weekdayModel.weekdays[index].dayName
                     .prefix(3)
                     .capitalized
             )
-            .frame(width: 45, alignment: .leading)
-            verticalDividerView
-            datePickerView(for: selectedDay)
-            verticalDividerView
+            .frame(width: 40)
+
+            Divider()
+            datePickerView(index: index)
+            Divider()
+
             Toggle(
-                isOn: Binding(
-                    get: { selectedDay.toggleIsOn },
-                    set: { newValue in
-                        if let index = selectedDays.firstIndex(of: selectedDay) {
-                            selectedDays[index].toggleIsOn = newValue
-                            handleToggleChange(
-                                for: selectedDay,
-                                isOn: newValue
-                            )
-                        }
-                    }
-                )
+                isOn: $weekdayModel.weekdays[index].isAvailableAllDay
             ) {
                 Text("")
             }
             .labelsHidden()
             .tint(Color.theme)
-        }
-    }
-    
-    private func handleToggleChange(
-        for day: WeekdayModel,
-        isOn: Bool
-    ) {
-        if isOn {
         }
     }
 }
