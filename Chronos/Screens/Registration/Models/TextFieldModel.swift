@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
+@Observable
 class TextFieldModel: ObservableObject, Identifiable {
     let id = UUID().uuidString
-    @Published var text: String
+    var text: String
     let label: LocalizedStringKey
     let placeholder: LocalizedStringKey
     let isSecure: Bool
@@ -157,8 +158,8 @@ extension TextFieldModel {
         [
             TextFieldModel(
                 text: "",
-                label: "Email",
-                placeholder: "Type your email",
+                label: "Username",
+                placeholder: "Type your username",
                 isSecure: false,
                 keyboardType: .asciiCapable,
                 isDisabled: false,

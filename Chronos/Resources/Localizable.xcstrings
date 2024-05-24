@@ -7,6 +7,21 @@
     " (Optional)" : {
 
     },
+    "• At least 8 characters" : {
+
+    },
+    "• Contain at least one lowercase letter" : {
+
+    },
+    "• Contain at least one number" : {
+
+    },
+    "• Contain at least one special character" : {
+
+    },
+    "• Contain at least one uppercase letter" : {
+
+    },
     "Already have an account?" : {
 
     },
@@ -21,10 +36,16 @@
         }
       }
     },
+    "Approve" : {
+
+    },
     "Are you sure you want to log out?" : {
 
     },
     "Availability" : {
+
+    },
+    "Availability Change Details" : {
 
     },
     "Cancel" : {
@@ -42,6 +63,9 @@
     "Confirm Password" : {
 
     },
+    "Deny" : {
+
+    },
     "Description" : {
 
     },
@@ -49,9 +73,6 @@
 
     },
     "Edit" : {
-
-    },
-    "Email" : {
 
     },
     "EmailLabel" : {
@@ -69,6 +90,9 @@
 
     },
     "End Time" : {
+
+    },
+    "END TIME" : {
 
     },
     "Enroll to Chronos" : {
@@ -181,6 +205,9 @@
     "Password mismatch" : {
 
     },
+    "Password must meet the following requirements:" : {
+
+    },
     "PasswordLabel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -204,7 +231,7 @@
     "Register Company" : {
 
     },
-    "Select date" : {
+    "Request submitted on %@" : {
 
     },
     "Select your role:" : {
@@ -219,6 +246,9 @@
     "Start Time" : {
 
     },
+    "START TIME" : {
+
+    },
     "Teams & Conditions" : {
 
     },
@@ -231,10 +261,10 @@
     "Today Attendance" : {
 
     },
-    "Type your email" : {
+    "Type your password" : {
 
     },
-    "Type your password" : {
+    "Type your username" : {
 
     },
     "Update" : {

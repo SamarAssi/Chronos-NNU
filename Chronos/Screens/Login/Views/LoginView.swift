@@ -10,7 +10,6 @@ import SwiftUI
 struct LoginView: View {
     @StateObject var loginModel = LoginModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
-    @State var textFieldModel = TextFieldModel.loginData
 
     var isLoginButtonDisabled: Bool {
         isEmptyFields() ?

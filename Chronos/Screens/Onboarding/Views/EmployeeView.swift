@@ -77,7 +77,7 @@ extension EmployeeView {
                 onboardingAction()
             }
         )
-        // .disabled(isDisabledNextButton)
+        .disabled(isDisabledNextButton)
         .padding(.horizontal, 30)
         .frame(height: 60)
     }

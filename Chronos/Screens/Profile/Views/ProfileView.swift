@@ -20,9 +20,7 @@ struct ProfileView: View {
             ) {
                 profileHeaderView
                 editButtonView
-                    .padding(.horizontal, 30)
                 accountOptionsListView
-                Spacer()
             }
         }
         .fontDesign(.rounded)
@@ -76,6 +74,7 @@ extension ProfileView {
                 .background(Color.theme)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
         }
+        .padding(.horizontal, 30)
     }
 
     var accountOptionsListView: some View {

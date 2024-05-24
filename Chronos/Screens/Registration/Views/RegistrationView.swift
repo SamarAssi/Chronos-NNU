@@ -11,6 +11,8 @@ import SimpleToast
 struct RegistrationView: View {
     @State private var isPhoneNumberInvalid = false
     @State private var isSamePassword = false
+    @State private var passwordConstraintsModel = PasswordConstraintsModel()
+    @State private var constraints = ConstraintTextModel.data
 
     @StateObject var registrationModel = RegistrationModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
@@ -24,13 +26,17 @@ struct RegistrationView: View {
     )
 
     var isDisabledRegisterButton: Bool {
-        areEmptyFields() ?
-        true :
-        false
+        if areEmptyFields() {
+            return true
+        } else if !isPasswordValid() {
+            return true
+        } else {
+            return false
+        }
     }
 
     var registerButtonBackgroundColor: Color {
-        areEmptyFields() ?
+        isDisabledRegisterButton ?
         Color.theme.opacity(0.5) :
         Color.theme
     }
@@ -78,11 +84,29 @@ struct RegistrationView: View {
 }
 
 extension RegistrationView {
+    var constraintsView: some View {
+        VStack(alignment: .leading) {
+            Text(LocalizedStringKey("Password must meet the following requirements:"))
+                .padding(.bottom, 4)
+            
+            ForEach(constraints) { constraint in
+                Text(constraint.text)
+                    .foregroundColor(
+                        constraint.passwordConstraint ?
+                        Color.theme :
+                        Color.secondary
+                    )
+            }
+        }
+        .font(.subheadline)
+        .padding(.top, 5)
+        .padding(.horizontal, 15)
+    }
+    
     var titleView: some View {
         Text(LocalizedStringKey("Register"))
             .foregroundStyle(Color.theme)
             .font(.system(size: 40, weight: .bold))
-            .padding(.vertical, 20)
             .padding(.horizontal, 30)
     }
 
@@ -90,10 +114,19 @@ extension RegistrationView {
         List(registrationModel.textFieldModels) { textFieldModel in
             TextFieldView(textFieldModel: textFieldModel)
                 .listRowSeparator(.hidden)
-                .scrollIndicators(.hidden)
                 .padding(.horizontal, 10)
+                .onChange(of: registrationModel.textFieldModels[4].text) {
+                    validatePassword()
+                }
+            if let lastTextField = registrationModel.textFieldModels.last {
+                if lastTextField === textFieldModel {
+                    constraintsView
+                        .listRowSeparator(.hidden)
+                }
+            }
         }
         .listStyle(PlainListStyle())
+        .scrollIndicators(.hidden)
     }
 
     var registerButtonView: some View {
@@ -102,7 +135,9 @@ extension RegistrationView {
             buttonText: LocalizedStringKey("Register"),
             backgroundColor: registerButtonBackgroundColor,
             action: {
-                isPhoneNumberInvalid = !isValidPhoneNumber(registrationModel.textFieldModels[3].text)
+                isPhoneNumberInvalid = !isValidPhoneNumber(
+                    registrationModel.textFieldModels[3].text
+                )
                 isSamePassword = !checkIsSamePassword()
                 if !isPhoneNumberInvalid && checkIsSamePassword() {
                     register()
@@ -110,8 +145,8 @@ extension RegistrationView {
             }
         )
         .padding(.horizontal, 30)
-        // .disabled(isDisabledRegisterButton)
-        .frame(height: 90)
+        .disabled(isDisabledRegisterButton)
+        .frame(height: 70)
     }
 
     var invalidPhoneNumberToast: some View {
@@ -166,6 +201,94 @@ extension RegistrationView {
         let phoneRegex = #"^\d{10}$"#
         let predicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         return predicate.evaluate(with: value)
+    }
+    
+    private func isPasswordValid() -> Bool {
+        return passwordConstraintsModel.containsUppercase &&
+        passwordConstraintsModel.containsLowercase &&
+        passwordConstraintsModel.containsNumber &&
+        passwordConstraintsModel.containsSpecialChar &&
+        passwordConstraintsModel.hasMinLength
+    }
+    
+    private func validatePassword() {
+        let password = registrationModel.textFieldModels[4].text
+
+        let uppercasePattern = try? NSRegularExpression(
+            pattern: "[A-Z]+",
+            options: []
+        )
+        passwordConstraintsModel.containsUppercase = uppercasePattern?.numberOfMatches(
+            in: password,
+            options: [],
+            range: NSRange(
+                location: 0,
+                length: password.count
+            )
+        ) ?? 0 > 0
+        
+        let lowercasePattern = try? NSRegularExpression(
+            pattern: "[a-z]+",
+            options: []
+        )
+        passwordConstraintsModel.containsLowercase = lowercasePattern?.numberOfMatches(
+            in: password,
+            options: [],
+            range: NSRange(
+                location: 0,
+                length: password.count
+            )
+        ) ?? 0 > 0
+        
+        let numberPattern = try? NSRegularExpression(
+            pattern: "\\d+",
+            options: []
+        )
+        passwordConstraintsModel.containsNumber = numberPattern?.numberOfMatches(
+            in: password,
+            options: [],
+            range: NSRange(
+                location: 0,
+                length: password.count
+            )
+        ) ?? 0 > 0
+        
+        let specialCharPattern = try? NSRegularExpression(
+            pattern: "[!@#$%^&*(),.?\":{}|<>]+",
+            options: []
+        )
+        passwordConstraintsModel.containsSpecialChar = specialCharPattern?.numberOfMatches(
+            in: password,
+            options: [],
+            range: NSRange(
+                location: 0,
+                length: password.count
+            )
+        ) ?? 0 > 0
+        
+        passwordConstraintsModel.hasMinLength = password.count >= 8
+        updateConstraints()
+    }
+    
+    private func updateConstraints() {
+        constraints = ConstraintTextModel.data.map { constraint in
+            let updatedConstraint = constraint
+            switch constraint.text {
+            case "• At least 8 characters":
+                updatedConstraint.passwordConstraint = passwordConstraintsModel.hasMinLength
+            case "• Contain at least one uppercase letter":
+                updatedConstraint.passwordConstraint = passwordConstraintsModel.containsUppercase
+            case "• Contain at least one lowercase letter":
+                updatedConstraint.passwordConstraint = passwordConstraintsModel.containsLowercase
+            case "• Contain at least one number":
+                updatedConstraint.passwordConstraint = passwordConstraintsModel.containsNumber
+            case "• Contain at least one special character":
+                updatedConstraint.passwordConstraint = passwordConstraintsModel.containsSpecialChar
+            default:
+                break
+            }
+            return updatedConstraint
+        }
     }
 }
 

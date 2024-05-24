@@ -78,7 +78,7 @@ extension ManagerView {
                 onboardingAction()
             }
         )
-        // .disabled(isDisabledRegisterButton)
+        .disabled(isDisabledRegisterButton)
         .frame(height: 60)
         .frame(maxWidth: .infinity, alignment: .center)
     }

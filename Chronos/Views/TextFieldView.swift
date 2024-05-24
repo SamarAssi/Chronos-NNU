@@ -51,7 +51,7 @@ extension TextFieldView {
         VStack {
             if !textFieldModel.isOptional {
                 Text(textFieldModel.label)
-                    .font(.system(size: 15))
+                    .font(.subheadline)
             } else {
                 Text(textFieldModel.label)
                     .font(.subheadline)
