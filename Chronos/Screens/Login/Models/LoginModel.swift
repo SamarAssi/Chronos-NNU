@@ -34,7 +34,10 @@ class LoginModel: ObservableObject {
     }
 
     private func performLoginRequest() async throws -> LoginResponse {
-        return try await AuthenticationClient.login(email: textFieldModels[0].text, password: textFieldModels[1].text)
+        return try await AuthenticationClient.login(
+            email: textFieldModels[0].text,
+            password: textFieldModels[1].text
+        )
     }
 
     private func saveAccessToken() {

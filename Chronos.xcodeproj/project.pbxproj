@@ -75,6 +75,9 @@
 		2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
+		8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */; };
+		8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */; };
+		8B81C2AF2C0266E8000DA507 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AE2C0266E8000DA507 /* Availability.swift */; };
 		8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +147,9 @@
 		2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRouter.swift; sourceTree = "<group>"; };
+		8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityClient.swift; sourceTree = "<group>"; };
+		8B81C2AE2C0266E8000DA507 /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
 		8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -298,6 +304,7 @@
 		2F7943382BC47EE700387D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B81C2AD2C0266DA000DA507 /* Availability */,
 				2FDECA992BEFB29900B3129B /* DashboardModel */,
 				2FDECA802BE9151A00B3129B /* OnboardingModel */,
 				2FDECA7F2BE914F200B3129B /* LoginModel */,
@@ -321,6 +328,7 @@
 			children = (
 				2F7943422BC5824400387D3E /* BaseRouter.swift */,
 				2F41CBDB2BE81C9A000AC5B0 /* AuthenticationRouter.swift */,
+				8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -330,6 +338,7 @@
 			children = (
 				8B0810482BC9AA7300CB5930 /* BaseClient.swift */,
 				2F7943402BC5816800387D3E /* AuthenticationClient.swift */,
+				8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -522,6 +531,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		8B81C2AD2C0266DA000DA507 /* Availability */ = {
+			isa = PBXGroup;
+			children = (
+				8B81C2AE2C0266E8000DA507 /* Availability.swift */,
+			);
+			path = Availability;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -613,6 +630,7 @@
 				2F7943642BCAE6E900387D3E /* AttendanceCardView.swift in Sources */,
 				2F928D4E2BD1189D004AAED3 /* ProgressLoader.swift in Sources */,
 				2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */,
+				8B81C2AF2C0266E8000DA507 /* Availability.swift in Sources */,
 				2F731B982C00C0A400B3501D /* ConstraintTextModel.swift in Sources */,
 				2FDECAA12BEFB40A00B3129B /* DashboardResponse.swift in Sources */,
 				2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */,
@@ -623,6 +641,7 @@
 				2F7943052BC2DDB400387D3E /* MainButton.swift in Sources */,
 				2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */,
 				2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */,
+				8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */,
 				2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */,
 				2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */,
 				2F731B942BFEA4E100B3501D /* AvailabilityButtonModel.swift in Sources */,
@@ -636,6 +655,7 @@
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2FDECAA32BEFBD0800B3129B /* OnboardingEmployeeRespone.swift in Sources */,
 				2FDECA8B2BEBC55B00B3129B /* KeychainKeys.swift in Sources */,
+				8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
 				2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */,
 				2F41CBD12BE810FC000AC5B0 /* KeychainManager.swift in Sources */,

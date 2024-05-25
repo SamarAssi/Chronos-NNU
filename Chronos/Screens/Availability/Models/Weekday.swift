@@ -17,7 +17,6 @@ class Weekday: Identifiable, ObservableObject {
     var endTime: Date
 
     let prefix: Int
-    let order: Int
 
     var isAvailableAllDay: Bool
     var isAvailable: Bool
@@ -26,12 +25,20 @@ class Weekday: Identifiable, ObservableObject {
         return dayName.prefix(3).capitalized
     }
 
+    var day: Day {
+        return Day(
+            start: startTime.timeIntervalSince1970,
+            end: endTime.timeIntervalSince1970,
+            isAvailableAllDay: isAvailableAllDay,
+            isNotAvailable: !isAvailable
+        )
+    }
+
     init(
         dayName: String,
         startTime: Date,
         endTime: Date,
         prefix: Int,
-        order: Int,
         isAvailable: Bool,
         isAvailableAllDay: Bool
     ) {
@@ -39,7 +46,6 @@ class Weekday: Identifiable, ObservableObject {
         self.startTime = startTime
         self.endTime = endTime
         self.prefix = prefix
-        self.order = order
         self.isAvailableAllDay = isAvailableAllDay
         self.isAvailable = isAvailable
     }

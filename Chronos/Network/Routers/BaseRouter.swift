@@ -105,7 +105,10 @@ extension BaseRouter {
     }
 
     func asURLRequest() throws -> URLRequest {
-        let url = try path.asURL()
+        let baseURL = "https://timeshift-420211.ew.r.appspot.com/"
+        let urlStr = baseURL + self.path
+
+        let url = try urlStr.asURL()
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = self.method.rawValue
         urlRequest.headers = self.defaultHeaders

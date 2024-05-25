@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AvailabilityView: View {
     @StateObject private var weekdayModel = WeekdayModel()
-    @State private var showDetailsView = false
 
     var body: some View {
         VStack(
@@ -20,9 +19,10 @@ struct AvailabilityView: View {
             schedulingView
             sendRequestButtonView
         }
+        .progressLoader($weekdayModel.isLoading)
         .fontDesign(.rounded)
-        .fullScreenCover(isPresented: $showDetailsView) {
-            AvailabilityChangeDetailsView()
+        .task {
+            weekdayModel.getData()
         }
     }
 }
@@ -74,11 +74,11 @@ extension AvailabilityView {
 
     var sendRequestButtonView: some View {
         MainButton(
-            isLoading: .constant(false),
+            isLoading: $weekdayModel.isSubmitting,
             buttonText: LocalizedStringKey("Send Request"),
             backgroundColor: Color.theme,
             action: {
-                showDetailsView.toggle()
+                weekdayModel.submitData()
             }
         )
         .padding()
@@ -93,10 +93,12 @@ extension AvailabilityView {
             )
             .labelsHidden()
             .frame(width: 50) // by me
+
             Image(systemName: "arrow.right")
                 .fontWeight(.bold)
                 .foregroundStyle(Color.theme)
                 .frame(width: 50) // by me
+
             DatePicker(
                 "End Time",
                 selection:  $weekdayModel.weekdays[index].endTime,
