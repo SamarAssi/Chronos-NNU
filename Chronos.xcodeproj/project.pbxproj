@@ -31,6 +31,15 @@
 		2F731B942BFEA4E100B3501D /* AvailabilityButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B932BFEA4E100B3501D /* AvailabilityButtonModel.swift */; };
 		2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B952C00088A00B3501D /* PasswordConstraintsModel.swift */; };
 		2F731B982C00C0A400B3501D /* ConstraintTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B972C00C0A300B3501D /* ConstraintTextModel.swift */; };
+		2F731B9F2C00EE7100B3501D /* AvailabilityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B9E2C00EE7100B3501D /* AvailabilityListView.swift */; };
+		2F731BA22C00EFD700B3501D /* SharedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BA12C00EFD700B3501D /* SharedModel.swift */; };
+		2F731BA42C0118C200B3501D /* AvailabilityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BA32C0118C200B3501D /* AvailabilityRowView.swift */; };
+		2F731BA72C014AC800B3501D /* RoundedRhombus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BA62C014AC800B3501D /* RoundedRhombus.swift */; };
+		2F731BAA2C020CFC00B3501D /* AvailabilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BA92C020CFC00B3501D /* AvailabilityResponse.swift */; };
+		2F731BB02C023EC300B3501D /* AvailabilityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BAF2C023EC300B3501D /* AvailabilityModel.swift */; };
+		2F731BB32C024ACE00B3501D /* AvailabilityRequestsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BB22C024ACE00B3501D /* AvailabilityRequestsListResponse.swift */; };
+		2F731BB52C024E2A00B3501D /* AvailabilityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BB42C024E2A00B3501D /* AvailabilityListModel.swift */; };
+		2F731BB72C026F4200B3501D /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BB62C026F4200B3501D /* CustomProgressView.swift */; };
 		2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7942E02BC050A500387D3E /* ChronosApp.swift */; };
 		2F7942E52BC050A800387D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E42BC050A800387D3E /* Assets.xcassets */; };
 		2F7942E82BC050A800387D3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E72BC050A800387D3E /* Preview Assets.xcassets */; };
@@ -67,7 +76,6 @@
 		2FF8ADCB2BF41B9600DB9C4E /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADCA2BF41B9600DB9C4E /* HomeModel.swift */; };
 		2FF8ADD22BF4D12800DB9C4E /* AvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADD12BF4D12800DB9C4E /* AvailabilityView.swift */; };
 		2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADD72BF51DF300DB9C4E /* WeekdaysView.swift */; };
-		2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADDD2BF51F7D00DB9C4E /* Weekday.swift */; };
 		2FF8ADE02BF6046900DB9C4E /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADDF2BF6046900DB9C4E /* RegistrationModel.swift */; };
 		2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADE52BF607D600DB9C4E /* LoginModel.swift */; };
 		2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */; };
@@ -75,7 +83,6 @@
 		2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
-		8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +106,15 @@
 		2F731B932BFEA4E100B3501D /* AvailabilityButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityButtonModel.swift; sourceTree = "<group>"; };
 		2F731B952C00088A00B3501D /* PasswordConstraintsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordConstraintsModel.swift; sourceTree = "<group>"; };
 		2F731B972C00C0A300B3501D /* ConstraintTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintTextModel.swift; sourceTree = "<group>"; };
+		2F731B9E2C00EE7100B3501D /* AvailabilityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityListView.swift; sourceTree = "<group>"; };
+		2F731BA12C00EFD700B3501D /* SharedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModel.swift; sourceTree = "<group>"; };
+		2F731BA32C0118C200B3501D /* AvailabilityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRowView.swift; sourceTree = "<group>"; };
+		2F731BA62C014AC800B3501D /* RoundedRhombus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRhombus.swift; sourceTree = "<group>"; };
+		2F731BA92C020CFC00B3501D /* AvailabilityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityResponse.swift; sourceTree = "<group>"; };
+		2F731BAF2C023EC300B3501D /* AvailabilityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityModel.swift; sourceTree = "<group>"; };
+		2F731BB22C024ACE00B3501D /* AvailabilityRequestsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRequestsListResponse.swift; sourceTree = "<group>"; };
+		2F731BB42C024E2A00B3501D /* AvailabilityListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityListModel.swift; sourceTree = "<group>"; };
+		2F731BB62C026F4200B3501D /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		2F7942DD2BC050A500387D3E /* Chronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7942E02BC050A500387D3E /* ChronosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronosApp.swift; sourceTree = "<group>"; };
 		2F7942E42BC050A800387D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,7 +152,6 @@
 		2FF8ADCA2BF41B9600DB9C4E /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		2FF8ADD12BF4D12800DB9C4E /* AvailabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityView.swift; sourceTree = "<group>"; };
 		2FF8ADD72BF51DF300DB9C4E /* WeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
-		2FF8ADDD2BF51F7D00DB9C4E /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		2FF8ADDF2BF6046900DB9C4E /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		2FF8ADE52BF607D600DB9C4E /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
@@ -144,7 +159,6 @@
 		2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
-		8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +204,64 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		2F731B992C00EE2400B3501D /* AvailabilityList */ = {
+			isa = PBXGroup;
+			children = (
+				2F731B9B2C00EE4500B3501D /* Models */,
+				2F731B9A2C00EE3800B3501D /* Views */,
+			);
+			path = AvailabilityList;
+			sourceTree = "<group>";
+		};
+		2F731B9A2C00EE3800B3501D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F731B9E2C00EE7100B3501D /* AvailabilityListView.swift */,
+				2F731BA32C0118C200B3501D /* AvailabilityRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2F731B9B2C00EE4500B3501D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BB42C024E2A00B3501D /* AvailabilityListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F731BA02C00EFB100B3501D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BA12C00EFD700B3501D /* SharedModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F731BA52C014A4100B3501D /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BA62C014AC800B3501D /* RoundedRhombus.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		2F731BA82C020CDB00B3501D /* AvailabilityModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BA92C020CFC00B3501D /* AvailabilityResponse.swift */,
+			);
+			path = AvailabilityModel;
+			sourceTree = "<group>";
+		};
+		2F731BB12C024A6800B3501D /* AvailabilityRequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BB22C024ACE00B3501D /* AvailabilityRequestsListResponse.swift */,
+			);
+			path = AvailabilityRequestModel;
+			sourceTree = "<group>";
+		};
 		2F7942D42BC050A500387D3E = {
 			isa = PBXGroup;
 			children = (
@@ -212,9 +284,11 @@
 				2F7942E02BC050A500387D3E /* ChronosApp.swift */,
 				2F1C0E582BD9D04100960980 /* LaunchScreen.storyboard */,
 				2F79432B2BC4209200387D3E /* ContentView.swift */,
+				2F731BA52C014A4100B3501D /* Shapes */,
 				2F41CBCF2BE810D9000AC5B0 /* KeychainManager */,
 				2F7942EE2BC050FD00387D3E /* Screens */,
 				2F79432D2BC4337300387D3E /* Views */,
+				2F731BA02C00EFB100B3501D /* Models */,
 				2F928D4C2BD11839004AAED3 /* Modifiers */,
 				2F79430E2BC31DC900387D3E /* Routers */,
 				2F79433D2BC57F3C00387D3E /* Network */,
@@ -235,6 +309,7 @@
 		2F7942EE2BC050FD00387D3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				2F731B992C00EE2400B3501D /* AvailabilityList */,
 				2FF8ADD02BF4D0D200DB9C4E /* Availability */,
 				2FDECA8C2BEBE19800B3129B /* Profile */,
 				2F41CBBD2BE7E2E5000AC5B0 /* Onboarding */,
@@ -264,6 +339,7 @@
 				2F41CBC02BE7E659000AC5B0 /* RadioButtonView.swift */,
 				2FDECA852BE974A600B3129B /* ToastView.swift */,
 				2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */,
+				2F731BB62C026F4200B3501D /* CustomProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +374,8 @@
 		2F7943382BC47EE700387D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F731BB12C024A6800B3501D /* AvailabilityRequestModel */,
+				2F731BA82C020CDB00B3501D /* AvailabilityModel */,
 				2FDECA992BEFB29900B3129B /* DashboardModel */,
 				2FDECA802BE9151A00B3129B /* OnboardingModel */,
 				2FDECA7F2BE914F200B3129B /* LoginModel */,
@@ -480,9 +558,8 @@
 		2FF8ADDC2BF51F5E00DB9C4E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2FF8ADDD2BF51F7D00DB9C4E /* Weekday.swift */,
-				8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */,
 				2F731B932BFEA4E100B3501D /* AvailabilityButtonModel.swift */,
+				2F731BAF2C023EC300B3501D /* AvailabilityModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -605,6 +682,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F731BA72C014AC800B3501D /* RoundedRhombus.swift in Sources */,
 				2FDECA9D2BEFB2CD00B3129B /* CheckInOutResponse.swift in Sources */,
 				2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */,
 				2F41CBDE2BE82C51000AC5B0 /* ExtensionForDate.swift in Sources */,
@@ -625,6 +703,7 @@
 				2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */,
 				2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */,
 				2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */,
+				2F731BB02C023EC300B3501D /* AvailabilityModel.swift in Sources */,
 				2F731B942BFEA4E100B3501D /* AvailabilityButtonModel.swift in Sources */,
 				2F1C0E792BDF0DF400960980 /* LoginResponse.swift in Sources */,
 				2F928D542BD32DB7004AAED3 /* ProfileHeaderView.swift in Sources */,
@@ -632,18 +711,22 @@
 				2F41CBD62BE814CA000AC5B0 /* FilteredCalendarCollectionView.swift in Sources */,
 				2FDECA942BECD61900B3129B /* EditProfileView.swift in Sources */,
 				2FDECA7C2BE90FE400B3129B /* OnboardingManagerRequest.swift in Sources */,
+				2F731B9F2C00EE7100B3501D /* AvailabilityListView.swift in Sources */,
 				2F731B922BFEA47800B3501D /* AvailabilityChangeDetailsView.swift in Sources */,
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2FDECAA32BEFBD0800B3129B /* OnboardingEmployeeRespone.swift in Sources */,
 				2FDECA8B2BEBC55B00B3129B /* KeychainKeys.swift in Sources */,
+				2F731BB52C024E2A00B3501D /* AvailabilityListModel.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
+				2F731BA22C00EFD700B3501D /* SharedModel.swift in Sources */,
+				2F731BA42C0118C200B3501D /* AvailabilityRowView.swift in Sources */,
+				2F731BB32C024ACE00B3501D /* AvailabilityRequestsListResponse.swift in Sources */,
 				2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */,
 				2F41CBD12BE810FC000AC5B0 /* KeychainManager.swift in Sources */,
-				8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */,
 				2FDECA862BE974A600B3129B /* ToastView.swift in Sources */,
-				2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				2FDECA7E2BE9132B00B3129B /* OnboardingEmployeeRequest.swift in Sources */,
+				2F731BAA2C020CFC00B3501D /* AvailabilityResponse.swift in Sources */,
 				2FF8ADEC2BF924B900DB9C4E /* ManagerModel.swift in Sources */,
 				2F41CBE02BE832B7000AC5B0 /* TextFieldModel.swift in Sources */,
 				2F41CBD82BE81BEA000AC5B0 /* DashboardTabView.swift in Sources */,
@@ -665,6 +748,7 @@
 				2FF8ADD22BF4D12800DB9C4E /* AvailabilityView.swift in Sources */,
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,
 				2F41CBDC2BE81C9A000AC5B0 /* AuthenticationRouter.swift in Sources */,
+				2F731BB72C026F4200B3501D /* CustomProgressView.swift in Sources */,
 				2F41CBE22BE832E3000AC5B0 /* AttendanceCardModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

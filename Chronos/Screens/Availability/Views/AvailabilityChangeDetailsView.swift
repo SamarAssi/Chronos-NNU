@@ -48,7 +48,9 @@ struct AvailabilityChangeDetailsView: View {
 
 extension AvailabilityChangeDetailsView {
     var backButtonView: some View {
-        Image(systemName: "xmark")
+        Image(systemName: "lessthan")
+            .scaleEffect(0.6)
+            .scaleEffect(x: 1, y: 2)
             .onTapGesture {
                 dismiss.callAsFunction()
             }

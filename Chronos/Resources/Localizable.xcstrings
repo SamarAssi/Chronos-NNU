@@ -158,9 +158,6 @@
     "Last Name" : {
 
     },
-    "Lead UI/UX Designer" : {
-
-    },
     "Log out" : {
 
     },
@@ -183,6 +180,9 @@
 
     },
     "Next" : {
+
+    },
+    "No requests to see here" : {
 
     },
     "NoAccountQuestion" : {
@@ -219,6 +219,9 @@
         }
       }
     },
+    "Pending" : {
+
+    },
     "Phone Number" : {
 
     },
@@ -231,7 +234,13 @@
     "Register Company" : {
 
     },
+    "Register Employee" : {
+
+    },
     "Request submitted on %@" : {
+
+    },
+    "Requests List" : {
 
     },
     "Select your role:" : {

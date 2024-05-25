@@ -53,9 +53,15 @@ extension ProfileView {
                     .fontWeight(.bold)
                     .fontDesign(.rounded)
 
-                Text(LocalizedStringKey("Lead UI/UX Designer"))
-                    .font(.system(size: 15))
-                    .fontDesign(.rounded)
+                if fetchEmployeeType() == 1 {
+                    Text(LocalizedStringKey("Manager"))
+                        .font(.system(size: 15))
+                        .fontDesign(.rounded)
+                } else {
+                    Text(LocalizedStringKey("Employee"))
+                        .font(.system(size: 15))
+                        .fontDesign(.rounded)
+                }
             }
             .padding(.horizontal, 30)
         }
@@ -89,9 +95,21 @@ extension ProfileView {
                             name: row.name
                         )
                     }
-                    .padding(.vertical)
+                }
+                
+                if fetchEmployeeType() == 1 {
+                    NavigationLink {
+                        RegistrationView()
+                            .navigationBarBackButtonHidden(true)
+                    } label: {
+                        profileRowLabel(
+                            icon: "plus.circle",
+                            name: LocalizedStringKey("Register Employee")
+                        )
+                    }
                 }
             }
+            .padding(.vertical)
 
             Section {
                 logoutButtonView
@@ -161,6 +179,16 @@ extension ProfileView {
             Text(name)
                 .font(.system(size: 16))
         }
+    }
+    
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+        
+        return -1
     }
 }
 

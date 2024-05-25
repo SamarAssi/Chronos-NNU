@@ -73,16 +73,7 @@ extension HomeView {
             if !homeModel.isLoading {
                 activityScrollView
             } else {
-                VStack {
-                    Spacer()
-                    ProgressView()
-                        .progressViewStyle(
-                            CircularProgressViewStyle(tint: Color.theme)
-                        )
-                        .scaleEffect(1.5, anchor: .center)
-                        .offset(y: -10)
-                    Spacer()
-                }
+                CustomProgressView()
             }
 
             if getDate(date: selectedDate) == getDate(date: Date()) {
@@ -110,6 +101,18 @@ extension HomeView {
             ) {
                 attendanceView
                 activityView
+                activityView
+                activityView
+                activityView
+                activityView
+                activityView
+                activityView
+                activityView
+                activityView
+                activityView
+                activityView
+                activityView
+                activityView
             }
             .padding(.top, 20)
             .padding(.bottom, 100)
@@ -120,7 +123,7 @@ extension HomeView {
                         .onChange(
                             of: proxy.frame(in: .named("ScrollView")).minY
                         ) { newValue, oldValue in
-                            adjustShowHeaderState(
+                            adjustShowHeaderStatus(
                                 oldVal: oldValue,
                                 newVal: newValue
                             )
@@ -187,8 +190,13 @@ extension HomeView {
     private func activitiesListView(
         dashboardResponse: DashboardResponse
     ) -> some View {
-        LazyVStack(spacing: 8) {
-            ForEach(dashboardResponse.activities, id: \.self) { activity in
+        LazyVStack(
+            spacing: 8
+        ) {
+            ForEach(
+                dashboardResponse.activities,
+                id: \.self
+            ) { activity in
                 ActivityCardView(
                     icon: "tray.and.arrow.down",
                     title: LocalizedStringKey("Check In"),
@@ -200,7 +208,7 @@ extension HomeView {
         }
     }
 
-    private func adjustShowHeaderState(
+    private func adjustShowHeaderStatus(
         oldVal: CGFloat,
         newVal: CGFloat
     ) {

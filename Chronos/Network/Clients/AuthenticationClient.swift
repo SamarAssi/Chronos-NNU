@@ -56,4 +56,14 @@ class AuthenticationClient: BaseClient {
         let router: AuthenticationRouter = .checkInOut
         return try await performRequest(router: router)
     }
+    
+    static func availability() async throws -> AvailabilityResponse {
+        let router: AuthenticationRouter = .availability
+        return try await performRequest(router: router)
+    }
+    
+    static func availabilityRequestsList() async throws -> AvailabilityRequestsListResponse {
+        let router: AuthenticationRouter = .requests
+        return try await performRequest(router: router)
+    }
 }

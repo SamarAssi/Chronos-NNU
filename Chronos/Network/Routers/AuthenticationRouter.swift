@@ -14,6 +14,12 @@ enum AuthenticationRouter: BaseRouter {
     case registration(firstName: String, lastName: String, username: String, phone: String, password: String)
     case checkInOut
     case dashboard(date: Int)
+    case availability
+    case requestChange
+    case requests
+    case approve
+    case reject
+    case availabilityChanges
     case home
 
     var path: String {
@@ -30,6 +36,18 @@ enum AuthenticationRouter: BaseRouter {
             return "https://timeshift-420211.ew.r.appspot.com/updateCheckInOut"
         case .dashboard:
             return "https://timeshift-420211.ew.r.appspot.com/dashboard/getDashboard"
+        case .availability:
+            return "https://timeshift-420211.ew.r.appspot.com/availability"
+        case .requestChange:
+            return "https://timeshift-420211.ew.r.appspot.com/availability/requestChange"
+        case .requests:
+            return "https://timeshift-420211.ew.r.appspot.com/availability/requests"
+        case .approve:
+            return "https://timeshift-420211.ew.r.appspot.com/availability/approve"
+        case .reject:
+            return "https://timeshift-420211.ew.r.appspot.com/availability/reject"
+        case .availabilityChanges:
+            return "https://timeshift-420211.ew.r.appspot.com/availability/availabilityChanges"
         case .home:
             return "home"
         }
@@ -48,6 +66,18 @@ enum AuthenticationRouter: BaseRouter {
         case .checkInOut:
             return .post
         case .dashboard:
+            return .post
+        case .availability:
+            return .get
+        case .requestChange:
+            return .post
+        case .requests:
+            return .get
+        case .approve:
+            return .post
+        case .reject:
+            return .post
+        case .availabilityChanges:
             return .post
         case .home:
             return .get

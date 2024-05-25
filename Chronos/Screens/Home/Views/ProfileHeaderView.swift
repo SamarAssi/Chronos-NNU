@@ -45,8 +45,13 @@ extension ProfileHeaderView {
                 .font(.title3)
                 .fontWeight(.bold)
 
-            Text(LocalizedStringKey("Lead UI/UX Designer"))
-                .font(.system(size: 15))
+            if fetchEmployeeType() == 1 {
+                Text(LocalizedStringKey("Manager"))
+                    .font(.system(size: 15))
+            } else {
+                Text(LocalizedStringKey("Employee"))
+                    .font(.system(size: 15))
+            }
         }
     }
 
@@ -60,6 +65,18 @@ extension ProfileHeaderView {
                     .frame(width: 50, height: 50)
             )
             .padding(.bottom, 3)
+    }
+}
+
+extension ProfileHeaderView {
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+        
+        return -1
     }
 }
 

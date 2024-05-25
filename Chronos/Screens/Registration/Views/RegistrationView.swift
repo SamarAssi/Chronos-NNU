@@ -16,6 +16,7 @@ struct RegistrationView: View {
 
     @StateObject var registrationModel = RegistrationModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
+    @Environment(\.dismiss) var dismiss
 
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
@@ -52,16 +53,28 @@ struct RegistrationView: View {
             }
             registerButtonView
 
-            FooterButton(
-                title: LocalizedStringKey("Already have an account?"),
-                buttonText: LocalizedStringKey("Login"),
-                action: {
-                    navigationRouter.navigateTo(.login)
-                }
-            )
-            .padding(.bottom)
+            if fetchEmployeeType() == -1 {
+                FooterButton(
+                    title: LocalizedStringKey("Already have an account?"),
+                    buttonText: LocalizedStringKey("Login"),
+                    action: {
+                        navigationRouter.navigateTo(.login)
+                    }
+                )
+                .padding(.bottom)
+            }
         }
         .fontDesign(.rounded)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Image(systemName: "lessthan")
+                    .scaleEffect(0.6)
+                    .scaleEffect(x: 1, y: 2)
+                    .onTapGesture {
+                        dismiss.callAsFunction()
+                    }
+            }
+        }
         .simpleToast(
             isPresented: $isPhoneNumberInvalid,
             options: toastOptions
@@ -289,6 +302,16 @@ extension RegistrationView {
             }
             return updatedConstraint
         }
+    }
+    
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+        
+        return -1
     }
 }
 

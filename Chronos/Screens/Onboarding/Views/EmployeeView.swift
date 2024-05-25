@@ -87,12 +87,25 @@ extension EmployeeView {
             if success {
                 showFullScreen = !success
                 navigationRouter.isLoggedIn = success
+                editEmployeeType()
             }
         }
     }
 
     private func isEmptyField() -> Bool {
         return employeeModel.textFieldModels.text.isEmpty
+    }
+    
+    private func editEmployeeType() {
+        SharedModel.employeeType = 0
+        saveEmployeeType()
+    }
+    
+    private func saveEmployeeType() {
+        KeychainManager.shared.save(
+            String(SharedModel.employeeType),
+            key: KeychainKeys.employeeType.rawValue
+        )
     }
 }
 

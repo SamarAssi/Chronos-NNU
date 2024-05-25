@@ -10,4 +10,5 @@ import Foundation
 enum KeychainKeys: String {
     case accessToken
     case companyInvitationId
+    case employeeType
 }

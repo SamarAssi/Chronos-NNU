@@ -105,9 +105,19 @@ extension LoginView {
         loginModel.handleLoginResponse { success in
             if loginModel.response?.employeeDetails.employeeType != -1 {
                 navigationRouter.isLoggedIn = success
+                saveEmployeeType()
             } else {
                 navigationRouter.navigateTo(.onboarding)
             }
+        }
+    }
+    
+    private func saveEmployeeType() {
+        if let response = loginModel.response {
+            KeychainManager.shared.save(
+                String(response.employeeDetails.employeeType),
+                key: KeychainKeys.employeeType.rawValue
+            )
         }
     }
 }

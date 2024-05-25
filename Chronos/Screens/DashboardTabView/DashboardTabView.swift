@@ -19,13 +19,29 @@ struct DashboardTabView: View {
             Text("hello3")
                 .tabItem { Image(systemName: "person.2") }
 
-            AvailabilityView()
-                .tabItem { Image(systemName: "figure.open.water.swim") }
+            Group {
+                if fetchEmployeeType() == 0 {
+                    AvailabilityView()
+                } else {
+                    AvailabilityListView()
+                }
+            }
+            .tabItem { Image(systemName: "figure.open.water.swim") }
 
-            ProfileView() // here
+            ProfileView()
                 .tabItem { Image(systemName: "person") }
         }
         .tint(Color.theme)
+    }
+    
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+        
+        return -1
     }
 }
 

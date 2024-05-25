@@ -87,11 +87,24 @@ extension ManagerView {
         managerModel.handleManagerOnboardingResponse { success in
             showFullScreen = !showFullScreen
             navigationRouter.isLoggedIn = success
+            editEmployeeType()
         }
     }
 
     private func isEmptyFields() -> Bool {
         return managerModel.textFieldModels.text.isEmpty || managerModel.description.isEmpty
+    }
+    
+    private func editEmployeeType() {
+        SharedModel.employeeType = 1
+        saveEmployeeType()
+    }
+    
+    private func saveEmployeeType() {
+        KeychainManager.shared.save(
+            String(SharedModel.employeeType),
+            key: KeychainKeys.employeeType.rawValue
+        )
     }
 }
 
