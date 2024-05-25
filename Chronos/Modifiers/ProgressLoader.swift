@@ -13,10 +13,11 @@ struct ProgressLoader: ViewModifier {
 
     func body(content: Content) -> some View {
         VStack {
-            content
             if isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
+            } else {
+                content
             }
         }
     }

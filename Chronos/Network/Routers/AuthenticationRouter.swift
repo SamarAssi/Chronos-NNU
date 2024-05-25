@@ -25,29 +25,30 @@ enum AuthenticationRouter: BaseRouter {
     var path: String {
         switch self {
         case .login:
-            return "https://timeshift-420211.ew.r.appspot.com/auth/login"
+            return "auth/login"
         case .onboardingManager:
-            return "https://timeshift-420211.ew.r.appspot.com/onboarding/createCompany"
+            return "onboarding/createCompany"
         case .onboardingEmployee:
-            return "https://timeshift-420211.ew.r.appspot.com/onboarding/addUserToCompany"
+            return "onboarding/addUserToCompany"
         case .registration:
-            return "https://timeshift-420211.ew.r.appspot.com/auth/register"
+            return "auth/register"
         case .checkInOut:
-            return "https://timeshift-420211.ew.r.appspot.com/updateCheckInOut"
+            return "updateCheckInOut"
         case .dashboard:
-            return "https://timeshift-420211.ew.r.appspot.com/dashboard/getDashboard"
+            return "dashboard/getDashboard"
         case .availability:
-            return "https://timeshift-420211.ew.r.appspot.com/availability"
+            return "availability"
         case .requestChange:
-            return "https://timeshift-420211.ew.r.appspot.com/availability/requestChange"
+            return "availability/requestChange"
         case .requests:
-            return "https://timeshift-420211.ew.r.appspot.com/availability/requests"
+            return "availability/requests"
         case .approve:
-            return "https://timeshift-420211.ew.r.appspot.com/availability/approve"
+            return "availability/approve"
         case .reject:
-            return "https://timeshift-420211.ew.r.appspot.com/availability/reject"
+            return "availability/reject"
         case .availabilityChanges:
-            return "https://timeshift-420211.ew.r.appspot.com/availability/availabilityChanges"
+            return "availability/availabilityChanges"
+        
         case .home:
             return "home"
         }

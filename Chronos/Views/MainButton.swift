@@ -16,11 +16,16 @@ struct MainButton: View {
 
     var body: some View {
         if isLoading {
-            ProgressView()
-                .progressViewStyle(
-                    CircularProgressViewStyle(tint: Color.theme)
-                )
-                .scaleEffect(1.5, anchor: .center)
+            HStack {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(
+                        CircularProgressViewStyle(tint: Color.theme)
+                    )
+                    .scaleEffect(1.5, anchor: .center)
+                Spacer()
+            }
+            .frame(height: 45)
         } else {
             Button(action: action) {
                 Text(buttonText)

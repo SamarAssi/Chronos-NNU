@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct AvailabilityView: View {
-    @State private var weekdayModel = WeekdayModel()
     @State private var showDetailsView = false
     @State var response: AvailabilityResponse?
     
     @StateObject private var availabilityModel = AvailabilityModel()
     
+    @StateObject private var weekdayModel = WeekdayModel()
+
     var body: some View {
         VStack(
             alignment: .leading
@@ -23,9 +24,10 @@ struct AvailabilityView: View {
             schedulingView
             sendRequestButtonView
         }
+        .progressLoader($weekdayModel.isLoading)
         .fontDesign(.rounded)
-        .fullScreenCover(isPresented: $showDetailsView) {
-            AvailabilityChangeDetailsView()
+        .task {
+            weekdayModel.getData()
         }
         .task {
             do {
@@ -88,11 +90,11 @@ extension AvailabilityView {
     
     var sendRequestButtonView: some View {
         MainButton(
-            isLoading: .constant(false),
+            isLoading: $weekdayModel.isSubmitting,
             buttonText: LocalizedStringKey("Send Request"),
             backgroundColor: Color.theme,
             action: {
-                showDetailsView.toggle()
+                weekdayModel.submitData()
             }
         )
         .padding()
@@ -101,54 +103,45 @@ extension AvailabilityView {
 
 extension AvailabilityView {
     private func datePickerView(index: Int) -> some View {
-        HStack(
-            spacing: 10
-        ) {
-            if let response = response {
-//                DatePicker(
-//                    "Start Time",
-//                    selection: ,
-//                    displayedComponents: .hourAndMinute
-//                )
-//                .labelsHidden()
-//                .frame(width: 50)
-                Image(systemName: "arrow.right")
-                    .fontWeight(.bold)
-                    .foregroundStyle(Color.theme)
-                    .frame(width: 50)
-//                DatePicker(
-//                    "End Time",
-//                    selection:  ,
-//                    displayedComponents: .hourAndMinute
-//                )
-//                .labelsHidden()
-//                .frame(width: 50)
-            }
+
+        HStack(spacing: 10) {
+            DatePicker(
+                "Start Time",
+                selection: $weekdayModel.weekdays[index].startTime,
+                displayedComponents: .hourAndMinute
+            )
+            .labelsHidden()
+            .frame(width: 50) // by me
+
+            Image(systemName: "arrow.right")
+                .fontWeight(.bold)
+                .foregroundStyle(Color.theme)
+                .frame(width: 50) // by me
+
+            DatePicker(
+                "End Time",
+                selection:  $weekdayModel.weekdays[index].endTime,
+                displayedComponents: .hourAndMinute
+            )
+            .labelsHidden()
+            .frame(width: 50) // by me
         }
     }
-    
+
     private func schedule(index: Int) -> some View {
         HStack {
-            if let response = response {
-                Text(weekdayModel.weekdays[index].dayTitle)
-                    .frame(width: 40, alignment: .leading)
-                
-                Divider()
-                datePickerView(index: index)
-                    .frame(width: 220)
-                Divider()
-                
-//                Toggle(
-//                    isOn:
-//                ) {
-//                    Text("")
-//                }
-//                .labelsHidden()
-//                .tint(Color.theme)
-//                .onChange(of: ) {
-//                    // handleToggleChange
-//                }
-//                .frame(maxWidth: .infinity, alignment: .trailing)
+            Text(weekdayModel.weekdays[index].dayTitle)
+                .frame(width: 40, alignment: .leading) // by me
+
+            Divider()
+            datePickerView(index: index)
+                .frame(width: 220) // by me
+            Divider()
+
+            Toggle(
+                isOn: $weekdayModel.weekdays[index].isAvailableAllDay
+            ) {
+                Text("")
             }
         }
     }
