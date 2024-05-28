@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var profileRowModel: [ProfileRowModel] = ProfileRowModel.data
-    @State private var isShowAlert = false
 
     @EnvironmentObject var navigationRouter: NavigationRouter
+
+    @State private var profileRowModel: [ProfileRowModel] = ProfileRowModel.data
+    @State private var isShowAlert = false
 
     var body: some View {
         NavigationStack {
@@ -34,30 +35,50 @@ struct ProfileView: View {
 }
 
 extension ProfileView {
+
     var profileHeaderView: some View {
         VStack(
             spacing: 20
         ) {
-            Image(.logo)
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
-                .frame(width: 130)
+            imageView
 
             VStack(
                 alignment: .center,
                 spacing: 8
             ) {
-                Text(LocalizedStringKey("Michael Mitc"))
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .fontDesign(.rounded)
+                userFullNameView
+                userRoleView
+            }
+            .padding(.horizontal, 30)
+        }
+    }
 
-                Text(LocalizedStringKey("Lead UI/UX Designer"))
+    var imageView: some View {
+        Image(.logo)
+            .resizable()
+            .scaledToFit()
+            .clipShape(Circle())
+            .frame(width: 130)
+    }
+
+    var userFullNameView: some View {
+        Text(fetchFullName())
+            .font(.title3)
+            .fontWeight(.bold)
+            .fontDesign(.rounded)
+    }
+
+    var userRoleView: some View {
+        Group {
+            if fetchEmployeeType() == 1 {
+                Text(LocalizedStringKey("Manager"))
+                    .font(.system(size: 15))
+                    .fontDesign(.rounded)
+            } else {
+                Text(LocalizedStringKey("Employee"))
                     .font(.system(size: 15))
                     .fontDesign(.rounded)
             }
-            .padding(.horizontal, 30)
         }
     }
 
@@ -89,9 +110,21 @@ extension ProfileView {
                             name: row.name
                         )
                     }
-                    .padding(.vertical)
+                }
+
+                if fetchEmployeeType() == 1 {
+                    NavigationLink {
+                        RegistrationView()
+                            .navigationBarBackButtonHidden(true)
+                    } label: {
+                        profileRowLabel(
+                            icon: "plus.circle",
+                            name: LocalizedStringKey("Register Employee")
+                        )
+                    }
                 }
             }
+            .padding(.vertical)
 
             Section {
                 logoutButtonView
@@ -137,6 +170,10 @@ extension ProfileView {
                 _ = KeychainManager.shared.delete(
                     key: KeychainKeys.accessToken.rawValue
                 )
+
+                _ = KeychainManager.shared.delete(
+                    key: KeychainKeys.fullName.rawValue
+                )
                 navigationRouter.isLoggedIn = false
                 navigationRouter.navigateTo(.login)
             }
@@ -145,6 +182,7 @@ extension ProfileView {
 }
 
 extension ProfileView {
+
     private func profileRowLabel(
         icon: String,
         name: LocalizedStringKey
@@ -161,6 +199,26 @@ extension ProfileView {
             Text(name)
                 .font(.system(size: 16))
         }
+    }
+
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+
+        return -1
+    }
+
+    private func fetchFullName() -> String {
+        if let fullName = KeychainManager.shared.fetch(
+            key: KeychainKeys.fullName.rawValue
+        ) {
+            return fullName
+        }
+
+        return ""
     }
 }
 
@@ -189,4 +247,5 @@ struct NewScreen: View {
 #Preview {
     ProfileView()
         .environmentObject(NavigationRouter())
+        .environmentObject(LoginModel())
 }

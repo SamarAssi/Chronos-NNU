@@ -2,7 +2,7 @@
 //  NetworkConstants.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 13/04/2024.
+//  Created by Samar Assi on 13/04/2024.
 //
 
 import Foundation

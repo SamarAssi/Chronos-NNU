@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct EmployeeView: View {
-    @Binding var showFullScreen: Bool
 
-    @StateObject var employeeModel = EmployeeModel()
-    @EnvironmentObject var navigationRouter: NavigationRouter
     @Environment(\.dismiss) var dismiss
+    @StateObject private var employeeModel = EmployeeModel()
+    @EnvironmentObject var navigationRouter: NavigationRouter
+
+    @Binding var showFullScreen: Bool
 
     var isDisabledNextButton: Bool {
         isEmptyField() ?
@@ -68,6 +69,7 @@ struct EmployeeView: View {
 }
 
 extension EmployeeView {
+
     var nextButtonView: some View {
         MainButton(
             isLoading: $employeeModel.isLoading,
@@ -87,12 +89,20 @@ extension EmployeeView {
             if success {
                 showFullScreen = !success
                 navigationRouter.isLoggedIn = success
+                editEmployeeType()
             }
         }
     }
 
     private func isEmptyField() -> Bool {
         return employeeModel.textFieldModels.text.isEmpty
+    }
+
+    private func editEmployeeType() {
+        KeychainManager.shared.save(
+            String(0),
+            key: KeychainKeys.employeeType.rawValue
+        )
     }
 }
 

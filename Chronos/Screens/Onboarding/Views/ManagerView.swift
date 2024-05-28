@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ManagerView: View {
-    @Binding var showFullScreen: Bool
 
-    @StateObject var managerModel = ManagerModel()
-    @EnvironmentObject var navigationRouter: NavigationRouter
     @Environment(\.dismiss) var dismiss
+    @StateObject private var managerModel = ManagerModel()
+    @EnvironmentObject var navigationRouter: NavigationRouter
+
+    @Binding var showFullScreen: Bool
 
     var isDisabledRegisterButton: Bool {
         isEmptyFields() ?
@@ -69,6 +70,7 @@ struct ManagerView: View {
 }
 
 extension ManagerView {
+
     var registerButtonView: some View {
         MainButton(
             isLoading: $managerModel.isLoading,
@@ -87,11 +89,19 @@ extension ManagerView {
         managerModel.handleManagerOnboardingResponse { success in
             showFullScreen = !showFullScreen
             navigationRouter.isLoggedIn = success
+            editEmployeeType()
         }
     }
 
     private func isEmptyFields() -> Bool {
         return managerModel.textFieldModels.text.isEmpty || managerModel.description.isEmpty
+    }
+
+    private func editEmployeeType() {
+        KeychainManager.shared.save(
+            String(1),
+            key: KeychainKeys.employeeType.rawValue
+        )
     }
 }
 

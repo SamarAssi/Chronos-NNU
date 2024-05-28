@@ -8,9 +8,12 @@
 import Foundation
 
 class LoginModel: ObservableObject {
+
     @Published var response: LoginResponse?
+
     @Published var isLoading = false
     @Published var isCorrectInputs = true
+
     @Published private (set) var textFieldModels = TextFieldModel.loginData
 
     @MainActor
@@ -23,6 +26,7 @@ class LoginModel: ObservableObject {
                 validateInputs()
                 hideLoading()
                 saveAccessToken()
+                saveFullName()
                 completion(true)
             } catch let error {
                 print(error)
@@ -46,6 +50,13 @@ class LoginModel: ObservableObject {
                 response.accessToken,
                 key: KeychainKeys.accessToken.rawValue
             )
+        }
+    }
+
+    private func saveFullName() {
+        if let response = response {
+            let name = response.firstName + " " + response.lastName
+            KeychainManager.shared.save(name, key: KeychainKeys.fullName.rawValue)
         }
     }
 

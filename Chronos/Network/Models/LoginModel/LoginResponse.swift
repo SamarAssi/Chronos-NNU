@@ -10,11 +10,14 @@ import Foundation
 struct LoginResponse: Hashable, Codable {
     let employeeDetails: EmployeeDetails
     let accessToken: String
+    let firstName: String
+    let lastName: String
+    let username: String
 
     struct EmployeeDetails: Hashable, Codable {
         let job: String
         let position: String
-        let employeeType: Int
+        var employeeType: Int
         let joinedDate: String
         let salary: Double
         let reportsTo: String

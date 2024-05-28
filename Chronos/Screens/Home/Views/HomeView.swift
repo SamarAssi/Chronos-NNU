@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
+
+    @StateObject private var homeModel = HomeModel()
+    @EnvironmentObject var navigationRouter: NavigationRouter
+
     @State private var isShowProfileHeader = true
     @State private var showFullScreen = false
     @State private var isCheckedIn = false
-    @State private var selectedDate: Date = Date()
 
-    @StateObject var homeModel = HomeModel()
-    @EnvironmentObject var navigationRouter: NavigationRouter
+    @State private var selectedDate: Date = Date()
 
     let startDate = Calendar.current.date(
         byAdding: .day,
@@ -57,8 +59,8 @@ struct HomeView: View {
                 OnboardingView(showFullScreen: $showFullScreen)
             }
         }
-        .task {
-            await homeModel.handleDashboardResponse(selectedDate: selectedDate)
+        .onAppear {
+            homeModel.handleDashboardResponse(selectedDate: selectedDate)
         }
     }
 }
@@ -66,6 +68,7 @@ struct HomeView: View {
 // MARK: - Computed Properties
 
 extension HomeView {
+
     var dashboardContent: some View {
         ZStack(
             alignment: .bottom
@@ -73,21 +76,14 @@ extension HomeView {
             if !homeModel.isLoading {
                 activityScrollView
             } else {
-                VStack {
-                    Spacer()
-                    ProgressView()
-                        .progressViewStyle(
-                            CircularProgressViewStyle(tint: Color.theme)
-                        )
-                        .scaleEffect(1.5, anchor: .center)
-                        .offset(y: -10)
-                    Spacer()
-                }
+                CustomProgressView()
             }
 
             if getDate(date: selectedDate) == getDate(date: Date()) {
                 SwipeToUnlockView(
+                    homeModel: homeModel,
                     isCheckedIn: $isCheckedIn,
+                    selectedDate: $selectedDate,
                     width: 360
                 )
                 .padding(.bottom, 20)
@@ -184,18 +180,44 @@ extension HomeView {
 // MARK: - Mehtods
 
 extension HomeView {
+
     private func activitiesListView(
         dashboardResponse: DashboardResponse
     ) -> some View {
-        LazyVStack(spacing: 8) {
-            ForEach(dashboardResponse.activities, id: \.self) { activity in
-                ActivityCardView(
-                    icon: "tray.and.arrow.down",
-                    title: LocalizedStringKey("Check In"),
-                    date: Date(timeIntervalSince1970: Double(activity.checkInTime / 1000))
-                )
-                .shadow(radius: 1)
-                .padding(.vertical, 5)
+        LazyVStack(
+            spacing: 8
+        ) {
+            ForEach(
+                dashboardResponse.activities.reversed(),
+                id: \.self
+            ) { activity in
+
+                VStack {
+                    if let checkout = activity.checkOutTime {
+                        ActivityCardView(
+                            icon: "tray.and.arrow.up",
+                            title: LocalizedStringKey("Check Out"),
+                            date: Date(
+                                timeIntervalSince1970: Double(checkout / 1000)
+                            ),
+                            iconColor: Color.red
+                        )
+                        .shadow(radius: 1)
+                        .padding(.vertical, 5)
+                    }
+
+                    ActivityCardView(
+                        icon: "tray.and.arrow.down",
+                        title: LocalizedStringKey("Check In"),
+                        date: Date(
+                            timeIntervalSince1970: Double(activity.checkInTime / 1000)
+                        ),
+                        iconColor: Color.theme
+                    )
+                    .shadow(radius: 1)
+                    .padding(.vertical, 5)
+
+                }
             }
         }
     }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TextEditorView: View {
+
     @Binding var text: String
     @FocusState var isFocused: Bool
 
@@ -47,6 +48,7 @@ struct TextEditorView: View {
 }
 
 extension TextEditorView {
+
     var textEditorView: some View {
         TextEditor(text: $text)
             .font(.system(size: 15))

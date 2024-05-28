@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+
     @State private var selectedPosition: Position?
     @State private var isSelected = false
     @State private var radioButtons: [RadioButtonModel] = RadioButtonModel.data
@@ -44,6 +45,7 @@ struct OnboardingView: View {
 }
 
 extension OnboardingView {
+
     var headerSectionView: some View {
         VStack(
             alignment: .leading,

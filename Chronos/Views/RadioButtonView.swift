@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RadioButtonView: View {
+
     var isSelected: Bool
     let label: LocalizedStringKey
     let details: LocalizedStringKey
@@ -49,6 +50,7 @@ struct RadioButtonView: View {
 }
 
 extension RadioButtonView {
+
     var circleView: some View {
         Circle()
             .fill(innerCircleColor)

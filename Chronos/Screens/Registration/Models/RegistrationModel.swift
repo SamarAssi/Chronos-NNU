@@ -8,9 +8,12 @@
 import Foundation
 
 class RegistrationModel: ObservableObject {
+
     @Published var response: LoginResponse?
+
     @Published var isLoading = false
     @Published var isUsernameInvalid = false
+
     @Published private (set) var textFieldModels: [TextFieldModel] = TextFieldModel.registrationData
 
     @MainActor
@@ -23,6 +26,7 @@ class RegistrationModel: ObservableObject {
             do {
                 response = try await performLoginRequest()
                 saveAccessToken()
+                saveFullName()
                 hideLoading()
                 validateUsername()
                 completion(true)
@@ -35,7 +39,7 @@ class RegistrationModel: ObservableObject {
         }
     }
 
-    func performLoginRequest() async throws -> LoginResponse {
+    private func performLoginRequest() async throws -> LoginResponse {
         return try await AuthenticationClient.register(textFields: textFieldModels)
     }
 
@@ -45,6 +49,13 @@ class RegistrationModel: ObservableObject {
                 response.accessToken,
                 key: KeychainKeys.accessToken.rawValue
             )
+        }
+    }
+
+    private func saveFullName() {
+        if let response = response {
+            let name = response.firstName + " " + response.lastName
+            KeychainManager.shared.save(name, key: KeychainKeys.fullName.rawValue)
         }
     }
 

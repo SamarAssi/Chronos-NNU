@@ -8,6 +8,7 @@
 import Foundation
 
 extension Date {
+
     static func generateDates(from startDate: Date, to endDate: Date) -> [Date] {
         var dates = [Date]()
         var currentDate = startDate

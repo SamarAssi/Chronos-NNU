@@ -13,7 +13,7 @@ class ConstraintTextModel: Identifiable {
     let id = UUID().uuidString
     let text: LocalizedStringKey
     var passwordConstraint: Bool
-    
+
     init(
         text: LocalizedStringKey,
         passwordConstraint: Bool

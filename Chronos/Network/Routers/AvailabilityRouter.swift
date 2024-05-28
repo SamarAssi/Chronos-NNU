@@ -2,7 +2,7 @@
 //  AvailabilityRouter.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 25/05/2024.
+//  Created by Samar Assi on 25/05/2024.
 //
 
 import Alamofire
@@ -12,6 +12,10 @@ enum AvailabilityRouter: BaseRouter {
 
     case getAvailability
     case updateAvailability(availability: Availabilities)
+    case requestsList
+    case approveAvailability(id: String)
+    case rejectAvailability(id: String)
+    case availabilityChanges(id: String)
 
     var path: String {
         switch self {
@@ -19,6 +23,14 @@ enum AvailabilityRouter: BaseRouter {
             return "availability"
         case .updateAvailability:
             return "availability/requestChange"
+        case .requestsList:
+            return "availability/requests"
+        case .approveAvailability:
+            return "availability/approve"
+        case .rejectAvailability:
+            return "availability/reject"
+        case .availabilityChanges:
+            return "availability/availabilityChanges"
         }
     }
 
@@ -26,21 +38,41 @@ enum AvailabilityRouter: BaseRouter {
         switch self {
         case .getAvailability:
             return .get
-        case .updateAvailability(availability: let availability):
+        case .updateAvailability:
+            return .post
+        case .requestsList:
+            return .get
+        case .approveAvailability:
+            return .post
+        case .rejectAvailability:
+            return .post
+        case .availabilityChanges:
             return .post
         }
     }
 
     var parameters: Parameters? {
         switch self {
-            case .getAvailability:
-                return nil
+        case .getAvailability:
+            return nil
 
-            case .updateAvailability(availability: let availability):
-                let encoder = JSONEncoder()
-                let data = try? encoder.encode(availability)
-                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-                return json as? Parameters
+        case .updateAvailability(availability: let availability):
+            let encoder = JSONEncoder()
+            let data = try? encoder.encode(availability)
+            let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+            return json as? Parameters
+
+        case .requestsList:
+            return nil
+
+        case .approveAvailability(let id):
+            return ["id": id]
+
+        case .rejectAvailability(let id):
+            return ["id": id]
+
+        case .availabilityChanges(let id):
+            return ["id": id]
         }
     }
 }

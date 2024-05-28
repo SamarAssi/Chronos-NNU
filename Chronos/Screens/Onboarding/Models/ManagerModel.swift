@@ -8,6 +8,7 @@
 import Foundation
 
 class ManagerModel: ObservableObject {
+
     @Published var isLoading = false
     @Published var description = ""
     @Published var managerResponse: ManagerOnboardingResponse?

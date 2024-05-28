@@ -8,6 +8,7 @@
 import Foundation
 
 class EmployeeModel: ObservableObject {
+
     @Published var isLoading = false
     @Published var isCorrectId = true
     @Published var employeeResponse: OnboardingEmployeeRespone?

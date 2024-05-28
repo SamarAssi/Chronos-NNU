@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ToastView: View {
+
     var type: ToastTypes
     var message: LocalizedStringKey
 

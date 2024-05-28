@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileHeaderView: View {
+
     var body: some View {
         HStack(
             spacing: 5
@@ -27,6 +28,7 @@ struct ProfileHeaderView: View {
 }
 
 extension ProfileHeaderView {
+
     var profileImage: some View {
         Image(.logo)
             .resizable()
@@ -41,12 +43,17 @@ extension ProfileHeaderView {
             alignment: .leading,
             spacing: 3
         ) {
-            Text(LocalizedStringKey("Michael Mitc"))
+            Text(fetchFullName())
                 .font(.title3)
                 .fontWeight(.bold)
 
-            Text(LocalizedStringKey("Lead UI/UX Designer"))
-                .font(.system(size: 15))
+            if fetchEmployeeType() == 1 {
+                Text(LocalizedStringKey("Manager"))
+                    .font(.system(size: 15))
+            } else {
+                Text(LocalizedStringKey("Employee"))
+                    .font(.system(size: 15))
+            }
         }
     }
 
@@ -60,6 +67,29 @@ extension ProfileHeaderView {
                     .frame(width: 50, height: 50)
             )
             .padding(.bottom, 3)
+    }
+}
+
+extension ProfileHeaderView {
+
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+
+        return -1
+    }
+
+    private func fetchFullName() -> String {
+        if let fullName = KeychainManager.shared.fetch(
+            key: KeychainKeys.fullName.rawValue
+        ) {
+            return fullName
+        }
+
+        return ""
     }
 }
 

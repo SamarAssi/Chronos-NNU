@@ -23,14 +23,25 @@
 		2F41CBE02BE832B7000AC5B0 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41CBDF2BE832B7000AC5B0 /* TextFieldModel.swift */; };
 		2F41CBE22BE832E3000AC5B0 /* AttendanceCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41CBE12BE832E3000AC5B0 /* AttendanceCardModel.swift */; };
 		2F41CBE42BE83381000AC5B0 /* RadioButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41CBE32BE83381000AC5B0 /* RadioButtonModel.swift */; };
-		2F731B882BFEA2B400B3501D /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731B872BFEA2B400B3501D /* SimpleToast */; };
-		2F731B8B2BFEA2C600B3501D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731B8A2BFEA2C600B3501D /* KeychainSwift */; };
-		2F731B8E2BFEA2DF00B3501D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731B8D2BFEA2DF00B3501D /* Alamofire */; };
-		2F731B902BFEA2DF00B3501D /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731B8F2BFEA2DF00B3501D /* AlamofireDynamic */; };
 		2F731B922BFEA47800B3501D /* AvailabilityChangeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B912BFEA47800B3501D /* AvailabilityChangeDetailsView.swift */; };
 		2F731B942BFEA4E100B3501D /* AvailabilityButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B932BFEA4E100B3501D /* AvailabilityButtonModel.swift */; };
 		2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B952C00088A00B3501D /* PasswordConstraintsModel.swift */; };
 		2F731B982C00C0A400B3501D /* ConstraintTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B972C00C0A300B3501D /* ConstraintTextModel.swift */; };
+		2F731BBE2C02880F00B3501D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731BBD2C02880F00B3501D /* Alamofire */; };
+		2F731BC02C02880F00B3501D /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731BBF2C02880F00B3501D /* AlamofireDynamic */; };
+		2F731BC32C02881E00B3501D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731BC22C02881E00B3501D /* KeychainSwift */; };
+		2F731BC62C02882800B3501D /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731BC52C02882800B3501D /* SimpleToast */; };
+		2F731BC82C02943700B3501D /* AvailabilityRequestsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BC72C02943700B3501D /* AvailabilityRequestsListResponse.swift */; };
+		2F731BCD2C0297AB00B3501D /* AvailabilityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BCC2C0297AB00B3501D /* AvailabilityListView.swift */; };
+		2F731BCF2C0297D300B3501D /* AvailabilityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BCE2C0297D300B3501D /* AvailabilityRowView.swift */; };
+		2F731BD12C0297F100B3501D /* AvailabilityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BD02C0297F100B3501D /* AvailabilityListModel.swift */; };
+		2F731BD32C02985500B3501D /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BD22C02985500B3501D /* CustomProgressView.swift */; };
+		2F731BD62C02988E00B3501D /* RoundedRhombus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BD52C02988E00B3501D /* RoundedRhombus.swift */; };
+		2F731BD82C0299C300B3501D /* DashboardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BD72C0299C300B3501D /* DashboardRouter.swift */; };
+		2F731BDA2C029AA100B3501D /* DashboardClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BD92C029AA100B3501D /* DashboardClient.swift */; };
+		2F731BDC2C02A60100B3501D /* AvailabilityApprovalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BDB2C02A60100B3501D /* AvailabilityApprovalRequest.swift */; };
+		2F731BDE2C02A65200B3501D /* AvailabilityApprovalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BDD2C02A65200B3501D /* AvailabilityApprovalResponse.swift */; };
+		2F731BE22C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BE12C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift */; };
 		2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7942E02BC050A500387D3E /* ChronosApp.swift */; };
 		2F7942E52BC050A800387D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E42BC050A800387D3E /* Assets.xcassets */; };
 		2F7942E82BC050A800387D3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E72BC050A800387D3E /* Preview Assets.xcassets */; };
@@ -102,6 +113,17 @@
 		2F731B932BFEA4E100B3501D /* AvailabilityButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityButtonModel.swift; sourceTree = "<group>"; };
 		2F731B952C00088A00B3501D /* PasswordConstraintsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordConstraintsModel.swift; sourceTree = "<group>"; };
 		2F731B972C00C0A300B3501D /* ConstraintTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintTextModel.swift; sourceTree = "<group>"; };
+		2F731BC72C02943700B3501D /* AvailabilityRequestsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRequestsListResponse.swift; sourceTree = "<group>"; };
+		2F731BCC2C0297AB00B3501D /* AvailabilityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityListView.swift; sourceTree = "<group>"; };
+		2F731BCE2C0297D300B3501D /* AvailabilityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRowView.swift; sourceTree = "<group>"; };
+		2F731BD02C0297F100B3501D /* AvailabilityListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityListModel.swift; sourceTree = "<group>"; };
+		2F731BD22C02985500B3501D /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		2F731BD52C02988E00B3501D /* RoundedRhombus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRhombus.swift; sourceTree = "<group>"; };
+		2F731BD72C0299C300B3501D /* DashboardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRouter.swift; sourceTree = "<group>"; };
+		2F731BD92C029AA100B3501D /* DashboardClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardClient.swift; sourceTree = "<group>"; };
+		2F731BDB2C02A60100B3501D /* AvailabilityApprovalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityApprovalRequest.swift; sourceTree = "<group>"; };
+		2F731BDD2C02A65200B3501D /* AvailabilityApprovalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityApprovalResponse.swift; sourceTree = "<group>"; };
+		2F731BE12C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityUpdateRequestResponse.swift; sourceTree = "<group>"; };
 		2F7942DD2BC050A500387D3E /* Chronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7942E02BC050A500387D3E /* ChronosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronosApp.swift; sourceTree = "<group>"; };
 		2F7942E42BC050A800387D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,10 +180,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F731B8E2BFEA2DF00B3501D /* Alamofire in Frameworks */,
-				2F731B902BFEA2DF00B3501D /* AlamofireDynamic in Frameworks */,
-				2F731B8B2BFEA2C600B3501D /* KeychainSwift in Frameworks */,
-				2F731B882BFEA2B400B3501D /* SimpleToast in Frameworks */,
+				2F731BC62C02882800B3501D /* SimpleToast in Frameworks */,
+				2F731BC32C02881E00B3501D /* KeychainSwift in Frameworks */,
+				2F731BBE2C02880F00B3501D /* Alamofire in Frameworks */,
+				2F731BC02C02880F00B3501D /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +218,41 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		2F731BC92C02975E00B3501D /* AvailabilityList */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BCB2C02979C00B3501D /* Models */,
+				2F731BCA2C02978F00B3501D /* Views */,
+			);
+			path = AvailabilityList;
+			sourceTree = "<group>";
+		};
+		2F731BCA2C02978F00B3501D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BCC2C0297AB00B3501D /* AvailabilityListView.swift */,
+				2F731BCE2C0297D300B3501D /* AvailabilityRowView.swift */,
+				2F731B912BFEA47800B3501D /* AvailabilityChangeDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2F731BCB2C02979C00B3501D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BD02C0297F100B3501D /* AvailabilityListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F731BD42C02987600B3501D /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				2F731BD52C02988E00B3501D /* RoundedRhombus.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
 		2F7942D42BC050A500387D3E = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +275,7 @@
 				2F7942E02BC050A500387D3E /* ChronosApp.swift */,
 				2F1C0E582BD9D04100960980 /* LaunchScreen.storyboard */,
 				2F79432B2BC4209200387D3E /* ContentView.swift */,
+				2F731BD42C02987600B3501D /* Shapes */,
 				2F41CBCF2BE810D9000AC5B0 /* KeychainManager */,
 				2F7942EE2BC050FD00387D3E /* Screens */,
 				2F79432D2BC4337300387D3E /* Views */,
@@ -241,6 +299,7 @@
 		2F7942EE2BC050FD00387D3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				2F731BC92C02975E00B3501D /* AvailabilityList */,
 				2FF8ADD02BF4D0D200DB9C4E /* Availability */,
 				2FDECA8C2BEBE19800B3129B /* Profile */,
 				2F41CBBD2BE7E2E5000AC5B0 /* Onboarding */,
@@ -270,6 +329,7 @@
 				2F41CBC02BE7E659000AC5B0 /* RadioButtonView.swift */,
 				2FDECA852BE974A600B3129B /* ToastView.swift */,
 				2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */,
+				2F731BD22C02985500B3501D /* CustomProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,6 +389,7 @@
 				2F7943422BC5824400387D3E /* BaseRouter.swift */,
 				2F41CBDB2BE81C9A000AC5B0 /* AuthenticationRouter.swift */,
 				8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */,
+				2F731BD72C0299C300B3501D /* DashboardRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -339,6 +400,7 @@
 				8B0810482BC9AA7300CB5930 /* BaseClient.swift */,
 				2F7943402BC5816800387D3E /* AuthenticationClient.swift */,
 				8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */,
+				2F731BD92C029AA100B3501D /* DashboardClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -481,7 +543,6 @@
 			children = (
 				2FF8ADD12BF4D12800DB9C4E /* AvailabilityView.swift */,
 				2FF8ADD72BF51DF300DB9C4E /* WeekdaysView.swift */,
-				2F731B912BFEA47800B3501D /* AvailabilityChangeDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -535,6 +596,10 @@
 			isa = PBXGroup;
 			children = (
 				8B81C2AE2C0266E8000DA507 /* Availability.swift */,
+				2F731BC72C02943700B3501D /* AvailabilityRequestsListResponse.swift */,
+				2F731BDB2C02A60100B3501D /* AvailabilityApprovalRequest.swift */,
+				2F731BDD2C02A65200B3501D /* AvailabilityApprovalResponse.swift */,
+				2F731BE12C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift */,
 			);
 			path = Availability;
 			sourceTree = "<group>";
@@ -556,10 +621,10 @@
 			);
 			name = Chronos;
 			packageProductDependencies = (
-				2F731B872BFEA2B400B3501D /* SimpleToast */,
-				2F731B8A2BFEA2C600B3501D /* KeychainSwift */,
-				2F731B8D2BFEA2DF00B3501D /* Alamofire */,
-				2F731B8F2BFEA2DF00B3501D /* AlamofireDynamic */,
+				2F731BBD2C02880F00B3501D /* Alamofire */,
+				2F731BBF2C02880F00B3501D /* AlamofireDynamic */,
+				2F731BC22C02881E00B3501D /* KeychainSwift */,
+				2F731BC52C02882800B3501D /* SimpleToast */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -590,9 +655,9 @@
 			);
 			mainGroup = 2F7942D42BC050A500387D3E;
 			packageReferences = (
-				2F731B862BFEA2B400B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */,
-				2F731B892BFEA2C600B3501D /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				2F731B8C2BFEA2DF00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2F731BBC2C02880F00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2F731BC12C02881E00B3501D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				2F731BC42C02882800B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -622,10 +687,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F731BDE2C02A65200B3501D /* AvailabilityApprovalResponse.swift in Sources */,
 				2FDECA9D2BEFB2CD00B3129B /* CheckInOutResponse.swift in Sources */,
 				2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */,
 				2F41CBDE2BE82C51000AC5B0 /* ExtensionForDate.swift in Sources */,
 				2F41CBC52BE7F94A000AC5B0 /* ManagerView.swift in Sources */,
+				2F731BD62C02988E00B3501D /* RoundedRhombus.swift in Sources */,
 				2F41CBC92BE8060B000AC5B0 /* TextEditorView.swift in Sources */,
 				2F7943642BCAE6E900387D3E /* AttendanceCardView.swift in Sources */,
 				2F928D4E2BD1189D004AAED3 /* ProgressLoader.swift in Sources */,
@@ -636,9 +703,11 @@
 				2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */,
 				2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
+				2F731BDA2C029AA100B3501D /* DashboardClient.swift in Sources */,
 				2F7943122BC3284900387D3E /* HomeView.swift in Sources */,
 				2F7943462BC58A5A00387D3E /* RegistrationView.swift in Sources */,
 				2F7943052BC2DDB400387D3E /* MainButton.swift in Sources */,
+				2F731BCD2C0297AB00B3501D /* AvailabilityListView.swift in Sources */,
 				2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */,
 				2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */,
 				8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */,
@@ -647,6 +716,7 @@
 				2F731B942BFEA4E100B3501D /* AvailabilityButtonModel.swift in Sources */,
 				2F1C0E792BDF0DF400960980 /* LoginResponse.swift in Sources */,
 				2F928D542BD32DB7004AAED3 /* ProfileHeaderView.swift in Sources */,
+				2F731BD12C0297F100B3501D /* AvailabilityListModel.swift in Sources */,
 				2FDECA9F2BEFB3A400B3129B /* DashboardRequest.swift in Sources */,
 				2F41CBD62BE814CA000AC5B0 /* FilteredCalendarCollectionView.swift in Sources */,
 				2FDECA942BECD61900B3129B /* EditProfileView.swift in Sources */,
@@ -658,9 +728,11 @@
 				8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
 				2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */,
+				2F731BD32C02985500B3501D /* CustomProgressView.swift in Sources */,
 				2F41CBD12BE810FC000AC5B0 /* KeychainManager.swift in Sources */,
 				8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */,
 				2FDECA862BE974A600B3129B /* ToastView.swift in Sources */,
+				2F731BCF2C0297D300B3501D /* AvailabilityRowView.swift in Sources */,
 				2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				2FDECA7E2BE9132B00B3129B /* OnboardingEmployeeRequest.swift in Sources */,
@@ -671,6 +743,7 @@
 				2F41CBBF2BE7E30F000AC5B0 /* OnboardingView.swift in Sources */,
 				2F41CBD42BE81448000AC5B0 /* CalendarItemView.swift in Sources */,
 				8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */,
+				2F731BC82C02943700B3501D /* AvailabilityRequestsListResponse.swift in Sources */,
 				2F41CBC12BE7E659000AC5B0 /* RadioButtonView.swift in Sources */,
 				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
 				2FF8ADCB2BF41B9600DB9C4E /* HomeModel.swift in Sources */,
@@ -682,9 +755,12 @@
 				2FDECAA52BF014B700B3129B /* LoginRequest.swift in Sources */,
 				2F79432C2BC4209200387D3E /* ContentView.swift in Sources */,
 				2F41CBC72BE7F956000AC5B0 /* EmployeeView.swift in Sources */,
+				2F731BDC2C02A60100B3501D /* AvailabilityApprovalRequest.swift in Sources */,
 				2FF8ADD22BF4D12800DB9C4E /* AvailabilityView.swift in Sources */,
+				2F731BE22C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift in Sources */,
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,
 				2F41CBDC2BE81C9A000AC5B0 /* AuthenticationRouter.swift in Sources */,
+				2F731BD82C0299C300B3501D /* DashboardRouter.swift in Sources */,
 				2F41CBE22BE832E3000AC5B0 /* AttendanceCardModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -895,23 +971,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2F731B862BFEA2B400B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.8.1;
-			};
-		};
-		2F731B892BFEA2C600B3501D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 24.0.0;
-			};
-		};
-		2F731B8C2BFEA2DF00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		2F731BBC2C02880F00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -919,28 +979,44 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		2F731BC12C02881E00B3501D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
+		2F731BC42C02882800B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2F731B872BFEA2B400B3501D /* SimpleToast */ = {
+		2F731BBD2C02880F00B3501D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2F731B862BFEA2B400B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */;
-			productName = SimpleToast;
-		};
-		2F731B8A2BFEA2C600B3501D /* KeychainSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F731B892BFEA2C600B3501D /* XCRemoteSwiftPackageReference "keychain-swift" */;
-			productName = KeychainSwift;
-		};
-		2F731B8D2BFEA2DF00B3501D /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F731B8C2BFEA2DF00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 2F731BBC2C02880F00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		2F731B8F2BFEA2DF00B3501D /* AlamofireDynamic */ = {
+		2F731BBF2C02880F00B3501D /* AlamofireDynamic */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2F731B8C2BFEA2DF00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 2F731BBC2C02880F00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
+		};
+		2F731BC22C02881E00B3501D /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F731BC12C02881E00B3501D /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		2F731BC52C02882800B3501D /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F731BC42C02882800B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

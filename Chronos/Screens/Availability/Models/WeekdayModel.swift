@@ -2,11 +2,12 @@
 //  WeekdayModel.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 19/05/2024.
+//  Created by Samar Assi on 19/05/2024.
 //
 
 import SwiftUI
 
+@MainActor
 class WeekdayModel: ObservableObject {
 
     enum Weekdays: String, CaseIterable {
@@ -14,8 +15,14 @@ class WeekdayModel: ObservableObject {
     }
 
     @Published var weekdays: [Weekday] = []
+
     @Published var isLoading = true
     @Published var isSubmitting = false
+    @Published var isSentRequest = false
+    @Published var isFailedRequest = false
+
+    @Published var updatedAvailabilities: Availabilities?
+    @Published var availabilities: Availabilities?
 
     var selectedIndices: [Int] {
         weekdays
@@ -29,15 +36,18 @@ class WeekdayModel: ObservableObject {
 
         Task {
             do {
-                let availabilities = try await AvailabilityClient.getAvailability()
+                availabilities = try await AvailabilityClient.getAvailability()
                 await MainActor.run { [weak self] in
                     guard let self = self else { return }
-                    weekdays = Weekdays.allCases.enumerated().compactMap { index, weekday in
-                        return self.getUIModel(
-                            day: availabilities.value(weekday: weekday),
-                            dayName: weekday.rawValue,
-                            index: index
-                        )
+
+                    if let availabilities = availabilities {
+                        weekdays = Weekdays.allCases.enumerated().compactMap { index, weekday in
+                            return self.getUIModel(
+                                day: availabilities.value(weekday: weekday),
+                                dayName: weekday.rawValue,
+                                index: index
+                            )
+                        }
                     }
                     isLoading = false
                 }
@@ -93,17 +103,16 @@ class WeekdayModel: ObservableObject {
             }
 
             do {
-                let updatedAvailabilities = try await AvailabilityClient.updateAvailability(
+                updatedAvailabilities = try await AvailabilityClient.updateAvailability(
                     availability: availabilities
                 )
-            } catch {
+                isSentRequest = true
+                isFailedRequest = false
+            } catch let error {
+                print(error)
+                isSentRequest = false
+                isFailedRequest = true
             }
         }
-    }
-}
-
-extension Date {
-    static func startOfDay() -> Date {
-        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) ?? Date()
     }
 }

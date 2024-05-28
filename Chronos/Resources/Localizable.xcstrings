@@ -7,6 +7,9 @@
     " (Optional)" : {
 
     },
+    "-" : {
+
+    },
     "• At least 8 characters" : {
 
     },
@@ -20,6 +23,12 @@
 
     },
     "• Contain at least one uppercase letter" : {
+
+    },
+    "All Day" : {
+
+    },
+    "ALL DAY" : {
 
     },
     "Already have an account?" : {
@@ -54,6 +63,9 @@
     "Check In" : {
 
     },
+    "Check Out" : {
+
+    },
     "Company Name:" : {
 
     },
@@ -61,6 +73,9 @@
 
     },
     "Confirm Password" : {
+
+    },
+    "Current Availability" : {
 
     },
     "Deny" : {
@@ -158,9 +173,6 @@
     "Last Name" : {
 
     },
-    "Lead UI/UX Designer" : {
-
-    },
     "Log out" : {
 
     },
@@ -176,13 +188,16 @@
     "Manager" : {
 
     },
-    "Michael Mitc" : {
-
-    },
     "My Profile" : {
 
     },
+    "New availability is the same as the current availability" : {
+
+    },
     "Next" : {
+
+    },
+    "No requests to see here" : {
 
     },
     "NoAccountQuestion" : {
@@ -195,6 +210,9 @@
           }
         }
       }
+    },
+    "Not Available" : {
+
     },
     "On Time" : {
 
@@ -219,6 +237,9 @@
         }
       }
     },
+    "Pending" : {
+
+    },
     "Phone Number" : {
 
     },
@@ -231,7 +252,13 @@
     "Register Company" : {
 
     },
+    "Register Employee" : {
+
+    },
     "Request submitted on %@" : {
+
+    },
+    "Requests List" : {
 
     },
     "Select your role:" : {
@@ -250,6 +277,12 @@
 
     },
     "Teams & Conditions" : {
+
+    },
+    "The request is approved" : {
+
+    },
+    "The request is rejected" : {
 
     },
     "There is no activities yet!" : {
@@ -280,6 +313,12 @@
 
     },
     "Your Activity" : {
+
+    },
+    "Your request has been sent" : {
+
+    },
+    "Your request is awaiting approval" : {
 
     }
   },

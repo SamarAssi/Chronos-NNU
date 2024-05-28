@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ProgressLoader: ViewModifier {
+
     @Binding var isLoading: Bool
 
     func body(content: Content) -> some View {
@@ -24,6 +25,7 @@ struct ProgressLoader: ViewModifier {
 }
 
 extension View {
+
     func progressLoader(_ isLoading: Binding<Bool>) -> some View {
         modifier(ProgressLoader(isLoading: isLoading))
     }

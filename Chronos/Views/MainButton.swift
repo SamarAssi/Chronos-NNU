@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainButton: View {
+
     @Binding var isLoading: Bool
 
     var buttonText: LocalizedStringKey

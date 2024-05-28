@@ -2,13 +2,13 @@
 //  Availability.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 25/05/2024.
+//  Created by Samar Assi on 25/05/2024.
 //
 
 import Foundation
 
 // MARK: - Availabilities
-struct Availabilities: Codable {
+struct Availabilities: Hashable, Codable {
     let monday, tuesday, wednesday, thursday: Day?
     let friday, saturday, sunday: Day?
     let isPendingApproval: Bool?
@@ -34,7 +34,7 @@ struct Availabilities: Codable {
 }
 
 // MARK: - Day
-struct Day: Codable {
+struct Day: Hashable, Codable {
     let start, end: Double?
     let isAvailableAllDay, isNotAvailable: Bool?
 }

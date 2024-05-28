@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject var loginModel = LoginModel()
+
+    @StateObject private var loginModel = LoginModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
 
     var isLoginButtonDisabled: Bool {
@@ -61,6 +62,7 @@ struct LoginView: View {
 }
 
 extension LoginView {
+
     var loginFeedbackAndRecoveryButtonView: some View {
         HStack {
             if !loginModel.isCorrectInputs {
@@ -97,6 +99,7 @@ extension LoginView {
 }
 
 extension LoginView {
+
     private func isEmptyFields() -> Bool {
         return loginModel.textFieldModels[0].text.isEmpty || loginModel.textFieldModels[1].text.isEmpty
     }
@@ -105,9 +108,19 @@ extension LoginView {
         loginModel.handleLoginResponse { success in
             if loginModel.response?.employeeDetails.employeeType != -1 {
                 navigationRouter.isLoggedIn = success
+                saveEmployeeType()
             } else {
                 navigationRouter.navigateTo(.onboarding)
             }
+        }
+    }
+
+    private func saveEmployeeType() {
+        if let response = loginModel.response {
+            KeychainManager.shared.save(
+                String(response.employeeDetails.employeeType),
+                key: KeychainKeys.employeeType.rawValue
+            )
         }
     }
 }

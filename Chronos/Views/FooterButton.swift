@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FooterButton: View {
+
     var title: LocalizedStringKey
     var buttonText: LocalizedStringKey
     var action: () -> Void

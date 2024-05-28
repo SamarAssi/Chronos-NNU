@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 class AuthenticationClient: BaseClient {
+
     static func login(
         email: String,
         password: String
@@ -42,18 +43,6 @@ class AuthenticationClient: BaseClient {
             phone: textFields[3].text,
             password: textFields[5].text
         )
-        return try await performRequest(router: router)
-    }
-
-    static func dashboard(
-        date: Int
-    ) async throws -> DashboardResponse {
-        let router: AuthenticationRouter = .dashboard(date: date)
-        return try await performRequest(router: router)
-    }
-
-    static func updateCheckInOut() async throws -> CheckInOutResponse {
-        let router: AuthenticationRouter = .checkInOut
         return try await performRequest(router: router)
     }
 }

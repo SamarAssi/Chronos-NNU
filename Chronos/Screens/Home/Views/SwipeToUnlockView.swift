@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct SwipeToUnlockView: View {
+
+    @ObservedObject var homeModel: HomeModel
+
+    @State private var response: CheckInOutResponse?
     @State private var currentDragOffsetX: CGFloat = 0
+
     @Binding var isCheckedIn: Bool
+    @Binding var selectedDate: Date
 
     var width: CGFloat
 
@@ -28,6 +34,7 @@ struct SwipeToUnlockView: View {
 }
 
 extension SwipeToUnlockView {
+
     var overlayContentView: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
@@ -64,6 +71,7 @@ extension SwipeToUnlockView {
 }
 
 extension SwipeToUnlockView {
+
     private func setSwipeButtonLimintation() -> CGFloat {
         return min(
             max(currentDragOffsetX, 0),
@@ -99,16 +107,23 @@ extension SwipeToUnlockView {
     }
 
     private func performCheckInOutRequest() async throws -> CheckInOutResponse {
-        return try await AuthenticationClient.updateCheckInOut()
+        return try await DashboardClient.updateCheckInOut()
     }
 
     private func handleCheckInOutResponse() {
         Task {
-            let response = try await performCheckInOutRequest()
-            if response.checkInStatus == 1 {
-                isCheckedIn = true
-            } else {
-                isCheckedIn = false
+            do {
+                response = try await performCheckInOutRequest()
+                homeModel.handleDashboardResponse(selectedDate: selectedDate)
+            } catch let error {
+                print(error)
+            }
+            if let response = response {
+                if response.checkInStatus == 1 {
+                    isCheckedIn = true
+                } else {
+                    isCheckedIn = false
+                }
             }
         }
     }
@@ -116,7 +131,9 @@ extension SwipeToUnlockView {
 
 #Preview {
     SwipeToUnlockView(
+        homeModel: HomeModel(),
         isCheckedIn: .constant(false),
+        selectedDate: .constant(Date()),
         width: UIScreen.main.bounds.width
     )
 }

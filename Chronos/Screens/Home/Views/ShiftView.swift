@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShiftView: View {
+
     @State private var attendanceCards: [AttendanceCardModel] = []
 
     var shift: DashboardResponse.Shift
@@ -34,6 +35,7 @@ struct ShiftView: View {
 }
 
 extension ShiftView {
+
     private func setAttendanceCards() {
         attendanceCards = [
             AttendanceCardModel(

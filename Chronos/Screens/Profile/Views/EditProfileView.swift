@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct EditProfileView: View {
-    @State private var isLoading = false
-    @State private var textFieldModels: [TextFieldModel] = TextFieldModel.editingData
 
     @Environment(\.dismiss) var dismiss
+
+    @State private var isLoading = false
+    @State private var textFieldModels: [TextFieldModel] = TextFieldModel.editingData
 
     var body: some View {
         VStack(
@@ -37,6 +38,7 @@ struct EditProfileView: View {
 }
 
 extension EditProfileView {
+
     var headerSectionView: some View {
         VStack {
             Image(.logo)
@@ -44,7 +46,7 @@ extension EditProfileView {
                 .scaledToFit()
                 .frame(width: 95)
 
-            Text(LocalizedStringKey("Michael Mitc"))
+            Text(fetchFullName())
                 .font(.system(size: 20, weight: .medium))
         }
         .frame(maxWidth: .infinity, alignment: .center)
@@ -77,6 +79,16 @@ extension EditProfileView {
         .padding(.horizontal, 30)
         .padding(.bottom)
         .frame(height: 60)
+    }
+
+    private func fetchFullName() -> String {
+        if let fullName = KeychainManager.shared.fetch(
+            key: KeychainKeys.fullName.rawValue
+        ) {
+            return fullName
+        }
+
+        return ""
     }
 }
 

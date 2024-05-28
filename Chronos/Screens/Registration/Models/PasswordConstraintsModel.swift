@@ -15,4 +15,3 @@ struct PasswordConstraintsModel: Identifiable {
     var containsSpecialChar = false
     var hasMinLength = false
 }
-

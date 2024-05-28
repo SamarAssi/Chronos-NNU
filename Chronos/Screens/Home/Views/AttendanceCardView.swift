@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AttendanceCardView: View {
+
     var cardIcon: String
     var cardTitle: LocalizedStringKey
     var time: Date
@@ -18,7 +19,9 @@ struct AttendanceCardView: View {
             alignment: .leading,
             spacing: 10
         ) {
-            HStack(spacing: 8) {
+            HStack(
+                spacing: 8
+            ) {
                 Image(systemName: cardIcon)
                     .foregroundStyle(Color.theme)
                     .frame(width: 40, height: 40)

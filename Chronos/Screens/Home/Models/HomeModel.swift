@@ -8,23 +8,26 @@
 import Foundation
 
 class HomeModel: ObservableObject {
+
     @Published var dashboardResponse: DashboardResponse?
-    @Published var isLoading = false
+    @Published var isLoading = true
 
     @MainActor
-    func handleDashboardResponse(selectedDate: Date) async {
-        do {
-            showLoading()
-            dashboardResponse = try await performDashboardRequest(selectedDate: selectedDate)
-            hideLoading()
-        } catch let error {
-            print(error)
-            hideLoading()
+    func handleDashboardResponse(selectedDate: Date) {
+        Task {
+            do {
+                showLoading()
+                dashboardResponse = try await performDashboardRequest(selectedDate: selectedDate)
+                hideLoading()
+            } catch let error {
+                print(error)
+                hideLoading()
+            }
         }
     }
 
     private func performDashboardRequest(selectedDate: Date) async throws -> DashboardResponse {
-        return try await AuthenticationClient.dashboard(
+        return try await DashboardClient.dashboard(
             date: Int(selectedDate.timeIntervalSince1970)
         )
     }

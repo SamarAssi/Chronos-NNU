@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TextFieldView: View {
+
     @State private var showPassword = false
     @FocusState var isFocused: Bool
 
@@ -47,6 +48,7 @@ struct TextFieldView: View {
 }
 
 extension TextFieldView {
+
     var labelView: some View {
         VStack {
             if !textFieldModel.isOptional {

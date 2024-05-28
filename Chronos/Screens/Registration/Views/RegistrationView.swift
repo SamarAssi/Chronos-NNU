@@ -9,13 +9,16 @@ import SwiftUI
 import SimpleToast
 
 struct RegistrationView: View {
+
+    @Environment(\.dismiss) var dismiss
+    @StateObject private var registrationModel = RegistrationModel()
+    @EnvironmentObject var navigationRouter: NavigationRouter
+
     @State private var isPhoneNumberInvalid = false
     @State private var isSamePassword = false
+
     @State private var passwordConstraintsModel = PasswordConstraintsModel()
     @State private var constraints = ConstraintTextModel.data
-
-    @StateObject var registrationModel = RegistrationModel()
-    @EnvironmentObject var navigationRouter: NavigationRouter
 
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
@@ -52,16 +55,28 @@ struct RegistrationView: View {
             }
             registerButtonView
 
-            FooterButton(
-                title: LocalizedStringKey("Already have an account?"),
-                buttonText: LocalizedStringKey("Login"),
-                action: {
-                    navigationRouter.navigateTo(.login)
-                }
-            )
-            .padding(.bottom)
+            if fetchEmployeeType() == -1 {
+                FooterButton(
+                    title: LocalizedStringKey("Already have an account?"),
+                    buttonText: LocalizedStringKey("Login"),
+                    action: {
+                        navigationRouter.navigateTo(.login)
+                    }
+                )
+                .padding(.bottom)
+            }
         }
         .fontDesign(.rounded)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Image(systemName: "lessthan")
+                    .scaleEffect(0.6)
+                    .scaleEffect(x: 1, y: 2)
+                    .onTapGesture {
+                        dismiss.callAsFunction()
+                    }
+            }
+        }
         .simpleToast(
             isPresented: $isPhoneNumberInvalid,
             options: toastOptions
@@ -84,11 +99,14 @@ struct RegistrationView: View {
 }
 
 extension RegistrationView {
+
     var constraintsView: some View {
-        VStack(alignment: .leading) {
+        VStack(
+            alignment: .leading
+        ) {
             Text(LocalizedStringKey("Password must meet the following requirements:"))
                 .padding(.bottom, 4)
-            
+
             ForEach(constraints) { constraint in
                 Text(constraint.text)
                     .foregroundColor(
@@ -102,7 +120,7 @@ extension RegistrationView {
         .padding(.top, 5)
         .padding(.horizontal, 15)
     }
-    
+
     var titleView: some View {
         Text(LocalizedStringKey("Register"))
             .foregroundStyle(Color.theme)
@@ -118,6 +136,7 @@ extension RegistrationView {
                 .onChange(of: registrationModel.textFieldModels[4].text) {
                     validatePassword()
                 }
+
             if let lastTextField = registrationModel.textFieldModels.last {
                 if lastTextField === textFieldModel {
                     constraintsView
@@ -175,6 +194,7 @@ extension RegistrationView {
 }
 
 extension RegistrationView {
+
     private func areEmptyFields() -> Bool {
         for index in registrationModel.textFieldModels.indices {
             if registrationModel.textFieldModels[index].text.isEmpty && index != 3 {
@@ -202,7 +222,7 @@ extension RegistrationView {
         let predicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         return predicate.evaluate(with: value)
     }
-    
+
     private func isPasswordValid() -> Bool {
         return passwordConstraintsModel.containsUppercase &&
         passwordConstraintsModel.containsLowercase &&
@@ -210,15 +230,26 @@ extension RegistrationView {
         passwordConstraintsModel.containsSpecialChar &&
         passwordConstraintsModel.hasMinLength
     }
-    
+
     private func validatePassword() {
         let password = registrationModel.textFieldModels[4].text
 
+        passwordConstraintsModel.containsUppercase = validateUppercase(for: password)
+        passwordConstraintsModel.containsLowercase = validateLowercase(for: password)
+        passwordConstraintsModel.containsNumber = validateNumber(for: password)
+        passwordConstraintsModel.containsSpecialChar = validateSpecialCharacter(for: password)
+        passwordConstraintsModel.hasMinLength = validateLengthPassword(for: password)
+
+        updateConstraints()
+    }
+
+    private func validateUppercase(for password: String) -> Bool {
         let uppercasePattern = try? NSRegularExpression(
             pattern: "[A-Z]+",
             options: []
         )
-        passwordConstraintsModel.containsUppercase = uppercasePattern?.numberOfMatches(
+
+        return uppercasePattern?.numberOfMatches(
             in: password,
             options: [],
             range: NSRange(
@@ -226,12 +257,15 @@ extension RegistrationView {
                 length: password.count
             )
         ) ?? 0 > 0
-        
+    }
+
+    private func validateLowercase(for password: String) -> Bool {
         let lowercasePattern = try? NSRegularExpression(
             pattern: "[a-z]+",
             options: []
         )
-        passwordConstraintsModel.containsLowercase = lowercasePattern?.numberOfMatches(
+
+        return lowercasePattern?.numberOfMatches(
             in: password,
             options: [],
             range: NSRange(
@@ -239,12 +273,15 @@ extension RegistrationView {
                 length: password.count
             )
         ) ?? 0 > 0
-        
+    }
+
+    private func validateNumber(for password: String) -> Bool {
         let numberPattern = try? NSRegularExpression(
             pattern: "\\d+",
             options: []
         )
-        passwordConstraintsModel.containsNumber = numberPattern?.numberOfMatches(
+
+        return numberPattern?.numberOfMatches(
             in: password,
             options: [],
             range: NSRange(
@@ -252,12 +289,15 @@ extension RegistrationView {
                 length: password.count
             )
         ) ?? 0 > 0
-        
+    }
+
+    private func validateSpecialCharacter(for password: String) -> Bool {
         let specialCharPattern = try? NSRegularExpression(
             pattern: "[!@#$%^&*(),.?\":{}|<>]+",
             options: []
         )
-        passwordConstraintsModel.containsSpecialChar = specialCharPattern?.numberOfMatches(
+
+        return specialCharPattern?.numberOfMatches(
             in: password,
             options: [],
             range: NSRange(
@@ -265,30 +305,48 @@ extension RegistrationView {
                 length: password.count
             )
         ) ?? 0 > 0
-        
-        passwordConstraintsModel.hasMinLength = password.count >= 8
-        updateConstraints()
     }
-    
+
+    private func validateLengthPassword(for password: String) -> Bool {
+        return password.count >= 8
+    }
+
     private func updateConstraints() {
         constraints = ConstraintTextModel.data.map { constraint in
             let updatedConstraint = constraint
+
             switch constraint.text {
             case "• At least 8 characters":
                 updatedConstraint.passwordConstraint = passwordConstraintsModel.hasMinLength
+
             case "• Contain at least one uppercase letter":
                 updatedConstraint.passwordConstraint = passwordConstraintsModel.containsUppercase
+
             case "• Contain at least one lowercase letter":
                 updatedConstraint.passwordConstraint = passwordConstraintsModel.containsLowercase
+
             case "• Contain at least one number":
                 updatedConstraint.passwordConstraint = passwordConstraintsModel.containsNumber
+
             case "• Contain at least one special character":
                 updatedConstraint.passwordConstraint = passwordConstraintsModel.containsSpecialChar
+
             default:
                 break
             }
+
             return updatedConstraint
         }
+    }
+
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+
+        return -1
     }
 }
 

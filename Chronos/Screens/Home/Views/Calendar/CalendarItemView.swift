@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalendarItemView: View {
+
     var date: Date
     let dateFormatter = DateFormatter()
 
@@ -27,6 +28,7 @@ struct CalendarItemView: View {
 }
 
 extension CalendarItemView {
+
     private func getDayName(for date: Date) -> String {
         dateFormatter.dateFormat = "EEEE"
         let fullDayName = dateFormatter.string(from: date)
