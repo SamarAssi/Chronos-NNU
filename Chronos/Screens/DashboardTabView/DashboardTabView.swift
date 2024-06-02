@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct DashboardTabView: View {
-
+    @State private var isShowTabView = true
     var body: some View {
         TabView {
             HomeView()
                 .tabItem { Image(systemName: "house") }
 
-            Text("hello2")
+            EmployeeListView()
                 .tabItem { Image(systemName: "list.clipboard") }
 
             Text("hello3")
@@ -29,8 +29,14 @@ struct DashboardTabView: View {
             }
             .tabItem { Image(systemName: "figure.open.water.swim") }
 
-            ProfileView()
+            ProfileView(isShowTabView: $isShowTabView)
                 .tabItem { Image(systemName: "person") }
+                .toolbar(
+                    isShowTabView ?
+                    .visible :
+                    .hidden,
+                    for: .tabBar
+                )
         }
         .tint(Color.theme)
     }

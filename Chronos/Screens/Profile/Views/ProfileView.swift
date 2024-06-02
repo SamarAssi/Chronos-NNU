@@ -13,6 +13,7 @@ struct ProfileView: View {
 
     @State private var profileRowModel: [ProfileRowModel] = ProfileRowModel.data
     @State private var isShowAlert = false
+    @Binding var isShowTabView: Bool
 
     var body: some View {
         NavigationStack {
@@ -104,6 +105,14 @@ extension ProfileView {
                 ForEach(profileRowModel) { row in
                     NavigationLink {
                         NewScreen(item: row.name)
+                            .onAppear {
+                                isShowTabView = false
+                            }
+                            .onDisappear {
+                                withAnimation {
+                                    isShowTabView = true
+                                }
+                            }
                     } label: {
                         profileRowLabel(
                             icon: row.icon,
@@ -114,12 +123,20 @@ extension ProfileView {
 
                 if fetchEmployeeType() == 1 {
                     NavigationLink {
-                        RegistrationView()
+                        JobsListView()
                             .navigationBarBackButtonHidden(true)
+                            .onAppear {
+                                isShowTabView = false
+                            }
+                            .onDisappear {
+                                withAnimation {
+                                    isShowTabView = true
+                                }
+                            }
                     } label: {
                         profileRowLabel(
-                            icon: "plus.circle",
-                            name: LocalizedStringKey("Register Employee")
+                            icon: "list.clipboard",
+                            name: LocalizedStringKey("Jobs List")
                         )
                     }
                 }
@@ -169,6 +186,10 @@ extension ProfileView {
             Button(LocalizedStringKey("Log Out"), role: .destructive) {
                 _ = KeychainManager.shared.delete(
                     key: KeychainKeys.accessToken.rawValue
+                )
+
+                _ = KeychainManager.shared.delete(
+                    key: KeychainKeys.employeeType.rawValue
                 )
 
                 _ = KeychainManager.shared.delete(
@@ -245,7 +266,6 @@ struct NewScreen: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(isShowTabView: .constant(false))
         .environmentObject(NavigationRouter())
-        .environmentObject(LoginModel())
 }

@@ -25,6 +25,15 @@
     "• Contain at least one uppercase letter" : {
 
     },
+    "Add" : {
+
+    },
+    "Add Employee" : {
+
+    },
+    "Add Job" : {
+
+    },
     "All Day" : {
 
     },
@@ -87,6 +96,9 @@
     "Don't have an account?" : {
 
     },
+    "Done" : {
+
+    },
     "Edit" : {
 
     },
@@ -102,6 +114,9 @@
       }
     },
     "Employee" : {
+
+    },
+    "Employees List" : {
 
     },
     "End Time" : {
@@ -128,6 +143,9 @@
     "Enter first name" : {
 
     },
+    "Enter job name" : {
+
+    },
     "Enter last name" : {
 
     },
@@ -149,9 +167,6 @@
     "Go Home" : {
 
     },
-    "hello2" : {
-
-    },
     "hello3" : {
 
     },
@@ -165,6 +180,12 @@
 
     },
     "Invalid phone number" : {
+
+    },
+    "Job Name" : {
+
+    },
+    "Jobs List" : {
 
     },
     "Join your team tody" : {
@@ -197,9 +218,6 @@
     "Next" : {
 
     },
-    "No requests to see here" : {
-
-    },
     "NoAccountQuestion" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -215,6 +233,15 @@
 
     },
     "On Time" : {
+
+    },
+    "Oops, No employees until now" : {
+
+    },
+    "Oops, No jobs until now" : {
+
+    },
+    "Oops, No requests to see here" : {
 
     },
     "Password" : {
@@ -252,13 +279,13 @@
     "Register Company" : {
 
     },
-    "Register Employee" : {
-
-    },
     "Request submitted on %@" : {
 
     },
     "Requests List" : {
+
+    },
+    "Select your job:" : {
 
     },
     "Select your role:" : {

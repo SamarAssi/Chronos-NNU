@@ -116,9 +116,8 @@ class AvailabilityListModel: ObservableObject {
             return try await AvailabilityClient.getAvailabilityChangeRequest(
                 id: availabilityResponse.requests[index].id
             )
-        } else {
-            throw ErrorDescription.invalidId
         }
+        throw ErrorDescription.invalidId
     }
 
     private func showLoading() {
@@ -128,8 +127,4 @@ class AvailabilityListModel: ObservableObject {
     private func hideLoading() {
         isLoading = false
     }
-}
-
-enum ErrorDescription: Error {
-    case invalidId
 }

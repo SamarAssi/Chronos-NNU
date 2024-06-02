@@ -27,11 +27,11 @@ struct AvailabilityListView: View {
         VStack(
             alignment: .leading
         ) {
+            titleView
+
             if availabilityListModel.isLoading {
                 CustomProgressView()
             } else {
-                titleView
-
                 if let response = availabilityListModel.availabilityResponse {
                     if response.requests.isEmpty {
                         noRequestView
@@ -41,6 +41,7 @@ struct AvailabilityListView: View {
                 }
             }
         }
+        .fontDesign(.rounded)
         .fullScreenCover(item: $selectedRequest) { request in
             AvailabilityChangeDetailsView(
                 availabilityListModel: availabilityListModel,
@@ -78,13 +79,8 @@ extension AvailabilityListView {
 
     var titleView: some View {
         Text(LocalizedStringKey("Requests List"))
-            .font(
-                .system(
-                    size: 22,
-                    weight: .bold,
-                    design: .rounded
-                )
-            )
+            .font(.title2)
+            .fontWeight(.bold)
             .padding(.horizontal, 22)
             .padding(.top)
     }
@@ -93,11 +89,11 @@ extension AvailabilityListView {
         Image(.SAMAR_911)
             .resizable()
             .scaledToFit()
-            .frame(width: 220, height: 220)
+            .frame(height: 100)
     }
 
     var noRequestsMessageView: some View {
-        Text(LocalizedStringKey("No requests to see here"))
+        Text(LocalizedStringKey("Oops, No requests to see here"))
             .font(
                 .system(
                     size: 15,
@@ -108,9 +104,7 @@ extension AvailabilityListView {
     }
 
     var noRequestView: some View {
-        VStack(
-            spacing: 0
-        ) {
+        VStack {
             imageView
             noRequestsMessageView
         }
@@ -119,8 +113,7 @@ extension AvailabilityListView {
             maxHeight: .infinity,
             alignment: .center
         )
-        .offset(y: -50)
-        .shadow(radius: 10, x: 0, y: 5)
+        .offset(y: -30)
     }
 
     private func requestsListView(

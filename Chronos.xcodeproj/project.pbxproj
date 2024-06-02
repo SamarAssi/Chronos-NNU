@@ -42,6 +42,22 @@
 		2F731BDC2C02A60100B3501D /* AvailabilityApprovalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BDB2C02A60100B3501D /* AvailabilityApprovalRequest.swift */; };
 		2F731BDE2C02A65200B3501D /* AvailabilityApprovalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BDD2C02A65200B3501D /* AvailabilityApprovalResponse.swift */; };
 		2F731BE22C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BE12C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift */; };
+		2F7446DC2C085A040059899C /* AddEmployeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446DB2C085A040059899C /* AddEmployeeView.swift */; };
+		2F7446DE2C0A0A8E0059899C /* JobListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446DD2C0A0A8E0059899C /* JobListCellView.swift */; };
+		2F7446E52C0B5E8A0059899C /* JobsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446E42C0B5E8A0059899C /* JobsListView.swift */; };
+		2F7446E72C0B5FA60059899C /* JobsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446E62C0B5FA60059899C /* JobsRouter.swift */; };
+		2F7446E92C0B60920059899C /* JobsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446E82C0B60920059899C /* JobsClient.swift */; };
+		2F7446EE2C0B611E0059899C /* JobsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446ED2C0B611E0059899C /* JobsResponse.swift */; };
+		2F7446F02C0B67BF0059899C /* JobsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446EF2C0B67BF0059899C /* JobsListModel.swift */; };
+		2F7446F22C0B937B0059899C /* AddJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446F12C0B937B0059899C /* AddJobView.swift */; };
+		2F7446F42C0B97E00059899C /* UpdateJobResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446F32C0B97E00059899C /* UpdateJobResponse.swift */; };
+		2F7446F72C0B99560059899C /* ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446F62C0B99560059899C /* ErrorDescription.swift */; };
+		2F7446FC2C0BDB860059899C /* EmployeeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446FB2C0BDB860059899C /* EmployeeListView.swift */; };
+		2F7446FE2C0BDB970059899C /* EmployeeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446FD2C0BDB970059899C /* EmployeeListModel.swift */; };
+		2F7447002C0BDC400059899C /* EmployeesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446FF2C0BDC400059899C /* EmployeesRouter.swift */; };
+		2F7447022C0BDCC20059899C /* EmployeesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7447012C0BDCC20059899C /* EmployeesClient.swift */; };
+		2F7447052C0BDCEB0059899C /* EmployeesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7447042C0BDCEB0059899C /* EmployeesResponse.swift */; };
+		2F7447072C0BE4780059899C /* EmployeeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7447062C0BE4780059899C /* EmployeeCellView.swift */; };
 		2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7942E02BC050A500387D3E /* ChronosApp.swift */; };
 		2F7942E52BC050A800387D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E42BC050A800387D3E /* Assets.xcassets */; };
 		2F7942E82BC050A800387D3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E72BC050A800387D3E /* Preview Assets.xcassets */; };
@@ -124,6 +140,22 @@
 		2F731BDB2C02A60100B3501D /* AvailabilityApprovalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityApprovalRequest.swift; sourceTree = "<group>"; };
 		2F731BDD2C02A65200B3501D /* AvailabilityApprovalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityApprovalResponse.swift; sourceTree = "<group>"; };
 		2F731BE12C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityUpdateRequestResponse.swift; sourceTree = "<group>"; };
+		2F7446DB2C085A040059899C /* AddEmployeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeView.swift; sourceTree = "<group>"; };
+		2F7446DD2C0A0A8E0059899C /* JobListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListCellView.swift; sourceTree = "<group>"; };
+		2F7446E42C0B5E8A0059899C /* JobsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsListView.swift; sourceTree = "<group>"; };
+		2F7446E62C0B5FA60059899C /* JobsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsRouter.swift; sourceTree = "<group>"; };
+		2F7446E82C0B60920059899C /* JobsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsClient.swift; sourceTree = "<group>"; };
+		2F7446ED2C0B611E0059899C /* JobsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsResponse.swift; sourceTree = "<group>"; };
+		2F7446EF2C0B67BF0059899C /* JobsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsListModel.swift; sourceTree = "<group>"; };
+		2F7446F12C0B937B0059899C /* AddJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobView.swift; sourceTree = "<group>"; };
+		2F7446F32C0B97E00059899C /* UpdateJobResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateJobResponse.swift; sourceTree = "<group>"; };
+		2F7446F62C0B99560059899C /* ErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDescription.swift; sourceTree = "<group>"; };
+		2F7446FB2C0BDB860059899C /* EmployeeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListView.swift; sourceTree = "<group>"; };
+		2F7446FD2C0BDB970059899C /* EmployeeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListModel.swift; sourceTree = "<group>"; };
+		2F7446FF2C0BDC400059899C /* EmployeesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesRouter.swift; sourceTree = "<group>"; };
+		2F7447012C0BDCC20059899C /* EmployeesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesClient.swift; sourceTree = "<group>"; };
+		2F7447042C0BDCEB0059899C /* EmployeesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesResponse.swift; sourceTree = "<group>"; };
+		2F7447062C0BE4780059899C /* EmployeeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCellView.swift; sourceTree = "<group>"; };
 		2F7942DD2BC050A500387D3E /* Chronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7942E02BC050A500387D3E /* ChronosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronosApp.swift; sourceTree = "<group>"; };
 		2F7942E42BC050A800387D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -253,6 +285,108 @@
 			path = Shapes;
 			sourceTree = "<group>";
 		};
+		2F7446D62C0859AE0059899C /* AddEmployee */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446DA2C0859F20059899C /* Models */,
+				2F7446D92C0859E20059899C /* Views */,
+			);
+			path = AddEmployee;
+			sourceTree = "<group>";
+		};
+		2F7446D92C0859E20059899C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446DB2C085A040059899C /* AddEmployeeView.swift */,
+				2F7446DD2C0A0A8E0059899C /* JobListCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2F7446DA2C0859F20059899C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F7446DF2C0B5E5B0059899C /* JobsList */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446E12C0B5E6A0059899C /* Models */,
+				2F7446E02C0B5E650059899C /* Views */,
+			);
+			path = JobsList;
+			sourceTree = "<group>";
+		};
+		2F7446E02C0B5E650059899C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446E42C0B5E8A0059899C /* JobsListView.swift */,
+				2F7446F12C0B937B0059899C /* AddJobView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2F7446E12C0B5E6A0059899C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446EF2C0B67BF0059899C /* JobsListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F7446EA2C0B60DA0059899C /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446ED2C0B611E0059899C /* JobsResponse.swift */,
+				2F7446F32C0B97E00059899C /* UpdateJobResponse.swift */,
+			);
+			path = Jobs;
+			sourceTree = "<group>";
+		};
+		2F7446F52C0B993A0059899C /* ErrorDescription */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446F62C0B99560059899C /* ErrorDescription.swift */,
+			);
+			path = ErrorDescription;
+			sourceTree = "<group>";
+		};
+		2F7446F82C0BDB0E0059899C /* EmployeeList */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446FA2C0BDB350059899C /* Models */,
+				2F7446F92C0BDB270059899C /* Views */,
+			);
+			path = EmployeeList;
+			sourceTree = "<group>";
+		};
+		2F7446F92C0BDB270059899C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446FB2C0BDB860059899C /* EmployeeListView.swift */,
+				2F7447062C0BE4780059899C /* EmployeeCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2F7446FA2C0BDB350059899C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F7446FD2C0BDB970059899C /* EmployeeListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F7447032C0BDCD80059899C /* Employees */ = {
+			isa = PBXGroup;
+			children = (
+				2F7447042C0BDCEB0059899C /* EmployeesResponse.swift */,
+			);
+			path = Employees;
+			sourceTree = "<group>";
+		};
 		2F7942D42BC050A500387D3E = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +409,7 @@
 				2F7942E02BC050A500387D3E /* ChronosApp.swift */,
 				2F1C0E582BD9D04100960980 /* LaunchScreen.storyboard */,
 				2F79432B2BC4209200387D3E /* ContentView.swift */,
+				2F7446F52C0B993A0059899C /* ErrorDescription */,
 				2F731BD42C02987600B3501D /* Shapes */,
 				2F41CBCF2BE810D9000AC5B0 /* KeychainManager */,
 				2F7942EE2BC050FD00387D3E /* Screens */,
@@ -299,6 +434,9 @@
 		2F7942EE2BC050FD00387D3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				2F7446F82C0BDB0E0059899C /* EmployeeList */,
+				2F7446D62C0859AE0059899C /* AddEmployee */,
+				2F7446DF2C0B5E5B0059899C /* JobsList */,
 				2F731BC92C02975E00B3501D /* AvailabilityList */,
 				2FF8ADD02BF4D0D200DB9C4E /* Availability */,
 				2FDECA8C2BEBE19800B3129B /* Profile */,
@@ -364,6 +502,8 @@
 		2F7943382BC47EE700387D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F7447032C0BDCD80059899C /* Employees */,
+				2F7446EA2C0B60DA0059899C /* Jobs */,
 				8B81C2AD2C0266DA000DA507 /* Availability */,
 				2FDECA992BEFB29900B3129B /* DashboardModel */,
 				2FDECA802BE9151A00B3129B /* OnboardingModel */,
@@ -390,6 +530,8 @@
 				2F41CBDB2BE81C9A000AC5B0 /* AuthenticationRouter.swift */,
 				8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */,
 				2F731BD72C0299C300B3501D /* DashboardRouter.swift */,
+				2F7446E62C0B5FA60059899C /* JobsRouter.swift */,
+				2F7446FF2C0BDC400059899C /* EmployeesRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -401,6 +543,8 @@
 				2F7943402BC5816800387D3E /* AuthenticationClient.swift */,
 				8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */,
 				2F731BD92C029AA100B3501D /* DashboardClient.swift */,
+				2F7446E82C0B60920059899C /* JobsClient.swift */,
+				2F7447012C0BDCC20059899C /* EmployeesClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -696,7 +840,9 @@
 				2F41CBC92BE8060B000AC5B0 /* TextEditorView.swift in Sources */,
 				2F7943642BCAE6E900387D3E /* AttendanceCardView.swift in Sources */,
 				2F928D4E2BD1189D004AAED3 /* ProgressLoader.swift in Sources */,
+				2F7446FE2C0BDB970059899C /* EmployeeListModel.swift in Sources */,
 				2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */,
+				2F7447022C0BDCC20059899C /* EmployeesClient.swift in Sources */,
 				8B81C2AF2C0266E8000DA507 /* Availability.swift in Sources */,
 				2F731B982C00C0A400B3501D /* ConstraintTextModel.swift in Sources */,
 				2FDECAA12BEFB40A00B3129B /* DashboardResponse.swift in Sources */,
@@ -704,15 +850,21 @@
 				2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
 				2F731BDA2C029AA100B3501D /* DashboardClient.swift in Sources */,
+				2F7446F02C0B67BF0059899C /* JobsListModel.swift in Sources */,
+				2F7447052C0BDCEB0059899C /* EmployeesResponse.swift in Sources */,
 				2F7943122BC3284900387D3E /* HomeView.swift in Sources */,
+				2F7446F42C0B97E00059899C /* UpdateJobResponse.swift in Sources */,
+				2F7446DE2C0A0A8E0059899C /* JobListCellView.swift in Sources */,
 				2F7943462BC58A5A00387D3E /* RegistrationView.swift in Sources */,
 				2F7943052BC2DDB400387D3E /* MainButton.swift in Sources */,
+				2F7446F22C0B937B0059899C /* AddJobView.swift in Sources */,
 				2F731BCD2C0297AB00B3501D /* AvailabilityListView.swift in Sources */,
 				2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */,
 				2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */,
 				8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */,
 				2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */,
 				2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */,
+				2F7446FC2C0BDB860059899C /* EmployeeListView.swift in Sources */,
 				2F731B942BFEA4E100B3501D /* AvailabilityButtonModel.swift in Sources */,
 				2F1C0E792BDF0DF400960980 /* LoginResponse.swift in Sources */,
 				2F928D542BD32DB7004AAED3 /* ProfileHeaderView.swift in Sources */,
@@ -721,6 +873,7 @@
 				2F41CBD62BE814CA000AC5B0 /* FilteredCalendarCollectionView.swift in Sources */,
 				2FDECA942BECD61900B3129B /* EditProfileView.swift in Sources */,
 				2FDECA7C2BE90FE400B3129B /* OnboardingManagerRequest.swift in Sources */,
+				2F7446F72C0B99560059899C /* ErrorDescription.swift in Sources */,
 				2F731B922BFEA47800B3501D /* AvailabilityChangeDetailsView.swift in Sources */,
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2FDECAA32BEFBD0800B3129B /* OnboardingEmployeeRespone.swift in Sources */,
@@ -729,9 +882,11 @@
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
 				2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */,
 				2F731BD32C02985500B3501D /* CustomProgressView.swift in Sources */,
+				2F7447072C0BE4780059899C /* EmployeeCellView.swift in Sources */,
 				2F41CBD12BE810FC000AC5B0 /* KeychainManager.swift in Sources */,
 				8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */,
 				2FDECA862BE974A600B3129B /* ToastView.swift in Sources */,
+				2F7447002C0BDC400059899C /* EmployeesRouter.swift in Sources */,
 				2F731BCF2C0297D300B3501D /* AvailabilityRowView.swift in Sources */,
 				2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
@@ -739,7 +894,9 @@
 				2FF8ADEC2BF924B900DB9C4E /* ManagerModel.swift in Sources */,
 				2F41CBE02BE832B7000AC5B0 /* TextFieldModel.swift in Sources */,
 				2F41CBD82BE81BEA000AC5B0 /* DashboardTabView.swift in Sources */,
+				2F7446E72C0B5FA60059899C /* JobsRouter.swift in Sources */,
 				2F41CBE42BE83381000AC5B0 /* RadioButtonModel.swift in Sources */,
+				2F7446E52C0B5E8A0059899C /* JobsListView.swift in Sources */,
 				2F41CBBF2BE7E30F000AC5B0 /* OnboardingView.swift in Sources */,
 				2F41CBD42BE81448000AC5B0 /* CalendarItemView.swift in Sources */,
 				8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */,
@@ -747,6 +904,7 @@
 				2F41CBC12BE7E659000AC5B0 /* RadioButtonView.swift in Sources */,
 				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
 				2FF8ADCB2BF41B9600DB9C4E /* HomeModel.swift in Sources */,
+				2F7446DC2C085A040059899C /* AddEmployeeView.swift in Sources */,
 				2FDECAA72BF0D0C500B3129B /* ShiftView.swift in Sources */,
 				2FF8ADC42BF3965800DB9C4E /* ProfileRowModel.swift in Sources */,
 				2FF8ADE02BF6046900DB9C4E /* RegistrationModel.swift in Sources */,
@@ -755,12 +913,14 @@
 				2FDECAA52BF014B700B3129B /* LoginRequest.swift in Sources */,
 				2F79432C2BC4209200387D3E /* ContentView.swift in Sources */,
 				2F41CBC72BE7F956000AC5B0 /* EmployeeView.swift in Sources */,
+				2F7446E92C0B60920059899C /* JobsClient.swift in Sources */,
 				2F731BDC2C02A60100B3501D /* AvailabilityApprovalRequest.swift in Sources */,
 				2FF8ADD22BF4D12800DB9C4E /* AvailabilityView.swift in Sources */,
 				2F731BE22C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift in Sources */,
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,
 				2F41CBDC2BE81C9A000AC5B0 /* AuthenticationRouter.swift in Sources */,
 				2F731BD82C0299C300B3501D /* DashboardRouter.swift in Sources */,
+				2F7446EE2C0B611E0059899C /* JobsResponse.swift in Sources */,
 				2F41CBE22BE832E3000AC5B0 /* AttendanceCardModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

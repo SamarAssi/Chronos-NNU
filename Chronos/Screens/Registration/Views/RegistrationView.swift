@@ -37,24 +37,23 @@ struct RegistrationView: View {
             return false
         }
     }
-
+    
     var registerButtonBackgroundColor: Color {
         isDisabledRegisterButton ?
         Color.theme.opacity(0.5) :
         Color.theme
     }
-
+    
     var body: some View {
-        VStack {
-            VStack(
-                alignment: .leading,
-                spacing: 5
-            ) {
-                titleView
-                textFieldListView
-            }
+        VStack(
+            alignment: .leading,
+            spacing: 5
+        ) {
+            titleView
+            textFieldListView
+            
             registerButtonView
-
+            
             if fetchEmployeeType() == -1 {
                 FooterButton(
                     title: LocalizedStringKey("Already have an account?"),
