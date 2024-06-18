@@ -11,7 +11,7 @@ import Alamofire
 enum JobsRouter: BaseRouter {
     
     case getJobs
-    case updateJobs(name: String)
+    case updateJobs(jobs: [Job])
     
     var path: String {
         switch self {
@@ -27,7 +27,7 @@ enum JobsRouter: BaseRouter {
         case .getJobs:
             return .get
         case .updateJobs:
-            return .put
+            return .post
         }
     }
     
@@ -35,8 +35,24 @@ enum JobsRouter: BaseRouter {
         switch self {
         case .getJobs:
             return nil
-        case .updateJobs(let name):
-            return ["name": name]
+        case .updateJobs(let jobs):
+            let jobsJson = jobs.compactMap { $0.encodeToDictionary() }
+            let json = ["jobs": jobsJson]
+            return json
         }
+    }
+}
+
+extension Encodable {
+    func encodeToDictionary() -> [String: Any] {
+        let encoder = JSONEncoder()
+        guard let json = try? encoder.encode(self),
+              let dict = try? JSONSerialization.jsonObject(
+                with: json,
+                options: []) as? [String: Any]
+        else {
+            return [:]
+        }
+        return dict
     }
 }

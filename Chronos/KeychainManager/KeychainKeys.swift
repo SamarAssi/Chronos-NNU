@@ -12,4 +12,7 @@ enum KeychainKeys: String {
     case companyInvitationId
     case employeeType
     case fullName
+    case firstName
+    case lastName
+    case phoneNumber
 }

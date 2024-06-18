@@ -21,7 +21,12 @@ struct EditProfileView: View {
         ) {
             headerSectionView
             textFieldListView
-            registerButtonView
+            updateButtonView
+        }
+        .onAppear {
+            textFieldModels[0].text = fetchFirstName()
+            textFieldModels[1].text = fetchLastName()
+            textFieldModels[2].text = fetchPhoneNumber()
         }
         .fontDesign(.rounded)
         .toolbar {
@@ -66,7 +71,7 @@ extension EditProfileView {
         .listStyle(PlainListStyle())
     }
 
-    var registerButtonView: some View {
+    var updateButtonView: some View {
         MainButton(
             isLoading: $isLoading,
             buttonText: LocalizedStringKey("Update"),
@@ -86,6 +91,36 @@ extension EditProfileView {
             key: KeychainKeys.fullName.rawValue
         ) {
             return fullName
+        }
+
+        return ""
+    }
+    
+    private func fetchFirstName() -> String {
+        if let firstName = KeychainManager.shared.fetch(
+            key: KeychainKeys.firstName.rawValue
+        ) {
+            return firstName
+        }
+
+        return ""
+    }
+    
+    private func fetchLastName() -> String {
+        if let lastName = KeychainManager.shared.fetch(
+            key: KeychainKeys.lastName.rawValue
+        ) {
+            return lastName
+        }
+
+        return ""
+    }
+    
+    private func fetchPhoneNumber() -> String {
+        if let phoneNumber = KeychainManager.shared.fetch(
+            key: KeychainKeys.phoneNumber.rawValue
+        ) {
+            return phoneNumber
         }
 
         return ""

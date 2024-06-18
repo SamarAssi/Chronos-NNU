@@ -6,12 +6,40 @@
 //
 
 import SwiftUI
+import SimpleToast
 
 struct AddEmployeeView: View {
 
+    @StateObject private var addEmployeeModel = AddEmployeeModel()
+    @ObservedObject var employeeListModel: EmployeeListModel
     @Environment(\.dismiss) var dismiss
-    @State private var addEmployeeData: [TextFieldModel] = TextFieldModel.addEmployeeData
-    @State private var isSelectedJob = false
+
+    @State private var isPhoneNumberInvalid = false
+    @State private var isSamePassword = false
+    
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 5,
+        animation: .linear(duration: 0.3),
+        modifierType: .slide,
+        dismissOnTap: true
+    )
+
+    var isAddButtonDisabled: Bool {
+        if areEmptyFields() {
+            return true
+        } else if !PasswordValidationManager.shared.isPasswordValid() {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var addButtonBackgroundColor: Color {
+        isAddButtonDisabled ?
+        Color.theme.opacity(0.5) :
+        Color.theme
+    }
 
     var body: some View {
         NavigationStack {
@@ -19,97 +47,198 @@ struct AddEmployeeView: View {
                 alignment: .leading,
                 spacing: 5
             ) {
-                titleView
                 textFieldList
                 addEmployeeButtonView
             }
             .fontDesign(.rounded)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    backButtonView
+                    cancelButtonView
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    titleView
                 }
             }
+        }
+        .onAppear {
+            addEmployeeModel.getJobsList()
+        }
+        .onDisappear {
+            employeeListModel.getEmployeesList()
+        }
+        .simpleToast(
+            isPresented: $isPhoneNumberInvalid,
+            options: toastOptions
+        ) {
+            invalidPhoneNumberToast
+        }
+        .simpleToast(
+            isPresented: $isSamePassword,
+            options: toastOptions
+        ) {
+            passwordMismatchToast
+        }
+        .simpleToast(
+            isPresented: $addEmployeeModel.isUsernameInvalid,
+            options: toastOptions
+        ) {
+            invalidUsernameToast
         }
     }
 }
 
 extension AddEmployeeView {
+
+    var constraintsView: some View {
+        VStack(
+            alignment: .leading
+        ) {
+            Text(LocalizedStringKey("Password must meet the following requirements:"))
+                .padding(.bottom, 4)
+
+            ForEach(PasswordValidationManager.shared.constraints) { constraint in
+                Text(constraint.text)
+                    .foregroundColor(
+                        constraint.passwordConstraint ?
+                        Color.theme :
+                        Color.secondary
+                    )
+            }
+        }
+        .font(.subheadline)
+        .padding(.top, 5)
+        .padding(.horizontal, 15)
+    }
+
     var titleView: some View {
         Text(LocalizedStringKey("Add Employee"))
-            .foregroundStyle(Color.theme)
             .font(.title2)
             .fontWeight(.bold)
-            .padding(.horizontal, 30)
+            .fontDesign(.rounded)
     }
     
     var textFieldList: some View {
         List {
             Section {
-                ForEach(addEmployeeData) { textField in
-                    TextFieldView(textFieldModel: textField)
+                ForEach(
+                    addEmployeeModel.textFields.indices,
+                    id: \.self
+                ) { index in
+                    TextFieldView(textFieldModel: addEmployeeModel.textFields[index])
                         .listRowSeparator(.hidden)
                         .padding(.horizontal, 10)
+                        .onChange(of: addEmployeeModel.textFields[4].text) {
+                            PasswordValidationManager.shared.validatePassword(
+                                password: addEmployeeModel.textFields[4].text
+                            )
+                        }
+                    
+                    if index == 3 {
+                        if let jobsResponse = addEmployeeModel.jobsResponse {
+                            ScrollableListView(
+                                selectedItems: $addEmployeeModel.selectedJobs,
+                                label: "Select the job/s:",
+                                items: jobsResponse.jobs
+                            )
+                            .padding(.horizontal, 10)
+                        }
+                    }
                 }
             }
-            
+
             Section {
-                jobSelectionView
+                constraintsView
                     .listRowSeparator(.hidden)
             }
         }
         .listStyle(PlainListStyle())
         .scrollIndicators(.hidden)
     }
-    
-    var jobSelectionView: some View {
-        VStack(
-            alignment: .leading
-        ) {
-            Text(LocalizedStringKey("Select your job:"))
-                .font(.subheadline)
-                .padding(.horizontal, 10)
-            
-            ForEach(0..<1) { _ in
-                displayJob(jobTitle: "iOS")
-            }
-        }
-        .padding(.horizontal, 10)
-    }
 
     var addEmployeeButtonView: some View {
         MainButton(
-            isLoading: .constant(false),
-            buttonText: LocalizedStringKey("Register"),
-            backgroundColor: Color.theme,
+            isLoading: $addEmployeeModel.isLoading,
+            buttonText: LocalizedStringKey("Add"),
+            backgroundColor: addButtonBackgroundColor,
             action: {
-               
+                isPhoneNumberInvalid = !isValidPhoneNumber(
+                    addEmployeeModel.textFields[3].text
+                )
+                isSamePassword = !checkIsSamePassword()
+                if !isPhoneNumberInvalid && checkIsSamePassword() {
+                    addEmployeeModel.handleRegistrationResponse()
+                    if !addEmployeeModel.isUsernameInvalid {
+                        dismiss.callAsFunction()
+                    }
+                }
             }
         )
         .padding(.horizontal, 30)
-        .disabled(false)
+        .disabled(isAddButtonDisabled)
         .frame(height: 70)
     }
     
-    var backButtonView: some View {
-        Image(systemName: "lessthan")
-            .scaleEffect(0.6)
-            .scaleEffect(x: 1, y: 2)
+    var cancelButtonView: some View {
+        Image(systemName: "xmark")
+            .scaleEffect(0.8)
             .onTapGesture {
                 dismiss.callAsFunction()
             }
     }
     
-    private func displayJob(jobTitle: String) -> some View {
-        JobListCellView(
-            isSelectedJob: $isSelectedJob,
-            jobTitle: jobTitle
+    var invalidPhoneNumberToast: some View {
+        ToastView(
+            type: .error,
+            message: LocalizedStringKey("Invalid phone number")
         )
-        .onTapGesture {
-            isSelectedJob.toggle()
+        .padding(.horizontal, 30)
+    }
+
+    var passwordMismatchToast: some View {
+        ToastView(
+            type: .error,
+            message: LocalizedStringKey("Password mismatch")
+        )
+        .padding(.horizontal, 30)
+    }
+
+    var invalidUsernameToast: some View {
+        ToastView(
+            type: .error,
+            message: LocalizedStringKey("Username is invalid")
+        )
+        .padding(.horizontal, 30)
+    }
+}
+
+extension AddEmployeeView {
+
+    private func areEmptyFields() -> Bool {
+        for index in addEmployeeModel.textFields.indices {
+            if addEmployeeModel.textFields[index].text.isEmpty && index != 3 {
+                return true
+            }
         }
+        if addEmployeeModel.selectedJobs.isEmpty {
+            return true
+        }
+        return false
+    }
+    
+    private func isValidPhoneNumber(
+        _ value: String
+    ) -> Bool {
+        guard !value.isEmpty else { return true }
+        let phoneRegex = #"^\d{10}$"#
+        let predicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return predicate.evaluate(with: value)
+    }
+    
+    private func checkIsSamePassword() -> Bool {
+        return addEmployeeModel.textFields[4].text == addEmployeeModel.textFields[5].text
     }
 }
 
 #Preview {
-    AddEmployeeView()
+    AddEmployeeView(employeeListModel: EmployeeListModel())
 }

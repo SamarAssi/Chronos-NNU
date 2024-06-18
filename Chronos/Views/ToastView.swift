@@ -61,13 +61,6 @@ struct ToastView: View {
     }
 }
 
-enum ToastTypes {
-    case success
-    case warning
-    case info
-    case error
-}
-
 #Preview {
     ToastView(
         type: .error,

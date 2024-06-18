@@ -15,9 +15,9 @@ class JobsClient: BaseClient {
     }
     
     static func updateJob(
-        name: String
+        jobs: [Job]
     ) async throws -> UpdateJobResponse {
-        let router: JobsRouter = .updateJobs(name: name)
+        let router: JobsRouter = .updateJobs(jobs: jobs)
         return try await performRequest(router: router)
     }
 }

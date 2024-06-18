@@ -1,61 +1,61 @@
 //
-//  JobListCellView.swift
+//  ListCellView.swift
 //  Chronos
 //
-//  Created by Samar Assi on 31/05/2024.
+//  Created by Samar Assi on 17/06/2024.
 //
 
 import SwiftUI
 
-struct JobListCellView: View {
-    @Binding var isSelectedJob: Bool
-    var jobTitle: String
+struct ListCellView: View {
+
+    @Binding var isSelected: Bool
+    var name: String
     
     var icon: String {
-        isSelectedJob ?
-        "checkmark" :
-        ""
+        isSelected ?
+        "checkmark.circle" :
+        "circle"
     }
     
     var backgroundColor: Color {
-        isSelectedJob ?
+        isSelected ?
         Color.silver.opacity(0.3) :
         Color.white
     }
     
     var body: some View {
-        ZStack(
-            alignment: .leading
-        ) {
-            listCellView
-            jobTitleView
-        }
+        listCellView
     }
 }
 
-extension JobListCellView {
+extension ListCellView {
     var listCellView: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(backgroundColor)
+            .frame(height: 45)
+            .overlay {
+                jobTitleView
+            }
     }
 
     var jobTitleView: some View {
         HStack {
-            Text(jobTitle)
+            Text(name)
                 .font(.system(size: 15, design: .rounded))
             
             Image(systemName: icon)
                 .font(.subheadline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .frame(height: 30)
+//        .frame(height: 30)
         .padding(.horizontal, 10)
     }
 }
 
 #Preview {
-    JobListCellView(
-        isSelectedJob: .constant(true),
-        jobTitle: "iOS developer"
+    ListCellView(
+        isSelected: .constant(false),
+        name: "iOS"
     )
 }

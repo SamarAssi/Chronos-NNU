@@ -8,67 +8,72 @@
 import SwiftUI
 
 struct EmployeeCellView: View {
-    var fullName: String
-    var jobs: [Job]
+    var employee: EmployeesResponse.Employee
 
     var body: some View {
-        ZStack(
-            alignment: .leading
-        ) {
-            outerRoundedRectangleView
-            roundedRhombusView
-        }
+        Rectangle()
+            .fill(Color.white)
+            .frame(height: 50)
+            .overlay {
+                rowContentView
+            }
     }
 }
 
 extension EmployeeCellView {
+
     var rowContentView: some View {
         VStack(
             alignment: .leading,
-            spacing: 8
+            spacing: 5
         ) {
-            Text(fullName)
-                .font(.system(size: 20, weight: .bold))
+            Text(employee.firstName + " " + employee.lastName)
+                .font(.system(size: 15, weight: .bold))
 
-            ForEach(
-                jobs,
-                id: \.self
-            ) { job in
-                Text(job.name)
-                    .font(.system(size: 15))
+            if employee.jobs.isEmpty {
+                Text(LocalizedStringKey("No selected jobs."))
+                    .font(.system(size: 12))
                     .foregroundStyle(Color.gray)
+            } else {
+                HStack(
+                    spacing: 0
+                ) {
+                    ForEach(
+                        employee.jobs.indices,
+                        id: \.self
+                    ) { index in
+                        Text(employee.jobs[index].name)
+                        
+                        if employee.jobs.count - 2 > index {
+                            Text(", ")
+                        } else if employee.jobs.count - 2 == index {
+                            Text(LocalizedStringKey(" and "))
+                        } else if employee.jobs.count - 1 == index {
+                            Text(".")
+                        }
+                    }
+                }
+                .font(.system(size: 12))
+                .foregroundStyle(Color.gray)
+                .lineLimit(1)
+                .truncationMode(.tail)
             }
-            .lineLimit(1)
-            .truncationMode(.tail)
         }
+        .padding(.vertical, 8)
         .frame(maxWidth: .infinity, alignment: .leading)
         .fontDesign(.rounded)
-        .padding(.horizontal, 30)
-    }
-
-    var outerRoundedRectangleView: some View {
-        RoundedRectangle(cornerRadius: 20.0)
-            .fill(Color.white)
-            .shadow(
-                color: .gray.opacity(0.1),
-                radius: 5,
-                x: 0,
-                y: 20
-            )
-            .frame(height: 100)
-            .overlay(rowContentView)
-    }
-
-    var roundedRhombusView: some View {
-        RoundedRhombus(cornerRadius: 20)
-            .fill(Color.theme)
-            .frame(width: 36, height: 100)
     }
 }
 
 #Preview {
     EmployeeCellView(
-        fullName: "Samar Assi",
-        jobs: [Job(id: "", name: "iOS developer")]
+        employee: EmployeesResponse.Employee(
+            id: "",
+            username: "",
+            firstName: "",
+            lastName: "",
+            phone: "",
+            jobs: []
+        )
     )
 }

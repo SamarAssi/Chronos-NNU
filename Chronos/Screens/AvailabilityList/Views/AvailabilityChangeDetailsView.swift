@@ -40,7 +40,7 @@ struct AvailabilityChangeDetailsView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    backButtonView
+                    cancelButtonView
                 }
 
                 ToolbarItem(placement: .topBarLeading) {
@@ -140,10 +140,9 @@ extension AvailabilityChangeDetailsView {
         .padding(.bottom, 8)
     }
 
-    var backButtonView: some View {
-        Image(systemName: "lessthan")
-            .scaleEffect(0.6)
-            .scaleEffect(x: 1, y: 2)
+    var cancelButtonView: some View {
+        Image(systemName: "xmark")
+            .scaleEffect(0.8)
             .onTapGesture {
                 dismiss.callAsFunction()
             }

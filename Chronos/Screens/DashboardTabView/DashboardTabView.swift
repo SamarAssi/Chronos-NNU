@@ -9,13 +9,21 @@ import SwiftUI
 
 struct DashboardTabView: View {
     @State private var isShowTabView = true
+    @State private var isShowCurrentTabView = true
+
     var body: some View {
         TabView {
             HomeView()
                 .tabItem { Image(systemName: "house") }
 
-            EmployeeListView()
+            EmployeeListView(isShowCurrentTabView: $isShowCurrentTabView)
                 .tabItem { Image(systemName: "list.clipboard") }
+                .toolbar(
+                    isShowCurrentTabView ?
+                    .visible :
+                    .hidden,
+                    for: .tabBar
+                )
 
             Text("hello3")
                 .tabItem { Image(systemName: "person.2") }

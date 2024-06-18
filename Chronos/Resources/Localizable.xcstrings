@@ -7,7 +7,22 @@
     " (Optional)" : {
 
     },
+    " and " : {
+
+    },
     "-" : {
+
+    },
+    ", " : {
+
+    },
+    "." : {
+
+    },
+    "• %@" : {
+
+    },
+    "• %@." : {
 
     },
     "• At least 8 characters" : {
@@ -32,6 +47,12 @@
 
     },
     "Add Job" : {
+
+    },
+    "Add new Job" : {
+
+    },
+    "Added jobs:" : {
 
     },
     "All Day" : {
@@ -85,6 +106,9 @@
 
     },
     "Current Availability" : {
+
+    },
+    "Delete" : {
 
     },
     "Deny" : {
@@ -182,7 +206,10 @@
     "Invalid phone number" : {
 
     },
-    "Job Name" : {
+    "Job Name:" : {
+
+    },
+    "Jobs" : {
 
     },
     "Jobs List" : {
@@ -216,6 +243,12 @@
 
     },
     "Next" : {
+
+    },
+    "No selected jobs until now" : {
+
+    },
+    "No selected jobs." : {
 
     },
     "NoAccountQuestion" : {
@@ -285,7 +318,10 @@
     "Requests List" : {
 
     },
-    "Select your job:" : {
+    "save" : {
+
+    },
+    "Select the job/s:" : {
 
     },
     "Select your role:" : {
@@ -304,6 +340,9 @@
 
     },
     "Teams & Conditions" : {
+
+    },
+    "The job already exists!" : {
 
     },
     "The request is approved" : {
@@ -328,6 +367,9 @@
 
     },
     "Update" : {
+
+    },
+    "Update Job" : {
 
     },
     "Username" : {

@@ -9,12 +9,13 @@ import Foundation
 
 struct EmployeesResponse: Hashable, Codable {
     let employees: [Employee]
-    
-    struct Employee: Hashable, Codable {
+
+    struct Employee: Hashable, Identifiable, Codable {
         let id: String
         let username: String
         let firstName: String
         let lastName: String
+        let phone: String
         let jobs: [Job]
     }
 }

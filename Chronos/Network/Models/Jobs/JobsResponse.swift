@@ -11,7 +11,14 @@ struct JobsResponse: Hashable, Codable {
     let jobs: [Job]
 }
 
-struct Job: Hashable, Codable {
-    let id: String
+struct Job: Hashable, Codable, Identifiable, LabelRepresentable {
+    let id: String?
     let name: String
+    var label: String {
+        return name
+    }
+}
+
+protocol LabelRepresentable {
+    var label: String { get }
 }

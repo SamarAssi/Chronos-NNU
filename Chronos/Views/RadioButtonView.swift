@@ -32,20 +32,25 @@ struct RadioButtonView: View {
     }
 
     var body: some View {
-        HStack(
-            alignment: .center,
-            spacing: 10
-        ) {
-            circleView
-            descriptionView
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .frame(height: 60)
-        .background(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(borderColor)
-        )
+        RoundedRectangle(cornerRadius: 15)
+            .fill(Color.white)
+            .frame(height: 60)
+            .overlay {
+                HStack(
+                    alignment: .center,
+                    spacing: 10
+                ) {
+                    circleView
+                    descriptionView
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(height: 60)
+                .background(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(borderColor)
+                )
+            }
     }
 }
 

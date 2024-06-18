@@ -11,6 +11,7 @@ class JobsListModel: ObservableObject {
 
     @Published var jobsResponse: JobsResponse?
     @Published var updateJobResponse: UpdateJobResponse?
+    @Published var jobs: [Job]?
     
     @Published var isLoading = false
     
@@ -18,7 +19,8 @@ class JobsListModel: ObservableObject {
     func getJobsList() {
         Task {
             do {
-                jobsResponse = try await getJobs()
+                jobsResponse = try await JobsClient.getJobs()
+                jobs = jobsResponse?.jobs
             } catch let error {
                 print(error)
             }
@@ -26,12 +28,12 @@ class JobsListModel: ObservableObject {
     }
     
     @MainActor
-    func handleUpdateJobResponse(name: String) {
+    func handleUpdateJobResponse(jobs: [Job]) {
         showLoading()
 
         Task {
             do {
-                updateJobResponse = try await updateJob(name: name)
+                updateJobResponse = try await updateJob(jobs: jobs)
                 hideLoading()
             } catch let error {
                 print(error)
@@ -40,13 +42,9 @@ class JobsListModel: ObservableObject {
         }
     }
     
-    private func getJobs() async throws -> JobsResponse {
-        return try await JobsClient.getJobs()
-    }
-    
-    private func updateJob(name: String) async throws -> UpdateJobResponse {
+    private func updateJob(jobs: [Job]) async throws -> UpdateJobResponse {
         return try await JobsClient.updateJob(
-            name: name
+            jobs: jobs
         )
     }
     

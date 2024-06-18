@@ -214,6 +214,24 @@ extension TextFieldModel {
                 keyboardType: .phonePad,
                 isDisabled: false,
                 isOptional: true
+            ),
+            TextFieldModel(
+                text: "",
+                label: "Password",
+                placeholder: "Enter password",
+                isSecure: true,
+                keyboardType: .asciiCapable,
+                isDisabled: false,
+                isOptional: false
+            ),
+            TextFieldModel(
+                text: "",
+                label: "Confirm Password",
+                placeholder: "Confirm password",
+                isSecure: true,
+                keyboardType: .asciiCapable,
+                isDisabled: false,
+                isOptional: false
             )
         ]
     }
@@ -221,7 +239,7 @@ extension TextFieldModel {
     static var addJobData: TextFieldModel {
         TextFieldModel(
             text: "",
-            label: "Job Name",
+            label: "Job Name:",
             placeholder: "Enter job name",
             isSecure: false,
             keyboardType: .asciiCapable,

@@ -10,13 +10,17 @@ import SwiftUI
 struct EmployeeListView: View {
 
     @StateObject private var employeeListModel = EmployeeListModel()
+
     @State private var isEditing = true
     @State private var isShowAddEmployeeView = false
+    @State private var selectedEmployee: EmployeesResponse.Employee?
+    
+    @Binding var isShowCurrentTabView: Bool
     
     var body: some View {
         NavigationStack {
-            VStack(
-                alignment: .leading
+            ZStack(
+                alignment: .bottom
             ) {
                 if employeeListModel.isLoading {
                     CustomProgressView()
@@ -24,22 +28,19 @@ struct EmployeeListView: View {
                     if let employeesResponse = employeeListModel.employeesResponse {
                         if employeesResponse.employees.isEmpty {
                             emptyView
+                                .offset(y: isEditing ? 0 : -24.2)
                         } else {
-                            List(
-                                employeesResponse.employees,
-                                id: \.self
-                            ) { employee in
-                                EmployeeCellView(
-                                    fullName: employee.firstName + " " + employee.lastName,
-                                    jobs: employee.jobs
-                                )
-                            }
+                            employeeListView(employeesResponse: employeesResponse)
                         }
                     }
                     
-                    tabView
-                        .padding(.horizontal)
+                    if !isEditing {
+                        tabView
+                    }
                 }
+            }
+            .onChange(of: isEditing) {
+                isShowCurrentTabView.toggle()
             }
             .fontDesign(.rounded)
             .onAppear {
@@ -53,8 +54,14 @@ struct EmployeeListView: View {
                     editButtonView
                 }
             }
+            .fullScreenCover(item: $selectedEmployee) { employee in
+                EmployeeDetailsView(
+                    employeeListModel: employeeListModel,
+                    employee: employee
+                )
+            }
             .fullScreenCover(isPresented: $isShowAddEmployeeView) {
-                AddEmployeeView()
+                AddEmployeeView(employeeListModel: employeeListModel)
             }
         }
     }
@@ -67,7 +74,7 @@ extension EmployeeListView {
             .fontDesign(.rounded)
             .fontWeight(.bold)
             .padding(.horizontal, 5)
-            .padding(.top, 25)
+            .padding(.vertical, 25)
     }
 
     var emptyView: some View {
@@ -76,7 +83,8 @@ extension EmployeeListView {
                 .resizable()
                 .scaledToFit()
                 .frame(height: 100)
-            Text("Oops, No employees until now")
+
+            Text(LocalizedStringKey("Oops, No employees until now"))
                 .font(.subheadline)
                 .fontWeight(.bold)
         }
@@ -88,34 +96,93 @@ extension EmployeeListView {
     }
     
     var editButtonView: some View {
-        Group {
-            if ((employeeListModel.employeesResponse?.employees.isEmpty) == nil) {
-                Button {
-                    isEditing.toggle()
-                } label: {
-                    Text(isEditing ? "Edit" : "Done")
-                        .fontWeight(.bold)
-                        .foregroundStyle(Color.black)
-                }
-            }
+        Button {
+            isEditing.toggle()
+        } label: {
+            Text(isEditing ? "Edit" : "Done")
+                .fontWeight(.bold)
+                .fontDesign(.rounded)
+                .foregroundStyle(Color.black)
+                .padding(.vertical, 25)
         }
     }
 
     var tabView: some View {
-        HStack {
-            if !isEditing {
-                Image(systemName: "trash")
-            }
-            Image(systemName: "plus")
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .onTapGesture {
-                    isShowAddEmployeeView.toggle()
+        VStack(
+            spacing: 0
+        ) {
+            Divider()
+            Rectangle()
+                .fill(.regularMaterial)
+                .ignoresSafeArea(edges: [.horizontal, .bottom])
+                .frame(height: 49)
+                .overlay {
+                    HStack {
+                        if !isEditing {
+                            addButtonView
+                        }
+                    }
+                    .padding()
+                    .padding(.horizontal, 5)
+                    .padding(.bottom)
                 }
         }
-        .frame(height: 30)
+    }
+    
+    var addButtonView: some View {
+        Button {
+            isShowAddEmployeeView.toggle()
+        } label: {
+            Image(systemName: "plus")
+                .font(.title2)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .foregroundStyle(Color.black)
+        }
+    }
+}
+
+extension EmployeeListView {
+
+    private func employeeListView(
+        employeesResponse: EmployeesResponse
+    ) -> some View {
+        List {
+            ForEach(
+                employeesResponse.employees,
+                id: \.self
+            ) { employee in
+                EmployeeCellView(
+                    employee: employee
+                )
+                .onTapGesture {
+                    if isEditing {
+                        selectedEmployee = employee
+                    }
+                }
+            }
+            .onDelete { indexSet in
+                deleteEmployees(
+                    at: indexSet,
+                    from: employeesResponse.employees
+                )
+            }
+        }
+        .listStyle(PlainListStyle())
+        .scrollIndicators(.hidden)
+    }
+    
+    private func deleteEmployees(
+        at offsets: IndexSet,
+        from employees: [EmployeesResponse.Employee]
+    ) {
+        offsets.forEach { index in
+            let employee = employees[index]
+            employeeListModel.deleteEmployee(username: employee.username)
+        }
+        employeeListModel.getEmployeesList()
     }
 }
 
 #Preview {
-    EmployeeListView()
+    EmployeeListView(isShowCurrentTabView: .constant(false))
 }

@@ -7,11 +7,15 @@
 
 import Foundation
 
+@Observable
 class EmployeeListModel: ObservableObject {
     
-    @Published var employeesResponse: EmployeesResponse?
+    var employeesResponse: EmployeesResponse?
+    var employeeDeletionResponse: EmployeeDeletionResponse?
+    var employeeJobsUpdateResponse: EmployeeJobsUpdateResponse?
+    var jobsResponse: JobsResponse?
     
-    @Published var isLoading = false
+    var isLoading = false
     
     @MainActor
     func getEmployeesList() {
@@ -19,7 +23,7 @@ class EmployeeListModel: ObservableObject {
         
         Task {
             do {
-                employeesResponse = try await getEmployees()
+                employeesResponse = try await EmployeesClient.getEmployees()
                 hideLoading()
             } catch let error {
                 print(error)
@@ -28,10 +32,48 @@ class EmployeeListModel: ObservableObject {
         }
     }
     
-    private func getEmployees() async throws -> EmployeesResponse {
-        return try await EmployeesClient.getEmployees()
+    @MainActor
+    func deleteEmployee(username: String) {
+        Task {
+            do {
+                employeeDeletionResponse = try await EmployeesClient.deleteEmployee(
+                    username: username
+                )
+            } catch let error {
+                print(error)
+            }
+        }
     }
     
+    @MainActor
+    func updateEmployeeJob(
+        employeeId: String,
+        jobs: [Job]
+    ) {
+        Task {
+            do {
+                let ids = jobs.compactMap { $0.id }
+                employeeJobsUpdateResponse = try await EmployeesClient.updateEmployeeJobs(
+                    employeeId: employeeId,
+                    jobs: ids
+                )
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
+    @MainActor
+    func getJobsList() {
+        Task {
+            do {
+                jobsResponse = try await JobsClient.getJobs()
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+
     private func showLoading() {
         isLoading = true
     }

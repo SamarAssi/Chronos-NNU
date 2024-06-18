@@ -18,10 +18,11 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             VStack(
-                spacing: 25
+                spacing: 0
             ) {
                 profileHeaderView
-                editButtonView
+                //editButtonView
+                Divider()
                 accountOptionsListView
             }
         }
@@ -50,7 +51,7 @@ extension ProfileView {
                 userFullNameView
                 userRoleView
             }
-            .padding(.horizontal, 30)
+            .padding(20)
         }
     }
 
@@ -102,21 +103,27 @@ extension ProfileView {
     var accountOptionsListView: some View {
         List {
             Section {
-                ForEach(profileRowModel) { row in
+                ForEach(profileRowModel.indices, id: \.self) { index in
                     NavigationLink {
-                        NewScreen(item: row.name)
-                            .onAppear {
-                                isShowTabView = false
-                            }
-                            .onDisappear {
-                                withAnimation {
-                                    isShowTabView = true
+                        switch index {
+                        case 0:
+                            EditProfileView()
+                                .navigationBarBackButtonHidden(true)
+                                .onAppear {
+                                    isShowTabView = false
                                 }
-                            }
+                                .onDisappear {
+                                    withAnimation {
+                                        isShowTabView = true
+                                    }
+                                }
+                        default:
+                            NewScreen(item: profileRowModel[index].name)
+                        }
                     } label: {
                         profileRowLabel(
-                            icon: row.icon,
-                            name: row.name
+                            icon: profileRowModel[index].icon,
+                            name: profileRowModel[index].name
                         )
                     }
                 }
@@ -195,6 +202,19 @@ extension ProfileView {
                 _ = KeychainManager.shared.delete(
                     key: KeychainKeys.fullName.rawValue
                 )
+                
+                _ = KeychainManager.shared.delete(
+                    key: KeychainKeys.firstName.rawValue
+                )
+                
+                _ = KeychainManager.shared.delete(
+                    key: KeychainKeys.lastName.rawValue
+                )
+                
+                _ = KeychainManager.shared.delete(
+                    key: KeychainKeys.phoneNumber.rawValue
+                )
+
                 navigationRouter.isLoggedIn = false
                 navigationRouter.navigateTo(.login)
             }

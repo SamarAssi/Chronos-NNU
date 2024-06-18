@@ -27,6 +27,9 @@ class RegistrationModel: ObservableObject {
                 response = try await performLoginRequest()
                 saveAccessToken()
                 saveFullName()
+                saveFirstName()
+                saveLastName()
+                savePhoneNumber()
                 hideLoading()
                 validateUsername()
                 completion(true)
@@ -56,6 +59,27 @@ class RegistrationModel: ObservableObject {
         if let response = response {
             let name = response.firstName + " " + response.lastName
             KeychainManager.shared.save(name, key: KeychainKeys.fullName.rawValue)
+        }
+    }
+    
+    private func saveFirstName() {
+        if let response = response {
+            let firstName = response.firstName
+            KeychainManager.shared.save(firstName, key: KeychainKeys.firstName.rawValue)
+        }
+    }
+    
+    private func saveLastName() {
+        if let response = response {
+            let lastName = response.lastName
+            KeychainManager.shared.save(lastName, key: KeychainKeys.lastName.rawValue)
+        }
+    }
+    
+    private func savePhoneNumber() {
+        if let response = response {
+            let phone = response.phone
+            KeychainManager.shared.save(phone, key: KeychainKeys.phoneNumber.rawValue)
         }
     }
 
