@@ -116,6 +116,7 @@
 		8B586BB12C231C4900F8DE98 /* ScheduleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */; };
 		8B586BB32C231D1500F8DE98 /* ScheduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */; };
 		8B586BB62C231F4E00F8DE98 /* Shifts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB52C231F4E00F8DE98 /* Shifts.swift */; };
+		8B586BBB2C23433900F8DE98 /* CreateShiftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BBA2C23433900F8DE98 /* CreateShiftViewModel.swift */; };
 		8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */; };
 		8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */; };
 		8B81C2AF2C0266E8000DA507 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AE2C0266E8000DA507 /* Availability.swift */; };
@@ -229,6 +230,7 @@
 		8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRouter.swift; sourceTree = "<group>"; };
 		8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleClient.swift; sourceTree = "<group>"; };
 		8B586BB52C231F4E00F8DE98 /* Shifts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shifts.swift; sourceTree = "<group>"; };
+		8B586BBA2C23433900F8DE98 /* CreateShiftViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShiftViewModel.swift; sourceTree = "<group>"; };
 		8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRouter.swift; sourceTree = "<group>"; };
 		8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityClient.swift; sourceTree = "<group>"; };
 		8B81C2AE2C0266E8000DA507 /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
@@ -796,6 +798,7 @@
 		8B2829E62C22E82600CE9220 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				8B586BB92C23432A00F8DE98 /* Models */,
 				8B586BB72C23215D00F8DE98 /* Views */,
 			);
 			path = Schedule;
@@ -816,6 +819,14 @@
 				8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8B586BB92C23432A00F8DE98 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8B586BBA2C23433900F8DE98 /* CreateShiftViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		8B81C2AD2C0266DA000DA507 /* Availability */ = {
@@ -945,6 +956,7 @@
 				2F7446F42C0B97E00059899C /* UpdateJobResponse.swift in Sources */,
 				2F7943462BC58A5A00387D3E /* RegistrationView.swift in Sources */,
 				2F7943052BC2DDB400387D3E /* MainButton.swift in Sources */,
+				8B586BBB2C23433900F8DE98 /* CreateShiftViewModel.swift in Sources */,
 				2F7446F22C0B937B0059899C /* AddJobView.swift in Sources */,
 				2F74470F2C0CE8BE0059899C /* EmployeeDetailsView.swift in Sources */,
 				2F731BCD2C0297AB00B3501D /* AvailabilityListView.swift in Sources */,

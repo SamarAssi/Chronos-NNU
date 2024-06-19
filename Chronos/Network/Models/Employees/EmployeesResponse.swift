@@ -16,6 +16,6 @@ struct Employee: Hashable, Identifiable, Codable {
     let username: String
     let firstName: String
     let lastName: String
-    let phone: String
+    let phone: String?
     let jobs: [Job]
 }

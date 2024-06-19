@@ -36,7 +36,7 @@ struct EmployeeDetailsView: View {
             ) {
                 headerSectionView
                 usernameView
-                if !employee.phone.isEmpty {
+                if !(employee.phone?.isEmpty ?? true) {
                     phoneNumberView
                 }
                 Divider()
@@ -213,8 +213,8 @@ extension EmployeeDetailsView {
     var phoneNumberView: some View {
         HStack {
             Image(systemName: "phone")
-            Text(employee.phone)
-            
+            Text(employee.phone ?? "Empty phone number")
+
         }
         .padding(.horizontal)
     }

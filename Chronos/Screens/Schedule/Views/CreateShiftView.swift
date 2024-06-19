@@ -8,162 +8,124 @@
 import SwiftUI
 
 struct CreateShiftView: View {
-
-    @State var startDate: Date = Date()
-    @State var endDate: Date = Date()
-    @State var selectedEmployeeID: String?
-    @State var selectedJobName: String?
-
-    @State var employees: [Employee] = []
-
-    @State var showEmployeePicker: Bool = false
-    @State var showJobPicker: Bool = false
-    @State var isLoading: Bool = false
-    @State var isSubmitting: Bool = false
-
-    var selectedEmployeeName: String? {
-        employees.first { $0.id == selectedEmployeeID }?.username
-    }
-
-    var jobs: [Job] {
-        employees.first { $0.id == selectedEmployeeID }?.jobs ?? []
-    }
+    @ObservedObject private var viewModel = CreateShiftViewModel()
+    @State private var showEmployeePicker = false
+    @State private var showJobPicker = false
 
     var body: some View {
         VStack {
-            if isLoading {
+            if viewModel.isLoading {
                 ProgressView()
             } else {
-                ContentView()
+                contentView()
             }
-
         }
         .task {
-            isLoading = true
-            do {
-                employees = try await EmployeesClient.getEmployees().employees
-                isLoading = false
-            } catch {
-                print(error)
-            }
+            await viewModel.getData()
         }
     }
 
-    private func ContentView() -> some View {
-        VStack(alignment: .leading) {
+    private func contentView() -> some View {
+        VStack(spacing: 0) {
+            headerView()
+            formContent()
+            MainButton(
+                isLoading: $viewModel.isSubmitting,
+                buttonText: "Create",
+                backgroundColor: .theme,
+                action: viewModel.createShift
+            )
+            .padding()
+        }
+        .sheet(isPresented: $showEmployeePicker) {
+            pickerView(
+                title: "Employee",
+                selection: $viewModel.selectedEmployeeID,
+                items: viewModel.employees.map { ($0.username, $0.id) }
+            )
+        }
+        .sheet(isPresented: $showJobPicker) {
+            pickerView(
+                title: "Job",
+                selection: $viewModel.selectedJobName,
+                items: viewModel.jobs.map { ($0.name, $0.name) }
+            )
+        }
+    }
 
+    private func headerView() -> some View {
+        VStack(
+            alignment: .leading,
+            spacing: 0
+        ) {
             Text("Create Shift")
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.theme)
                 .padding()
-            Spacer()
-
-            List {
-                PickerRow(
-                    label: "Start Date",
-                    selection: $startDate,
-                    in: Date()...
-                )
-
-                PickerRow(
-                    label: "End Date",
-                    selection: $endDate,
-                    in: startDate...
-                )
-
-                SelectRow(
-                    label: "Employee",
-                    value: selectedEmployeeName
-                )
-                .onTapGesture {
-                    if !employees.isEmpty {
-                        showEmployeePicker.toggle()
-                    }
-                }
-
-                SelectRow(
-                    label: "Job",
-                    value: selectedJobName
-                )
-                .onTapGesture {
-                    if !jobs.isEmpty {
-                        showJobPicker.toggle()
-                    }
-                }
-            }
-
-            MainButton(
-                isLoading: $isSubmitting,
-                buttonText: "Create",
-                backgroundColor: .theme) {
-                    isSubmitting = true
-                    Task {
-                        do {
-                            let _ = try await ScheduleClient.createShift(
-                                role: selectedJobName ?? "",
-                                startTime: Int(startDate.timeIntervalSince1970),
-                                endTime: Int(endDate.timeIntervalSince1970),
-                                employeeId: selectedEmployeeID ?? "",
-                                jobDescription: "Test"
-                            )
-                            isSubmitting = false
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
-                .padding()
-        }
-        .sheet(isPresented: $showEmployeePicker) {
-            Picker("Employee", selection: $selectedEmployeeID) {
-                ForEach(employees) { employee in
-                    Text(employee.username).tag(employee.id as String?)
-                }
-            }
-            .pickerStyle(WheelPickerStyle())
-        }
-        .sheet(isPresented: $showJobPicker) {
-            Picker("Job", selection: $selectedJobName) {
-                ForEach(jobs) { job in
-                    Text(job.name).tag(job.name as String?)
-                }
-            }
-            .pickerStyle(WheelPickerStyle())
+            Divider()
         }
     }
 
-    private func PickerRow(
+    private func formContent() -> some View {
+        List {
+            pickerRow(
+                label: "Start Date",
+                selection: $viewModel.startDate,
+                in: Date()...
+            )
+            pickerRow(
+                label: "End Date",
+                selection: $viewModel.endDate,
+                in: viewModel.startDate...
+            )
+            selectRow(
+                label: "Employee",
+                value: viewModel.selectedEmployeeName
+            )
+            .onTapGesture {
+                if !viewModel.employees.isEmpty {
+                    showEmployeePicker.toggle()
+                }
+            }
+            selectRow(
+                label: "Job",
+                value: viewModel.selectedJobName
+            )
+            .onTapGesture {
+                if !viewModel.jobs.isEmpty {
+                    showJobPicker.toggle()
+                }
+            }
+        }
+    }
+
+    private func pickerRow(
         label: LocalizedStringKey,
         selection: Binding<Date>,
         in range: PartialRangeFrom<Date>
     ) -> some View {
+
         DatePicker(
             selection: selection,
             in: range,
-            displayedComponents: [
-                .date,
-                .hourAndMinute
-            ],
-            label: {
-                Text(label)
-                    .foregroundColor(.theme)
-            }
-        )
+            displayedComponents: [.date, .hourAndMinute]
+        ) {
+            Text(label)
+                .foregroundColor(.theme)
+        }
         .datePickerStyle(.compact)
         .tint(Color.theme)
     }
 
-    private func SelectRow(
+    private func selectRow(
         label: LocalizedStringKey,
-        value: String? = nil
+        value: String?
     ) -> some View {
-
         HStack {
             Text(label)
                 .foregroundColor(.theme)
             Spacer()
-
             Text(value ?? "Select")
                 .padding(.vertical, 5)
                 .padding(.horizontal, 10)
@@ -171,6 +133,23 @@ struct CreateShiftView: View {
                 .foregroundColor(.black)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
         }
+    }
+
+    private func pickerView<T: Hashable>(
+        title: String,
+        selection: Binding<T?>,
+        items: [(String, T)]
+    ) -> some View {
+        Picker(
+            title,
+            selection: selection
+        ) {
+            ForEach(items, id: \.1) { item in
+                Text(item.0).tag(item.1 as T?)
+            }
+        }
+        .pickerStyle(WheelPickerStyle())
+        .presentationDetents([.height(200)])
     }
 }
 
