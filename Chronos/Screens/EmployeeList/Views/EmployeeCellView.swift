@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EmployeeCellView: View {
-    var employee: EmployeesResponse.Employee
+    var employee: Employee
 
     var body: some View {
         Rectangle()
@@ -67,7 +67,7 @@ extension EmployeeCellView {
 
 #Preview {
     EmployeeCellView(
-        employee: EmployeesResponse.Employee(
+        employee: Employee(
             id: "",
             username: "",
             firstName: "",

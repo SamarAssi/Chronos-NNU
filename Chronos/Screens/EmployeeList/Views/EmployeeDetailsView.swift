@@ -16,7 +16,7 @@ struct EmployeeDetailsView: View {
     @State private var selectedJobs: [Job] = []
     @State private var newJobs: [Job] = []
     
-    var employee: EmployeesResponse.Employee
+    var employee: Employee
     
     var isAddJobButtonDisabled: Bool {
         return selectedJobs.isEmpty
@@ -286,7 +286,7 @@ extension EmployeeDetailsView {
 #Preview {
     EmployeeDetailsView(
         employeeListModel: EmployeeListModel(),
-        employee: EmployeesResponse.Employee(
+        employee: Employee(
             id: "",
             username: "samarassi",
             firstName: "Samar",

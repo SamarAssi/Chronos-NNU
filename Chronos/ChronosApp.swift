@@ -9,6 +9,16 @@ import SwiftUI
 
 @main
 struct ChronosApp: App {
+
+    init() {
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.theme]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.theme]
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

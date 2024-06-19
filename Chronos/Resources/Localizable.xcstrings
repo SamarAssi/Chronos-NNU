@@ -105,6 +105,12 @@
     "Confirm Password" : {
 
     },
+    "Create" : {
+
+    },
+    "Create Shift" : {
+
+    },
     "Current Availability" : {
 
     },
@@ -141,6 +147,9 @@
 
     },
     "Employees List" : {
+
+    },
+    "End Date" : {
 
     },
     "End Time" : {
@@ -191,9 +200,6 @@
     "Go Home" : {
 
     },
-    "hello3" : {
-
-    },
     "ID:" : {
 
     },
@@ -204,6 +210,9 @@
 
     },
     "Invalid phone number" : {
+
+    },
+    "Job" : {
 
     },
     "Job Name:" : {
@@ -321,6 +330,12 @@
     "save" : {
 
     },
+    "Schedule" : {
+
+    },
+    "Select a date" : {
+
+    },
     "Select the job/s:" : {
 
     },
@@ -331,6 +346,9 @@
 
     },
     "Settings" : {
+
+    },
+    "Start Date" : {
 
     },
     "Start Time" : {

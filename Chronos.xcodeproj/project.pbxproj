@@ -28,7 +28,6 @@
 		2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B952C00088A00B3501D /* PasswordConstraintsModel.swift */; };
 		2F731B982C00C0A400B3501D /* ConstraintTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B972C00C0A300B3501D /* ConstraintTextModel.swift */; };
 		2F731BBE2C02880F00B3501D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731BBD2C02880F00B3501D /* Alamofire */; };
-		2F731BC02C02880F00B3501D /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731BBF2C02880F00B3501D /* AlamofireDynamic */; };
 		2F731BC32C02881E00B3501D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731BC22C02881E00B3501D /* KeychainSwift */; };
 		2F731BC62C02882800B3501D /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2F731BC52C02882800B3501D /* SimpleToast */; };
 		2F731BC82C02943700B3501D /* AvailabilityRequestsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731BC72C02943700B3501D /* AvailabilityRequestsListResponse.swift */; };
@@ -111,6 +110,12 @@
 		2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
+		8B2829EA2C22E84900CE9220 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2829E92C22E84900CE9220 /* ScheduleView.swift */; };
+		8B586BAD2C23004200F8DE98 /* SimpleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B586BAC2C23004200F8DE98 /* SimpleCalendar */; };
+		8B586BAF2C2309E700F8DE98 /* CreateShiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */; };
+		8B586BB12C231C4900F8DE98 /* ScheduleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */; };
+		8B586BB32C231D1500F8DE98 /* ScheduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */; };
+		8B586BB62C231F4E00F8DE98 /* Shifts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB52C231F4E00F8DE98 /* Shifts.swift */; };
 		8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */; };
 		8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */; };
 		8B81C2AF2C0266E8000DA507 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AE2C0266E8000DA507 /* Availability.swift */; };
@@ -219,6 +224,11 @@
 		2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		8B2829E92C22E84900CE9220 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShiftView.swift; sourceTree = "<group>"; };
+		8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRouter.swift; sourceTree = "<group>"; };
+		8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleClient.swift; sourceTree = "<group>"; };
+		8B586BB52C231F4E00F8DE98 /* Shifts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shifts.swift; sourceTree = "<group>"; };
 		8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRouter.swift; sourceTree = "<group>"; };
 		8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityClient.swift; sourceTree = "<group>"; };
 		8B81C2AE2C0266E8000DA507 /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
@@ -232,8 +242,8 @@
 			files = (
 				2F731BC62C02882800B3501D /* SimpleToast in Frameworks */,
 				2F731BC32C02881E00B3501D /* KeychainSwift in Frameworks */,
+				8B586BAD2C23004200F8DE98 /* SimpleCalendar in Frameworks */,
 				2F731BBE2C02880F00B3501D /* Alamofire in Frameworks */,
-				2F731BC02C02880F00B3501D /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +476,7 @@
 		2F7942EE2BC050FD00387D3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8B2829E62C22E82600CE9220 /* Schedule */,
 				2F7446F82C0BDB0E0059899C /* EmployeeList */,
 				2F7446D62C0859AE0059899C /* AddEmployee */,
 				2F7446DF2C0B5E5B0059899C /* JobsList */,
@@ -535,6 +546,7 @@
 		2F7943382BC47EE700387D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B586BB42C231EFB00F8DE98 /* Schedule */,
 				2F7447032C0BDCD80059899C /* Employees */,
 				2F7446EA2C0B60DA0059899C /* Jobs */,
 				8B81C2AD2C0266DA000DA507 /* Availability */,
@@ -565,6 +577,7 @@
 				2F731BD72C0299C300B3501D /* DashboardRouter.swift */,
 				2F7446E62C0B5FA60059899C /* JobsRouter.swift */,
 				2F7446FF2C0BDC400059899C /* EmployeesRouter.swift */,
+				8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -578,6 +591,7 @@
 				2F731BD92C029AA100B3501D /* DashboardClient.swift */,
 				2F7446E82C0B60920059899C /* JobsClient.swift */,
 				2F7447012C0BDCC20059899C /* EmployeesClient.swift */,
+				8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -779,6 +793,31 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		8B2829E62C22E82600CE9220 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				8B586BB72C23215D00F8DE98 /* Views */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		8B586BB42C231EFB00F8DE98 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				8B586BB52C231F4E00F8DE98 /* Shifts.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		8B586BB72C23215D00F8DE98 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B2829E92C22E84900CE9220 /* ScheduleView.swift */,
+				8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8B81C2AD2C0266DA000DA507 /* Availability */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,9 +848,9 @@
 			name = Chronos;
 			packageProductDependencies = (
 				2F731BBD2C02880F00B3501D /* Alamofire */,
-				2F731BBF2C02880F00B3501D /* AlamofireDynamic */,
 				2F731BC22C02881E00B3501D /* KeychainSwift */,
 				2F731BC52C02882800B3501D /* SimpleToast */,
+				8B586BAC2C23004200F8DE98 /* SimpleCalendar */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -845,6 +884,7 @@
 				2F731BBC2C02880F00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				2F731BC12C02881E00B3501D /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				2F731BC42C02882800B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				8B586BAB2C23004200F8DE98 /* XCRemoteSwiftPackageReference "SimpleCalendar" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -877,6 +917,7 @@
 				2F731BDE2C02A65200B3501D /* AvailabilityApprovalResponse.swift in Sources */,
 				2FDECA9D2BEFB2CD00B3129B /* CheckInOutResponse.swift in Sources */,
 				2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */,
+				8B586BB12C231C4900F8DE98 /* ScheduleRouter.swift in Sources */,
 				2FEFBB252C1F8F2D005E3FB4 /* ScrollableListView.swift in Sources */,
 				2F41CBDE2BE82C51000AC5B0 /* ExtensionForDate.swift in Sources */,
 				2F41CBC52BE7F94A000AC5B0 /* ManagerView.swift in Sources */,
@@ -892,6 +933,7 @@
 				2FDECAA12BEFB40A00B3129B /* DashboardResponse.swift in Sources */,
 				2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */,
 				2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */,
+				8B586BB32C231D1500F8DE98 /* ScheduleClient.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
 				2F74471B2C14A2370059899C /* ToastTypes.swift in Sources */,
 				2F731BDA2C029AA100B3501D /* DashboardClient.swift in Sources */,
@@ -925,15 +967,18 @@
 				2F7447132C0FDFCF0059899C /* EmployeeDeletionResponse.swift in Sources */,
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2FDECAA32BEFBD0800B3129B /* OnboardingEmployeeRespone.swift in Sources */,
+				8B2829EA2C22E84900CE9220 /* ScheduleView.swift in Sources */,
 				2FEFBB2C2C20D1BF005E3FB4 /* ItemsListView.swift in Sources */,
 				2FDECA8B2BEBC55B00B3129B /* KeychainKeys.swift in Sources */,
 				8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,
+				8B586BB62C231F4E00F8DE98 /* Shifts.swift in Sources */,
 				2FF8ADE82BF8FA2800DB9C4E /* TrackableScrollView.swift in Sources */,
 				2F731BD32C02985500B3501D /* CustomProgressView.swift in Sources */,
 				2F7447072C0BE4780059899C /* EmployeeCellView.swift in Sources */,
 				2F41CBD12BE810FC000AC5B0 /* KeychainManager.swift in Sources */,
 				2F74470D2C0CABCE0059899C /* AddEmployeeModel.swift in Sources */,
+				8B586BAF2C2309E700F8DE98 /* CreateShiftView.swift in Sources */,
 				8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */,
 				2FDECA862BE974A600B3129B /* ToastView.swift in Sources */,
 				2F7447002C0BDC400059899C /* EmployeesRouter.swift in Sources */,
@@ -1207,6 +1252,14 @@
 				minimumVersion = 0.8.1;
 			};
 		};
+		8B586BAB2C23004200F8DE98 /* XCRemoteSwiftPackageReference "SimpleCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ppeelen/SimpleCalendar.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1214,11 +1267,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F731BBC2C02880F00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		2F731BBF2C02880F00B3501D /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F731BBC2C02880F00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 		2F731BC22C02881E00B3501D /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1229,6 +1277,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F731BC42C02882800B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
+		};
+		8B586BAC2C23004200F8DE98 /* SimpleCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B586BAB2C23004200F8DE98 /* XCRemoteSwiftPackageReference "SimpleCalendar" */;
+			productName = SimpleCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

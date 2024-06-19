@@ -25,8 +25,8 @@ struct DashboardTabView: View {
                     for: .tabBar
                 )
 
-            Text("hello3")
-                .tabItem { Image(systemName: "person.2") }
+            ScheduleView()
+                .tabItem { Image(systemName: "calendar") }
 
             Group {
                 if fetchEmployeeType() == 0 {

@@ -13,7 +13,7 @@ struct EmployeeListView: View {
 
     @State private var isEditing = true
     @State private var isShowAddEmployeeView = false
-    @State private var selectedEmployee: EmployeesResponse.Employee?
+    @State private var selectedEmployee: Employee?
     
     @Binding var isShowCurrentTabView: Bool
     
@@ -173,7 +173,7 @@ extension EmployeeListView {
     
     private func deleteEmployees(
         at offsets: IndexSet,
-        from employees: [EmployeesResponse.Employee]
+        from employees: [Employee]
     ) {
         offsets.forEach { index in
             let employee = employees[index]
