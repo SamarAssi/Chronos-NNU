@@ -84,13 +84,12 @@ struct CreateShiftView: View {
                 value: viewModel.selectedEmployeeName
             )
             .onTapGesture {
-                if !viewModel.employees.isEmpty {
-                    showEmployeePicker.toggle()
-                }
+                showEmployeePicker.toggle()
             }
+
             selectRow(
                 label: "Job",
-                value: viewModel.selectedJobName
+                value: viewModel.JobTitle
             )
             .onTapGesture {
                 if !viewModel.jobs.isEmpty {

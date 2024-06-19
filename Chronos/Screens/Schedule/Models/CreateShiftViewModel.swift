@@ -11,20 +11,36 @@ class CreateShiftViewModel: ObservableObject {
 
     @Published var startDate: Date = Date()
     @Published var endDate: Date = Date()
-    @Published var selectedEmployeeID: String?
     @Published var selectedJobName: String?
-
-    private(set) var employees: [Employee] = []
+    @Published var selectedEmployeeID: String? {
+        didSet {
+            let selectedJobs = employees.first { $0.id == selectedEmployeeID }?.jobs ?? []
+            if selectedJobs.count == 1 {
+                selectedJobName = selectedJobs.first?.name
+            } else {
+                selectedJobName = nil
+            }
+            jobs = selectedJobs
+        }
+    }
 
     @Published var isLoading: Bool = false
     @Published var isSubmitting: Bool = false
+
+    private(set) var employees: [Employee] = []
 
     var selectedEmployeeName: String? {
         employees.first { $0.id == selectedEmployeeID }?.username
     }
 
-    var jobs: [Job] {
-        employees.first { $0.id == selectedEmployeeID }?.jobs ?? []
+    var jobs: [Job] = []
+
+    var JobTitle: String? {
+        guard !jobs.isEmpty else {
+            return "No Jobs"
+        }
+
+        return selectedJobName
     }
 
     func getData() async {
