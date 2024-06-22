@@ -8,58 +8,64 @@
 import SwiftUI
 
 struct CreateShiftView: View {
+
     @ObservedObject private var viewModel = CreateShiftViewModel()
     @State private var showEmployeePicker = false
     @State private var showJobPicker = false
+    @Binding var selectedDate: Date
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        VStack {
-            if viewModel.isLoading {
-                ProgressView()
-            } else {
-                contentView()
+        contentView()
+            .onAppear {
+                Task {
+                    await viewModel.getData()
+                }
             }
-        }
-        .task {
-            await viewModel.getData()
-        }
+            .sheet(isPresented: $showEmployeePicker) {
+                pickerView(
+                    title: "Employee",
+                    selection: $viewModel.selectedEmployeeID,
+                    items: viewModel.employees.map { ($0.username, $0.id) }
+                )
+            }
+            .sheet(isPresented: $showJobPicker) {
+                pickerView(
+                    title: "Job",
+                    selection: $viewModel.selectedJobName,
+                    items: viewModel.jobs.map { ($0.name, $0.name) }
+                )
+            }
     }
 
     private func contentView() -> some View {
         VStack(spacing: 0) {
             headerView()
-            formContent()
-            MainButton(
-                isLoading: $viewModel.isSubmitting,
-                buttonText: "Create",
-                backgroundColor: .theme,
-                action: {
-                    Task {
-                        do {
-                            try await viewModel.createShift()
-                            presentationMode.wrappedValue.dismiss()
-                        } catch {
-                            
+            if viewModel.isLoading {
+                ProgressView()
+                    .frame(maxHeight: .infinity)
+            } else {
+                formContent()
+                MainButton(
+                    isLoading: $viewModel.isSubmitting,
+                    buttonText: "Create",
+                    backgroundColor: .theme,
+                    action: {
+                        Task {
+                            do {
+                                try await viewModel.createShift()
+                                await MainActor.run {
+                                    presentationMode.wrappedValue.dismiss()
+                                    selectedDate = Date()
+                                }
+                            } catch {
+                                print(error.localizedDescription)
+                            }
                         }
                     }
-                }
-            )
-            .padding()
-        }
-        .sheet(isPresented: $showEmployeePicker) {
-            pickerView(
-                title: "Employee",
-                selection: $viewModel.selectedEmployeeID,
-                items: viewModel.employees.map { ($0.username, $0.id) }
-            )
-        }
-        .sheet(isPresented: $showJobPicker) {
-            pickerView(
-                title: "Job",
-                selection: $viewModel.selectedJobName,
-                items: viewModel.jobs.map { ($0.name, $0.name) }
-            )
+                )
+                .padding()
+            }
         }
     }
 
@@ -163,5 +169,5 @@ struct CreateShiftView: View {
 }
 
 #Preview {
-    CreateShiftView()
+    CreateShiftView(selectedDate: .constant(Date()))
 }

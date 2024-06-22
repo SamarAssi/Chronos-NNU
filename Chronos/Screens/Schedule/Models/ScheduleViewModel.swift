@@ -20,7 +20,7 @@ class ScheduleViewModel: ObservableObject {
     @Published var shifts: [ShiftRowUIModel] = []
     @Published var isDatePickerPresented: Bool = false
     @Published var isLoading = false
-    
+
     private var employeeColor: [String: Color] = [:]
     private var colors: [Color] = [
         .red, .orange, .yellow,

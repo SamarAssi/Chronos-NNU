@@ -32,7 +32,7 @@ struct ScheduleView: View {
             }
         }
         .sheet(isPresented: $showCreateEventView) {
-            CreateShiftView()
+            CreateShiftView(selectedDate: $viewModel.selectedDate)
         }
     }
 

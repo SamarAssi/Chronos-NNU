@@ -48,6 +48,7 @@ class CreateShiftViewModel: ObservableObject {
             let response = try await EmployeesClient.getEmployees()
             await MainActor.run {
                 employees = response.employees
+                selectedEmployeeID = employees.first?.id
                 isLoading = false
             }
         } catch {
@@ -56,7 +57,9 @@ class CreateShiftViewModel: ObservableObject {
     }
 
     func createShift() async throws {
-        isSubmitting = true
+        await MainActor.run {
+            isSubmitting = true
+        }
         let _ = try await ScheduleClient.createShift(
             role: selectedJobName ?? "",
             startTime: Int(startDate.timeIntervalSince1970),
@@ -65,7 +68,9 @@ class CreateShiftViewModel: ObservableObject {
             jobDescription: "Test"
         )
 
-        isSubmitting = false
+        await MainActor.run {
+            isSubmitting = false
+        }
     }
 }
 

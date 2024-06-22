@@ -15,7 +15,7 @@ class ScheduleClient: BaseClient {
         endTime: Int,
         employeeId: String,
         jobDescription: String
-    ) async throws -> String {
+    ) async throws -> Shift {
         let router: ScheduleRouter = .createShift(
             role: role,
             startTime: startTime,
