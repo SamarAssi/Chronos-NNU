@@ -20,6 +20,7 @@ class CreateShiftViewModel: ObservableObject {
         }
     }
 
+    @Published var description: String = ""
     @Published var isLoading: Bool = false
     @Published var isSubmitting: Bool = false
 
@@ -65,7 +66,7 @@ class CreateShiftViewModel: ObservableObject {
             startTime: Int(startDate.timeIntervalSince1970),
             endTime: Int(endDate.timeIntervalSince1970),
             employeeId: selectedEmployeeID ?? "",
-            jobDescription: "Test"
+            jobDescription: description
         )
 
         await MainActor.run {

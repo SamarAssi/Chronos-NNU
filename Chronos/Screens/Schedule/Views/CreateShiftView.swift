@@ -112,7 +112,10 @@ struct CreateShiftView: View {
                     showJobPicker.toggle()
                 }
             }
+
+            descriptionView
         }
+        .scrollDismissesKeyboard(.interactively)
     }
 
     private func pickerRow(
@@ -147,6 +150,23 @@ struct CreateShiftView: View {
                 .background(Color.gray.opacity(0.2))
                 .foregroundColor(.black)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
+        }
+    }
+
+    private var descriptionView: some View {
+        VStack(alignment: .leading) {
+            Text("Description: ")
+                .foregroundColor(.theme)
+
+            TextEditor(text: $viewModel.description)
+                .font(.system(size: 15))
+                .textInputAutocapitalization(.never)
+                .tint(Color.theme)
+                .scrollContentBackground(.hidden)
+                .padding(8)
+                .frame(height: 300)
+                .background(Color.gray.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
 
