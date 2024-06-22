@@ -19,6 +19,9 @@
     "." : {
 
     },
+    "%@" : {
+
+    },
     "• %@" : {
 
     },
@@ -158,6 +161,9 @@
     "END TIME" : {
 
     },
+    "End: " : {
+
+    },
     "Enroll to Chronos" : {
 
     },
@@ -230,6 +236,9 @@
     "Last Name" : {
 
     },
+    "Loading..." : {
+
+    },
     "Log out" : {
 
     },
@@ -258,6 +267,9 @@
 
     },
     "No selected jobs." : {
+
+    },
+    "No shifts available" : {
 
     },
     "NoAccountQuestion" : {
@@ -355,6 +367,9 @@
 
     },
     "START TIME" : {
+
+    },
+    "Start:" : {
 
     },
     "Teams & Conditions" : {

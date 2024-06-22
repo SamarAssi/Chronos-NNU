@@ -15,11 +15,7 @@ class CreateShiftViewModel: ObservableObject {
     @Published var selectedEmployeeID: String? {
         didSet {
             let selectedJobs = employees.first { $0.id == selectedEmployeeID }?.jobs ?? []
-            if selectedJobs.count == 1 {
-                selectedJobName = selectedJobs.first?.name
-            } else {
-                selectedJobName = nil
-            }
+            selectedJobName = selectedJobs.first?.name
             jobs = selectedJobs
         }
     }
@@ -59,23 +55,17 @@ class CreateShiftViewModel: ObservableObject {
         }
     }
 
-    func createShift() {
+    func createShift() async throws {
         isSubmitting = true
-        Task {
-            do {
-                let _ = try await ScheduleClient.createShift(
-                    role: selectedJobName ?? "",
-                    startTime: Int(startDate.timeIntervalSince1970),
-                    endTime: Int(endDate.timeIntervalSince1970),
-                    employeeId: selectedEmployeeID ?? "",
-                    jobDescription: "Test"
-                )
-                await MainActor.run {
-                    isSubmitting = false
-                }
-            } catch {
-                print(error)
-            }
-        }
+        let _ = try await ScheduleClient.createShift(
+            role: selectedJobName ?? "",
+            startTime: Int(startDate.timeIntervalSince1970),
+            endTime: Int(endDate.timeIntervalSince1970),
+            employeeId: selectedEmployeeID ?? "",
+            jobDescription: "Test"
+        )
+
+        isSubmitting = false
     }
 }
+

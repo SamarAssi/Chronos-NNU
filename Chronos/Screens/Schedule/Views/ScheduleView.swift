@@ -6,31 +6,35 @@
 //
 
 import SwiftUI
-import SimpleCalendar
 
 struct ScheduleView: View {
 
-    @State var selectedDate: Date = Date()
-    @State var events: [any CalendarEventRepresentable] = []
     @State var showCreateEventView = false
+    @ObservedObject var viewModel = ScheduleViewModel()
 
     var body: some View {
+        contentView
+            .onAppear {
+                Task {
+                    await viewModel.getData()
+                }
+            }
+    }
+
+    private var contentView: some View {
         VStack(alignment: .leading) {
-            TitleView()
+            TitleView
             ZStack {
-                CalendarDateView()
-                FloatingButton()
+                CalendarDateView
+                FloatingButton
             }
         }
         .sheet(isPresented: $showCreateEventView) {
             CreateShiftView()
         }
-        .task {
-            await getData()
-        }
     }
 
-    private func TitleView() -> some View {
+    private var TitleView: some View {
         Text("Schedule")
             .font(.title)
             .fontWeight(.bold)
@@ -38,17 +42,17 @@ struct ScheduleView: View {
             .padding()
     }
 
-    private func FloatingButton() -> some View {
+    private var FloatingButton: some View {
         VStack {
             Spacer()
             HStack {
                 Spacer()
-                FloatingActionButton()
+                FloatingActionButton
             }
         }
     }
 
-    private func FloatingActionButton() -> some View {
+    private var FloatingActionButton: some View {
         Button(action: {
             showCreateEventView.toggle()
         }) {
@@ -57,16 +61,18 @@ struct ScheduleView: View {
                 .frame(width: 60, height: 60)
                 .overlay(
                     Image(systemName: "plus")
+                        .resizable()
                         .foregroundColor(.white)
+                        .padding(20)
                 )
                 .padding()
         }
     }
 
-    private func CalendarDateView() -> some View {
-        VStack {
+    private var CalendarDateView: some View {
+        VStack(spacing: 0) {
             DatePicker(
-                selection: $selectedDate,
+                selection: $viewModel.selectedDate,
                 displayedComponents: [.date],
                 label: {
                     Text("Select a date")
@@ -78,44 +84,79 @@ struct ScheduleView: View {
             .tint(Color.theme)
 
             Divider()
+                .padding(.top)
 
-            SimpleCalendarView(
-                events: $events,
-                selectedDate: $selectedDate,
-                selectionAction: .sheet
-            )
+            if viewModel.isLoading {
+                ProgressView("Loading...")
+                    .frame(maxHeight: .infinity)
+            } else {
+                if viewModel.shifts.isEmpty {
+                    Text("No shifts available")
+                        .foregroundColor(.theme)
+                        .padding()
+                        .frame(maxHeight: .infinity)
+                } else {
+                    List(viewModel.shifts) { event in
+                        eventRow(model: event)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(
+                                EdgeInsets(
+                                    top: 16,
+                                    leading: 18,
+                                    bottom: 0,
+                                    trailing: 18
+                                )
+                            )
+                    }
+                    .listStyle(.plain)
+                }
+            }
         }
     }
 
-    private func getData() async {
-        do {
-            let shifts = try await ScheduleClient.getShifts()
-            events = shifts.shifts.compactMap { shift in
-                let startDate = Date(
-                    timeIntervalSince1970: TimeInterval(shift.startTime ?? 0)
+    private func eventRow(model: ShiftRowUIModel) -> some View {
+        HStack(spacing: 5) {
+            Circle()
+                .foregroundColor(model.backgroundColor)
+                .frame(width: 40, height: 40)
+                .overlay(
+                    Text(model.initials)
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
                 )
-                let duration: Double = Double((shift.endTime ?? 0) - (shift.startTime ?? 0))
+                .padding(.leading, 15)
 
-                return CalendarEvent(
-                    id: "\(UUID())",
-                    startDate: startDate,
-                    activity: CalendarActivity(
-                        id: "\(UUID())",
-                        title: shift.role ?? "Unknown",
-                        description: shift.jobDescription ?? "Unknown",
-                        mentors: [shift.employeeName ?? "Unknown"],
-                        type: ActivityType(
-                            name: shift.role ?? "Unknown",
-                            color: [.yellow, .red, .green, .blue].randomElement()!
-                        ),
-                        duration: duration
-                    )
-                )
+            VStack(alignment: .leading) {
+                Text(model.title)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.theme)
+                    .lineLimit(1)
+
+                HStack {
+                    Text("Start:")
+                        .font(.headline)
+                    .foregroundColor(.theme)
+                    Text("\(model.startTime)")
+                        .font(.subheadline)
+                        .foregroundColor(.theme)
+                }
+
+                HStack {
+                    Text("End: ")
+                        .font(.headline)
+                        .foregroundColor(.theme)
+                    Text("\(model.endTime)")
+                        .font(.subheadline)
+                        .foregroundColor(.theme)
+                }
             }
+            .padding(10)
 
-        } catch {
-            print(error)
+            Spacer()
         }
+        .background(model.backgroundColor.opacity(0.15))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }
 

@@ -111,7 +111,7 @@
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
 		8B2829EA2C22E84900CE9220 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2829E92C22E84900CE9220 /* ScheduleView.swift */; };
-		8B586BAD2C23004200F8DE98 /* SimpleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B586BAC2C23004200F8DE98 /* SimpleCalendar */; };
+		8B37D1062C26DAAF001D4739 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */; };
 		8B586BAF2C2309E700F8DE98 /* CreateShiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */; };
 		8B586BB12C231C4900F8DE98 /* ScheduleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */; };
 		8B586BB32C231D1500F8DE98 /* ScheduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */; };
@@ -226,6 +226,7 @@
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		8B2829E92C22E84900CE9220 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShiftView.swift; sourceTree = "<group>"; };
 		8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRouter.swift; sourceTree = "<group>"; };
 		8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleClient.swift; sourceTree = "<group>"; };
@@ -244,7 +245,6 @@
 			files = (
 				2F731BC62C02882800B3501D /* SimpleToast in Frameworks */,
 				2F731BC32C02881E00B3501D /* KeychainSwift in Frameworks */,
-				8B586BAD2C23004200F8DE98 /* SimpleCalendar in Frameworks */,
 				2F731BBE2C02880F00B3501D /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -824,6 +824,7 @@
 		8B586BB92C23432A00F8DE98 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */,
 				8B586BBA2C23433900F8DE98 /* CreateShiftViewModel.swift */,
 			);
 			path = Models;
@@ -861,7 +862,6 @@
 				2F731BBD2C02880F00B3501D /* Alamofire */,
 				2F731BC22C02881E00B3501D /* KeychainSwift */,
 				2F731BC52C02882800B3501D /* SimpleToast */,
-				8B586BAC2C23004200F8DE98 /* SimpleCalendar */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -895,7 +895,6 @@
 				2F731BBC2C02880F00B3501D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				2F731BC12C02881E00B3501D /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				2F731BC42C02882800B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */,
-				8B586BAB2C23004200F8DE98 /* XCRemoteSwiftPackageReference "SimpleCalendar" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -1029,6 +1028,7 @@
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,
 				2F41CBDC2BE81C9A000AC5B0 /* AuthenticationRouter.swift in Sources */,
 				2F731BD82C0299C300B3501D /* DashboardRouter.swift in Sources */,
+				8B37D1062C26DAAF001D4739 /* ScheduleViewModel.swift in Sources */,
 				2F7446EE2C0B611E0059899C /* JobsResponse.swift in Sources */,
 				2F41CBE22BE832E3000AC5B0 /* AttendanceCardModel.swift in Sources */,
 			);
@@ -1264,14 +1264,6 @@
 				minimumVersion = 0.8.1;
 			};
 		};
-		8B586BAB2C23004200F8DE98 /* XCRemoteSwiftPackageReference "SimpleCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ppeelen/SimpleCalendar.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1289,11 +1281,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F731BC42C02882800B3501D /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
-		};
-		8B586BAC2C23004200F8DE98 /* SimpleCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B586BAB2C23004200F8DE98 /* XCRemoteSwiftPackageReference "SimpleCalendar" */;
-			productName = SimpleCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -11,6 +11,7 @@ struct CreateShiftView: View {
     @ObservedObject private var viewModel = CreateShiftViewModel()
     @State private var showEmployeePicker = false
     @State private var showJobPicker = false
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack {
@@ -33,7 +34,16 @@ struct CreateShiftView: View {
                 isLoading: $viewModel.isSubmitting,
                 buttonText: "Create",
                 backgroundColor: .theme,
-                action: viewModel.createShift
+                action: {
+                    Task {
+                        do {
+                            try await viewModel.createShift()
+                            presentationMode.wrappedValue.dismiss()
+                        } catch {
+                            
+                        }
+                    }
+                }
             )
             .padding()
         }

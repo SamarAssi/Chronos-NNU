@@ -9,7 +9,7 @@ import Alamofire
 
 enum ScheduleRouter: BaseRouter {
 
-    case getShifts
+    case getShifts(date: Int)
     case createShift(
         role: String,
         startTime: Int,
@@ -23,7 +23,7 @@ enum ScheduleRouter: BaseRouter {
         case .createShift:
             return "shifts/create"
         case .getShifts:
-            return "shifts/getAllShifts"
+            return "shifts"
         }
     }
 
@@ -32,7 +32,7 @@ enum ScheduleRouter: BaseRouter {
         case .createShift:
             return .post
         case .getShifts:
-            return .get
+            return .post
         }
     }
 
@@ -53,8 +53,10 @@ enum ScheduleRouter: BaseRouter {
                 "jobDescription": jobDescription
             ]
 
-        case .getShifts:
-            return nil
+        case .getShifts(let date):
+            return [
+                "date": date
+            ]
         }
     }
 }
