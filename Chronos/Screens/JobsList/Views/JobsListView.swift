@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct JobsListView: View {
+
     @StateObject private var jobsListModel = JobsListModel()
     @Environment(\.dismiss) var dismiss
     
@@ -117,7 +118,6 @@ extension JobsListView {
         Text(LocalizedStringKey("Jobs List"))
             .font(.title2)
             .fontWeight(.bold)
-            .frame(maxHeight: .infinity, alignment: .topLeading)
     }
     
     var editButtonView: some View {

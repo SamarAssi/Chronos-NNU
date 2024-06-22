@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-
+    
     @EnvironmentObject var navigationRouter: NavigationRouter
-
+    
     @State private var profileRowModel: [ProfileRowModel] = ProfileRowModel.data
     @State private var isShowAlert = false
     @Binding var isShowTabView: Bool
-
+    
     var body: some View {
         NavigationStack {
             VStack(
@@ -37,13 +37,13 @@ struct ProfileView: View {
 }
 
 extension ProfileView {
-
+    
     var profileHeaderView: some View {
         VStack(
             spacing: 20
         ) {
             imageView
-
+            
             VStack(
                 alignment: .center,
                 spacing: 8
@@ -54,7 +54,7 @@ extension ProfileView {
             .padding(20)
         }
     }
-
+    
     var imageView: some View {
         Image(.logo)
             .resizable()
@@ -62,14 +62,14 @@ extension ProfileView {
             .clipShape(Circle())
             .frame(width: 130)
     }
-
+    
     var userFullNameView: some View {
         Text(fetchFullName())
             .font(.title3)
             .fontWeight(.bold)
             .fontDesign(.rounded)
     }
-
+    
     var userRoleView: some View {
         Group {
             if fetchEmployeeType() == 1 {
@@ -83,7 +83,7 @@ extension ProfileView {
             }
         }
     }
-
+    
     var editButtonView: some View {
         NavigationLink {
             EditProfileView()
@@ -99,11 +99,14 @@ extension ProfileView {
         }
         .padding(.horizontal, 30)
     }
-
+    
     var accountOptionsListView: some View {
         List {
             Section {
-                ForEach(profileRowModel.indices, id: \.self) { index in
+                ForEach(
+                    profileRowModel.indices,
+                    id: \.self
+                ) { index in
                     NavigationLink {
                         switch index {
                         case 0:
@@ -127,29 +130,14 @@ extension ProfileView {
                         )
                     }
                 }
-
+                
                 if fetchEmployeeType() == 1 {
-                    NavigationLink {
-                        JobsListView()
-                            .navigationBarBackButtonHidden(true)
-                            .onAppear {
-                                isShowTabView = false
-                            }
-                            .onDisappear {
-                                withAnimation {
-                                    isShowTabView = true
-                                }
-                            }
-                    } label: {
-                        profileRowLabel(
-                            icon: "list.clipboard",
-                            name: LocalizedStringKey("Jobs List")
-                        )
-                    }
+                    jobsListButtonView
+                    checkInOutSettingsButtonView
                 }
             }
             .padding(.vertical)
-
+            
             Section {
                 logoutButtonView
             }
@@ -159,7 +147,48 @@ extension ProfileView {
         .listStyle(PlainListStyle())
         .padding(.horizontal, 10)
     }
-
+    
+    var checkInOutSettingsButtonView: some View {
+        NavigationLink {
+            SetupCheckInOutView()
+                .navigationBarBackButtonHidden(true)
+                .onAppear {
+                    isShowTabView = false
+                }
+                .onDisappear {
+                    withAnimation {
+                        isShowTabView = true
+                    }
+                }
+        } label: {
+            profileRowLabel(
+                icon: "location.fill",
+                name: "Check In Out Settings"
+            )
+        }
+        
+    }
+    
+    var jobsListButtonView: some View {
+        NavigationLink {
+            JobsListView()
+                .navigationBarBackButtonHidden(true)
+                .onAppear {
+                    isShowTabView = false
+                }
+                .onDisappear {
+                    withAnimation {
+                        isShowTabView = true
+                    }
+                }
+        } label: {
+            profileRowLabel(
+                icon: "list.clipboard",
+                name: "Jobs List"
+            )
+        }
+    }
+    
     var logoutButtonView: some View {
         Button {
             isShowAlert.toggle()
@@ -169,7 +198,7 @@ extension ProfileView {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical)
     }
-
+    
     var logoutButtonLabelView: some View {
         HStack(
             spacing: 25
@@ -180,25 +209,26 @@ extension ProfileView {
                         .fill(Color.red.opacity(0.1))
                         .frame(width: 45, height: 45)
                 )
+
             Text(LocalizedStringKey("Log out"))
         }
         .foregroundStyle(Color.red)
     }
-
+    
     var alertButtonsView: some View {
         HStack {
-            Button(LocalizedStringKey("Cancel"), role: .cancel) {
+            Button("Cancel", role: .cancel) {
                 isShowAlert = false
             }
-            Button(LocalizedStringKey("Log Out"), role: .destructive) {
+            Button("Log Out", role: .destructive) {
                 _ = KeychainManager.shared.delete(
                     key: KeychainKeys.accessToken.rawValue
                 )
-
+                
                 _ = KeychainManager.shared.delete(
                     key: KeychainKeys.employeeType.rawValue
                 )
-
+                
                 _ = KeychainManager.shared.delete(
                     key: KeychainKeys.fullName.rawValue
                 )
@@ -214,7 +244,7 @@ extension ProfileView {
                 _ = KeychainManager.shared.delete(
                     key: KeychainKeys.phoneNumber.rawValue
                 )
-
+                
                 navigationRouter.isLoggedIn = false
                 navigationRouter.navigateTo(.login)
             }
@@ -223,7 +253,7 @@ extension ProfileView {
 }
 
 extension ProfileView {
-
+    
     private func profileRowLabel(
         icon: String,
         name: LocalizedStringKey
@@ -237,28 +267,29 @@ extension ProfileView {
                         .fill(Color.gray.opacity(0.1))
                         .frame(width: 45, height: 45)
                 )
+
             Text(name)
                 .font(.system(size: 16))
         }
     }
-
+    
     private func fetchEmployeeType() -> Int {
         if let employeeType = KeychainManager.shared.fetch(
             key: KeychainKeys.employeeType.rawValue
         ) {
             return Int(employeeType) ?? -1
         }
-
+        
         return -1
     }
-
+    
     private func fetchFullName() -> String {
         if let fullName = KeychainManager.shared.fetch(
             key: KeychainKeys.fullName.rawValue
         ) {
             return fullName
         }
-
+        
         return ""
     }
 }
@@ -266,7 +297,7 @@ extension ProfileView {
 struct NewScreen: View {
     var item: LocalizedStringKey
     @Environment(\.dismiss) var dismiss
-
+    
     var body: some View {
         VStack {
             Text(item)

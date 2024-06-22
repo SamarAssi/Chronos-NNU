@@ -17,16 +17,12 @@ struct MainButton: View {
 
     var body: some View {
         if isLoading {
-            HStack {
-                Spacer()
-                ProgressView()
-                    .progressViewStyle(
-                        CircularProgressViewStyle(tint: Color.theme)
-                    )
-                    .scaleEffect(1.5, anchor: .center)
-                Spacer()
-            }
-            .frame(height: 45)
+            ProgressView()
+                .progressViewStyle(
+                    CircularProgressViewStyle(tint: Color.theme)
+                )
+                .scaleEffect(1.5, anchor: .center)
+                .frame(maxWidth: .infinity, alignment: .center)
         } else {
             Button(action: action) {
                 Text(buttonText)
@@ -35,7 +31,7 @@ struct MainButton: View {
                     .frame(height: 45)
                     .frame(maxWidth: .infinity)
                     .background(backgroundColor)
-                    .cornerRadius(15)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
                     .fontDesign(.rounded)
             }
         }

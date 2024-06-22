@@ -43,9 +43,6 @@ struct EmployeeListView: View {
                 isShowCurrentTabView.toggle()
             }
             .fontDesign(.rounded)
-            .onAppear {
-                employeeListModel.getEmployeesList()
-            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     titleView
@@ -61,13 +58,20 @@ struct EmployeeListView: View {
                 )
             }
             .fullScreenCover(isPresented: $isShowAddEmployeeView) {
-                AddEmployeeView(employeeListModel: employeeListModel)
+                AddEmployeeView(
+                    employeeListModel: employeeListModel,
+                    isEditing: $isEditing
+                )
             }
+        }
+        .onAppear {
+            employeeListModel.getEmployeesList()
         }
     }
 }
 
 extension EmployeeListView {
+
     var titleView: some View {
         Text(LocalizedStringKey("Employees List"))
             .font(.title2)
@@ -179,7 +183,7 @@ extension EmployeeListView {
             let employee = employees[index]
             employeeListModel.deleteEmployee(username: employee.username)
         }
-        employeeListModel.getEmployeesList()
+        //employeeListModel.getEmployeesList()
     }
 }
 

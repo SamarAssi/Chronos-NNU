@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct ChronosApp: App {
+    
+    @StateObject var locationManager = LocationManager()
 
     init() {
         let appearance = UINavigationBarAppearance()
@@ -23,6 +25,7 @@ struct ChronosApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(NavigationRouter())
+                .environmentObject(locationManager)
         }
     }
 }

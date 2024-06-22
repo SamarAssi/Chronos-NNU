@@ -31,18 +31,21 @@ struct EditProfileView: View {
         .fontDesign(.rounded)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Image(systemName: "lessthan")
-                    .scaleEffect(0.6)
-                    .scaleEffect(x: 1, y: 2)
-                    .onTapGesture {
-                        dismiss.callAsFunction()
-                    }
+                backButtonView
             }
         }
     }
 }
 
 extension EditProfileView {
+    
+    var backButtonView: some View {
+        Image(systemName: "chevron.left")
+            .scaleEffect(0.9)
+            .onTapGesture {
+                dismiss.callAsFunction()
+            }
+    }
 
     var headerSectionView: some View {
         VStack {
@@ -74,7 +77,7 @@ extension EditProfileView {
     var updateButtonView: some View {
         MainButton(
             isLoading: $isLoading,
-            buttonText: LocalizedStringKey("Update"),
+            buttonText: "Update",
             backgroundColor: Color.theme,
             action: {
                 // TODO: update your personal information

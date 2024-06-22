@@ -10,7 +10,7 @@ import Foundation
 
 enum DashboardRouter: BaseRouter {
 
-    case checkInOut
+    case checkInOut(currentLatitude: Double, currentLongitude: Double)
     case dashboard(date: Int)
 
     var path: String {
@@ -33,8 +33,8 @@ enum DashboardRouter: BaseRouter {
 
     var parameters: Parameters? {
         switch self {
-        case .checkInOut:
-            return nil
+        case .checkInOut(let currentLatitude, let currentLongitude):
+            return ["currentLatitude": currentLatitude, "currentLongitude": currentLongitude]
         case .dashboard(let date):
             return ["date": date]
         }

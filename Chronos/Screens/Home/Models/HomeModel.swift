@@ -13,7 +13,9 @@ class HomeModel: ObservableObject {
     @Published var isLoading = true
 
     @MainActor
-    func handleDashboardResponse(selectedDate: Date) {
+    func handleDashboardResponse(
+        selectedDate: Date
+    ) {
         Task {
             do {
                 showLoading()
@@ -26,7 +28,9 @@ class HomeModel: ObservableObject {
         }
     }
 
-    private func performDashboardRequest(selectedDate: Date) async throws -> DashboardResponse {
+    private func performDashboardRequest(
+        selectedDate: Date
+    ) async throws -> DashboardResponse {
         return try await DashboardClient.dashboard(
             date: Int(selectedDate.timeIntervalSince1970)
         )

@@ -9,6 +9,7 @@ import Foundation
 
 @Observable
 class PasswordValidationManager: ObservableObject {
+
     static var shared = PasswordValidationManager()
 
     var constraints = ConstraintTextModel.data

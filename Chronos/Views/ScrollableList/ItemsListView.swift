@@ -34,7 +34,7 @@ struct ItemsListView<T: Hashable & LabelRepresentable>: View {
                     isSelected: isSelectedItem(item: item),
                     name: item.label
                 )
-                .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
+                .listRowInsets(.init(top: 5, leading: 0, bottom: 5, trailing: 0))
                 .onTapGesture {
                     toggleSelection(item: item)
                 }

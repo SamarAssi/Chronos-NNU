@@ -29,7 +29,11 @@ struct FilteredCalendarCollectionView: View {
                         CalendarItemView(
                             date: date
                         )
-                        .foregroundStyle(selectedDate == date ? Color.white : Color.primary)
+                        .foregroundStyle(
+                            selectedDate == date ?
+                            Color.white :
+                            Color.primary
+                        )
                         .background(adjustCalendarItemBackground(date: date))
                         .onTapGesture {
                             selectedDate = date

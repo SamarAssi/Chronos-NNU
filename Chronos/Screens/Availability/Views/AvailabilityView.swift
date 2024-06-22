@@ -52,7 +52,7 @@ struct AvailabilityView: View {
         ) {
             ToastView(
                 type: .success,
-                message: LocalizedStringKey("Your request has been sent")
+                message: "Your request has been sent"
             )
             .padding(.horizontal)
         }
@@ -62,7 +62,7 @@ struct AvailabilityView: View {
         ) {
             ToastView(
                 type: .error,
-                message: LocalizedStringKey("New availability is the same as the current availability")
+                message: "New availability is the same as the current availability"
             )
             .padding(.horizontal)
         }
@@ -149,7 +149,7 @@ extension AvailabilityView {
     var sendRequestButtonView: some View {
         MainButton(
             isLoading: $weekdayModel.isSubmitting,
-            buttonText: LocalizedStringKey("Send Request"),
+            buttonText: "Send Request",
             backgroundColor: Color.theme,
             action: {
                 weekdayModel.submitData()

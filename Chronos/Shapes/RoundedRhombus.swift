@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct RoundedRhombus: Shape {
+
     let cornerRadius: Double
 
     func path(in rect: CGRect) -> Path {

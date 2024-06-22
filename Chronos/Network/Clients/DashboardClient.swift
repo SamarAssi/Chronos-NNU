@@ -16,8 +16,14 @@ class DashboardClient: BaseClient {
         return try await performRequest(router: router)
     }
 
-    static func updateCheckInOut() async throws -> CheckInOutResponse {
-        let router: DashboardRouter = .checkInOut
+    static func updateCheckInOut(
+        currentLatitude: Double,
+        currentLongitude: Double
+    ) async throws -> CheckInOutResponse {
+        let router: DashboardRouter = .checkInOut(
+            currentLatitude: currentLatitude,
+            currentLongitude: currentLongitude
+        )
         return try await performRequest(router: router)
     }
 }
