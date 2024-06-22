@@ -22,6 +22,12 @@ class ScheduleViewModel: ObservableObject {
     @Published var isLoading = false
     
     private var employeeColor: [String: Color] = [:]
+    private var colors: [Color] = [
+        .red, .orange, .yellow,
+        .green, .mint, .teal, .cyan,
+        .blue, .indigo, .purple, .pink,
+        .brown, .white, .gray, .black
+    ]
 
     func getData() async {
         await MainActor.run {
@@ -31,7 +37,9 @@ class ScheduleViewModel: ObservableObject {
         do {
             let date = Int(selectedDate.timeIntervalSince1970)
             let response = try await ScheduleClient.getShifts(date: date)
-            let shifts = response.shifts.compactMap { shift in
+            let shifts = response.shifts.sorted(by: {
+                $0.startTime ?? 0 < $1.startTime ?? 0
+            }).compactMap { shift in
 
                 let initials = getInitials(from: shift.employeeName)
                 let startTime = getTimeAndDate(from: shift.startTime)
@@ -84,16 +92,11 @@ class ScheduleViewModel: ObservableObject {
     }
 
     func getRandomColor() -> Color {
-        let colors: [Color] = [
-            .blue,
-            .green,
-            .orange,
-            .pink,
-            .purple,
-            .red,
-            .yellow
-        ]
-        return colors.randomElement() ?? .theme
+        let red = Double.random(in: 0...1)
+        let green = Double.random(in: 0...1)
+        let blue = Double.random(in: 0...1)
+
+        return Color(red: red, green: green, blue: blue)
     }
 }
 
