@@ -26,7 +26,9 @@ struct ScheduleView: View {
             TitleView
             ZStack {
                 CalendarDateView
-                FloatingButton
+                if fetchEmployeeType() == 1 {
+                    FloatingButton
+                }
             }
         }
         .sheet(isPresented: $showCreateEventView) {
@@ -157,6 +159,16 @@ struct ScheduleView: View {
         }
         .background(model.backgroundColor.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
+
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+
+        return -1
     }
 }
 
