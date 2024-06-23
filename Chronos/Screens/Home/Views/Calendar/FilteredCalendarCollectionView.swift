@@ -79,7 +79,8 @@ extension FilteredCalendarCollectionView {
 
     private func performDashboardRequest() async throws -> DashboardResponse {
         return try await DashboardClient.dashboard(
-            date: Int(selectedDate.timeIntervalSince1970)
+            date: Int(selectedDate.timeIntervalSince1970),
+            employeeId: ""
         )
     }
 

@@ -8,64 +8,135 @@
 import SwiftUI
 
 struct ActivityCardView: View {
-
+    
     var icon: String
     var title: LocalizedStringKey
     var date: Date
     var iconColor: Color
-
+    var employeeName: String
+    
     var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd,yyyy"
         return formatter.string(from: date)
     }
-
+    
     var formattedTime: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm a"
         return formatter.string(from: date)
     }
-
+    
+    var height: CGFloat {
+        fetchEmployeeType() == 1 ?
+        60 :
+        50
+    }
+    
     var body: some View {
-        HStack(
-            spacing: 10
+        VStack(
+            alignment: .leading
         ) {
-            Image(systemName: icon)
-                .foregroundStyle(iconColor)
-                .frame(width: 45, height: 45)
-                .background(iconColor.opacity(0.1))
-                .cornerRadius(10)
-
-            VStack(
-                alignment: .leading,
-                spacing: 5
-            ) {
-                Text(title)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                Text(formattedDate)
-                    .font(.system(size: 13, design: .rounded))
-                    .foregroundStyle(Color.gray)
+            if fetchEmployeeType() == 1 {
+                employeeNameView
             }
-
-            Spacer()
-
-            VStack(
-                alignment: .leading,
-                spacing: 5
+            
+            HStack(
+                spacing: 10
             ) {
-                Text(formattedTime)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-
-                Text(LocalizedStringKey("On Time"))
-                    .font(.system(size: 13, design: .rounded))
-                    .foregroundStyle(Color.gray)
+                iconView
+                firstColumnView
+                Spacer()
+                secondColumnView
             }
         }
-        .frame(height: 50)
+        .fontDesign(.rounded)
+        .frame(height: height)
         .padding(16)
         .foregroundStyle(Color.primary)
         .background(Color.whiteAndBlack)
         .clipShape(RoundedRectangle(cornerRadius: 15))
+    }
+}
+
+extension ActivityCardView {
+    
+    var firstColumnView: some View {
+        VStack(
+            alignment: .leading,
+            spacing: 5
+        ) {
+            titleView
+            dateView
+        }
+    }
+    
+    var secondColumnView: some View {
+        VStack(
+            alignment: .leading,
+            spacing: 5
+        ) {
+            timeView
+            labelView
+        }
+    }
+    
+    var employeeNameView: some View {
+        Text(employeeName)
+            .font(.title2)
+            .fontWeight(.bold)
+    }
+    
+    var iconView: some View {
+        Image(systemName: icon)
+            .foregroundStyle(iconColor)
+            .frame(width: 45, height: 45)
+            .background(iconColor.opacity(0.1))
+            .cornerRadius(10)
+    }
+    
+    var titleView: some View {
+        Text(title)
+            .font(
+                .system(
+                    size: 16,
+                    weight: .bold,
+                    design: .rounded
+                )
+            )
+    }
+    
+    var dateView: some View {
+        Text(formattedDate)
+            .font(.system(size: 13, design: .rounded))
+            .foregroundStyle(Color.gray)
+    }
+    
+    var timeView: some View {
+        Text(formattedTime)
+            .font(
+                .system(
+                    size: 16,
+                    weight: .bold,
+                    design: .rounded
+                )
+            )
+    }
+    
+    var labelView: some View {
+        Text(LocalizedStringKey("On Time"))
+            .font(.system(size: 13, design: .rounded))
+            .foregroundStyle(Color.gray)
+    }
+    
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+        
+        return -1
     }
 }
 
@@ -74,6 +145,7 @@ struct ActivityCardView: View {
         icon: "tray.and.arrow.down",
         title: "Check In",
         date: Date(),
-        iconColor: Color.theme
+        iconColor: Color.theme,
+        employeeName: "Samar"
     )
 }

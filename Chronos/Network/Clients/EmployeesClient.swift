@@ -16,7 +16,7 @@ class EmployeesClient: BaseClient {
     
     static func registerEmployee(
         textFields: [TextFieldModel],
-        employeeDetails: LoginResponse.EmployeeDetails
+        employeeDetails: EmployeeDetails
     ) async throws -> LoginResponse {
         let router: EmployeesRouter = .registerEmployee(
             firstName: textFields[0].text,
@@ -44,6 +44,13 @@ class EmployeesClient: BaseClient {
             employeeId: employeeId,
             jobs: jobs
         )
+        return try await performRequest(router: router)
+    }
+    
+    static func getEmployeeDetails(
+        employeeId: String
+    ) async throws -> LoginResponse {
+        let router: EmployeesRouter = .getUserDetails(employeeId: employeeId)
         return try await performRequest(router: router)
     }
 }

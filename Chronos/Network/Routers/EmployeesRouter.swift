@@ -16,11 +16,12 @@ enum EmployeesRouter: BaseRouter {
         lastName: String,
         username: String,
         phone: String,
-        employeeDetails: LoginResponse.EmployeeDetails,
+        employeeDetails: EmployeeDetails,
         password: String
     )
     case deleteEmployee(username: String)
     case updateEmployeeJobs(employeeId: String, jobs: [String])
+    case getUserDetails(employeeId: String)
     
     var path: String {
         switch self {
@@ -32,6 +33,8 @@ enum EmployeesRouter: BaseRouter {
             return "manager/deleteEmployee"
         case .updateEmployeeJobs:
             return "manager/updateEmployeeJobs"
+        case .getUserDetails:
+            return "manager/getUserDetails"
         }
     }
     
@@ -44,6 +47,8 @@ enum EmployeesRouter: BaseRouter {
         case .deleteEmployee:
             return .post
         case .updateEmployeeJobs:
+            return .post
+        case .getUserDetails:
             return .post
         }
     }
@@ -74,6 +79,8 @@ enum EmployeesRouter: BaseRouter {
             return ["username": username]
         case .updateEmployeeJobs(let employeeId, let jobs):
             return ["employeeId": employeeId, "jobs": jobs]
+        case .getUserDetails(let employeeId):
+            return ["employeeId": employeeId]
         }
     }
 }

@@ -108,6 +108,9 @@
     "Check Out" : {
 
     },
+    "Clear" : {
+
+    },
     "Company Location" : {
 
     },
@@ -222,6 +225,9 @@
 
     },
     "Go Home" : {
+
+    },
+    "hello" : {
 
     },
     "ID:" : {
@@ -348,9 +354,6 @@
     "Phone Number" : {
 
     },
-    "Privacy Policy" : {
-
-    },
     "Radius" : {
 
     },
@@ -466,10 +469,16 @@
     "Username is invalid" : {
 
     },
+    "You are not inside the allowed space of location" : {
+
+    },
     "You're unavailable for all days" : {
 
     },
     "Your Activity" : {
+
+    },
+    "Your Employees Activity" : {
 
     },
     "Your request has been sent" : {

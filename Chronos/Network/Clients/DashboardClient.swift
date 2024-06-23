@@ -10,9 +10,10 @@ import Foundation
 class DashboardClient: BaseClient {
 
     static func dashboard(
-        date: Int
+        date: Int,
+        employeeId: String
     ) async throws -> DashboardResponse {
-        let router: DashboardRouter = .dashboard(date: date)
+        let router: DashboardRouter = .dashboard(date: date, employeeId: employeeId)
         return try await performRequest(router: router)
     }
 

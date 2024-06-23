@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SimpleToast
 
 struct HomeView: View {
 
@@ -15,8 +16,10 @@ struct HomeView: View {
     @State private var isShowProfileHeader = true
     @State private var showFullScreen = false
     @State private var isCheckedIn = false
+    @State private var isInvalidCheckInOut = false
 
     @State private var selectedDate: Date = Date()
+    @State private var employeeId: String?
 
     let startDate = Calendar.current.date(
         byAdding: .day,
@@ -29,6 +32,20 @@ struct HomeView: View {
         value: 30,
         to: Date()
     ) ?? Date()
+    
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 5,
+        animation: .linear(duration: 0.3),
+        modifierType: .slide,
+        dismissOnTap: true
+    )
+
+    var activityTitle: LocalizedStringKey {
+        fetchEmployeeType() == 0 ?
+        "Your Activity" :
+        "Your Employees Activity"
+    }
 
     var body: some View {
         VStack(
@@ -60,7 +77,21 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            homeModel.handleDashboardResponse(selectedDate: selectedDate)
+            homeModel.handleDashboardResponse(
+                selectedDate: selectedDate,
+                employeeId: employeeId ?? ""
+            )
+            homeModel.getEmployeesList()
+        }
+        .simpleToast(
+            isPresented: $isInvalidCheckInOut,
+            options: toastOptions
+        ) {
+            ToastView(
+                type: .warning,
+                message: "You are not inside the allowed space of location"
+            )
+            .padding(.horizontal)
         }
     }
 }
@@ -79,14 +110,17 @@ extension HomeView {
                 CustomProgressView()
             }
 
-            if getDate(date: selectedDate) == getDate(date: Date()) {
-                SwipeToUnlockView(
-                    homeModel: homeModel,
-                    isCheckedIn: $isCheckedIn,
-                    selectedDate: $selectedDate,
-                    width: 360
-                )
-                .padding(.bottom, 20)
+            if fetchEmployeeType() == 0 {
+                if getDate(date: selectedDate) == getDate(date: Date()) {
+                    SwipeToUnlockView(
+                        homeModel: homeModel,
+                        isCheckedIn: $isCheckedIn,
+                        selectedDate: $selectedDate,
+                        isInvalidCheckInOut: $isInvalidCheckInOut,
+                        width: 360
+                    )
+                    .padding(.bottom, 20)
+                }
             }
         }
         .background(
@@ -99,41 +133,76 @@ extension HomeView {
     }
 
     var activityScrollView: some View {
-        ScrollView {
-            LazyVStack(
-                alignment: .leading,
-                spacing: 15
-            ) {
-                attendanceView
-                activityView
-            }
-            .padding(.top, 20)
-            .padding(.bottom, 100)
-            .padding(.horizontal, 18)
-            .background(
-                GeometryReader { proxy in
-                    Color.clear
-                        .onChange(
-                            of: proxy.frame(in: .named("ScrollView")).minY
-                        ) { newValue, oldValue in
-                            adjustShowHeaderState(
-                                oldVal: oldValue,
-                                newVal: newValue
-                            )
-                        }
+        GeometryReader { outerProxy in
+            let outerHeight = outerProxy.size.height
+            ScrollView {
+                LazyVStack(
+                    alignment: .leading,
+                    spacing: 15
+                ) {
+                    attendanceView
+                    activityView
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
+                    Text("hello")
                 }
-            )
-        }
-        .coordinateSpace(name: "ScrollView")
-        .scrollIndicators(.hidden)
-        .onAppear {
-            isShowProfileHeader = true
-            if let dashboardResponse = homeModel.dashboardResponse {
-                if dashboardResponse.shouldShowOnboarding {
-                    showFullScreen = true
-                }
+                .padding(.top, 20)
+                .padding(.bottom, 100)
+                .padding(.horizontal, 18)
+                .background(
+                    GeometryReader { proxy in
+                        let contentHeight = proxy.size.height
+                        let minY = max(min(0, proxy.frame(in: .named("ScrollView")).minY), outerHeight - contentHeight)
+                        Color.clear
+                            .onChange(of: minY) { oldValue, newValue in
+                                if (isShowProfileHeader && newValue < oldValue) || !isShowProfileHeader && newValue > oldValue {
+                                    isShowProfileHeader = newValue > oldValue
+                                }
+                            }
+//                        Color.clear
+//                            .onChange(
+//                                of: proxy.frame(in: .named("ScrollView")).minY
+//                            ) { newValue, oldValue in
+//                                adjustShowHeaderState(
+//                                    oldVal: oldValue,
+//                                    newVal: newValue
+//                                )
+//                            }
+                    }
+                )
             }
-            checkIn()
+            .coordinateSpace(name: "ScrollView")
+            .scrollIndicators(.hidden)
+            .onAppear {
+                isShowProfileHeader = true
+                if let dashboardResponse = homeModel.dashboardResponse {
+                    if dashboardResponse.shouldShowOnboarding {
+                        showFullScreen = true
+                    }
+                }
+                checkIn()
+            }
         }
     }
 
@@ -147,9 +216,8 @@ extension HomeView {
                 .padding(.bottom)
 
             if let dashboardResponse = homeModel.dashboardResponse {
-                ForEach(dashboardResponse.shifts, id: \.self) { shift in
-                    ShiftView(shift: shift)
-                }
+                Text(dashboardResponse.shiftsTotalTime)
+                    .font(.title2)
             }
         }
     }
@@ -159,10 +227,17 @@ extension HomeView {
             alignment: .leading,
             spacing: 15
         ) {
-            Text(LocalizedStringKey("Your Activity"))
-                .fontWeight(.bold)
-                .padding(.top, 20)
-                .padding(.bottom)
+            HStack {
+                Text(activityTitle)
+                    .fontWeight(.bold)
+                    .padding(.top, 20)
+                    .padding(.bottom)
+                Spacer()
+                
+                if fetchEmployeeType() == 1 {
+                    filterButtonView
+                }
+            }
 
             if let dashboardResponse = homeModel.dashboardResponse {
                 if dashboardResponse.activities.isEmpty {
@@ -173,6 +248,34 @@ extension HomeView {
                     activitiesListView(dashboardResponse: dashboardResponse)
                 }
             }
+        }
+    }
+    
+    var filterButtonView: some View {
+        Menu {
+            ForEach(homeModel.employees) { employee in
+                Button {
+                    employeeId = employee.id
+                    homeModel.handleDashboardResponse(
+                        selectedDate: selectedDate,
+                        employeeId: employeeId ?? ""
+                    )
+                } label: {
+                    Text(employee.username)
+                }
+            }
+            
+            Button {
+                homeModel.handleDashboardResponse(
+                    selectedDate: selectedDate,
+                    employeeId: ""
+                )
+            } label: {
+                Text(LocalizedStringKey("Clear"))
+            }
+        } label: {
+            Image(systemName: "line.3.horizontal.decrease.circle")
+                .foregroundStyle(Color.black)
         }
     }
 }
@@ -196,11 +299,12 @@ extension HomeView {
                     if let checkout = activity.checkOutTime {
                         ActivityCardView(
                             icon: "tray.and.arrow.up",
-                            title: LocalizedStringKey("Check Out"),
+                            title: "Check Out",
                             date: Date(
                                 timeIntervalSince1970: Double(checkout / 1000)
                             ),
-                            iconColor: Color.red
+                            iconColor: Color.red,
+                            employeeName: activity.employeeName
                         )
                         .shadow(radius: 1)
                         .padding(.vertical, 5)
@@ -208,11 +312,12 @@ extension HomeView {
 
                     ActivityCardView(
                         icon: "tray.and.arrow.down",
-                        title: LocalizedStringKey("Check In"),
+                        title: "Check In",
                         date: Date(
                             timeIntervalSince1970: Double(activity.checkInTime / 1000)
                         ),
-                        iconColor: Color.theme
+                        iconColor: Color.theme,
+                        employeeName: activity.employeeName
                     )
                     .shadow(radius: 1)
                     .padding(.vertical, 5)
@@ -250,6 +355,16 @@ extension HomeView {
                 isCheckedIn = false
             }
         }
+    }
+    
+    private func fetchEmployeeType() -> Int {
+        if let employeeType = KeychainManager.shared.fetch(
+            key: KeychainKeys.employeeType.rawValue
+        ) {
+            return Int(employeeType) ?? -1
+        }
+
+        return -1
     }
 }
 

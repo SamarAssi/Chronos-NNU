@@ -17,6 +17,7 @@ struct SwipeToUnlockView: View {
 
     @Binding var isCheckedIn: Bool
     @Binding var selectedDate: Date
+    @Binding var isInvalidCheckInOut: Bool
 
     var width: CGFloat
 
@@ -96,7 +97,22 @@ extension SwipeToUnlockView {
         withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
             if currentDragOffsetX >= UIScreen.main.bounds.width - getRemainderOfHalfScreen() - 60 {
                 isCheckedIn.toggle()
-                handleCheckInOutResponse()
+                if let location = locationManager.location {
+                    homeModel.handleCheckInOutResponse(
+                        location: location,
+                        selectedDate: selectedDate
+                    ) { success in
+                        isInvalidCheckInOut = success
+                    }
+                }
+                
+                if let checkInOutResponse = homeModel.checkInOutResponse {
+                    if checkInOutResponse.checkInStatus == 1 {
+                        isCheckedIn = true
+                    } else {
+                        isCheckedIn = false
+                    }
+                }
             }
 
             currentDragOffsetX = 0
@@ -107,42 +123,45 @@ extension SwipeToUnlockView {
         return UIScreen.main.bounds.size.width - width
     }
 
-    private func handleCheckInOutResponse() {
-        Task {
-            do {
-                if let location = locationManager.location {
-                    let currentLatitude = location.coordinate.latitude
-                    let currentLongitude = location.coordinate.longitude
-
-                    response = try await performCheckInOutRequest(
-                        currentLatitude: currentLatitude,
-                        currentLongitude: currentLongitude
-                    )
-
-                    homeModel.handleDashboardResponse(selectedDate: selectedDate)
-                }
-            } catch let error {
-                print(error)
-            }
-            if let response = response {
-                if response.checkInStatus == 1 {
-                    isCheckedIn = true
-                } else {
-                    isCheckedIn = false
-                }
-            }
-        }
-    }
-    
-    private func performCheckInOutRequest(
-        currentLatitude: Double,
-        currentLongitude: Double
-    ) async throws -> CheckInOutResponse {
-        return try await DashboardClient.updateCheckInOut(
-            currentLatitude: currentLatitude,
-            currentLongitude: currentLongitude
-        )
-    }
+//    private func handleCheckInOutResponse() {
+//        Task {
+//            do {
+//                if let location = locationManager.location {
+//                    let currentLatitude = location.coordinate.latitude
+//                    let currentLongitude = location.coordinate.longitude
+//
+//                    response = try await performCheckInOutRequest(
+//                        currentLatitude: currentLatitude,
+//                        currentLongitude: currentLongitude
+//                    )
+//
+//                    homeModel.handleDashboardResponse(
+//                        selectedDate: selectedDate,
+//                        employeeId: ""
+//                    )
+//                }
+//            } catch let error {
+//                print(error)
+//            }
+//            if let response = response {
+//                if response.checkInStatus == 1 {
+//                    isCheckedIn = true
+//                } else {
+//                    isCheckedIn = false
+//                }
+//            }
+//        }
+//    }
+//    
+//    private func performCheckInOutRequest(
+//        currentLatitude: Double,
+//        currentLongitude: Double
+//    ) async throws -> CheckInOutResponse {
+//        return try await DashboardClient.updateCheckInOut(
+//            currentLatitude: currentLatitude,
+//            currentLongitude: currentLongitude
+//        )
+//    }
 }
 
 #Preview {
@@ -150,6 +169,7 @@ extension SwipeToUnlockView {
         homeModel: HomeModel(),
         isCheckedIn: .constant(false),
         selectedDate: .constant(Date()),
+        isInvalidCheckInOut: .constant(false),
         width: UIScreen.main.bounds.width
     )
     .environmentObject(LocationManager())

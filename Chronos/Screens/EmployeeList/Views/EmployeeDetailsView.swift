@@ -97,6 +97,7 @@ struct EmployeeDetailsView: View {
             }
             .onAppear {
                 employeeListModel.getJobsList()
+                employeeListModel.getEmployeeDetails(employeeId: employee.id)
                 oldJobs = employee.jobs
             }
             .onDisappear {
@@ -238,25 +239,45 @@ extension EmployeeDetailsView {
                 .padding(.horizontal)
             
             
-            List {
-                if let oldJobs = oldJobs {
-                    ForEach(
-                        oldJobs,
-                        id: \.self
-                    ) { job in
-                        Text("• \(job.name).")
-                            .listRowSeparator(.hidden)
-                            .padding(.horizontal)
+            if employeeListModel.isLoadingJobs {
+                CustomProgressView()
+            } else {
+                List {
+                    if let employeeDetailsResponse = employeeListModel.employeeDetailsResponse {
+                        ForEach(
+                            employeeDetailsResponse.employeeDetails.jobs,
+                            id: \.self
+                        ) { job in
+                            Text("• \(job.name).")
+                                .listRowSeparator(.hidden)
+                                .padding(.horizontal)
+                        }
+                        .onDelete { indexSet in
+                            deleteJob(
+                                at: indexSet,
+                                from: employee.jobs
+                            )
+                        }
                     }
-                    .onDelete { indexSet in
-                        deleteJob(
-                            at: indexSet,
-                            from: employee.jobs
-                        )
-                    }
+                    //                if let oldJobs = oldJobs {
+                    //                    ForEach(
+                    //                        oldJobs,
+                    //                        id: \.self
+                    //                    ) { job in
+                    //                        Text("• \(job.name).")
+                    //                            .listRowSeparator(.hidden)
+                    //                            .padding(.horizontal)
+                    //                    }
+                    //                    .onDelete { indexSet in
+                    //                        deleteJob(
+                    //                            at: indexSet,
+                    //                            from: employee.jobs
+                    //                        )
+                    //                    }
+                    //                }
                 }
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
         }
     }
     
@@ -285,7 +306,8 @@ extension EmployeeDetailsView {
                 jobs: newJobs
             )
             
-            oldJobs = newJobs
+           // oldJobs = newJobs
+            employeeListModel.getEmployeeDetails(employeeId: employee.id)
         }
     }
     
@@ -301,7 +323,8 @@ extension EmployeeDetailsView {
             employeeId: employee.id,
             jobs: newJobs
         )
-        oldJobs = newJobs
+        //oldJobs = newJobs
+        employeeListModel.getEmployeeDetails(employeeId: employee.id)
     }
     
     private func isCheck(jobsResponse: JobsResponse) {
