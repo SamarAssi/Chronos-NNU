@@ -38,7 +38,7 @@ struct DashboardTabView: View {
                     AvailabilityListView()
                 }
             }
-            .tabItem { Image(systemName: "rectangle.and.text.magnifyingglass") }
+            .tabItem { Image(systemName: "calendar.badge.checkmark") }
 
             ProfileView(isShowTabView: $isShowTabView)
                 .tabItem { Image(systemName: "person") }

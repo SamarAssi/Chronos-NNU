@@ -102,7 +102,11 @@ extension SwipeToUnlockView {
                         location: location,
                         selectedDate: selectedDate
                     ) { success in
-                        isInvalidCheckInOut = success
+                        if success {
+                            isInvalidCheckInOut = false
+                        } else {
+                            isInvalidCheckInOut = true
+                        }
                     }
                 }
                 
@@ -116,6 +120,7 @@ extension SwipeToUnlockView {
             }
 
             currentDragOffsetX = 0
+            homeModel.handleDashboardResponse(selectedDate: selectedDate, employeeId: "")
         }
     }
 

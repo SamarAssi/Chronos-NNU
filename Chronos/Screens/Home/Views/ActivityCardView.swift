@@ -29,7 +29,7 @@ struct ActivityCardView: View {
     
     var height: CGFloat {
         fetchEmployeeType() == 1 ?
-        60 :
+        80 :
         50
     }
     
@@ -83,7 +83,7 @@ extension ActivityCardView {
     
     var employeeNameView: some View {
         Text(employeeName)
-            .font(.title2)
+            .font(.title3)
             .fontWeight(.bold)
     }
     
