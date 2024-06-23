@@ -13,8 +13,8 @@ enum AvailabilityRouter: BaseRouter {
     case getAvailability
     case updateAvailability(availability: Availabilities)
     case requestsList
-    case approveAvailability(id: String)
-    case rejectAvailability(id: String)
+    case approveAvailability(id: String, comment: String)
+    case rejectAvailability(id: String, comment: String)
     case availabilityChanges(id: String)
 
     var path: String {
@@ -65,11 +65,11 @@ enum AvailabilityRouter: BaseRouter {
         case .requestsList:
             return nil
 
-        case .approveAvailability(let id):
-            return ["id": id]
-
-        case .rejectAvailability(let id):
-            return ["id": id]
+        case .approveAvailability(let id, let comment), .rejectAvailability(let id, let comment):
+            return [
+                "id": id,
+                "comment": comment
+            ]
 
         case .availabilityChanges(let id):
             return ["id": id]

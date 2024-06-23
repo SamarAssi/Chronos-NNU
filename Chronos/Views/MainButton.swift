@@ -32,10 +32,10 @@ struct MainButton: View {
                     .frame(height: 45)
                     .frame(maxWidth: .infinity)
                     .background(isEnable ? backgroundColor : .gray.opacity(0.2))
-                    .disabled(isEnable)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .fontDesign(.rounded)
             }
+            .disabled(!isEnable)
         }
     }
 }

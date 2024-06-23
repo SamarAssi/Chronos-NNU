@@ -108,6 +108,12 @@
     "Check Out" : {
 
     },
+    "Comment" : {
+
+    },
+    "Comment (optional)" : {
+
+    },
     "Company Location" : {
 
     },
@@ -210,9 +216,6 @@
 
     },
     "Enter password" : {
-
-    },
-    "Enter the reason" : {
 
     },
     "Enter username" : {
@@ -357,9 +360,6 @@
     "Privacy Policy" : {
 
     },
-    "Reason (optional)" : {
-
-    },
     "Radius" : {
 
     },
@@ -476,6 +476,9 @@
 
     },
     "Username is invalid" : {
+
+    },
+    "Would you like to submit a comment with your action?" : {
 
     },
     "You're unavailable for all days" : {

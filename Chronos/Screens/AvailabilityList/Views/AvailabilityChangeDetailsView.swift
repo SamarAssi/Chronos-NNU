@@ -15,7 +15,6 @@ struct AvailabilityChangeDetailsView: View {
 
     @State private var buttons: [AvailabilityButtonModel] = AvailabilityButtonModel.data
     @State private var showingAlert = false
-    @State private var reason: String = ""
     @State var currentAction = 0
 
     var date: Date
@@ -31,9 +30,14 @@ struct AvailabilityChangeDetailsView: View {
         NavigationStack {
             contentView
         }
-        .alert("Enter the reason", isPresented: $showingAlert) {
-            TextField("Reason (optional)", text: $reason)
+        .alert("Comment", isPresented: $showingAlert) {
+            TextField("Comment (optional)", text: $availabilityListModel.comment)
             Button("Submit", action: handleAction)
+                .foregroundStyle(Color.green)
+            Button("Cancel", role: .cancel) {}
+                .foregroundStyle(Color.black)
+        } message: {
+            Text("Would you like to submit a comment with your action?")
         }
         .onAppear {
             availabilityListModel.handleAvailabilityChangesResponse(
@@ -63,11 +67,9 @@ struct AvailabilityChangeDetailsView: View {
                     .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
                     .listRowSeparator(.hidden)
 
-
                 middleDivider
                     .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
                     .listRowSeparator(.hidden)
-
 
                 oldAvailabilityView
                     .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))

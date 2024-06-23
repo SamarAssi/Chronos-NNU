@@ -16,6 +16,8 @@ class AvailabilityListModel: ObservableObject {
     var rejectionResponse: AvailabilityApprovalResponse?
     var availabilityChangesResponse: AvailabilityUpdateRequestResponse?
 
+    var comment: String = ""
+
     var conflict: [AvailabilityConflict] {
         availabilityChangesResponse?.conflicts ?? []
     }
@@ -91,9 +93,14 @@ class AvailabilityListModel: ObservableObject {
     ) async throws -> AvailabilityApprovalResponse {
 
         if let availabilityResponse = availabilityResponse {
-            return try await AvailabilityClient.approveAvailabilityRequest(
-                id: availabilityResponse.requests[index].id
+            let response = try await AvailabilityClient.approveAvailabilityRequest(
+                id: availabilityResponse.requests[index].id,
+                comment: comment
             )
+
+            comment = ""
+            return response
+
         } else {
             throw ErrorDescription.invalidId
         }
@@ -104,9 +111,13 @@ class AvailabilityListModel: ObservableObject {
     ) async throws -> AvailabilityApprovalResponse {
 
         if let availabilityResponse = availabilityResponse {
-            return try await AvailabilityClient.rejectAvailabilityRequest(
-                id: availabilityResponse.requests[index].id
+            let response = try await AvailabilityClient.rejectAvailabilityRequest(
+                id: availabilityResponse.requests[index].id,
+                comment: comment
             )
+
+            comment = ""
+            return response
         } else {
             throw ErrorDescription.invalidId
         }

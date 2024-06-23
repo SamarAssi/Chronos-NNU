@@ -27,16 +27,18 @@ class AvailabilityClient: BaseClient {
     }
 
     static func approveAvailabilityRequest(
-        id: String
+        id: String,
+        comment: String
     ) async throws -> AvailabilityApprovalResponse {
-        let router: AvailabilityRouter = .approveAvailability(id: id)
+        let router: AvailabilityRouter = .approveAvailability(id: id, comment: comment)
         return try await performRequest(router: router)
     }
 
     static func rejectAvailabilityRequest(
-        id: String
+        id: String,
+        comment: String
     ) async throws -> AvailabilityApprovalResponse {
-        let router: AvailabilityRouter = .rejectAvailability(id: id)
+        let router: AvailabilityRouter = .rejectAvailability(id: id, comment: comment)
         return try await performRequest(router: router)
     }
 
