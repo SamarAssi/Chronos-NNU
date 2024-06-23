@@ -10,6 +10,7 @@ import SwiftUI
 struct MainButton: View {
 
     @Binding var isLoading: Bool
+    @Binding var isEnable: Bool
 
     var buttonText: LocalizedStringKey
     var backgroundColor: Color
@@ -34,7 +35,8 @@ struct MainButton: View {
                     .fontWeight(.bold)
                     .frame(height: 45)
                     .frame(maxWidth: .infinity)
-                    .background(backgroundColor)
+                    .background(isEnable ? backgroundColor : .gray.opacity(0.2))
+                    .disabled(isEnable)
                     .cornerRadius(15)
                     .fontDesign(.rounded)
             }
@@ -45,6 +47,7 @@ struct MainButton: View {
 #Preview(traits: .sizeThatFitsLayout) {
     MainButton(
         isLoading: .constant(true),
+        isEnable: .constant(true),
         buttonText: "Login",
         backgroundColor: Color.theme,
         action: {}

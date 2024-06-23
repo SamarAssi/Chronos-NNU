@@ -11,10 +11,11 @@ struct AvailabilityUpdateRequestResponse: Hashable, Codable {
     var oldAvailability: Availabilities
     var newAvailability: Availabilities
     var conflicts: [AvailabilityConflict]
+}
 
-    struct AvailabilityConflict: Hashable, Codable {
-        var day: String
-        var start: Double
-        var end: Double
-    }
+struct AvailabilityConflict: Hashable, Codable, Identifiable {
+    var id: UUID? = UUID()
+    var day: String?
+    var start: Double?
+    var end: Double?
 }

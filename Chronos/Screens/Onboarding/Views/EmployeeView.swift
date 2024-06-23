@@ -73,6 +73,7 @@ extension EmployeeView {
     var nextButtonView: some View {
         MainButton(
             isLoading: $employeeModel.isLoading,
+            isEnable: .constant(true),
             buttonText: LocalizedStringKey("Next"),
             backgroundColor: nextButtonBackgroundColor,
             action: {

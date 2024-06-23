@@ -108,6 +108,9 @@
     "Confirm Password" : {
 
     },
+    "Conflicted Shift" : {
+
+    },
     "Create" : {
 
     },
@@ -192,6 +195,9 @@
 
     },
     "Enter password" : {
+
+    },
+    "Enter the reason" : {
 
     },
     "Enter username" : {
@@ -330,6 +336,9 @@
     "Privacy Policy" : {
 
     },
+    "Reason (optional)" : {
+
+    },
     "Register" : {
 
     },
@@ -373,6 +382,9 @@
 
     },
     "Start:" : {
+
+    },
+    "Submit" : {
 
     },
     "Teams & Conditions" : {

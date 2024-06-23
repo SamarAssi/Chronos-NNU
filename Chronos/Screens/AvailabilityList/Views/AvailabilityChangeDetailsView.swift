@@ -14,6 +14,9 @@ struct AvailabilityChangeDetailsView: View {
     @ObservedObject var availabilityListModel: AvailabilityListModel
 
     @State private var buttons: [AvailabilityButtonModel] = AvailabilityButtonModel.data
+    @State private var showingAlert = false
+    @State private var reason: String = ""
+    @State var currentAction = 0
 
     var date: Date
     var index: Int
@@ -26,28 +29,11 @@ struct AvailabilityChangeDetailsView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(
-                alignment: .leading,
-                spacing: 0
-            ) {
-                Divider()
-                newAvailabilityView
-                middleDivider
-                oldAvailabilityView
-                Divider()
-                requestDateView
-                buttonsView
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    cancelButtonView
-                }
-
-                ToolbarItem(placement: .topBarLeading) {
-                    titleView
-                }
-            }
-            .fontDesign(.rounded)
+            contentView
+        }
+        .alert("Enter the reason", isPresented: $showingAlert) {
+            TextField("Reason (optional)", text: $reason)
+            Button("Submit", action: handleAction)
         }
         .onAppear {
             availabilityListModel.handleAvailabilityChangesResponse(
@@ -59,6 +45,61 @@ struct AvailabilityChangeDetailsView: View {
             availabilityListModel.handleAvailabilityRequests()
         }
     }
+
+    private var contentView: some View {
+        VStack(
+            alignment: .leading,
+            spacing: 0
+        ) {
+            List {
+                if let conflicts = availabilityListModel.availabilityChangesResponse?.conflicts,
+                   conflicts.isEmpty == false {
+                    conflictsView(conflicts: conflicts)
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
+                    .listRowSeparator(.hidden)
+                }
+
+                newAvailabilityView
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
+                    .listRowSeparator(.hidden)
+
+
+                middleDivider
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
+                    .listRowSeparator(.hidden)
+
+
+                oldAvailabilityView
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
+                    .listRowSeparator(.hidden)
+            }
+            .listStyle(.plain)
+            .listRowSeparator(.hidden)
+
+            Divider()
+            requestDateView
+            buttonsView
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                cancelButtonView
+            }
+
+            ToolbarItem(placement: .topBarLeading) {
+                titleView
+            }
+        }
+        .fontDesign(.rounded)
+    }
+
+    func handleAction() {
+        if currentAction == 0 {
+            availabilityListModel.handleRejectionResponse(at: index)
+        } else if currentAction == 1 {
+            availabilityListModel.handleApprovalResponse(at: index)
+        }
+        dismiss.callAsFunction()
+    }
 }
 
 extension AvailabilityChangeDetailsView {
@@ -68,6 +109,43 @@ extension AvailabilityChangeDetailsView {
             .font(.title3)
             .fontWeight(.bold)
             .padding(.leading)
+    }
+
+    func conflictsView(conflicts: [AvailabilityConflict]) -> some View {
+        VStack(spacing: 0) {
+            Text("Conflicted Shift")
+                .font(.system(size: 16))
+                .foregroundStyle(Color.red)
+                .frame(
+                    maxWidth: .infinity,
+                    alignment: .center
+                )
+                .frame(height: 30)
+                .background(.red.opacity(0.1))
+
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(conflicts) { conflict in
+                    Text(
+                        LocalizedStringKey(
+                            [
+                                "* Shift on",
+                                conflict.day ?? "--",
+                                "from",
+                                conflict.start?.stringTime ?? "--",
+                                "to",
+                                conflict.end?.stringTime ?? "--"
+                            ].joined(separator: " ")
+                        )
+                    )
+                    .font(.system(size: 16))
+                    .foregroundStyle(Color.red)
+                    .frame(height: 30)
+                }
+            }
+
+            Divider()
+                .padding(.top, 10)
+        }
     }
 
     var newAvailabilityView: some View {
@@ -89,7 +167,6 @@ extension AvailabilityChangeDetailsView {
                     )
                     .listRowSeparator(.hidden)
                 }
-
             }
         }
         .padding(.horizontal, 30)
@@ -157,15 +234,12 @@ extension AvailabilityChangeDetailsView {
 
                 MainButton(
                     isLoading: .constant(false),
+                    isEnable: .constant(true),
                     buttonText: buttons[specificIndex].text,
                     backgroundColor: buttons[specificIndex].backgroundColor,
                     action: {
-                        if specificIndex == 0 {
-                            availabilityListModel.handleRejectionResponse(at: index)
-                        } else if specificIndex == 1 {
-                            availabilityListModel.handleApprovalResponse(at: index)
-                        }
-                        dismiss.callAsFunction()
+                        self.currentAction = specificIndex
+                        self.showingAlert.toggle()
                     }
                 )
                 .shadow(radius: 2, x: 0, y: 2)
@@ -208,13 +282,11 @@ extension AvailabilityChangeDetailsView {
         forDay day: String,
         isNew: Bool
     ) -> some View {
-        HStack(
-            spacing: 15
-        ) {
+        HStack {
             Text(day)
                 .font(.system(size: 16, weight: .bold))
-                .frame(width: 40, alignment: .leading)
                 .padding(.vertical, 6)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             Divider()
 
@@ -223,7 +295,9 @@ extension AvailabilityChangeDetailsView {
                 dayName: day,
                 isNew: isNew
             )
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
+        .frame(maxWidth: .infinity)
     }
 
     private func availabilityForDay(

@@ -74,6 +74,7 @@ extension ManagerView {
     var registerButtonView: some View {
         MainButton(
             isLoading: $managerModel.isLoading,
+            isEnable: .constant(true),
             buttonText: LocalizedStringKey("Register"),
             backgroundColor: registerButtonBackgroundColor,
             action: {

@@ -16,6 +16,10 @@ class AvailabilityListModel: ObservableObject {
     var rejectionResponse: AvailabilityApprovalResponse?
     var availabilityChangesResponse: AvailabilityUpdateRequestResponse?
 
+    var conflict: [AvailabilityConflict] {
+        availabilityChangesResponse?.conflicts ?? []
+    }
+
     var isApproved = false
     var isRejected = false
     var isLoading = false

@@ -74,6 +74,7 @@ extension EditProfileView {
     var updateButtonView: some View {
         MainButton(
             isLoading: $isLoading,
+            isEnable: .constant(true),
             buttonText: LocalizedStringKey("Update"),
             backgroundColor: Color.theme,
             action: {

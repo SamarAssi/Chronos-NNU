@@ -54,9 +54,12 @@ class ScheduleViewModel: ObservableObject {
                     backgroundColor = color
                 }
 
+                let jobDescription = shift.jobDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
+                let titleString: String = (jobDescription?.isEmpty == false ? jobDescription : shift.employeeName) ?? "--"
+
                 return ShiftRowUIModel(
                     initials: initials,
-                    title: shift.jobDescription ?? "",
+                    title: titleString,
                     startTime: startTime,
                     endTime: endTime,
                     backgroundColor: backgroundColor

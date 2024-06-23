@@ -138,6 +138,7 @@ extension RegistrationView {
     var registerButtonView: some View {
         MainButton(
             isLoading: $registrationModel.isLoading,
+            isEnable: .constant(true),
             buttonText: LocalizedStringKey("Register"),
             backgroundColor: registerButtonBackgroundColor,
             action: {

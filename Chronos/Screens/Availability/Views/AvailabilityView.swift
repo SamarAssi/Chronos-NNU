@@ -149,6 +149,7 @@ extension AvailabilityView {
     var sendRequestButtonView: some View {
         MainButton(
             isLoading: $weekdayModel.isSubmitting,
+            isEnable: .constant(true),
             buttonText: LocalizedStringKey("Send Request"),
             backgroundColor: Color.theme,
             action: {

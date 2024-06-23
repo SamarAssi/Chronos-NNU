@@ -129,6 +129,7 @@ extension AddJobView {
     var addButtonView: some View {
         MainButton(
             isLoading: .constant(false),
+            isEnable: .constant(true),
             buttonText: "Add",
             backgroundColor: addButtonBackgroundColor,
             action: {
@@ -146,6 +147,7 @@ extension AddJobView {
     var saveButtonView: some View {
         MainButton(
             isLoading: $jobsListModel.isLoading,
+            isEnable: .constant(true),
             buttonText: saveButtonText,
             backgroundColor: saveButtonBackgroundColor,
             action: {

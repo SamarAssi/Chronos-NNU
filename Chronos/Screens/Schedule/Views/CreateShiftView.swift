@@ -46,8 +46,11 @@ struct CreateShiftView: View {
                     .frame(maxHeight: .infinity)
             } else {
                 formContent()
+
+                Divider()
                 MainButton(
-                    isLoading: $viewModel.isSubmitting,
+                    isLoading: $viewModel.isSubmitting, 
+                    isEnable: $viewModel.isButtonEnabled,
                     buttonText: "Create",
                     backgroundColor: .theme,
                     action: {
@@ -74,11 +77,24 @@ struct CreateShiftView: View {
             alignment: .leading,
             spacing: 0
         ) {
-            Text("Create Shift")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(.theme)
-                .padding()
+            HStack {
+                Text("Create Shift")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.theme)
+                    .padding()
+
+                Spacer()
+
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.title2)
+                        .foregroundColor(.theme)
+                        .padding()
+                }
+            }
             Divider()
         }
     }

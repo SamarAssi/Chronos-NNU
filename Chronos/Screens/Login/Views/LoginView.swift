@@ -86,6 +86,7 @@ extension LoginView {
     var loginButtonView: some View {
         MainButton(
             isLoading: $loginModel.isLoading,
+            isEnable: .constant(true),
             buttonText: LocalizedStringKey("Login"),
             backgroundColor: loginButtonColor,
             action: {

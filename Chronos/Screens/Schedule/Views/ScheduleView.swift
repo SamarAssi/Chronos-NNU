@@ -24,12 +24,12 @@ struct ScheduleView: View {
     private var contentView: some View {
         VStack(alignment: .leading) {
             TitleView
-            ZStack {
                 CalendarDateView
-                if fetchEmployeeType() == 1 {
-                    FloatingButton
+                .safeAreaInset(edge: .bottom) {
+                    if fetchEmployeeType() == 1 {
+                        FloatingButton
+                    }
                 }
-            }
         }
         .sheet(isPresented: $showCreateEventView) {
             CreateShiftView(selectedDate: $viewModel.selectedDate)
@@ -45,12 +45,9 @@ struct ScheduleView: View {
     }
 
     private var FloatingButton: some View {
-        VStack {
+        HStack {
             Spacer()
-            HStack {
-                Spacer()
-                FloatingActionButton
-            }
+            FloatingActionButton
         }
     }
 
@@ -60,12 +57,12 @@ struct ScheduleView: View {
         }) {
             Circle()
                 .foregroundColor(.theme)
-                .frame(width: 60, height: 60)
+                .frame(width: 50, height: 50)
                 .overlay(
                     Image(systemName: "plus")
                         .resizable()
                         .foregroundColor(.white)
-                        .padding(20)
+                        .padding(14)
                 )
                 .padding()
         }
@@ -128,29 +125,29 @@ struct ScheduleView: View {
                 )
                 .padding(.leading, 15)
 
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(model.title)
-                    .font(.headline)
+                    .font(.system(size: 15, weight: .semibold))
                     .fontWeight(.bold)
-                    .foregroundColor(.theme)
+                    .foregroundColor(.black)
                     .lineLimit(1)
 
-                HStack {
+                HStack(spacing: 2) {
                     Text("Start:")
-                        .font(.headline)
-                    .foregroundColor(.theme)
+                        .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(.black)
                     Text("\(model.startTime)")
-                        .font(.subheadline)
-                        .foregroundColor(.theme)
+                        .font(.system(size: 13))
+                        .foregroundColor(.black)
                 }
 
-                HStack {
+                HStack(spacing: 2) {
                     Text("End: ")
-                        .font(.headline)
-                        .foregroundColor(.theme)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(.black)
                     Text("\(model.endTime)")
-                        .font(.subheadline)
-                        .foregroundColor(.theme)
+                        .font(.system(size: 13))
+                        .foregroundColor(.black)
                 }
             }
             .padding(10)

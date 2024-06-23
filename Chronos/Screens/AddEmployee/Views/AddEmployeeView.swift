@@ -158,6 +158,7 @@ extension AddEmployeeView {
     var addEmployeeButtonView: some View {
         MainButton(
             isLoading: $addEmployeeModel.isLoading,
+            isEnable: .constant(true),
             buttonText: LocalizedStringKey("Add"),
             backgroundColor: addButtonBackgroundColor,
             action: {

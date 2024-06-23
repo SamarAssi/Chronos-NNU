@@ -20,9 +20,14 @@ class CreateShiftViewModel: ObservableObject {
         }
     }
 
-    @Published var description: String = ""
+    @Published var description: String = "" {
+        didSet {
+            isButtonEnabled = !description.isEmpty
+        }
+    }
     @Published var isLoading: Bool = false
     @Published var isSubmitting: Bool = false
+    @Published var isButtonEnabled: Bool = false
 
     private(set) var employees: [Employee] = []
 
