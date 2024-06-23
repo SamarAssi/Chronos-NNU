@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct EmployeeDetailsView: View {
-
+    
     @ObservedObject var employeeListModel: EmployeeListModel
     @Environment(\.dismiss) var dismiss
-
+    
     @State private var isAdding = false
     @State private var selectedJobs: [Job] = []
     @State private var newJobs: [Job] = []
+    @State private var oldJobs: [Job]?
     
     var employee: Employee
     
@@ -27,7 +28,18 @@ struct EmployeeDetailsView: View {
         Color.theme.opacity(0.5) :
         Color.theme
     }
-
+    
+    var isAddButtonToolbarDisabled: Bool {
+        for job in employeeListModel.jobs {
+            if let oldJobs = oldJobs {
+                if !oldJobs.contains(job) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
     var body: some View {
         NavigationStack {
             VStack(
@@ -36,35 +48,34 @@ struct EmployeeDetailsView: View {
             ) {
                 headerSectionView
                 usernameView
-                if !(employee.phone?.isEmpty ?? true) {
-                    phoneNumberView
-                }
-                Divider()
-                if !employee.jobs.isEmpty {
-                    jobsListView
-                    
-                    if isAdding {
-                        jobAdditionView
-                    }
-                } else {
-                    if isAdding {
-                        jobAdditionView
-                    } else {
-                        VStack(
-                            spacing: 8
-                        ) {
-                            Text(LocalizedStringKey("No selected jobs until now"))
-                                .font(.subheadline)
-                            
-                            Image(systemName: "exclamationmark.questionmark")
-                                .font(.largeTitle)
+                if let oldJobs = oldJobs {
+                    if !oldJobs.isEmpty {
+                        jobsListView
+                        
+                        if isAdding {
+                            jobAdditionView
                         }
-                        .foregroundStyle(Color.gray)
-                        .frame(
-                            maxWidth: .infinity,
-                            maxHeight: .infinity,
-                            alignment: .center
-                        )
+                    } else {
+                        if isAdding {
+                            jobAdditionView
+                        } else {
+                            
+                            VStack(
+                                spacing: 8
+                            ) {
+                                Text(LocalizedStringKey("No selected jobs until now"))
+                                    .font(.subheadline)
+                                
+                                Image(systemName: "exclamationmark.questionmark")
+                                    .font(.largeTitle)
+                            }
+                            .foregroundStyle(Color.gray)
+                            .frame(
+                                maxWidth: .infinity,
+                                maxHeight: .infinity,
+                                alignment: .center
+                            )
+                        }
                     }
                 }
             }
@@ -84,12 +95,16 @@ struct EmployeeDetailsView: View {
                     }
                 }
             }
-        }
-        .onAppear {
-            employeeListModel.getJobsList()
-        }
-        .onDisappear {
-            employeeListModel.getEmployeesList()
+            .onAppear {
+                employeeListModel.getJobsList()
+                oldJobs = employee.jobs
+            }
+            .onDisappear {
+                employeeListModel.getEmployeesList()
+            }
+            .onChange(of: oldJobs) {
+                oldJobs = employee.jobs
+            }
         }
     }
 }
@@ -113,36 +128,30 @@ extension EmployeeDetailsView {
             Text(LocalizedStringKey("Add new Job"))
             Image(systemName: "plus")
         }
-    }
-    
-    private func isCheck(jobsResponse: JobsResponse) {
-        let employeeJobsNames = employee.jobs.compactMap { $0.name }
-        
-        let managerJobsNames = jobsResponse.jobs.compactMap { $0.name }
-        
-        for index in managerJobsNames.indices {
-            if !employeeJobsNames.contains(managerJobsNames[index]) {
-                newJobs.append(jobsResponse.jobs[index])
-            }
-        }
+        .disabled(isAddButtonToolbarDisabled)
     }
     
     var jobAdditionView: some View {
         VStack {
-            if let jobsResponse = employeeListModel.jobsResponse {
-                ScrollableListView(
-                    selectedItems: $selectedJobs,
-                    label: "Select the job/s:",
-                    items: newJobs
-                )
-                .onAppear {
-                    isCheck(jobsResponse: jobsResponse)
+            HStack {
+                if let jobsResponse = employeeListModel.jobsResponse {
+                    ScrollableListView(
+                        selectedItems: $selectedJobs,
+                        label: "Select the job/s:",
+                        items: newJobs,
+                        withIcon: true
+                    )
+                    .onAppear {
+                        newJobs.removeAll()
+                        isCheck(jobsResponse: jobsResponse)
+                    }
                 }
             }
             
             HStack {
                 Button {
-                    
+                    addJob()
+                    isAdding = false
                 } label: {
                     Text(LocalizedStringKey("Add"))
                 }
@@ -166,7 +175,7 @@ extension EmployeeDetailsView {
         .font(.subheadline)
         .padding(.horizontal)
     }
-
+    
     var headerSectionView: some View {
         ZStack {
             Color.theme
@@ -213,8 +222,7 @@ extension EmployeeDetailsView {
     var phoneNumberView: some View {
         HStack {
             Image(systemName: "phone")
-            Text(employee.phone ?? "Empty phone number")
-
+            
         }
         .padding(.horizontal)
     }
@@ -229,21 +237,23 @@ extension EmployeeDetailsView {
                 .padding(.top)
                 .padding(.horizontal)
             
-
+            
             List {
-                ForEach(
-                    employee.jobs,
-                    id: \.self
-                ) { job in
-                    Text("• \(job.name).")
-                        .listRowSeparator(.hidden)
-                        .padding(.horizontal)
-                }
-                .onDelete { indexSet in
-                    deleteJob(
-                        at: indexSet,
-                        from: employee.jobs
-                    )
+                if let oldJobs = oldJobs {
+                    ForEach(
+                        oldJobs,
+                        id: \.self
+                    ) { job in
+                        Text("• \(job.name).")
+                            .listRowSeparator(.hidden)
+                            .padding(.horizontal)
+                    }
+                    .onDelete { indexSet in
+                        deleteJob(
+                            at: indexSet,
+                            from: employee.jobs
+                        )
+                    }
                 }
             }
             .listStyle(PlainListStyle())
@@ -261,13 +271,13 @@ extension EmployeeDetailsView {
 }
 
 extension EmployeeDetailsView {
-
+    
     private func deleteJob(
         at indices: IndexSet,
         from jobs: [Job]
     ) {
         var newJobs = jobs
-
+        
         indices.forEach { index in
             newJobs.remove(at: index)
             employeeListModel.updateEmployeeJob(
@@ -275,13 +285,38 @@ extension EmployeeDetailsView {
                 jobs: newJobs
             )
             
+            oldJobs = newJobs
         }
     }
-
+    
     private func deleteEmployee() {
         employeeListModel.deleteEmployee(username: employee.username)
     }
+    
+    private func addJob() {
+        var newJobs = employee.jobs
+        
+        newJobs.append(contentsOf: selectedJobs)
+        employeeListModel.updateEmployeeJob(
+            employeeId: employee.id,
+            jobs: newJobs
+        )
+        oldJobs = newJobs
+    }
+    
+    private func isCheck(jobsResponse: JobsResponse) {
+        guard let oldJobs = oldJobs else { return }
+        let employeeJobsNames = oldJobs.compactMap { $0.name }
+        let managerJobsNames = jobsResponse.jobs.compactMap { $0.name }
+        
+        for index in managerJobsNames.indices {
+            if !employeeJobsNames.contains(managerJobsNames[index]) {
+                newJobs.append(jobsResponse.jobs[index])
+            }
+        }
+    }
 }
+
 
 #Preview {
     EmployeeDetailsView(
@@ -291,7 +326,6 @@ extension EmployeeDetailsView {
             username: "samarassi",
             firstName: "Samar",
             lastName: "Assi",
-            phone: "",
             jobs: []
         )
     )

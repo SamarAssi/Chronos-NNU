@@ -19,7 +19,9 @@ class AddEmployeeModel: ObservableObject {
     var isUsernameInvalid = false
     
     @MainActor
-    func handleRegistrationResponse() {
+    func handleRegistrationResponse(
+        completion: @escaping (Bool) -> Void
+    ) {
         showLoading()
 
         Task {
@@ -38,10 +40,12 @@ class AddEmployeeModel: ObservableObject {
                 )
                 validateUsername()
                 hideLoading()
+                completion(true)
             } catch let error {
                 print(error)
                 invalidateUsername()
                 hideLoading()
+                completion(false)
             }
         }
     }

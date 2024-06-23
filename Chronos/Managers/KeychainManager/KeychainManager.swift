@@ -9,6 +9,7 @@ import Foundation
 import KeychainSwift
 
 final class KeychainManager: ObservableObject {
+
     static let shared = KeychainManager()
     let keychain: KeychainSwift
 

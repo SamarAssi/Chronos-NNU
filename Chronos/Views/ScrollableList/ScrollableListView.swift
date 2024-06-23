@@ -15,6 +15,7 @@ struct ScrollableListView<T: Hashable & LabelRepresentable>: View {
 
     var label: LocalizedStringKey
     var items: [T]
+    var withIcon: Bool
 
     var body: some View {
         NavigationStack {
@@ -26,75 +27,24 @@ struct ScrollableListView<T: Hashable & LabelRepresentable>: View {
 extension ScrollableListView {
 
     var itemSelectionView: some View {
-        VStack(
-            alignment: .leading
-        ) {
-            lableView
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            if isTapped {
-                ItemsListView(
-                    selectedItems: $selectedItems,
-                    items: items
-                )
-//                RoundedRectangle(cornerRadius: 10)
-//                    .stroke(Color.gray)
-//                    .frame(height: 45)
-//                    .background {
-//                        itemsListView(items: items)
-//                    }
-            }
-        }
-    }
-    
-    var lableView: some View {
-        HStack {
-//            Text(label)
-//                .font(.subheadline)
-//                .padding(.horizontal, 10)
-            
-            
-            NavigationLink {
-                ItemsListView(
-                    selectedItems: $selectedItems,
-                    items: items
-                )
-//                itemsListView(items: items)
-                    .navigationBarBackButtonHidden()
-            } label: {
-                HStack {
-                    Text(label)
-                        .font(.subheadline)
-                        .padding(.horizontal, 10)
-                   // Image(systemName: "chevron.right")
+        NavigationLink {
+            ItemsListView(
+                selectedItems: $selectedItems,
+                items: items
+            )
+            .navigationBarBackButtonHidden()
+        } label: {
+            HStack {
+                Text(label)
+                    .font(.subheadline)
+                    .padding(.horizontal, 10)
+                if withIcon {
+                    Image(systemName: "chevron.right")
                 }
-                .foregroundStyle(Color.black)
             }
-
-//            Image(systemName: "chevron.right")
-//                .rotationEffect(Angle(degrees: rotationAngle))
-//                .animation(
-//                    .spring(
-//                        response: 0.3,
-//                        dampingFraction: 0.6,
-//                        blendDuration: 0
-//                    ),
-//                    value: rotationAngle
-//                )
-//                .onTapGesture {
-//                    withAnimation(
-//                        .spring(
-//                            response: 0.3,
-//                            dampingFraction: 0.6,
-//                            blendDuration: 0
-//                        )
-//                    ) {
-//                        isTapped.toggle()
-//                        rotationAngle = isTapped ? -180 : -0
-//                    
-//                    }
-//                }
+            .foregroundStyle(Color.black)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -106,6 +56,7 @@ extension ScrollableListView {
             Job(id: nil, name: "iOS"),
             Job(id: nil, name: "Android"),
             Job(id: nil, name: "Backend")
-        ]
+        ],
+        withIcon: false
     )
 }

@@ -46,8 +46,8 @@ struct ManagerView: View {
 
             TextEditorView(
                 text: $managerModel.description,
-                label: LocalizedStringKey("Description"),
-                placeholder: LocalizedStringKey("Enter company description")
+                label: "Description",
+                placeholder: "Enter company description"
             )
 
             Spacer()
@@ -58,24 +58,27 @@ struct ManagerView: View {
         .padding(.vertical, 20)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Image(systemName: "lessthan")
-                    .scaleEffect(0.6)
-                    .scaleEffect(x: 1, y: 2)
-                    .onTapGesture {
-                        dismiss.callAsFunction()
-                    }
+                backButtonView
             }
         }
     }
 }
 
 extension ManagerView {
+    
+    var backButtonView: some View {
+        Image(systemName: "chevron.left")
+            .scaleEffect(0.9)
+            .onTapGesture {
+                dismiss.callAsFunction()
+            }
+    }
 
     var registerButtonView: some View {
         MainButton(
             isLoading: $managerModel.isLoading,
             isEnable: .constant(true),
-            buttonText: LocalizedStringKey("Register"),
+            buttonText: "Register",
             backgroundColor: registerButtonBackgroundColor,
             action: {
                 onboardingAction()

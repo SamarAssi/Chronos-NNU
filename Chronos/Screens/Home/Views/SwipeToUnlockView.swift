@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SwipeToUnlockView: View {
 
+    @EnvironmentObject var locationManager: LocationManager
     @ObservedObject var homeModel: HomeModel
 
     @State private var response: CheckInOutResponse?
@@ -106,15 +107,20 @@ extension SwipeToUnlockView {
         return UIScreen.main.bounds.size.width - width
     }
 
-    private func performCheckInOutRequest() async throws -> CheckInOutResponse {
-        return try await DashboardClient.updateCheckInOut()
-    }
-
     private func handleCheckInOutResponse() {
         Task {
             do {
-                response = try await performCheckInOutRequest()
-                homeModel.handleDashboardResponse(selectedDate: selectedDate)
+                if let location = locationManager.location {
+                    let currentLatitude = location.coordinate.latitude
+                    let currentLongitude = location.coordinate.longitude
+
+                    response = try await performCheckInOutRequest(
+                        currentLatitude: currentLatitude,
+                        currentLongitude: currentLongitude
+                    )
+
+                    homeModel.handleDashboardResponse(selectedDate: selectedDate)
+                }
             } catch let error {
                 print(error)
             }
@@ -127,6 +133,16 @@ extension SwipeToUnlockView {
             }
         }
     }
+    
+    private func performCheckInOutRequest(
+        currentLatitude: Double,
+        currentLongitude: Double
+    ) async throws -> CheckInOutResponse {
+        return try await DashboardClient.updateCheckInOut(
+            currentLatitude: currentLatitude,
+            currentLongitude: currentLongitude
+        )
+    }
 }
 
 #Preview {
@@ -136,4 +152,5 @@ extension SwipeToUnlockView {
         selectedDate: .constant(Date()),
         width: UIScreen.main.bounds.width
     )
+    .environmentObject(LocationManager())
 }

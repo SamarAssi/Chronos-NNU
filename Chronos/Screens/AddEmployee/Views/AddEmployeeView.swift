@@ -17,6 +17,8 @@ struct AddEmployeeView: View {
     @State private var isPhoneNumberInvalid = false
     @State private var isSamePassword = false
     
+    @Binding var isEditing: Bool
+    
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
         hideAfter: 5,
@@ -65,6 +67,7 @@ struct AddEmployeeView: View {
         }
         .onDisappear {
             employeeListModel.getEmployeesList()
+            isEditing = true
         }
         .simpleToast(
             isPresented: $isPhoneNumberInvalid,
@@ -138,7 +141,8 @@ extension AddEmployeeView {
                             ScrollableListView(
                                 selectedItems: $addEmployeeModel.selectedJobs,
                                 label: "Select the job/s:",
-                                items: jobsResponse.jobs
+                                items: jobsResponse.jobs,
+                                withIcon: false
                             )
                             .padding(.horizontal, 10)
                         }
@@ -167,9 +171,10 @@ extension AddEmployeeView {
                 )
                 isSamePassword = !checkIsSamePassword()
                 if !isPhoneNumberInvalid && checkIsSamePassword() {
-                    addEmployeeModel.handleRegistrationResponse()
-                    if !addEmployeeModel.isUsernameInvalid {
-                        dismiss.callAsFunction()
+                    addEmployeeModel.handleRegistrationResponse { success in
+                        if success {
+                            dismiss.callAsFunction()
+                        }
                     }
                 }
             }
@@ -241,5 +246,8 @@ extension AddEmployeeView {
 }
 
 #Preview {
-    AddEmployeeView(employeeListModel: EmployeeListModel())
+    AddEmployeeView(
+        employeeListModel: EmployeeListModel(),
+        isEditing: .constant(false)
+    )
 }

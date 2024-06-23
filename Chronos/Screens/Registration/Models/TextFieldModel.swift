@@ -247,4 +247,39 @@ extension TextFieldModel {
             isOptional: false
         )
     }
+    
+    static var coordinateData: [TextFieldModel] {
+        [
+            TextFieldModel(
+                text: "",
+                label: "",
+                placeholder: "Lat",
+                isSecure: false,
+                keyboardType: .numbersAndPunctuation,
+                isDisabled: false,
+                isOptional: false
+            ),
+            TextFieldModel(
+                text: "",
+                label: "",
+                placeholder: "Lon",
+                isSecure: false,
+                keyboardType: .numbersAndPunctuation,
+                isDisabled: false,
+                isOptional: false
+            )
+        ]
+    }
+    
+    static var radiusData: TextFieldModel {
+        TextFieldModel(
+            text: "",
+            label: "",
+            placeholder: "Radius",
+            isSecure: false,
+            keyboardType: .numbersAndPunctuation,
+            isDisabled: false,
+            isOptional: false
+        )
+    }
 }

@@ -72,7 +72,6 @@ extension EmployeeCellView {
             username: "",
             firstName: "",
             lastName: "",
-            phone: "",
             jobs: []
         )
     )

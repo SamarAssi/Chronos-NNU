@@ -14,6 +14,7 @@ class EmployeeListModel: ObservableObject {
     var employeeDeletionResponse: EmployeeDeletionResponse?
     var employeeJobsUpdateResponse: EmployeeJobsUpdateResponse?
     var jobsResponse: JobsResponse?
+    var jobs: [Job] = []
     
     var isLoading = false
     
@@ -68,6 +69,7 @@ class EmployeeListModel: ObservableObject {
         Task {
             do {
                 jobsResponse = try await JobsClient.getJobs()
+                jobs = jobsResponse?.jobs ?? []
             } catch let error {
                 print(error)
             }

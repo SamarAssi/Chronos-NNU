@@ -14,8 +14,8 @@ struct ListCellView: View {
     
     var icon: String {
         isSelected ?
-        "checkmark.circle" :
-        "circle"
+        "checkmark" :
+        ""
     }
     
     var backgroundColor: Color {
@@ -48,7 +48,6 @@ extension ListCellView {
                 .font(.subheadline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
-//        .frame(height: 30)
         .padding(.horizontal, 10)
     }
 }

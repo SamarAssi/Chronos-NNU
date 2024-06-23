@@ -57,24 +57,27 @@ struct EmployeeView: View {
         .padding(.vertical, 20)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Image(systemName: "lessthan")
-                    .scaleEffect(0.6)
-                    .scaleEffect(x: 1, y: 2)
-                    .onTapGesture {
-                        dismiss.callAsFunction()
-                    }
+                backButtonView
             }
         }
     }
 }
 
 extension EmployeeView {
+    
+    var backButtonView: some View {
+        Image(systemName: "chevron.left")
+            .scaleEffect(0.9)
+            .onTapGesture {
+                dismiss.callAsFunction()
+            }
+    }
 
     var nextButtonView: some View {
         MainButton(
             isLoading: $employeeModel.isLoading,
             isEnable: .constant(true),
-            buttonText: LocalizedStringKey("Next"),
+            buttonText: "Next",
             backgroundColor: nextButtonBackgroundColor,
             action: {
                 onboardingAction()

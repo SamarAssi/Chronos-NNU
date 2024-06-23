@@ -34,7 +34,9 @@ struct LoginView: View {
                 .frame(height: 150)
                 .padding(.horizontal, 20)
 
-            VStack(spacing: 20) {
+            VStack(
+                spacing: 20
+            ) {
                 ForEach(loginModel.textFieldModels) { textFieldModel in
                     TextFieldView(textFieldModel: textFieldModel)
                 }
@@ -47,8 +49,8 @@ struct LoginView: View {
             Spacer()
 
             FooterButton(
-                title: LocalizedStringKey("NoAccountQuestion"),
-                buttonText: LocalizedStringKey("Register"),
+                title: "Don't hava an account?",
+                buttonText: "Register",
                 action: {
                     navigationRouter.navigateTo(.registration)
                 }
@@ -87,7 +89,7 @@ extension LoginView {
         MainButton(
             isLoading: $loginModel.isLoading,
             isEnable: .constant(true),
-            buttonText: LocalizedStringKey("Login"),
+            buttonText: "Login",
             backgroundColor: loginButtonColor,
             action: {
                 login()

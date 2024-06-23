@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct ChronosApp: App {
+    
+    @StateObject var locationManager = LocationManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(NavigationRouter())
+                .environmentObject(locationManager)
         }
     }
 }

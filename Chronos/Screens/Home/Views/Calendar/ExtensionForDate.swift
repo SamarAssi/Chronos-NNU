@@ -9,9 +9,13 @@ import Foundation
 
 extension Date {
 
-    static func generateDates(from startDate: Date, to endDate: Date) -> [Date] {
+    static func generateDates(
+        from startDate: Date,
+        to endDate: Date
+    ) -> [Date] {
         var dates = [Date]()
         var currentDate = startDate
+
         while currentDate <= endDate {
             dates.append(currentDate)
             currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!

@@ -52,8 +52,8 @@ struct RegistrationView: View {
             
             if fetchEmployeeType() == -1 {
                 FooterButton(
-                    title: LocalizedStringKey("Already have an account?"),
-                    buttonText: LocalizedStringKey("Login"),
+                    title: "Already have an account?",
+                    buttonText: "Login",
                     action: {
                         navigationRouter.navigateTo(.login)
                     }
@@ -139,7 +139,7 @@ extension RegistrationView {
         MainButton(
             isLoading: $registrationModel.isLoading,
             isEnable: .constant(true),
-            buttonText: LocalizedStringKey("Register"),
+            buttonText: "Register",
             backgroundColor: registerButtonBackgroundColor,
             action: {
                 isPhoneNumberInvalid = !isValidPhoneNumber(
@@ -159,7 +159,7 @@ extension RegistrationView {
     var invalidPhoneNumberToast: some View {
         ToastView(
             type: .error,
-            message: LocalizedStringKey("Invalid phone number")
+            message: "Invalid phone number"
         )
         .padding(.horizontal, 30)
     }
@@ -167,7 +167,7 @@ extension RegistrationView {
     var passwordMismatchToast: some View {
         ToastView(
             type: .error,
-            message: LocalizedStringKey("Password mismatch")
+            message: "Password mismatch"
         )
         .padding(.horizontal, 30)
     }
@@ -175,7 +175,7 @@ extension RegistrationView {
     var invalidUsernameToast: some View {
         ToastView(
             type: .error,
-            message: LocalizedStringKey("Username is invalid")
+            message: "Username is invalid"
         )
         .padding(.horizontal, 30)
     }
