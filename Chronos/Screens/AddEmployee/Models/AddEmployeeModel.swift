@@ -9,7 +9,9 @@ import Foundation
 
 @Observable
 class AddEmployeeModel: ObservableObject {
+    
     var textFields: [TextFieldModel] = TextFieldModel.addEmployeeData
+
     var registerEmployeeResponse: LoginResponse?
     var jobsResponse: JobsResponse?
     
@@ -26,7 +28,7 @@ class AddEmployeeModel: ObservableObject {
 
         Task {
             do {
-                let employeeDetails = LoginResponse.EmployeeDetails(
+                let employeeDetails = EmployeeDetails(
                     jobs: selectedJobs,
                     employeeType: 0,
                     joinedDate: "",

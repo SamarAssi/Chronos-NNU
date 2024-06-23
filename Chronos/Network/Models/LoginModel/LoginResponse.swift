@@ -14,13 +14,13 @@ struct LoginResponse: Hashable, Codable {
     let lastName: String
     let username: String
     let phone: String
+}
 
-    struct EmployeeDetails: Hashable, Codable {
-        var jobs: [Job]
-        var employeeType: Int
-        let joinedDate: String
-        let salary: Double
-        let reportsTo: String
-        let companyName: String?
-    }
+struct EmployeeDetails: Hashable, Codable {
+    var jobs: [Job]
+    var employeeType: Int
+    let joinedDate: String
+    let salary: Double
+    let reportsTo: String
+    let companyName: String?
 }

@@ -14,9 +14,11 @@ class EmployeeListModel: ObservableObject {
     var employeeDeletionResponse: EmployeeDeletionResponse?
     var employeeJobsUpdateResponse: EmployeeJobsUpdateResponse?
     var jobsResponse: JobsResponse?
+    var employeeDetailsResponse: LoginResponse?
     var jobs: [Job] = []
     
     var isLoading = false
+    var isLoadingJobs = false
     
     @MainActor
     func getEmployeesList() {
@@ -51,6 +53,7 @@ class EmployeeListModel: ObservableObject {
         employeeId: String,
         jobs: [Job]
     ) {
+        isLoadingJobs = true
         Task {
             do {
                 let ids = jobs.compactMap { $0.id }
@@ -58,8 +61,11 @@ class EmployeeListModel: ObservableObject {
                     employeeId: employeeId,
                     jobs: ids
                 )
+                //getEmployeeDetails(employeeId: employeeId)
+                isLoadingJobs = false
             } catch let error {
                 print(error)
+                isLoading = false
             }
         }
     }
@@ -70,6 +76,19 @@ class EmployeeListModel: ObservableObject {
             do {
                 jobsResponse = try await JobsClient.getJobs()
                 jobs = jobsResponse?.jobs ?? []
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
+    @MainActor
+    func getEmployeeDetails(employeeId: String) {
+        Task {
+            do {
+                employeeDetailsResponse = try await EmployeesClient.getEmployeeDetails(
+                    employeeId: employeeId
+                )
             } catch let error {
                 print(error)
             }

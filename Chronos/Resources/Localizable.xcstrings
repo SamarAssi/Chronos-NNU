@@ -108,6 +108,9 @@
     "Check Out" : {
 
     },
+    "Clear" : {
+
+    },
     "Comment" : {
 
     },
@@ -357,9 +360,6 @@
     "Phone Number" : {
 
     },
-    "Privacy Policy" : {
-
-    },
     "Radius" : {
 
     },
@@ -481,10 +481,16 @@
     "Would you like to submit a comment with your action?" : {
 
     },
+    "You are not inside the allowed space of location" : {
+
+    },
     "You're unavailable for all days" : {
 
     },
     "Your Activity" : {
+
+    },
+    "Your Employees Activity" : {
 
     },
     "Your request has been sent" : {

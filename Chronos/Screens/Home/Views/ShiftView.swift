@@ -11,7 +11,7 @@ struct ShiftView: View {
 
     @State private var attendanceCards: [AttendanceCardModel] = []
 
-    var shift: DashboardResponse.Shift
+    var shift: Shift
 
     var body: some View {
         HStack(
@@ -41,13 +41,13 @@ extension ShiftView {
             AttendanceCardModel(
                 cardIcon: "tray.and.arrow.down",
                 cardTitle: LocalizedStringKey("Start Time"),
-                time: shift.startTime,
+                time: shift.startTime ?? 0,
                 note: LocalizedStringKey("On Time")
             ),
             AttendanceCardModel(
                 cardIcon: "tray.and.arrow.up",
                 cardTitle: LocalizedStringKey("End Time"),
-                time: shift.endTime,
+                time: shift.endTime ?? 0,
                 note: LocalizedStringKey("Go Home")
             )
         ]
@@ -56,11 +56,13 @@ extension ShiftView {
 
 #Preview {
     ShiftView(
-        shift: DashboardResponse.Shift(
-            shiftName: "Start Shift",
+        shift: Shift(
+            role: "",
             startTime: 0,
             endTime: 0,
-            jobDescription: ""
+            jobDescription: "",
+            employeeID: "",
+            employeeName: ""
         )
     )
 }

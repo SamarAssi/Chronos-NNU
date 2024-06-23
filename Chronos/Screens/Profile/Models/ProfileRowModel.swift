@@ -28,10 +28,6 @@ extension ProfileRowModel {
             ProfileRowModel(
                 name: LocalizedStringKey("Teams & Conditions"),
                 icon: "list.bullet.rectangle"
-            ),
-            ProfileRowModel(
-                name: LocalizedStringKey("Privacy Policy"),
-                icon: "checkmark.shield"
             )
         ]
     }
