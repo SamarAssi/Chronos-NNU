@@ -5,8 +5,8 @@
 //  Created by Samar Assi on 26/05/2024.
 //
 
-import Foundation
 import Alamofire
+import SwiftUI
 
 @Observable
 class AvailabilityListModel: ObservableObject {
@@ -15,16 +15,19 @@ class AvailabilityListModel: ObservableObject {
     var approvalResponse: AvailabilityApprovalResponse?
     var rejectionResponse: AvailabilityApprovalResponse?
     var availabilityChangesResponse: AvailabilityUpdateRequestResponse?
-
+    
+    var availabilityRowUIModel: [AvailabilityRowUIModel] = []
     var comment: String = ""
 
     var conflict: [AvailabilityConflict] {
         availabilityChangesResponse?.conflicts ?? []
     }
-
+    
     var isApproved = false
     var isRejected = false
     var isLoading = false
+    
+    @ObservationIgnored private lazy var acronymManager = AcronymManager()
 
     @MainActor
     func handleAvailabilityRequests() {
@@ -33,6 +36,20 @@ class AvailabilityListModel: ObservableObject {
         Task {
             do {
                 availabilityResponse = try await performAvailabilityRequest()
+                acronymManager.resetColors()
+                availabilityRowUIModel = availabilityResponse?.requests.compactMap {
+                    let name = $0.employeeName
+                    let initials: String
+                    let backgroundColor: Color
+                    (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: $0.id)
+                    
+                    return AvailabilityRowUIModel(
+                        initials: initials,
+                        name: name,
+                        date: Date(timeIntervalSince1970: $0.date / 1000),
+                        backgroundColor: backgroundColor
+                    )
+                } ?? []
                 hideLoading()
             } catch let error {
                 print(error)
@@ -142,4 +159,12 @@ class AvailabilityListModel: ObservableObject {
     private func hideLoading() {
         isLoading = false
     }
+}
+
+struct AvailabilityRowUIModel: Identifiable {
+    let id = UUID()
+    let initials: String
+    let name: String
+    let date: Date
+    let backgroundColor: Color
 }

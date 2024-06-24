@@ -126,6 +126,7 @@
 		8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */; };
 		8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */; };
 		8B81C2AF2C0266E8000DA507 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AE2C0266E8000DA507 /* Availability.swift */; };
+		8B9B00122C295BF5007EDAF9 /* AcronymManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B00102C295BF5007EDAF9 /* AcronymManager.swift */; };
 		8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +248,7 @@
 		8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRouter.swift; sourceTree = "<group>"; };
 		8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityClient.swift; sourceTree = "<group>"; };
 		8B81C2AE2C0266E8000DA507 /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
+		8B9B00102C295BF5007EDAF9 /* AcronymManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcronymManager.swift; sourceTree = "<group>"; };
 		8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -671,6 +673,7 @@
 		2FEFBB612C272D51005E3FB4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				8B9B00112C295BF5007EDAF9 /* AcronymManager */,
 				8B37D10C2C2818A7001D4739 /* KeychainManager */,
 				2F7447092C0CA0A70059899C /* PasswordValidationManager */,
 				2FEFBB622C272D60005E3FB4 /* LocationManager */,
@@ -884,6 +887,14 @@
 			path = Availability;
 			sourceTree = "<group>";
 		};
+		8B9B00112C295BF5007EDAF9 /* AcronymManager */ = {
+			isa = PBXGroup;
+			children = (
+				8B9B00102C295BF5007EDAF9 /* AcronymManager.swift */,
+			);
+			path = AcronymManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1045,6 +1056,7 @@
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				2FEFBB742C273BA2005E3FB4 /* SetupCheckInOutView.swift in Sources */,
 				2FF8ADEC2BF924B900DB9C4E /* ManagerModel.swift in Sources */,
+				8B9B00122C295BF5007EDAF9 /* AcronymManager.swift in Sources */,
 				2F41CBE02BE832B7000AC5B0 /* TextFieldModel.swift in Sources */,
 				2F41CBD82BE81BEA000AC5B0 /* DashboardTabView.swift in Sources */,
 				2F7447202C14FEA40059899C /* JobCellView.swift in Sources */,
