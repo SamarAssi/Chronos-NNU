@@ -77,6 +77,9 @@
 		2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7943652BCAFCC700387D3E /* ActivityCardView.swift */; };
 		2F928D4E2BD1189D004AAED3 /* ProgressLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F928D4D2BD1189D004AAED3 /* ProgressLoader.swift */; };
 		2F928D542BD32DB7004AAED3 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F928D532BD32DB7004AAED3 /* ProfileHeaderView.swift */; };
+		2FD24D4C2C2895B6009D1EDD /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D4B2C2895B6009D1EDD /* KeychainSwift */; };
+		2FD24D4F2C2895BF009D1EDD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D4E2C2895BF009D1EDD /* Alamofire */; };
+		2FD24D542C2895C7009D1EDD /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D532C2895C7009D1EDD /* SimpleToast */; };
 		2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA812BE9153C00B3129B /* ManagerOnboardingResponse.swift */; };
 		2FDECA862BE974A600B3129B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA852BE974A600B3129B /* ToastView.swift */; };
 		2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA8D2BEBE1C300B3129B /* ProfileView.swift */; };
@@ -88,9 +91,6 @@
 		2FEFBB252C1F8F2D005E3FB4 /* ScrollableListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFBB242C1F8F2D005E3FB4 /* ScrollableListView.swift */; };
 		2FEFBB2A2C1FAC1B005E3FB4 /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFBB292C1FAC1B005E3FB4 /* ListCellView.swift */; };
 		2FEFBB2C2C20D1BF005E3FB4 /* ItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFBB2B2C20D1BF005E3FB4 /* ItemsListView.swift */; };
-		2FEFBB582C272ACE005E3FB4 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2FEFBB572C272ACE005E3FB4 /* KeychainSwift */; };
-		2FEFBB5B2C272AD8005E3FB4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2FEFBB5A2C272AD8005E3FB4 /* Alamofire */; };
-		2FEFBB602C272AE9005E3FB4 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2FEFBB5F2C272AE9005E3FB4 /* SimpleToast */; };
 		2FEFBB642C272D7B005E3FB4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFBB632C272D7B005E3FB4 /* LocationManager.swift */; };
 		2FEFBB662C272E07005E3FB4 /* OnboardingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFBB652C272E07005E3FB4 /* OnboardingClient.swift */; };
 		2FEFBB682C272F06005E3FB4 /* OnboardingCompanyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFBB672C272F06005E3FB4 /* OnboardingCompanyResponse.swift */; };
@@ -257,9 +257,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FEFBB602C272AE9005E3FB4 /* SimpleToast in Frameworks */,
-				2FEFBB582C272ACE005E3FB4 /* KeychainSwift in Frameworks */,
-				2FEFBB5B2C272AD8005E3FB4 /* Alamofire in Frameworks */,
+				2FD24D542C2895C7009D1EDD /* SimpleToast in Frameworks */,
+				2FD24D4C2C2895B6009D1EDD /* KeychainSwift in Frameworks */,
+				2FD24D4F2C2895BF009D1EDD /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,9 +912,9 @@
 			);
 			name = Chronos;
 			packageProductDependencies = (
-				2FEFBB572C272ACE005E3FB4 /* KeychainSwift */,
-				2FEFBB5A2C272AD8005E3FB4 /* Alamofire */,
-				2FEFBB5F2C272AE9005E3FB4 /* SimpleToast */,
+				2FD24D4B2C2895B6009D1EDD /* KeychainSwift */,
+				2FD24D4E2C2895BF009D1EDD /* Alamofire */,
+				2FD24D532C2895C7009D1EDD /* SimpleToast */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -945,9 +945,9 @@
 			);
 			mainGroup = 2F7942D42BC050A500387D3E;
 			packageReferences = (
-				2FEFBB562C272ACE005E3FB4 /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				2FEFBB592C272AD8005E3FB4 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				2FEFBB5E2C272AE9005E3FB4 /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				2FD24D4A2C2895B6009D1EDD /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				2FD24D4D2C2895BF009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2FD24D522C2895C7009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -1236,6 +1236,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1267,6 +1268,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1304,7 +1306,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2FEFBB562C272ACE005E3FB4 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+		2FD24D4A2C2895B6009D1EDD /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
@@ -1312,7 +1314,7 @@
 				minimumVersion = 24.0.0;
 			};
 		};
-		2FEFBB592C272AD8005E3FB4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		2FD24D4D2C2895BF009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1320,7 +1322,7 @@
 				minimumVersion = 5.9.1;
 			};
 		};
-		2FEFBB5E2C272AE9005E3FB4 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+		2FD24D522C2895C7009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
 			requirement = {
@@ -1331,19 +1333,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2FEFBB572C272ACE005E3FB4 /* KeychainSwift */ = {
+		2FD24D4B2C2895B6009D1EDD /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FEFBB562C272ACE005E3FB4 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			package = 2FD24D4A2C2895B6009D1EDD /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
 		};
-		2FEFBB5A2C272AD8005E3FB4 /* Alamofire */ = {
+		2FD24D4E2C2895BF009D1EDD /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FEFBB592C272AD8005E3FB4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 2FD24D4D2C2895BF009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		2FEFBB5F2C272AE9005E3FB4 /* SimpleToast */ = {
+		2FD24D532C2895C7009D1EDD /* SimpleToast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FEFBB5E2C272AE9005E3FB4 /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			package = 2FD24D522C2895C7009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
 		};
 /* End XCSwiftPackageProductDependency section */

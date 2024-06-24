@@ -17,14 +17,16 @@ struct DashboardTabView: View {
             HomeView()
                 .tabItem { Image(systemName: "house") }
 
-            EmployeeListView(isShowCurrentTabView: $isShowCurrentTabView)
-                .tabItem { Image(systemName: "list.clipboard") }
-                .toolbar(
-                    isShowCurrentTabView ?
-                    .visible :
-                    .hidden,
-                    for: .tabBar
-                )
+            if fetchEmployeeType() == 1 {
+                EmployeeListView(isShowCurrentTabView: $isShowCurrentTabView)
+                    .tabItem { Image(systemName: "list.clipboard") }
+                    .toolbar(
+                        isShowCurrentTabView ?
+                            .visible :
+                                .hidden,
+                        for: .tabBar
+                    )
+            }
 
             ScheduleView()
                 .tabItem { Image(systemName: "calendar") }
@@ -36,16 +38,16 @@ struct DashboardTabView: View {
                     AvailabilityListView()
                 }
             }
-            .tabItem { Image(systemName: "figure.open.water.swim") }
+            .tabItem { Image(systemName: "calendar.badge.checkmark") }
 
             ProfileView(isShowTabView: $isShowTabView)
                 .tabItem { Image(systemName: "person") }
-                .toolbar(
-                    isShowTabView ?
-                    .visible :
-                    .hidden,
-                    for: .tabBar
-                )
+//                .toolbar(
+//                    isShowTabView ?
+//                    .visible :
+//                    .hidden,
+//                    for: .tabBar
+//                )
         }
         .tint(Color.theme)
     }
