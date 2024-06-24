@@ -118,6 +118,8 @@
 		8B37D1092C2804C0001D4739 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37D1082C2804C0001D4739 /* Int+Extensions.swift */; };
 		8B37D10D2C2818A7001D4739 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37D10A2C2818A7001D4739 /* KeychainKeys.swift */; };
 		8B37D10E2C2818A7001D4739 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37D10B2C2818A7001D4739 /* KeychainManager.swift */; };
+		8B44A8CA2C28638E00795567 /* GifImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44A8C92C28638E00795567 /* GifImageView.swift */; };
+		8B44A8D42C28672B00795567 /* aiButton.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8B44A8D32C28672B00795567 /* aiButton.gif */; };
 		8B586BAF2C2309E700F8DE98 /* CreateShiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */; };
 		8B586BB12C231C4900F8DE98 /* ScheduleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */; };
 		8B586BB32C231D1500F8DE98 /* ScheduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */; };
@@ -126,6 +128,7 @@
 		8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */; };
 		8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */; };
 		8B81C2AF2C0266E8000DA507 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81C2AE2C0266E8000DA507 /* Availability.swift */; };
+		8B8240052C295D1800780D63 /* AIFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8240042C295D1800780D63 /* AIFeatureView.swift */; };
 		8B9B00122C295BF5007EDAF9 /* AcronymManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B00102C295BF5007EDAF9 /* AcronymManager.swift */; };
 		8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */; };
 /* End PBXBuildFile section */
@@ -240,6 +243,8 @@
 		8B37D1082C2804C0001D4739 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		8B37D10A2C2818A7001D4739 /* KeychainKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
 		8B37D10B2C2818A7001D4739 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		8B44A8C92C28638E00795567 /* GifImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageView.swift; sourceTree = "<group>"; };
+		8B44A8D32C28672B00795567 /* aiButton.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = aiButton.gif; sourceTree = "<group>"; };
 		8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShiftView.swift; sourceTree = "<group>"; };
 		8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRouter.swift; sourceTree = "<group>"; };
 		8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleClient.swift; sourceTree = "<group>"; };
@@ -248,6 +253,7 @@
 		8B81C2A92C0265CC000DA507 /* AvailabilityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRouter.swift; sourceTree = "<group>"; };
 		8B81C2AB2C026663000DA507 /* AvailabilityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityClient.swift; sourceTree = "<group>"; };
 		8B81C2AE2C0266E8000DA507 /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
+		8B8240042C295D1800780D63 /* AIFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFeatureView.swift; sourceTree = "<group>"; };
 		8B9B00102C295BF5007EDAF9 /* AcronymManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcronymManager.swift; sourceTree = "<group>"; };
 		8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -520,6 +526,7 @@
 				2FDECA852BE974A600B3129B /* ToastView.swift */,
 				2FF8ADE72BF8FA2800DB9C4E /* TrackableScrollView.swift */,
 				2F731BD22C02985500B3501D /* CustomProgressView.swift */,
+				8B44A8C92C28638E00795567 /* GifImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -527,6 +534,7 @@
 		2F7943302BC43A5100387D3E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8B44A8D32C28672B00795567 /* aiButton.gif */,
 				2F7943082BC2E5F600387D3E /* Localizable.xcstrings */,
 				2F7942E42BC050A800387D3E /* Assets.xcassets */,
 			);
@@ -863,6 +871,7 @@
 			children = (
 				8B2829E92C22E84900CE9220 /* ScheduleView.swift */,
 				8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */,
+				8B8240042C295D1800780D63 /* AIFeatureView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -966,6 +975,7 @@
 				2F7942E82BC050A800387D3E /* Preview Assets.xcassets in Resources */,
 				2F1C0E592BD9D04100960980 /* LaunchScreen.storyboard in Resources */,
 				2F7942E52BC050A800387D3E /* Assets.xcassets in Resources */,
+				8B44A8D42C28672B00795567 /* aiButton.gif in Resources */,
 				2F7943092BC2E5F600387D3E /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,6 +1002,7 @@
 				2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */,
 				2F7447022C0BDCC20059899C /* EmployeesClient.swift in Sources */,
 				8B81C2AF2C0266E8000DA507 /* Availability.swift in Sources */,
+				8B8240052C295D1800780D63 /* AIFeatureView.swift in Sources */,
 				2F731B982C00C0A400B3501D /* ConstraintTextModel.swift in Sources */,
 				2FDECAA12BEFB40A00B3129B /* DashboardResponse.swift in Sources */,
 				2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */,
@@ -1004,6 +1015,7 @@
 				2F7446F02C0B67BF0059899C /* JobsListModel.swift in Sources */,
 				2F7447052C0BDCEB0059899C /* EmployeesResponse.swift in Sources */,
 				2F7943122BC3284900387D3E /* HomeView.swift in Sources */,
+				8B44A8CA2C28638E00795567 /* GifImageView.swift in Sources */,
 				2FEFBB2A2C1FAC1B005E3FB4 /* ListCellView.swift in Sources */,
 				2F7447152C11299B0059899C /* EmployeeJobsUpdateResponse.swift in Sources */,
 				2F7446F42C0B97E00059899C /* UpdateJobResponse.swift in Sources */,

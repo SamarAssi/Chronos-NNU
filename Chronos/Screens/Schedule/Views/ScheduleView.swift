@@ -10,24 +10,75 @@ import SwiftUI
 struct ScheduleView: View {
 
     @State var showCreateEventView = false
+    @State private var showAIFeature = false
+    @State private var buttonAnimation = false
+    @State private var animateBackground = false
+
+    @State private var addButtonClicked = false
+
     @ObservedObject var viewModel = ScheduleViewModel()
 
     var body: some View {
-        contentView
-            .onAppear {
-                Task {
-                    await viewModel.getData()
-                }
+        ZStack {
+            contentView
+            aiContainerView
+        }
+        .onAppear {
+            Task {
+                await viewModel.getData()
             }
+        }
+    }
+
+    private var aiContainerView: some View {
+        ZStack {
+            if showAIFeature {
+                Color.black.opacity(0.2)
+                    .background(animateBackground ? .red : .blue)
+                    .opacity(0.2)
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity
+                    )
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation(.easeInOut) {
+                            showAIFeature.toggle()
+                        }
+                    }
+                    .animation(
+                        .easeInOut(duration: 0.5)
+                        .repeatForever()
+                        .delay(0.2),
+                        value: animateBackground
+                    )
+                    .onAppear {
+                        animateBackground.toggle()
+                    }
+            }
+
+            if showAIFeature {
+                AIFeatureView()
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity
+                    )
+                    .padding()
+                    .transition(.aiViewAnimation)
+            }
+        }
     }
 
     private var contentView: some View {
         VStack(alignment: .leading) {
             TitleView
-                CalendarDateView
+            CalendarDateView
                 .safeAreaInset(edge: .bottom) {
                     if fetchEmployeeType() == 1 {
-                        FloatingButton
+                        HStack {
+                            Spacer()
+                            FloatingActionButton
+                        }
                     }
                 }
         }
@@ -36,18 +87,42 @@ struct ScheduleView: View {
         }
     }
 
-    private var TitleView: some View {
-        Text("Schedule")
-            .font(.title)
-            .fontWeight(.bold)
-            .foregroundColor(.theme)
-            .padding()
+    private var aiButton: some View {
+        Button(action: {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                withAnimation(.default) {
+                    showAIFeature.toggle()
+                }
+            }
+        }) {
+            GifImageView("aiButton")
+                .frame(width: 50, height: 50)
+                .clipShape(Circle())
+                .shadow(radius: 10)
+                .scaleEffect(buttonAnimation ? 1.2 : 1.0)
+                .animation(
+                    .easeInOut(duration: 0.6)
+                    .repeatForever(autoreverses: true)
+                    .delay(0.2),
+                    value: buttonAnimation
+                )
+                .onAppear {
+                    buttonAnimation = true
+                }
+                .shadow(radius: 2)
+                .padding()
+        }
     }
 
-    private var FloatingButton: some View {
+    private var TitleView: some View {
         HStack {
+            Text("Schedule")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(.theme)
+                .padding()
             Spacer()
-            FloatingActionButton
+            aiButton
         }
     }
 
@@ -171,4 +246,11 @@ struct ScheduleView: View {
 
 #Preview {
     ScheduleView()
+}
+
+extension AnyTransition {
+    static var aiViewAnimation: AnyTransition {
+        AnyTransition.scale(scale: 0.1, anchor: .bottomLeading)
+            .combined(with: .asymmetric(insertion: .opacity, removal: .opacity))
+    }
 }
