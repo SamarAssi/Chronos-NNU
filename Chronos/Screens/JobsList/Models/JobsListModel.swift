@@ -34,6 +34,7 @@ class JobsListModel: ObservableObject {
         Task {
             do {
                 updateJobResponse = try await updateJob(jobs: jobs)
+                getJobsList()
                 hideLoading()
             } catch let error {
                 print(error)

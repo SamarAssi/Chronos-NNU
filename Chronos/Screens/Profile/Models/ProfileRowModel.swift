@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ProfileRowModel: Identifiable {
-    let id = UUID().uuidString
+    let id = UUID()
     let name: LocalizedStringKey
     let icon: String
 }

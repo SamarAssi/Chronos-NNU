@@ -71,12 +71,14 @@ struct AddJobView: View {
                 spacing: 20
             ) {
                 TextFieldView(textFieldModel: textField)
+                    .padding()
 
                 if selectedJob == nil {
                     if !jobsNames.isEmpty {
                         Text(LocalizedStringKey("Added jobs:"))
                             .font(.system(size: 15))
                             .fontWeight(.bold)
+                            .padding(.leading)
                     }
                 }
                 jobsNamesList
@@ -86,9 +88,9 @@ struct AddJobView: View {
                     }
                     saveButtonView
                 }
+                .padding()
             }
             .fontDesign(.rounded)
-            .padding()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     cancelButtonView
@@ -98,13 +100,13 @@ struct AddJobView: View {
                     titleView
                 }
             }
-            .simpleToast(
-                isPresented: $isShowToast,
-                options: toastOptions
-            ) {
-                ToastView(type: .info, message: "The job already exists!")
-                    .padding(.horizontal)
-            }
+        }
+        .simpleToast(
+            isPresented: $isShowToast,
+            options: toastOptions
+        ) {
+            ToastView(type: .info, message: "The job already exists!")
+                .padding(.horizontal)
         }
         .onAppear {
             if selectedJob != nil {
@@ -112,7 +114,7 @@ struct AddJobView: View {
             }
         }
         .onDisappear {
-            jobsListModel.getJobsList()
+            //jobsListModel.getJobsList()
             isEditing = true
         }
     }
@@ -170,6 +172,7 @@ extension AddJobView {
             ) { jobName in
                 Text("• \(jobName)")
                     .listRowSeparator(.hidden)
+                    .padding(.horizontal)
             }
             .onDelete(perform: deleteJob)
         }
@@ -187,6 +190,7 @@ extension AddJobView {
 }
 
 extension AddJobView {
+
     private func addJob() {
         var jobs = jobsNames.compactMap { Job(id: nil, name: $0) }
 

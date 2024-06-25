@@ -183,7 +183,6 @@ extension EmployeeListView {
             let employee = employees[index]
             employeeListModel.deleteEmployee(username: employee.username)
         }
-        //employeeListModel.getEmployeesList()
     }
 }
 

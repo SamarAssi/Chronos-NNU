@@ -26,7 +26,6 @@ struct EditProfileView: View {
         .onAppear {
             textFieldModels[0].text = fetchFirstName()
             textFieldModels[1].text = fetchLastName()
-            textFieldModels[2].text = fetchPhoneNumber()
         }
         .fontDesign(.rounded)
         .toolbar {

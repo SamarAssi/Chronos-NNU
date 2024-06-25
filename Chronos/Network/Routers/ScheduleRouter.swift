@@ -2,7 +2,7 @@
 //  ScheduleRouter.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 19/06/2024.
+//  Created by Samar Assi on 19/06/2024.
 //
 
 import Alamofire
@@ -17,6 +17,7 @@ enum ScheduleRouter: BaseRouter {
         employeeId: String,
         jobDescription: String
     )
+    case deleteShift(id: String)
 
     var path: String {
         switch self {
@@ -24,6 +25,8 @@ enum ScheduleRouter: BaseRouter {
             return "shifts/create"
         case .getShifts:
             return "shifts"
+        case .deleteShift(let id):
+            return "shifts/delete/\(id)"
         }
     }
 
@@ -33,6 +36,8 @@ enum ScheduleRouter: BaseRouter {
             return .post
         case .getShifts:
             return .post
+        case .deleteShift:
+            return .delete
         }
     }
 
@@ -57,6 +62,8 @@ enum ScheduleRouter: BaseRouter {
             return [
                 "date": date
             ]
+        case .deleteShift:
+            return nil
         }
     }
 }

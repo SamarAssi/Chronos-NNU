@@ -187,11 +187,10 @@ extension HomeView {
             alignment: .leading,
             spacing: 15
         ) {
-            Text(LocalizedStringKey("Today Attendance"))
-                .fontWeight(.bold)
-                .padding(.bottom)
-
             if let dashboardResponse = homeModel.dashboardResponse {
+                Text(LocalizedStringKey("Today's Total Shifts Time:  "))
+                    .fontWeight(.bold)
+                +
                 Text(dashboardResponse.shiftsTotalTime)
                     .font(.title2)
             }

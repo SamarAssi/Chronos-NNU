@@ -15,7 +15,6 @@ struct EmployeeDetailsView: View {
     @State private var isAdding = false
     @State private var selectedJobs: [Job] = []
     @State private var newJobs: [Job] = []
-    @State private var oldJobs: [Job]?
     
     var employee: Employee
     
@@ -30,9 +29,11 @@ struct EmployeeDetailsView: View {
     }
     
     var isAddButtonToolbarDisabled: Bool {
-        for job in employeeListModel.jobs {
-            if let oldJobs = oldJobs {
-                if !oldJobs.contains(job) {
+        if employeeListModel.jobs.isEmpty {
+            return false
+        } else {
+            for job in employeeListModel.jobs {
+                if !newJobs.contains(job) {
                     return false
                 }
             }
@@ -48,36 +49,23 @@ struct EmployeeDetailsView: View {
             ) {
                 headerSectionView
                 usernameView
-                if let oldJobs = oldJobs {
-                    if !oldJobs.isEmpty {
-                        jobsListView
-                        
-                        if isAdding {
-                            jobAdditionView
-                        }
+                Divider()
+
+                if !employeeListModel.jobs.isEmpty {
+                    jobsListView
+                    
+                    if isAdding {
+                        jobAdditionView
+                    }
+                } else {
+
+                    if isAdding {
+                        jobAdditionView
                     } else {
-                        if isAdding {
-                            jobAdditionView
-                        } else {
-                            
-                            VStack(
-                                spacing: 8
-                            ) {
-                                Text(LocalizedStringKey("No selected jobs until now"))
-                                    .font(.subheadline)
-                                
-                                Image(systemName: "exclamationmark.questionmark")
-                                    .font(.largeTitle)
-                            }
-                            .foregroundStyle(Color.gray)
-                            .frame(
-                                maxWidth: .infinity,
-                                maxHeight: .infinity,
-                                alignment: .center
-                            )
-                        }
+                        emptyView
                     }
                 }
+                
             }
             .fontDesign(.rounded)
             .toolbar {
@@ -98,19 +86,30 @@ struct EmployeeDetailsView: View {
             .onAppear {
                 employeeListModel.getJobsList()
                 employeeListModel.getEmployeeDetails(employeeId: employee.id)
-                oldJobs = employee.jobs
-            }
-            .onDisappear {
-                employeeListModel.getEmployeesList()
-            }
-            .onChange(of: oldJobs) {
-                oldJobs = employee.jobs
             }
         }
     }
 }
 
 extension EmployeeDetailsView {
+    
+    var emptyView: some View {
+        VStack(
+            spacing: 8
+        ) {
+            Text(LocalizedStringKey("No selected jobs until now"))
+                .font(.subheadline)
+            
+            Image(systemName: "exclamationmark.questionmark")
+                .font(.largeTitle)
+        }
+        .foregroundStyle(Color.gray)
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .center
+        )
+    }
     
     var deleteEmployeeButtonView: some View {
         Button {
@@ -144,7 +143,10 @@ extension EmployeeDetailsView {
                     )
                     .onAppear {
                         newJobs.removeAll()
-                        isCheck(jobsResponse: jobsResponse)
+                        identifyNewJobsNotInEmployeeList(from: jobsResponse)
+                    }
+                    .onDisappear {
+                        selectedJobs.removeAll()
                     }
                 }
             }
@@ -220,14 +222,6 @@ extension EmployeeDetailsView {
         .padding(.horizontal)
     }
     
-    var phoneNumberView: some View {
-        HStack {
-            Image(systemName: "phone")
-            
-        }
-        .padding(.horizontal)
-    }
-    
     var jobsListView: some View {
         VStack(
             alignment: .leading
@@ -243,38 +237,20 @@ extension EmployeeDetailsView {
                 CustomProgressView()
             } else {
                 List {
-                    if let employeeDetailsResponse = employeeListModel.employeeDetailsResponse {
-                        ForEach(
-                            employeeDetailsResponse.employeeDetails.jobs,
-                            id: \.self
-                        ) { job in
-                            Text("• \(job.name).")
-                                .listRowSeparator(.hidden)
-                                .padding(.horizontal)
-                        }
-                        .onDelete { indexSet in
-                            deleteJob(
-                                at: indexSet,
-                                from: employee.jobs
-                            )
-                        }
+                    ForEach(
+                        employeeListModel.jobs,
+                        id: \.self
+                    ) { job in
+                        Text("• \(job.name).")
+                            .listRowSeparator(.hidden)
+                            .padding(.horizontal)
                     }
-                    //                if let oldJobs = oldJobs {
-                    //                    ForEach(
-                    //                        oldJobs,
-                    //                        id: \.self
-                    //                    ) { job in
-                    //                        Text("• \(job.name).")
-                    //                            .listRowSeparator(.hidden)
-                    //                            .padding(.horizontal)
-                    //                    }
-                    //                    .onDelete { indexSet in
-                    //                        deleteJob(
-                    //                            at: indexSet,
-                    //                            from: employee.jobs
-                    //                        )
-                    //                    }
-                    //                }
+                    .onDelete { indexSet in
+                        deleteJob(
+                            at: indexSet,
+                            from: employeeListModel.jobs
+                        )
+                    }
                 }
                 .listStyle(PlainListStyle())
             }
@@ -305,9 +281,6 @@ extension EmployeeDetailsView {
                 employeeId: employee.id,
                 jobs: newJobs
             )
-            
-           // oldJobs = newJobs
-            employeeListModel.getEmployeeDetails(employeeId: employee.id)
         }
     }
     
@@ -316,20 +289,19 @@ extension EmployeeDetailsView {
     }
     
     private func addJob() {
-        var newJobs = employee.jobs
+        var newJobs = employeeListModel.jobs
         
         newJobs.append(contentsOf: selectedJobs)
         employeeListModel.updateEmployeeJob(
             employeeId: employee.id,
             jobs: newJobs
         )
-        //oldJobs = newJobs
-        employeeListModel.getEmployeeDetails(employeeId: employee.id)
     }
     
-    private func isCheck(jobsResponse: JobsResponse) {
-        guard let oldJobs = oldJobs else { return }
-        let employeeJobsNames = oldJobs.compactMap { $0.name }
+    private func identifyNewJobsNotInEmployeeList(
+        from jobsResponse: JobsResponse
+    ) {
+        let employeeJobsNames = employeeListModel.jobs.compactMap { $0.name }
         let managerJobsNames = jobsResponse.jobs.compactMap { $0.name }
         
         for index in managerJobsNames.indices {

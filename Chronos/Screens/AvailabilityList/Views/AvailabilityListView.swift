@@ -25,9 +25,13 @@ struct AvailabilityListView: View {
 
     var body: some View {
         VStack(
-            alignment: .leading
+            alignment: .leading,
+            spacing: 0
         ) {
             titleView
+            
+            Divider()
+                .padding(.top)
 
             if availabilityListModel.isLoading {
                 CustomProgressView()
@@ -36,7 +40,7 @@ struct AvailabilityListView: View {
                     if response.requests.isEmpty {
                         noRequestView
                     } else {
-                        requestsListView(response: response)
+                        requestsListView(response: response, requestsUIModels: availabilityListModel.availabilityRowUIModel)
                     }
                 }
             }
@@ -117,18 +121,17 @@ extension AvailabilityListView {
     }
 
     private func requestsListView(
-        response: AvailabilityRequestsListResponse
+        response: AvailabilityRequestsListResponse,
+        requestsUIModels: [AvailabilityRowUIModel]
     ) -> some View {
         List(
-            response.requests.indices.reversed(),
+            requestsUIModels.indices.reversed(),
             id: \.self
         ) { index in
 
-            AvailabilityRowView(
-                date: Date(timeIntervalSince1970: response.requests[index].date / 1000),
-                name: response.requests[index].employeeName
-            )
+            AvailabilityRowView(rowModel: requestsUIModels[index])
             .listRowSeparator(.hidden)
+            .listRowInsets(.init(top: 8, leading: 22, bottom: 0, trailing: 0))
             .onTapGesture {
                 self.index = index
                 selectedRequest = response.requests[index]

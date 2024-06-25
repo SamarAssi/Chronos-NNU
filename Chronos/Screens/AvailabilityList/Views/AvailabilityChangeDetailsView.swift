@@ -45,9 +45,6 @@ struct AvailabilityChangeDetailsView: View {
             )
             weekdayModel.getData()
         }
-        .onDisappear {
-            availabilityListModel.handleAvailabilityRequests()
-        }
     }
 
     private var contentView: some View {
@@ -245,7 +242,6 @@ extension AvailabilityChangeDetailsView {
                     }
                 )
                 .shadow(radius: 2, x: 0, y: 2)
-
             }
         }
         .padding(.horizontal)

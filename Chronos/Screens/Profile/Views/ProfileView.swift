@@ -15,13 +15,14 @@ struct ProfileView: View {
     @State private var isShowAlert = false
     @Binding var isShowTabView: Bool
     
+    @State private var selectedDestination: AnyView?
+    
     var body: some View {
         NavigationStack {
             VStack(
                 spacing: 0
             ) {
                 profileHeaderView
-                //editButtonView
                 Divider()
                 accountOptionsListView
             }
@@ -84,22 +85,6 @@ extension ProfileView {
         }
     }
     
-    var editButtonView: some View {
-        NavigationLink {
-            EditProfileView()
-                .navigationBarBackButtonHidden(true)
-        } label: {
-            Text(LocalizedStringKey("Edit"))
-                .fontWeight(.bold)
-                .foregroundStyle(Color.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 45)
-                .background(Color.theme)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-        }
-        .padding(.horizontal, 30)
-    }
-    
     var accountOptionsListView: some View {
         List {
             Section {
@@ -107,28 +92,16 @@ extension ProfileView {
                     profileRowModel.indices,
                     id: \.self
                 ) { index in
-                    NavigationLink {
-                        switch index {
-                        case 0:
-                            EditProfileView()
-                                .navigationBarBackButtonHidden(true)
-                                .onAppear {
-                                    isShowTabView = false
-                                }
-                                .onDisappear {
-                                    withAnimation {
-                                        isShowTabView = true
-                                    }
-                                }
-                        default:
-                            NewScreen(item: profileRowModel[index].name)
-                        }
-                    } label: {
+                    
+                    Button(action: {
+                        selectDestination(index: index)
+                    }) {
                         profileRowLabel(
                             icon: profileRowModel[index].icon,
                             name: profileRowModel[index].name
                         )
                     }
+                    .listRowBackground(Color.clear)
                 }
                 
                 if fetchEmployeeType() == 1 {
@@ -146,47 +119,63 @@ extension ProfileView {
         .scrollIndicators(.hidden)
         .listStyle(PlainListStyle())
         .padding(.horizontal, 10)
+        .background(
+            NavigationLink(
+                destination: selectedDestination,
+                isActive: Binding(
+                    get: { selectedDestination != nil },
+                    set: { if !$0 { selectedDestination = nil } }
+                )
+            ) {
+                EmptyView()
+            }
+        )
     }
     
     var checkInOutSettingsButtonView: some View {
-        NavigationLink {
-            SetupCheckInOutView()
-                .navigationBarBackButtonHidden(true)
-                .onAppear {
-                    isShowTabView = false
-                }
-                .onDisappear {
-                    withAnimation {
-                        isShowTabView = true
+        Button(action: {
+            selectedDestination = AnyView(
+                SetupCheckInOutView()
+                    .navigationBarBackButtonHidden(true)
+                    .onAppear {
+                        isShowTabView = false
                     }
-                }
-        } label: {
+                    .onDisappear {
+                        withAnimation {
+                            isShowTabView = true
+                        }
+                    }
+            )
+        }) {
             profileRowLabel(
                 icon: "location.fill",
                 name: "Check In Out Settings"
             )
         }
-        
+        .listRowBackground(Color.clear)
     }
     
     var jobsListButtonView: some View {
-        NavigationLink {
-            JobsListView()
-                .navigationBarBackButtonHidden(true)
-                .onAppear {
-                    isShowTabView = false
-                }
-                .onDisappear {
-                    withAnimation {
-                        isShowTabView = true
+        Button(action: {
+            selectedDestination = AnyView(
+                JobsListView()
+                    .navigationBarBackButtonHidden(true)
+                    .onAppear {
+                        isShowTabView = false
                     }
-                }
-        } label: {
+                    .onDisappear {
+                        withAnimation {
+                            isShowTabView = true
+                        }
+                    }
+            )
+        }) {
             profileRowLabel(
                 icon: "list.clipboard",
                 name: "Jobs List"
             )
         }
+        .listRowBackground(Color.clear)
     }
     
     var logoutButtonView: some View {
@@ -209,7 +198,7 @@ extension ProfileView {
                         .fill(Color.red.opacity(0.1))
                         .frame(width: 45, height: 45)
                 )
-
+            
             Text(LocalizedStringKey("Log out"))
         }
         .foregroundStyle(Color.red)
@@ -267,9 +256,41 @@ extension ProfileView {
                         .fill(Color.gray.opacity(0.1))
                         .frame(width: 45, height: 45)
                 )
-
+            
             Text(name)
                 .font(.system(size: 16))
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .foregroundStyle(Color.gray.opacity(0.5))
+                .font(.system(size: 12))
+                .fontWeight(.bold)
+                .scaleEffect(1.1)
+        }
+    }
+
+    private func selectDestination(index: Int) {
+        switch index {
+        case 0:
+            selectedDestination = AnyView(
+                EditProfileView()
+                    .navigationBarBackButtonHidden(true)
+                    .onAppear {
+                        isShowTabView = false
+                    }
+                    .onDisappear {
+                        withAnimation {
+                            isShowTabView = true
+                        }
+                    }
+            )
+        default:
+            selectedDestination = AnyView(
+                NewScreen(
+                    item: profileRowModel[index].name
+                )
+            )
         }
     }
     

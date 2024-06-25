@@ -9,6 +9,7 @@ import Alamofire
 
 protocol NetworkClientProtocol: AnyObject {
     static func performRequest<T: Decodable> (router: BaseRouter) async throws -> T
+    static func performVoidRequest(router: BaseRouter) async throws
 }
 
 class BaseClient: NetworkClientProtocol {
@@ -38,6 +39,25 @@ class BaseClient: NetworkClientProtocol {
                 case .success(let value):
                     continuation.resume(returning: value)
 
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    internal static func performVoidRequest(router: BaseRouter) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(
+                router,
+                interceptor: router.interceptor
+            )
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success:
+                    continuation.resume()
+                    
                 case .failure(let error):
                     continuation.resume(throwing: error)
                 }

@@ -22,8 +22,8 @@ struct DashboardTabView: View {
                     .tabItem { Image(systemName: "list.clipboard") }
                     .toolbar(
                         isShowCurrentTabView ?
-                            .visible :
-                                .hidden,
+                        .visible :
+                        .hidden,
                         for: .tabBar
                     )
             }
@@ -49,7 +49,7 @@ struct DashboardTabView: View {
 //                    for: .tabBar
 //                )
         }
-        .tint(Color.theme)
+        .customTabStyle()
     }
 }
 

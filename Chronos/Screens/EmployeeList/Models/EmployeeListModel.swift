@@ -42,6 +42,7 @@ class EmployeeListModel: ObservableObject {
                 employeeDeletionResponse = try await EmployeesClient.deleteEmployee(
                     username: username
                 )
+                getEmployeesList()
             } catch let error {
                 print(error)
             }
@@ -61,7 +62,8 @@ class EmployeeListModel: ObservableObject {
                     employeeId: employeeId,
                     jobs: ids
                 )
-                //getEmployeeDetails(employeeId: employeeId)
+                getEmployeeDetails(employeeId: employeeId)
+                getEmployeesList()
                 isLoadingJobs = false
             } catch let error {
                 print(error)
@@ -75,7 +77,6 @@ class EmployeeListModel: ObservableObject {
         Task {
             do {
                 jobsResponse = try await JobsClient.getJobs()
-                jobs = jobsResponse?.jobs ?? []
             } catch let error {
                 print(error)
             }
@@ -89,6 +90,9 @@ class EmployeeListModel: ObservableObject {
                 employeeDetailsResponse = try await EmployeesClient.getEmployeeDetails(
                     employeeId: employeeId
                 )
+                if let employeeDetailsResponse = employeeDetailsResponse {
+                    self.jobs = employeeDetailsResponse.employeeDetails.jobs
+                }
             } catch let error {
                 print(error)
             }
@@ -101,5 +105,65 @@ class EmployeeListModel: ObservableObject {
     
     private func hideLoading() {
         isLoading = false
+    }
+    
+    
+    
+    var textFields: [TextFieldModel] = TextFieldModel.addEmployeeData
+
+    var registerEmployeeResponse: LoginResponse?
+    
+    var selectedJobs: [Job] = []
+    
+    var isLoadingEmployeeList = false
+    var isUsernameInvalid = false
+    
+    @MainActor
+    func handleRegistrationResponse(
+        completion: @escaping (Bool) -> Void
+    ) {
+        showLoadingEmployeeList()
+
+        Task {
+            do {
+                let employeeDetails = EmployeeDetails(
+                    jobs: selectedJobs,
+                    employeeType: 0,
+                    joinedDate: "",
+                    salary: 0,
+                    reportsTo: "",
+                    companyName: ""
+                )
+                registerEmployeeResponse = try await EmployeesClient.registerEmployee(
+                    textFields: textFields,
+                    employeeDetails: employeeDetails
+                )
+                getEmployeesList()
+                validateUsername()
+                hideLoadingEmployeeList()
+                completion(true)
+            } catch let error {
+                print(error)
+                invalidateUsername()
+                hideLoadingEmployeeList()
+                completion(false)
+            }
+        }
+    }
+    
+    private func showLoadingEmployeeList() {
+        isLoadingEmployeeList = true
+    }
+    
+    private func hideLoadingEmployeeList() {
+        isLoadingEmployeeList = false
+    }
+    
+    private func validateUsername() {
+        isUsernameInvalid = false
+    }
+
+    private func invalidateUsername() {
+        isUsernameInvalid = true
     }
 }

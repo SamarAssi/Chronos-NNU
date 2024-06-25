@@ -2,7 +2,7 @@
 //  Int+Extensions.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 23/06/2024.
+//  Created by Samar Assi on 23/06/2024.
 //
 
 import Foundation

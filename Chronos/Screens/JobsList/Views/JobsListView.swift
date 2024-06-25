@@ -138,6 +138,7 @@ extension JobsListView {
                 .resizable()
                 .scaledToFit()
                 .frame(height: 100)
+
             Text(LocalizedStringKey("Oops, No jobs until now"))
                 .font(.subheadline)
                 .fontWeight(.bold)

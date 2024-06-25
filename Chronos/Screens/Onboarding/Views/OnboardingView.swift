@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingView: View {
 
-    @State private var selectedPosition: Position?
+    @State private var selectedPosition: Position? = .manager
     @State private var isSelected = false
     @State private var radioButtons: [RadioButtonModel] = RadioButtonModel.data
 

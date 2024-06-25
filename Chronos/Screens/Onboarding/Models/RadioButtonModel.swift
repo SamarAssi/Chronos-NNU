@@ -22,12 +22,13 @@ extension RadioButtonModel {
                 tag: .manager,
                 label: LocalizedStringKey("Manager"),
                 details: LocalizedStringKey("Manage your team effortlessly")
-            ),
-            RadioButtonModel(
-                tag: .employee,
-                label: LocalizedStringKey("Employee"),
-                details: LocalizedStringKey("Join your team tody")
             )
+//            ,
+//            RadioButtonModel(
+//                tag: .employee,
+//                label: LocalizedStringKey("Employee"),
+//                details: LocalizedStringKey("Join your team tody")
+//            )
         ]
     }
 }
