@@ -65,8 +65,8 @@ class ScheduleViewModel: ObservableObject {
                 let backgroundColor: Color
                 (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: id ?? "")
                 
-                let startTime = shift.startTime?.timeAndDate ?? "--"
-                let endTime = shift.endTime?.timeAndDate ?? "--"
+                let startTime = shift.startTime?.timeAndDate(in: TimeZone.current) ?? "--"
+                let endTime = shift.endTime?.timeAndDate(in: TimeZone.current) ?? "--"
 
                 let jobDescription = shift.jobDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
                 let titleString: String = (jobDescription?.isEmpty == false ? jobDescription : name) ?? "--"
