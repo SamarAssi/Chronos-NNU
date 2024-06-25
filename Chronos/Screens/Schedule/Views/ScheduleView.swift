@@ -77,23 +77,18 @@ struct ScheduleView: View {
             TitleView
             CalendarDateView
                 .safeAreaInset(edge: .bottom) {
-                    if fetchEmployeeType() == 1 && Date.isSameDay(
-                        viewModel.selectedDate,
-                        as: Date()
-                    ) {
-                        if fetchEmployeeType() == 1 {
-                            HStack {
-                                Spacer()
-                                FloatingActionButton
-                            }
+                    if fetchEmployeeType() == 1 {
+                        HStack {
+                            Spacer()
+                            FloatingActionButton
                         }
                     }
                 }
-                .fontDesign(.rounded)
                 .sheet(isPresented: $showCreateEventView) {
                     CreateShiftView(selectedDate: $viewModel.selectedDate)
                 }
         }
+        .fontDesign(.rounded)
     }
 
     private var aiButton: some View {
@@ -211,7 +206,10 @@ struct ScheduleView: View {
                 )
                 .padding(.leading, 15)
             
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(
+                alignment: .leading,
+                spacing: 5
+            ) {
                 Text(model.title)
                     .font(.system(size: 15, weight: .semibold))
                     .fontWeight(.bold)
@@ -239,15 +237,14 @@ struct ScheduleView: View {
             .padding(10)
             
             Spacer()
-            
-            Button {
-                deleteShift(id: model.id)
-            } label: {
-                Image(systemName: "xmark")
-                    .font(.subheadline)
-            }
-            .padding()
-            .frame(maxHeight: .infinity, alignment: .top)
+
+            Image(systemName: "xmark")
+                .font(.subheadline)
+                .onTapGesture {
+                    deleteShift(id: model.id)
+                }
+                .padding()
+                .frame(maxHeight: .infinity, alignment: .top)
         }
         .background(model.backgroundColor.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 20))
