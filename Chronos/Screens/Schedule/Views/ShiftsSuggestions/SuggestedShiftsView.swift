@@ -26,8 +26,9 @@ struct SuggestedShiftsView: View {
             let id = shift.employeeID
             let (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: id ?? "")
 
-            let startTime = shift.startTime?.timeAndDate(in: nil) ?? "--"
-            let endTime = shift.endTime?.timeAndDate(in: nil) ?? "--"
+            let timezone = shift.isNew == true ? nil : TimeZone.current
+            let startTime = shift.startTime?.timeAndDate(in: timezone) ?? "--"
+            let endTime = shift.endTime?.timeAndDate(in: timezone) ?? "--"
 
             let jobDescription = shift.jobDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
             let titleString: String = (jobDescription?.isEmpty == false ? jobDescription : name) ?? "--"
