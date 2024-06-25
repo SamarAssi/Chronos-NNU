@@ -65,8 +65,8 @@ class ScheduleViewModel: ObservableObject {
                 let backgroundColor: Color
                 (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: id ?? "")
                 
-                let startTime = getTimeAndDate(from: shift.startTime)
-                let endTime = getTimeAndDate(from: shift.endTime)
+                let startTime = shift.startTime?.timeAndDate ?? "--"
+                let endTime = shift.endTime?.timeAndDate ?? "--"
 
                 let jobDescription = shift.jobDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
                 let titleString: String = (jobDescription?.isEmpty == false ? jobDescription : name) ?? "--"
@@ -88,17 +88,6 @@ class ScheduleViewModel: ObservableObject {
         } catch {
             print(error)
         }
-    }
-
-    func getTimeAndDate(from time: Int?) -> String {
-        guard let time else {
-            return "No Time"
-        }
-
-        let date = Date(timeIntervalSince1970: TimeInterval(time))
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a 'on' MMMM dd"
-        return formatter.string(from: date)
     }
 }
 

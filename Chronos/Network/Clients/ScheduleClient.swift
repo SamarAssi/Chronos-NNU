@@ -35,4 +35,14 @@ class ScheduleClient: BaseClient {
         let router: ScheduleRouter = .deleteShift(id: id)
         try await performVoidRequest(router: router)
     }
+
+    static func suggestShifts(message: String) async throws -> Shifts {
+        let router: ScheduleRouter = .suggestShifts(message: message)
+        return try await performRequest(router: router)
+    }
+
+    static func createShifts(shifts: Shifts) async throws -> UpdateCompanyRulesResponse {
+        let router: ScheduleRouter = .createShifts(shifts: shifts)
+        return try await performRequest(router: router)
+    }
 }

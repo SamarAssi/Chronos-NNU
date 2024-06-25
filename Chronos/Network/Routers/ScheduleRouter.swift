@@ -18,6 +18,8 @@ enum ScheduleRouter: BaseRouter {
         jobDescription: String
     )
     case deleteShift(id: String)
+    case suggestShifts(message: String)
+    case createShifts(shifts: Shifts)
 
     var path: String {
         switch self {
@@ -27,12 +29,16 @@ enum ScheduleRouter: BaseRouter {
             return "shifts"
         case .deleteShift(let id):
             return "shifts/delete/\(id)"
+        case .suggestShifts:
+            return "shifts/suggestion"
+        case .createShifts:
+            return "shifts/createShiftsFromSuggestions"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .createShift:
+        case .createShift, .suggestShifts, .createShifts:
             return .post
         case .getShifts:
             return .post
@@ -64,6 +70,14 @@ enum ScheduleRouter: BaseRouter {
             ]
         case .deleteShift:
             return nil
+        case .suggestShifts(let message):
+            return [
+                "message": message
+            ]
+
+        case .createShifts(let shifts):
+            return shifts.encodeToDictionary()
         }
+
     }
 }

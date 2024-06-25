@@ -63,7 +63,8 @@ extension ShiftView {
             endTime: 0,
             jobDescription: "",
             employeeID: "",
-            employeeName: ""
+            employeeName: "",
+            isNew: true
         )
     )
 }
