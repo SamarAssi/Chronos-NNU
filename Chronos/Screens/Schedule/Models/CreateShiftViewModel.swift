@@ -2,7 +2,7 @@
 //  CreateShiftViewModel.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 19/06/2024.
+//  Created by Samar Assi on 19/06/2024.
 //
 
 import SwiftUI

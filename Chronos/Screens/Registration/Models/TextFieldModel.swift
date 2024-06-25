@@ -68,15 +68,15 @@ extension TextFieldModel {
                 isDisabled: false,
                 isOptional: false
             ),
-            TextFieldModel(
-                text: "",
-                label: "Phone Number",
-                placeholder: "Enter your phone number",
-                isSecure: false,
-                keyboardType: .phonePad,
-                isDisabled: false,
-                isOptional: true
-            ),
+//            TextFieldModel(
+//                text: "",
+//                label: "Phone Number",
+//                placeholder: "Enter your phone number",
+//                isSecure: false,
+//                keyboardType: .phonePad,
+//                isDisabled: false,
+//                isOptional: true
+//            ),
             TextFieldModel(
                 text: "",
                 label: "Password",
@@ -115,15 +115,6 @@ extension TextFieldModel {
                 placeholder: "Enter last name",
                 isSecure: false,
                 keyboardType: .asciiCapable,
-                isDisabled: false,
-                isOptional: false
-            ),
-            TextFieldModel(
-                text: "",
-                label: "Phone Number",
-                placeholder: "Enter your phone number",
-                isSecure: false,
-                keyboardType: .phonePad,
                 isDisabled: false,
                 isOptional: false
             )
@@ -206,15 +197,15 @@ extension TextFieldModel {
                 isDisabled: false,
                 isOptional: false
             ),
-            TextFieldModel(
-                text: "",
-                label: "Phone Number",
-                placeholder: "Enter your phone number",
-                isSecure: false,
-                keyboardType: .phonePad,
-                isDisabled: false,
-                isOptional: true
-            ),
+//            TextFieldModel(
+//                text: "",
+//                label: "Phone Number",
+//                placeholder: "Enter your phone number",
+//                isSecure: false,
+//                keyboardType: .phonePad,
+//                isDisabled: false,
+//                isOptional: true
+//            ),
             TextFieldModel(
                 text: "",
                 label: "Password",

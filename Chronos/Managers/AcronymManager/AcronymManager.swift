@@ -30,6 +30,7 @@ class AcronymManager {
         employeeColor = [:]
     }
     
+
     private func getInitials(from name: String?) -> String {
         let formatter = PersonNameComponentsFormatter()
         guard let name = name,
@@ -41,6 +42,7 @@ class AcronymManager {
         return formatter.string(from: components)
     }
     
+
     private func getRandomColor() -> Color {
         let red = Double.random(in: 0...1)
         let green = Double.random(in: 0...1)

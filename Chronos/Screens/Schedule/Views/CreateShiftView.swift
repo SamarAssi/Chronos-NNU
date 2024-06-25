@@ -2,7 +2,7 @@
 //  CreateShiftView.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 19/06/2024.
+//  Created by Samar Assi on 19/06/2024.
 //
 
 import SwiftUI
@@ -13,7 +13,7 @@ struct CreateShiftView: View {
     @State private var showEmployeePicker = false
     @State private var showJobPicker = false
     @Binding var selectedDate: Date
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         contentView()
@@ -58,7 +58,7 @@ struct CreateShiftView: View {
                             do {
                                 try await viewModel.createShift()
                                 await MainActor.run {
-                                    presentationMode.wrappedValue.dismiss()
+                                    dismiss.callAsFunction()
                                     selectedDate = Date()
                                 }
                             } catch {
@@ -87,7 +87,7 @@ struct CreateShiftView: View {
                 Spacer()
 
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss.callAsFunction()
                 } label: {
                     Image(systemName: "xmark")
                         .font(.title2)

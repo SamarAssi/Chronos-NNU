@@ -10,7 +10,6 @@ import SimpleToast
 
 struct AddEmployeeView: View {
 
-    @StateObject private var addEmployeeModel = AddEmployeeModel()
     @ObservedObject var employeeListModel: EmployeeListModel
     @Environment(\.dismiss) var dismiss
 
@@ -63,10 +62,14 @@ struct AddEmployeeView: View {
             }
         }
         .onAppear {
-            addEmployeeModel.getJobsList()
+            employeeListModel.getJobsList()
+            
+            for textField in employeeListModel.textFields {
+                textField.text = ""
+            }
+            employeeListModel.selectedJobs.removeAll()
         }
         .onDisappear {
-            employeeListModel.getEmployeesList()
             isEditing = true
         }
         .simpleToast(
@@ -82,7 +85,7 @@ struct AddEmployeeView: View {
             passwordMismatchToast
         }
         .simpleToast(
-            isPresented: $addEmployeeModel.isUsernameInvalid,
+            isPresented: $employeeListModel.isUsernameInvalid,
             options: toastOptions
         ) {
             invalidUsernameToast
@@ -124,22 +127,22 @@ extension AddEmployeeView {
         List {
             Section {
                 ForEach(
-                    addEmployeeModel.textFields.indices,
+                    employeeListModel.textFields.indices,
                     id: \.self
                 ) { index in
-                    TextFieldView(textFieldModel: addEmployeeModel.textFields[index])
+                    TextFieldView(textFieldModel: employeeListModel.textFields[index])
                         .listRowSeparator(.hidden)
                         .padding(.horizontal, 10)
-                        .onChange(of: addEmployeeModel.textFields[4].text) {
+                        .onChange(of: employeeListModel.textFields[4].text) {
                             PasswordValidationManager.shared.validatePassword(
-                                password: addEmployeeModel.textFields[4].text
+                                password: employeeListModel.textFields[4].text
                             )
                         }
                     
                     if index == 3 {
-                        if let jobsResponse = addEmployeeModel.jobsResponse {
+                        if let jobsResponse = employeeListModel.jobsResponse {
                             ScrollableListView(
-                                selectedItems: $addEmployeeModel.selectedJobs,
+                                selectedItems: $employeeListModel.selectedJobs,
                                 label: "Select the job/s:",
                                 items: jobsResponse.jobs,
                                 withIcon: false
@@ -161,17 +164,17 @@ extension AddEmployeeView {
 
     var addEmployeeButtonView: some View {
         MainButton(
-            isLoading: $addEmployeeModel.isLoading,
+            isLoading: $employeeListModel.isLoadingEmployeeList,
             isEnable: .constant(true),
             buttonText: LocalizedStringKey("Add"),
             backgroundColor: addButtonBackgroundColor,
             action: {
                 isPhoneNumberInvalid = !isValidPhoneNumber(
-                    addEmployeeModel.textFields[3].text
+                    employeeListModel.textFields[3].text
                 )
                 isSamePassword = !checkIsSamePassword()
                 if !isPhoneNumberInvalid && checkIsSamePassword() {
-                    addEmployeeModel.handleRegistrationResponse { success in
+                    employeeListModel.handleRegistrationResponse { success in
                         if success {
                             dismiss.callAsFunction()
                         }
@@ -220,12 +223,12 @@ extension AddEmployeeView {
 extension AddEmployeeView {
 
     private func areEmptyFields() -> Bool {
-        for index in addEmployeeModel.textFields.indices {
-            if addEmployeeModel.textFields[index].text.isEmpty && index != 3 {
+        for index in employeeListModel.textFields.indices {
+            if employeeListModel.textFields[index].text.isEmpty && index != 3 {
                 return true
             }
         }
-        if addEmployeeModel.selectedJobs.isEmpty {
+        if employeeListModel.selectedJobs.isEmpty {
             return true
         }
         return false
@@ -241,7 +244,7 @@ extension AddEmployeeView {
     }
     
     private func checkIsSamePassword() -> Bool {
-        return addEmployeeModel.textFields[4].text == addEmployeeModel.textFields[5].text
+        return employeeListModel.textFields[4].text == employeeListModel.textFields[5].text
     }
 }
 

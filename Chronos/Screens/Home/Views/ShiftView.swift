@@ -57,6 +57,7 @@ extension ShiftView {
 #Preview {
     ShiftView(
         shift: Shift(
+            id: "",
             role: "",
             startTime: 0,
             endTime: 0,

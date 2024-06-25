@@ -65,6 +65,7 @@ class AvailabilityListModel: ObservableObject {
         Task {
             do {
                 approvalResponse = try await performAvailabilityApprovalRequest(at: index)
+                handleAvailabilityRequests()
                 isApproved = true
             } catch let error {
                 print(error)
@@ -80,6 +81,7 @@ class AvailabilityListModel: ObservableObject {
         Task {
             do {
                 rejectionResponse = try await performAvailabilityRejectionRequest(at: index)
+                handleAvailabilityRequests()
                 isRejected = true
             } catch let error {
                 print(error)

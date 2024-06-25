@@ -2,13 +2,13 @@
 //  ScheduleView.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 19/06/2024.
+//  Created by Samar Assi on 19/06/2024.
 //
 
 import SwiftUI
 
 struct ScheduleView: View {
-
+    
     @State var showCreateEventView = false
     @State private var showAIFeature = false
     @State private var buttonAnimation = false
@@ -17,7 +17,7 @@ struct ScheduleView: View {
     @State private var addButtonClicked = false
 
     @ObservedObject var viewModel = ScheduleViewModel()
-
+    
     var body: some View {
         ZStack {
             contentView
@@ -67,23 +67,32 @@ struct ScheduleView: View {
                     .transition(.aiViewAnimation)
             }
         }
+
     }
 
+   
+    
     private var contentView: some View {
         VStack(alignment: .leading) {
             TitleView
             CalendarDateView
                 .safeAreaInset(edge: .bottom) {
-                    if fetchEmployeeType() == 1 {
-                        HStack {
-                            Spacer()
-                            FloatingActionButton
+                    if fetchEmployeeType() == 1 && Date.isSameDay(
+                        viewModel.selectedDate,
+                        as: Date()
+                    ) {
+                        if fetchEmployeeType() == 1 {
+                            HStack {
+                                Spacer()
+                                FloatingActionButton
+                            }
                         }
                     }
                 }
-        }
-        .sheet(isPresented: $showCreateEventView) {
-            CreateShiftView(selectedDate: $viewModel.selectedDate)
+                .fontDesign(.rounded)
+                .sheet(isPresented: $showCreateEventView) {
+                    CreateShiftView(selectedDate: $viewModel.selectedDate)
+                }
         }
     }
 
@@ -114,6 +123,7 @@ struct ScheduleView: View {
         }
     }
 
+
     private var TitleView: some View {
         HStack {
             Text("Schedule")
@@ -125,7 +135,7 @@ struct ScheduleView: View {
             aiButton
         }
     }
-
+    
     private var FloatingActionButton: some View {
         Button(action: {
             showCreateEventView.toggle()
@@ -142,30 +152,30 @@ struct ScheduleView: View {
                 .padding()
         }
     }
-
+    
     private var CalendarDateView: some View {
         VStack(spacing: 0) {
             DatePicker(
                 selection: $viewModel.selectedDate,
                 displayedComponents: [.date],
                 label: {
-                    Text("Select a date")
+                    Text(LocalizedStringKey("Select a date"))
                         .foregroundColor(.theme)
                 }
             )
             .datePickerStyle(.compact)
             .padding(.horizontal)
             .tint(Color.theme)
-
+            
             Divider()
                 .padding(.top)
-
+            
             if viewModel.isLoading {
                 ProgressView("Loading...")
                     .frame(maxHeight: .infinity)
             } else {
                 if viewModel.shifts.isEmpty {
-                    Text("No shifts available")
+                    Text(LocalizedStringKey("No shifts available"))
                         .foregroundColor(.theme)
                         .padding()
                         .frame(maxHeight: .infinity)
@@ -181,13 +191,14 @@ struct ScheduleView: View {
                                     trailing: 18
                                 )
                             )
+                        
                     }
                     .listStyle(.plain)
                 }
             }
         }
     }
-
+    
     private func eventRow(model: ShiftRowUIModel) -> some View {
         HStack(spacing: 5) {
             Circle()
@@ -199,25 +210,25 @@ struct ScheduleView: View {
                         .fontWeight(.bold)
                 )
                 .padding(.leading, 15)
-
+            
             VStack(alignment: .leading, spacing: 5) {
                 Text(model.title)
                     .font(.system(size: 15, weight: .semibold))
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .lineLimit(1)
-
+                
                 HStack(spacing: 2) {
-                    Text("Start:")
+                    Text(LocalizedStringKey("Start: "))
                         .font(.system(size: 13, weight: .semibold))
-                    .foregroundColor(.black)
+                        .foregroundColor(.black)
                     Text("\(model.startTime)")
                         .font(.system(size: 13))
                         .foregroundColor(.black)
                 }
-
+                
                 HStack(spacing: 2) {
-                    Text("End: ")
+                    Text(LocalizedStringKey("End: "))
                         .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(.black)
                     Text("\(model.endTime)")
@@ -226,20 +237,33 @@ struct ScheduleView: View {
                 }
             }
             .padding(10)
-
+            
             Spacer()
+            
+            Button {
+                deleteShift(id: model.id)
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.subheadline)
+            }
+            .padding()
+            .frame(maxHeight: .infinity, alignment: .top)
         }
         .background(model.backgroundColor.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }
-
+    
+    private func deleteShift(id: String) {
+        viewModel.handleShiftDeletion(id: id)
+    }
+    
     private func fetchEmployeeType() -> Int {
         if let employeeType = KeychainManager.shared.fetch(
             key: KeychainKeys.employeeType.rawValue
         ) {
             return Int(employeeType) ?? -1
         }
-
+        
         return -1
     }
 }

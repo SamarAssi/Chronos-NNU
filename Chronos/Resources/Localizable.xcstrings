@@ -227,9 +227,6 @@
     "Enter username" : {
 
     },
-    "Enter your phone number" : {
-
-    },
     "First Name" : {
 
     },
@@ -261,9 +258,6 @@
 
     },
     "Jobs List" : {
-
-    },
-    "Join your team tody" : {
 
     },
     "Last Name" : {
@@ -360,9 +354,6 @@
     "Pending" : {
 
     },
-    "Phone Number" : {
-
-    },
     "Radius" : {
 
     },
@@ -430,7 +421,7 @@
     "START TIME" : {
 
     },
-    "Start:" : {
+    "Start: " : {
 
     },
     "Submit" : {
@@ -454,7 +445,7 @@
     "This is a wrong id" : {
 
     },
-    "Today Attendance" : {
+    "Today's Total Shifts Time:  " : {
 
     },
     "Type your password" : {

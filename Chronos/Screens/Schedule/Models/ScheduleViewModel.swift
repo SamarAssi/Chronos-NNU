@@ -2,11 +2,12 @@
 //  ScheduleViewModel.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 22/06/2024.
+//  Created by Samar Assi on 22/06/2024.
 //
 
 import SwiftUI
 
+@MainActor
 class ScheduleViewModel: ObservableObject {
 
     @Published var selectedDate: Date = Date() {
@@ -21,6 +22,27 @@ class ScheduleViewModel: ObservableObject {
     @Published var isDatePickerPresented: Bool = false
     @Published var isLoading = false
 
+
+    private var employeeColor: [String: Color] = [:]
+    
+    private var colors: [Color] = [
+        .red, .orange, .yellow,
+        .green, .mint, .teal, .cyan,
+        .blue, .indigo, .purple, .pink,
+        .brown, .white, .gray, .black
+    ]
+    
+    func handleShiftDeletion(id: String) {
+        Task {
+            do {
+                try await ScheduleClient.deleteShift(id: id)
+                await getData()
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
     @ObservationIgnored private lazy var acronymManager = AcronymManager()
 
     func getData() async {
@@ -35,6 +57,7 @@ class ScheduleViewModel: ObservableObject {
             let shifts = response.shifts.sorted(by: {
                 $0.startTime ?? 0 < $1.startTime ?? 0
             }).compactMap { shift in
+                
 
                 let name = shift.employeeName
                 let id = shift.employeeID
@@ -49,6 +72,7 @@ class ScheduleViewModel: ObservableObject {
                 let titleString: String = (jobDescription?.isEmpty == false ? jobDescription : name) ?? "--"
 
                 return ShiftRowUIModel(
+                    id: shift.id ?? "",
                     initials: initials,
                     title: titleString,
                     startTime: startTime,
@@ -56,6 +80,7 @@ class ScheduleViewModel: ObservableObject {
                     backgroundColor: backgroundColor
                 )
             }
+            
             await MainActor.run {
                 self.shifts = shifts
                 self.isLoading = false
@@ -78,10 +103,11 @@ class ScheduleViewModel: ObservableObject {
 }
 
 struct ShiftRowUIModel: Identifiable {
-    let id = UUID()
+    let id: String
     let initials: String
     let title: String
     let startTime: String
     let endTime: String
     let backgroundColor: Color
 }
+ // open github
