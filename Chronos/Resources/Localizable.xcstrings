@@ -52,9 +52,6 @@
     "Added jobs:" : {
 
     },
-    "AI Feature" : {
-
-    },
     "All Day" : {
 
     },
@@ -109,6 +106,9 @@
 
     },
     "Clear" : {
+
+    },
+    "Close" : {
 
     },
     "Comment" : {
@@ -231,6 +231,9 @@
 
     },
     "Forgot Password?" : {
+
+    },
+    "Give me a brief description about the shifts you want to create." : {
 
     },
     "ID:" : {
@@ -424,10 +427,19 @@
     "START TIME" : {
 
     },
+    "Start:" : {
+
+    },
     "Start: " : {
 
     },
     "Submit" : {
+
+    },
+    "Suggest Shifts" : {
+
+    },
+    "Suggested Shifts" : {
 
     },
     "Teams & Conditions" : {

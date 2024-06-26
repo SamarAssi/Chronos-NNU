@@ -18,10 +18,11 @@ struct Shift: Codable {
     let role: String?
     let startTime, endTime: Int?
     let jobDescription, employeeID, employeeName: String?
+    let isNew: Bool?
 
     enum CodingKeys: String, CodingKey {
         case role, startTime, endTime, jobDescription, id
         case employeeID = "employeeId"
-        case employeeName
+        case employeeName, isNew
     }
 }

@@ -12,66 +12,25 @@ struct ScheduleView: View {
     @State var showCreateEventView = false
     @State private var showAIFeature = false
     @State private var buttonAnimation = false
-    @State private var animateBackground = false
-
     @State private var addButtonClicked = false
 
     @ObservedObject var viewModel = ScheduleViewModel()
     
     var body: some View {
-        ZStack {
-            contentView
-            aiContainerView
-        }
-        .onAppear {
-            Task {
-                await viewModel.getData()
+        contentView
+            .sheet(isPresented: $showCreateEventView) {
+                CreateShiftView(selectedDate: $viewModel.selectedDate)
             }
-        }
+            .sheet(isPresented: $showAIFeature) {
+                ShiftsSuggestionsView()
+            }
+            .onAppear {
+                Task {
+                    await viewModel.getData()
+                }
+            }
     }
 
-    private var aiContainerView: some View {
-        ZStack {
-            if showAIFeature {
-                Color.black.opacity(0.2)
-                    .background(animateBackground ? .red : .blue)
-                    .opacity(0.2)
-                    .frame(
-                        maxWidth: .infinity,
-                        maxHeight: .infinity
-                    )
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation(.easeInOut) {
-                            showAIFeature.toggle()
-                        }
-                    }
-                    .animation(
-                        .easeInOut(duration: 0.5)
-                        .repeatForever()
-                        .delay(0.2),
-                        value: animateBackground
-                    )
-                    .onAppear {
-                        animateBackground.toggle()
-                    }
-            }
-
-            if showAIFeature {
-                AIFeatureView()
-                    .frame(
-                        maxWidth: .infinity,
-                        maxHeight: .infinity
-                    )
-                    .padding()
-                    .transition(.aiViewAnimation)
-            }
-        }
-
-    }
-
-   
-    
     private var contentView: some View {
         VStack(alignment: .leading) {
             TitleView
@@ -176,7 +135,7 @@ struct ScheduleView: View {
                         .frame(maxHeight: .infinity)
                 } else {
                     List(viewModel.shifts) { event in
-                        eventRow(model: event)
+                        ShiftRowView(model: event)
                             .listRowSeparator(.hidden)
                             .listRowInsets(
                                 EdgeInsets(
