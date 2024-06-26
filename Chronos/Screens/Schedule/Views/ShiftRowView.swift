@@ -51,6 +51,14 @@ struct ShiftRowView: View {
             .padding(10)
 
             Spacer()
+
+            Text("New")
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundColor(.black)
+                .padding(10)
+                .background(Color.green.opacity(0.5))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding()
         }
         .background(model.backgroundColor.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 20))

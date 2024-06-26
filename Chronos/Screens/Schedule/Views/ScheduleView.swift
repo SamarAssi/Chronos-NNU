@@ -36,7 +36,7 @@ struct ScheduleView: View {
             TitleView
             CalendarDateView
                 .safeAreaInset(edge: .bottom) {
-                    if fetchEmployeeType() == 1 {
+                    if isManager() {
                         HStack {
                             Spacer()
                             FloatingActionButton
@@ -86,7 +86,9 @@ struct ScheduleView: View {
                 .foregroundColor(.theme)
                 .padding()
             Spacer()
-            aiButton
+            if isManager() {
+                aiButton
+            }
         }
     }
     
@@ -213,14 +215,11 @@ struct ScheduleView: View {
         viewModel.handleShiftDeletion(id: id)
     }
     
-    private func fetchEmployeeType() -> Int {
-        if let employeeType = KeychainManager.shared.fetch(
+    private func isManager() -> Bool {
+        let employeeType = KeychainManager.shared.fetch(
             key: KeychainKeys.employeeType.rawValue
-        ) {
-            return Int(employeeType) ?? -1
-        }
-        
-        return -1
+        ) ?? ""
+        return Int(employeeType) == 1
     }
 }
 
