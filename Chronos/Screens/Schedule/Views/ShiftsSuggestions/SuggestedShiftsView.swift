@@ -18,9 +18,7 @@ struct SuggestedShiftsView: View {
         self.shifts = shifts
 
         let acronymManager = AcronymManager()
-        self.uiModels = shifts.sorted(by: {
-            $0.startTime ?? 0 < $1.startTime ?? 0
-        }).compactMap { shift in
+        self.uiModels = shifts.compactMap { shift in
 
             let name = shift.employeeName
             let id = shift.employeeID
@@ -29,17 +27,16 @@ struct SuggestedShiftsView: View {
             let timezone = shift.isNew == true ? nil : TimeZone.current
             let startTime = shift.startTime?.timeAndDate(in: timezone) ?? "--"
             let endTime = shift.endTime?.timeAndDate(in: timezone) ?? "--"
-
-            let jobDescription = shift.jobDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
-            let titleString: String = (jobDescription?.isEmpty == false ? jobDescription : name) ?? "--"
+            let titleString: String = name ?? "--"
 
             return ShiftRowUIModel(
-                id: shift.id ?? "",
+                id: "\(UUID())",
                 initials: initials,
                 title: titleString,
                 startTime: startTime,
                 endTime: endTime,
-                backgroundColor: backgroundColor
+                backgroundColor: backgroundColor,
+                isNew: shift.isNew == true
             )
         }
     }

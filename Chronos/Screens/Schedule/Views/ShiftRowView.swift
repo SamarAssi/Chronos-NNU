@@ -52,13 +52,15 @@ struct ShiftRowView: View {
 
             Spacer()
 
-            Text("New")
-                .font(.system(size: 15, weight: .semibold))
-                .foregroundColor(.black)
-                .padding(10)
-                .background(Color.green.opacity(0.5))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding()
+            if model.isNew {
+                Text("New")
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundColor(.black)
+                    .padding(10)
+                    .background(Color.green.opacity(0.5))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding()
+            }
         }
         .background(model.backgroundColor.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -73,6 +75,7 @@ struct ShiftRowView: View {
         title: "Morning Shift",
         startTime: "8:00 AM",
         endTime: "12:00 PM",
-        backgroundColor: .theme
+        backgroundColor: .theme,
+        isNew: false
     ))
 }

@@ -112,6 +112,7 @@ extension BaseRouter {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = self.method.rawValue
         urlRequest.headers = self.defaultHeaders
+        urlRequest.timeoutInterval = TimeInterval.infinity
         if let parameters = self.parameters {
             do {
                 urlRequest.httpBody = try JSONSerialization.data(

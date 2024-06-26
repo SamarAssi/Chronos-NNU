@@ -68,8 +68,7 @@ class ScheduleViewModel: ObservableObject {
                 let startTime = shift.startTime?.timeAndDate(in: TimeZone.current) ?? "--"
                 let endTime = shift.endTime?.timeAndDate(in: TimeZone.current) ?? "--"
 
-                let jobDescription = shift.jobDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
-                let titleString: String = (jobDescription?.isEmpty == false ? jobDescription : name) ?? "--"
+                let titleString: String = name ?? "--"
 
                 return ShiftRowUIModel(
                     id: shift.id ?? "",
@@ -77,7 +76,8 @@ class ScheduleViewModel: ObservableObject {
                     title: titleString,
                     startTime: startTime,
                     endTime: endTime,
-                    backgroundColor: backgroundColor
+                    backgroundColor: backgroundColor,
+                    isNew: shift.isNew == true
                 )
             }
             
@@ -98,5 +98,6 @@ struct ShiftRowUIModel: Identifiable {
     let startTime: String
     let endTime: String
     let backgroundColor: Color
+    let isNew: Bool
 }
  // open github
