@@ -16,8 +16,6 @@ struct AddEmployeeView: View {
     @State private var isPhoneNumberInvalid = false
     @State private var isSamePassword = false
     
-    @Binding var isEditing: Bool
-    
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
         hideAfter: 5,
@@ -68,9 +66,6 @@ struct AddEmployeeView: View {
                 textField.text = ""
             }
             employeeListModel.selectedJobs.removeAll()
-        }
-        .onDisappear {
-            isEditing = true
         }
         .simpleToast(
             isPresented: $isPhoneNumberInvalid,
@@ -133,13 +128,13 @@ extension AddEmployeeView {
                     TextFieldView(textFieldModel: employeeListModel.textFields[index])
                         .listRowSeparator(.hidden)
                         .padding(.horizontal, 10)
-                        .onChange(of: employeeListModel.textFields[4].text) {
+                        .onChange(of: employeeListModel.textFields[3].text) {
                             PasswordValidationManager.shared.validatePassword(
-                                password: employeeListModel.textFields[4].text
+                                password: employeeListModel.textFields[3].text
                             )
                         }
                     
-                    if index == 3 {
+                    if index == 2 {
                         if let jobsResponse = employeeListModel.jobsResponse {
                             ScrollableListView(
                                 selectedItems: $employeeListModel.selectedJobs,
@@ -148,6 +143,7 @@ extension AddEmployeeView {
                                 withIcon: false
                             )
                             .padding(.horizontal, 10)
+                            .listRowBackground(Color.clear)
                         }
                     }
                 }
@@ -169,11 +165,11 @@ extension AddEmployeeView {
             buttonText: LocalizedStringKey("Add"),
             backgroundColor: addButtonBackgroundColor,
             action: {
-                isPhoneNumberInvalid = !isValidPhoneNumber(
-                    employeeListModel.textFields[3].text
-                )
+//                isPhoneNumberInvalid = !isValidPhoneNumber(
+//                    employeeListModel.textFields[3].text
+//                )
                 isSamePassword = !checkIsSamePassword()
-                if !isPhoneNumberInvalid && checkIsSamePassword() {
+                if checkIsSamePassword() {
                     employeeListModel.handleRegistrationResponse { success in
                         if success {
                             dismiss.callAsFunction()
@@ -224,7 +220,7 @@ extension AddEmployeeView {
 
     private func areEmptyFields() -> Bool {
         for index in employeeListModel.textFields.indices {
-            if employeeListModel.textFields[index].text.isEmpty && index != 3 {
+            if employeeListModel.textFields[index].text.isEmpty {
                 return true
             }
         }
@@ -244,13 +240,12 @@ extension AddEmployeeView {
     }
     
     private func checkIsSamePassword() -> Bool {
-        return employeeListModel.textFields[4].text == employeeListModel.textFields[5].text
+        return employeeListModel.textFields[3].text == employeeListModel.textFields[4].text
     }
 }
 
 #Preview {
     AddEmployeeView(
-        employeeListModel: EmployeeListModel(),
-        isEditing: .constant(false)
+        employeeListModel: EmployeeListModel()
     )
 }

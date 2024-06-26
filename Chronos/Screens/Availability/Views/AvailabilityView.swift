@@ -30,12 +30,20 @@ struct AvailabilityView: View {
 
             if let availabilities = weekdayModel.availabilities,
                let isPendingApproval = availabilities.isPendingApproval,
-               isPendingApproval {
+               isPendingApproval 
+            {
                 pendingApprovalLabelView
+                
             } else if let updatedAvailabilities = weekdayModel.updatedAvailabilities,
                       let isPendingApproval = updatedAvailabilities.isPendingApproval,
-                      isPendingApproval {
+                      isPendingApproval
+            {
+                
                 pendingApprovalLabelView
+            }
+            
+            if !weekdayModel.comment.isEmpty {
+                commentView
             }
 
             schedulingView
@@ -77,6 +85,22 @@ extension AvailabilityView {
             .fontWeight(.bold)
             .padding(.horizontal)
             .padding(.bottom)
+    }
+    
+    var commentView: some View {
+        HStack {
+            Image(systemName: "ellipsis.message")
+                .font(.title3)
+
+            Text(weekdayModel.comment)
+                .fontWeight(.bold)
+                .font(.subheadline)
+        }
+        .foregroundStyle(Color.gray)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(12)
+        .padding(.horizontal, 6)
+        .background(Color.gray.opacity(0.1))
     }
 
     var pendingApprovalLabelView: some View {

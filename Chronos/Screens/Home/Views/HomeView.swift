@@ -9,24 +9,28 @@ import SwiftUI
 import SimpleToast
 
 struct HomeView: View {
-
+    
     @StateObject private var homeModel = HomeModel()
     @EnvironmentObject var navigationRouter: NavigationRouter
-
+    
     @State private var isShowProfileHeader = true
     @State private var showFullScreen = false
     @State private var isCheckedIn = false
     @State private var isInvalidCheckInOut = false
-
+    
     @State private var selectedDate: Date = Date()
     @State private var employeeId: String?
-
+    
+    @State private var scrollOffset: CGFloat = 0
+    @State private var lastScrollOffset: CGFloat = 0
+    
+    
     let startDate = Calendar.current.date(
         byAdding: .day,
         value: -30,
         to: Date()
     ) ?? Date()
-
+    
     let endDate = Calendar.current.date(
         byAdding: .day,
         value: 30,
@@ -40,13 +44,13 @@ struct HomeView: View {
         modifierType: .slide,
         dismissOnTap: true
     )
-
+    
     var activityTitle: LocalizedStringKey {
         fetchEmployeeType() == 0 ?
         "Your Activity" :
         "Your Employees Activity"
     }
-
+    
     var body: some View {
         VStack(
             spacing: 0
@@ -56,7 +60,7 @@ struct HomeView: View {
                     .padding(.trailing, 30)
                     .padding(.top)
             }
-
+            
             FilteredCalendarCollectionView(
                 selectedDate: $selectedDate,
                 dashboardResponse: $homeModel.dashboardResponse,
@@ -66,7 +70,7 @@ struct HomeView: View {
             )
             .padding(.top, 20)
             .padding(.bottom)
-
+            
             dashboardContent
         }
         .fontDesign(.rounded)
@@ -99,7 +103,7 @@ struct HomeView: View {
 // MARK: - Computed Properties
 
 extension HomeView {
-
+    
     var dashboardContent: some View {
         ZStack(
             alignment: .bottom
@@ -109,7 +113,7 @@ extension HomeView {
             } else {
                 CustomProgressView()
             }
-
+            
             if fetchEmployeeType() == 0 {
                 if getDate(date: selectedDate) == getDate(date: Date()) {
                     SwipeToUnlockView(
@@ -131,57 +135,45 @@ extension HomeView {
                 .ignoresSafeArea(edges: .bottom)
         )
     }
-
+    
     var activityScrollView: some View {
-        GeometryReader { outerProxy in
-            let outerHeight = outerProxy.size.height
-            ScrollView {
-                LazyVStack(
-                    alignment: .leading,
-                    spacing: 15
-                ) {
-                    attendanceView
-                    activityView
-                }
-                .padding(.top, 20)
-                .padding(.bottom, 100)
-                .padding(.horizontal, 18)
-                .background(
-                    GeometryReader { proxy in
-                        let contentHeight = proxy.size.height
-                        let minY = max(min(0, proxy.frame(in: .named("ScrollView")).minY), outerHeight - contentHeight)
-                        Color.clear
-                            .onChange(of: minY) { oldValue, newValue in
-                                if (isShowProfileHeader && newValue < oldValue) || !isShowProfileHeader && newValue > oldValue {
-                                    isShowProfileHeader = newValue > oldValue
-                                }
-                            }
-//                        Color.clear
-//                            .onChange(
-//                                of: proxy.frame(in: .named("ScrollView")).minY
-//                            ) { newValue, oldValue in
-//                                adjustShowHeaderState(
-//                                    oldVal: oldValue,
-//                                    newVal: newValue
-//                                )
-//                            }
-                    }
-                )
+        ScrollView {
+            LazyVStack(
+                alignment: .leading,
+                spacing: 15
+            ) {
+                
+                attendanceView
+                activityView
             }
-            .coordinateSpace(name: "ScrollView")
-            .scrollIndicators(.hidden)
-            .onAppear {
-                isShowProfileHeader = true
-                if let dashboardResponse = homeModel.dashboardResponse {
-                    if dashboardResponse.shouldShowOnboarding {
-                        showFullScreen = true
-                    }
+            .padding(.top, 20)
+            .padding(.bottom, 100)
+            .padding(.horizontal, 18)
+            .background(
+                //                        Color.clear
+                //                            .onChange(
+                //                                of: proxy.frame(in: .named("ScrollView")).minY
+                //                            ) { newValue, oldValue in
+                //                                adjustShowHeaderState(
+                //                                    oldVal: oldValue,
+                //                                    newVal: newValue
+                //                                )
+                //                            }
+            )
+        }
+        .coordinateSpace(name: "ScrollView")
+        .scrollIndicators(.hidden)
+        .onAppear {
+            isShowProfileHeader = true
+            if let dashboardResponse = homeModel.dashboardResponse {
+                if dashboardResponse.shouldShowOnboarding {
+                    showFullScreen = true
                 }
-                checkIn()
             }
+            checkIn()
         }
     }
-
+    
     var attendanceView: some View {
         VStack(
             alignment: .leading,
@@ -196,7 +188,7 @@ extension HomeView {
             }
         }
     }
-
+    
     var activityView: some View {
         VStack(
             alignment: .leading,
@@ -213,7 +205,7 @@ extension HomeView {
                     filterButtonView
                 }
             }
-
+            
             if let dashboardResponse = homeModel.dashboardResponse {
                 if dashboardResponse.activities.isEmpty {
                     Text(LocalizedStringKey("There is no activities yet!"))
@@ -250,15 +242,16 @@ extension HomeView {
             }
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")
-                .foregroundStyle(Color.black)
+                .foregroundStyle(homeModel.employees.isEmpty ? Color.gray : Color.black)
         }
+        .disabled(homeModel.employees.isEmpty)
     }
 }
 
 // MARK: - Mehtods
 
 extension HomeView {
-
+    
     private func activitiesListView(
         dashboardResponse: DashboardResponse
     ) -> some View {
@@ -269,7 +262,7 @@ extension HomeView {
                 dashboardResponse.activities.reversed(),
                 id: \.self
             ) { activity in
-
+                
                 VStack {
                     if let checkout = activity.checkOutTime {
                         ActivityCardView(
@@ -284,7 +277,7 @@ extension HomeView {
                         .shadow(radius: 1)
                         .padding(.vertical, 5)
                     }
-
+                    
                     ActivityCardView(
                         icon: "tray.and.arrow.down",
                         title: "Check In",
@@ -296,12 +289,30 @@ extension HomeView {
                     )
                     .shadow(radius: 1)
                     .padding(.vertical, 5)
-
+                    
                 }
             }
         }
     }
-
+    
+    private func updateHeaderVisibility(_ currentScrollOffset: CGFloat) {
+        let delta = currentScrollOffset - lastScrollOffset
+        
+        if delta > 5 && !isShowProfileHeader {
+            // Scrolling up
+            withAnimation {
+                isShowProfileHeader = true
+            }
+        } else if delta < -5 && isShowProfileHeader && currentScrollOffset < 0 {
+            // Scrolling down
+            withAnimation {
+                isShowProfileHeader = false
+            }
+        }
+        
+        lastScrollOffset = currentScrollOffset
+    }
+    
     private func adjustShowHeaderState(
         oldVal: CGFloat,
         newVal: CGFloat
@@ -313,7 +324,7 @@ extension HomeView {
             isShowProfileHeader = true
         }
     }
-
+    
     private func getDate(
         date: Date
     ) -> String {
@@ -321,7 +332,7 @@ extension HomeView {
         formatter.dateFormat = "MMMM dd,yyyy"
         return formatter.string(from: date)
     }
-
+    
     private func checkIn() {
         if let dashboardResponse = homeModel.dashboardResponse {
             if !dashboardResponse.activities.isEmpty && dashboardResponse.activities.last?.checkOutTime == nil {
@@ -338,7 +349,7 @@ extension HomeView {
         ) {
             return Int(employeeType) ?? -1
         }
-
+        
         return -1
     }
 }

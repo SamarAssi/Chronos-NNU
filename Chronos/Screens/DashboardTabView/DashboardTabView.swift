@@ -18,14 +18,8 @@ struct DashboardTabView: View {
                 .tabItem { Image(systemName: "house") }
 
             if fetchEmployeeType() == 1 {
-                EmployeeListView(isShowCurrentTabView: $isShowCurrentTabView)
+                EmployeeListView()
                     .tabItem { Image(systemName: "list.clipboard") }
-                    .toolbar(
-                        isShowCurrentTabView ?
-                        .visible :
-                        .hidden,
-                        for: .tabBar
-                    )
             }
 
             ScheduleView()
@@ -42,12 +36,6 @@ struct DashboardTabView: View {
 
             ProfileView(isShowTabView: $isShowTabView)
                 .tabItem { Image(systemName: "person") }
-//                .toolbar(
-//                    isShowTabView ?
-//                    .visible :
-//                    .hidden,
-//                    for: .tabBar
-//                )
         }
         .customTabStyle()
     }

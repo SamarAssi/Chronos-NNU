@@ -18,6 +18,15 @@ struct AvailabilityRowView: View {
     }
 
     var body: some View {
+        Rectangle()
+            .fill(Color.white)
+            .frame(height: 80)
+            .overlay {
+                contentView
+            }
+    }
+    
+    var contentView: some View {
         VStack(spacing: 0) {
             HStack {
                 Circle()

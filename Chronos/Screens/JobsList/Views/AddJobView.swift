@@ -9,19 +9,19 @@ import SwiftUI
 import SimpleToast
 
 struct AddJobView: View {
-
+    
     @ObservedObject var jobsListModel: JobsListModel
-
+    
     @State private var textField: TextFieldModel = TextFieldModel.addJobData
     @State private var jobsNames: [String] = []
     @State private var isShowToast = false
-
+    
     @Binding var isEditing: Bool
-
+    
     @Environment(\.dismiss) var dismiss
     
     var selectedJob: Job?
-
+    
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
         hideAfter: 5,
@@ -29,7 +29,7 @@ struct AddJobView: View {
         modifierType: .slide,
         dismissOnTap: true
     )
-
+    
     var titleText: LocalizedStringKey {
         selectedJob == nil ?
         "Add Job" :
@@ -41,7 +41,7 @@ struct AddJobView: View {
         "save" :
         "Update"
     }
-
+    
     var isAddButtonDisabled: Bool {
         return isEmptyField()
     }
@@ -51,7 +51,7 @@ struct AddJobView: View {
         jobsNames.isEmpty :
         isEmptyField()
     }
-
+    
     var addButtonBackgroundColor: Color {
         isEmptyField() ?
         Color.red.opacity(0.5) :
@@ -63,7 +63,7 @@ struct AddJobView: View {
         Color.theme.opacity(0.5) :
         Color.theme
     }
-
+    
     var body: some View {
         NavigationStack {
             VStack(
@@ -72,7 +72,7 @@ struct AddJobView: View {
             ) {
                 TextFieldView(textFieldModel: textField)
                     .padding()
-
+                
                 if selectedJob == nil {
                     if !jobsNames.isEmpty {
                         Text(LocalizedStringKey("Added jobs:"))
@@ -121,13 +121,13 @@ struct AddJobView: View {
 }
 
 extension AddJobView {
-
+    
     var titleView: some View {
         Text(titleText)
             .font(.title2)
             .fontWeight(.bold)
     }
-
+    
     var addButtonView: some View {
         MainButton(
             isLoading: .constant(false),
@@ -179,7 +179,7 @@ extension AddJobView {
         .listStyle(PlainListStyle())
         .scrollIndicators(.hidden)
     }
-
+    
     var cancelButtonView: some View {
         Image(systemName: "xmark")
             .scaleEffect(0.8)
@@ -190,45 +190,41 @@ extension AddJobView {
 }
 
 extension AddJobView {
-
+    
     private func addJob() {
         var jobs = jobsNames.compactMap { Job(id: nil, name: $0) }
-
-        if var oldJobs = jobsListModel.jobs {
-            for oldJob in oldJobs {
-                if jobsNames.contains(oldJob.name) {
-                    if let index = oldJobs.firstIndex(of: oldJob) {
-                        oldJobs.remove(at: index)
-                    }
+        
+        for job in jobsListModel.jobs {
+            if jobsNames.contains(job.name) {
+                if let index = jobsListModel.jobs.firstIndex(of: job) {
+                    jobsListModel.jobs.remove(at: index)
                 }
             }
-
-            jobs.append(contentsOf: oldJobs)
         }
-
+        
+        jobs.append(contentsOf: jobsListModel.jobs)
+        
         jobsListModel.handleUpdateJobResponse(jobs: jobs)
     }
     
     private func updateJob() {
-        if let oldJobs = jobsListModel.jobs {
-            var names = oldJobs.compactMap { $0.name }
-            
-            for name in names {
-                if let selectedJob = selectedJob {
-                    if name == selectedJob.name {
-                        if let index = names.firstIndex(of: selectedJob.name) {
-                            names[index] = textField.text
-                        }
+        var names = jobsListModel.jobs.compactMap { $0.name }
+        
+        for name in names {
+            if let selectedJob = selectedJob {
+                if name == selectedJob.name {
+                    if let index = names.firstIndex(of: selectedJob.name) {
+                        names[index] = textField.text
                     }
                 }
             }
-            
-            let newJobs = names.compactMap { Job(id: nil, name: $0) }
-            
-            jobsListModel.handleUpdateJobResponse(jobs: newJobs)
         }
+        
+        let newJobs = names.compactMap { Job(id: nil, name: $0) }
+        
+        jobsListModel.handleUpdateJobResponse(jobs: newJobs)
     }
-
+    
     private func isEmptyField() -> Bool {
         return textField.text.isEmpty
     }

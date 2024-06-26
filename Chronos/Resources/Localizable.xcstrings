@@ -25,9 +25,6 @@
     "• %@" : {
 
     },
-    "• %@." : {
-
-    },
     "• At least 8 characters" : {
 
     },
@@ -50,9 +47,6 @@
 
     },
     "Add Job" : {
-
-    },
-    "Add new Job" : {
 
     },
     "Added jobs:" : {
@@ -88,6 +82,9 @@
 
     },
     "Are you sure you want to log out?" : {
+
+    },
+    "Are you sure you want to remove this employee?" : {
 
     },
     "Availability" : {
@@ -166,6 +163,9 @@
 
     },
     "Edit" : {
+
+    },
+    "Edit Jobs" : {
 
     },
     "EmailLabel" : {
@@ -364,6 +364,12 @@
 
     },
     "Register Company" : {
+
+    },
+    "Remove" : {
+
+    },
+    "Remove employee" : {
 
     },
     "Request submitted on %@" : {

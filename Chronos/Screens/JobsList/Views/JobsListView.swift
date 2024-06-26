@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct JobsListView: View {
-
+    
     @StateObject private var jobsListModel = JobsListModel()
     @Environment(\.dismiss) var dismiss
     
@@ -16,17 +16,7 @@ struct JobsListView: View {
     @State private var isShowAddJobView = false
     @State private var selectedJobs: [Job] = []
     @State private var selectedJob: Job?
-        
-    var isDeleteButtonDisabled: Bool {
-        return selectedJobs.isEmpty
-    }
     
-    var deleteButtonColor: Color {
-        selectedJobs.isEmpty ?
-        Color.red.opacity(0.5) :
-        Color.red
-    }
-
     var body: some View {
         ZStack(
             alignment: .bottom
@@ -34,50 +24,47 @@ struct JobsListView: View {
             if jobsListModel.isLoading {
                 CustomProgressView()
             } else {
-                if let jobsResponse = jobsListModel.jobsResponse {
-                    if jobsResponse.jobs.isEmpty {
-                        emptyView
-                    } else {
-                        List {
-                            ForEach(
-                                jobsResponse.jobs,
-                                id: \.self
-                            ) { job in
-                                JobCellView(
-                                    isSelected: isSelectedJob(job: job),
-                                    isEditing: isEditing,
-                                    jobName: job.name
-                                )
-                                .onTapGesture {
-                                    if isEditing {
-                                        selectedJob = job
-                                    } else {
-                                        toggleSelection(job: job)
-                                    }
-                                }
-                                .onChange(of: isEditing) {
-                                    updateSelectionStatus()
-                                }
-                                .onDisappear {
-                                    jobsListModel.getJobsList()
+                if jobsListModel.jobs.isEmpty {
+                    emptyView
+                } else {
+                    List {
+                        ForEach(
+                            jobsListModel.jobs,
+                            id: \.self
+                        ) { job in
+                            JobCellView(
+                                isSelected: isSelectedJob(job: job),
+                                isEditing: isEditing,
+                                jobName: job.name
+                            )
+                            .onTapGesture {
+                                if isEditing {
+                                    selectedJob = job
+                                } else {
+                                    toggleSelection(job: job)
                                 }
                             }
-                            .onDelete { indexSet in
-                                deleteJob(
-                                    at: indexSet,
-                                    from: jobsResponse.jobs
-                                )
+                            .onChange(of: isEditing) {
+                                updateSelectionStatus()
+                            }
+                            .onDisappear {
+                                jobsListModel.getJobsList()
                             }
                         }
-                        .listStyle(PlainListStyle())
-                        .scrollIndicators(.hidden)
+                        .onDelete { indexSet in
+                            deleteJob(
+                                at: indexSet,
+                                from: jobsListModel.jobs
+                            )
+                        }
                     }
-                }
-
-                if !isEditing {
-                    tabView
+                    .listStyle(PlainListStyle())
+                    .scrollIndicators(.hidden)
                 }
             }
+            
+            FloatingActionButton
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .fontDesign(.rounded)
         .toolbar {
@@ -90,7 +77,11 @@ struct JobsListView: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                editButtonView
+                if isEditing {
+                    editButtonView
+                } else {
+                    deleteButtonView
+                }
             }
         }
         .onAppear {
@@ -113,7 +104,24 @@ struct JobsListView: View {
 }
 
 extension JobsListView {
-
+    
+    private var FloatingActionButton: some View {
+        Button(action: {
+            isShowAddJobView.toggle()
+        }) {
+            Circle()
+                .foregroundColor(.theme)
+                .frame(width: 50, height: 50)
+                .overlay(
+                    Image(systemName: "plus")
+                        .resizable()
+                        .foregroundColor(.white)
+                        .padding(14)
+                )
+                .padding()
+        }
+    }
+    
     var titleView: some View {
         Text(LocalizedStringKey("Jobs List"))
             .font(.title2)
@@ -124,12 +132,13 @@ extension JobsListView {
         Button {
             isEditing.toggle()
         } label: {
-            Text(isEditing ? "Edit" : "Done")
+            Text(LocalizedStringKey("Edit"))
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
-                .foregroundStyle(Color.black)
+                .foregroundStyle(jobsListModel.jobs.isEmpty ? Color.gray : Color.black)
                 .padding(.vertical, 25)
         }
+        .disabled(jobsListModel.jobs.isEmpty)
     }
     
     var emptyView: some View {
@@ -138,7 +147,7 @@ extension JobsListView {
                 .resizable()
                 .scaledToFit()
                 .frame(height: 100)
-
+            
             Text(LocalizedStringKey("Oops, No jobs until now"))
                 .font(.subheadline)
                 .fontWeight(.bold)
@@ -149,7 +158,7 @@ extension JobsListView {
             alignment: .center
         )
     }
-
+    
     var backButtonView: some View {
         Image(systemName: "chevron.left")
             .scaleEffect(0.9)
@@ -157,53 +166,21 @@ extension JobsListView {
                 dismiss.callAsFunction()
             }
     }
-
-    var tabView: some View {
-        VStack(
-            spacing: 0
-        ) {
-            Divider()
-            Rectangle()
-                .fill(.regularMaterial)
-                .ignoresSafeArea(edges: [.horizontal, .bottom])
-                .frame(height: 49)
-                .overlay {
-                    HStack {
-                        if !isEditing {
-                            deleteButtonView
-                            addButtonView
-                        }
-                    }
-                    .padding()
-                    .padding(.horizontal, 5)
-                    .padding(.bottom)
-                }
-        }
-    }
-    
-    var addButtonView: some View {
-        Button {
-            isShowAddJobView.toggle()
-        } label: {
-            Image(systemName: "plus")
-                .font(.title2)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .foregroundStyle(Color.black)
-        }
-    }
     
     var deleteButtonView: some View {
         Button {
-            if let responseJob = jobsListModel.jobsResponse {
-                deleteMultipleJobs(from: responseJob.jobs)
+            if !selectedJobs.isEmpty {
+                if let responseJob = jobsListModel.jobsResponse {
+                    deleteMultipleJobs(from: responseJob.jobs)
+                }
             }
             isEditing = true
         } label: {
-            Image(systemName: "trash")
-                .font(.title2)
-                .foregroundStyle(deleteButtonColor)
+            Text(LocalizedStringKey("Delete"))
+                .fontWeight(.bold)
+                .fontDesign(.rounded)
+                .foregroundStyle(Color.red)
         }
-        .disabled(isDeleteButtonDisabled)
     }
 }
 
@@ -241,7 +218,7 @@ extension JobsListView {
         from jobs: [Job]
     ) {
         var newJobs = jobs
-
+        
         indices.forEach { index in
             newJobs.remove(at: index)
             jobsListModel.handleUpdateJobResponse(jobs: newJobs)
@@ -251,7 +228,7 @@ extension JobsListView {
     
     private func deleteMultipleJobs(from jobs: [Job]) {
         var newJobs = jobs
-
+        
         for selectedJob in selectedJobs {
             if newJobs.contains(selectedJob) {
                 if let index = newJobs.firstIndex(of: selectedJob) {

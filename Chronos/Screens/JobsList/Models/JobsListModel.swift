@@ -11,7 +11,7 @@ class JobsListModel: ObservableObject {
 
     @Published var jobsResponse: JobsResponse?
     @Published var updateJobResponse: UpdateJobResponse?
-    @Published var jobs: [Job]?
+    @Published var jobs: [Job] = []
     
     @Published var isLoading = false
     
@@ -20,7 +20,7 @@ class JobsListModel: ObservableObject {
         Task {
             do {
                 jobsResponse = try await JobsClient.getJobs()
-                jobs = jobsResponse?.jobs
+                jobs = jobsResponse?.jobs ?? []
             } catch let error {
                 print(error)
             }

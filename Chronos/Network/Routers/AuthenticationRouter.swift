@@ -12,7 +12,7 @@ enum AuthenticationRouter: BaseRouter {
     case login(username: String, password: String)
     case onboardingManager(name: String, description: String)
     case onboardingEmployee(id: String)
-    case registration(firstName: String, lastName: String, username: String, phone: String, password: String)
+    case registration(firstName: String, lastName: String, username: String, password: String)
     case home
 
     var path: String {
@@ -57,14 +57,12 @@ enum AuthenticationRouter: BaseRouter {
             let firstName,
             let lastName,
             let username,
-            let phone,
             let password
         ):
             return [
                 "firstName": firstName,
                 "lastName": lastName,
                 "username": username,
-                "phone": phone,
                 "password": password
             ]
         default:

@@ -13,57 +13,28 @@ struct EmployeeDetailsView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var isAdding = false
+    @State private var isShowAlert = false
+    @State private var isShowJobsList = false
     @State private var selectedJobs: [Job] = []
-    @State private var newJobs: [Job] = []
-    
+    @State private var oldSelectedJobs: [Job] = []
+
     var employee: Employee
-    
-    var isAddJobButtonDisabled: Bool {
-        return selectedJobs.isEmpty
-    }
-    
-    var addJobButtonColor: Color {
-        isAddJobButtonDisabled ?
-        Color.theme.opacity(0.5) :
-        Color.theme
-    }
-    
-    var isAddButtonToolbarDisabled: Bool {
-        if employeeListModel.jobs.isEmpty {
-            return false
-        } else {
-            for job in employeeListModel.jobs {
-                if !newJobs.contains(job) {
-                    return false
-                }
-            }
-        }
-        return true
-    }
-    
+
     var body: some View {
         NavigationStack {
             VStack(
                 alignment: .leading,
-                spacing: 15
+                spacing: 0
             ) {
                 headerSectionView
                 usernameView
+                    .padding(.vertical)
                 Divider()
 
                 if !employeeListModel.jobs.isEmpty {
                     jobsListView
-                    
-                    if isAdding {
-                        jobAdditionView
-                    }
                 } else {
-
-                    if isAdding {
-                        jobAdditionView
-                    } else {
-                        emptyView
-                    }
+                    emptyView
                 }
                 
             }
@@ -76,7 +47,7 @@ struct EmployeeDetailsView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         deleteEmployeeButtonView
-                        addJobButtonView
+                        editButtonView
                     } label: {
                         Image(systemName: "ellipsis")
                             .foregroundStyle(Color.white)
@@ -86,6 +57,35 @@ struct EmployeeDetailsView: View {
             .onAppear {
                 employeeListModel.getJobsList()
                 employeeListModel.getEmployeeDetails(employeeId: employee.id)
+            }
+            .alert(
+                LocalizedStringKey("Are you sure you want to remove this employee?"),
+                isPresented: $isShowAlert
+            ) {
+                alertButtonsView
+            }
+            .fullScreenCover(isPresented: $isShowJobsList) {
+                if let jobsResponse = employeeListModel.jobsResponse {
+                    EmployeeJobsListView(
+                        employeeListModel: employeeListModel,
+                        selectedJobs: $selectedJobs,
+                        oldSelectedJobs: $oldSelectedJobs,
+                        jobs: jobsResponse.jobs,
+                        id: employee.id
+                    )
+                }
+            }
+        }
+    }
+    
+    var alertButtonsView: some View {
+        HStack {
+            Button("Cancel", role: .cancel) {
+                isShowAlert = false
+            }
+            Button("Remove", role: .destructive) {
+                deleteEmployee()
+                dismiss.callAsFunction()
             }
         }
     }
@@ -113,72 +113,25 @@ extension EmployeeDetailsView {
     
     var deleteEmployeeButtonView: some View {
         Button {
-            deleteEmployee()
-            dismiss.callAsFunction()
+            isShowAlert.toggle()
         } label: {
-            Text(LocalizedStringKey("Delete"))
+            Text(LocalizedStringKey("Remove employee"))
             Image(systemName: "trash")
         }
     }
     
-    var addJobButtonView: some View {
+    var editButtonView: some View {
         Button {
-            isAdding.toggle()
+            if let jobsResponse = employeeListModel.jobsResponse {
+                identifyNewJobsNotInEmployeeList(from: jobsResponse)
+            }
+            isShowJobsList.toggle()
         } label: {
-            Text(LocalizedStringKey("Add new Job"))
-            Image(systemName: "plus")
+            Text(LocalizedStringKey("Edit Jobs"))
+            Image(systemName: "square.and.pencil")
         }
-        .disabled(isAddButtonToolbarDisabled)
     }
-    
-    var jobAdditionView: some View {
-        VStack {
-            HStack {
-                if let jobsResponse = employeeListModel.jobsResponse {
-                    ScrollableListView(
-                        selectedItems: $selectedJobs,
-                        label: "Select the job/s:",
-                        items: newJobs,
-                        withIcon: true
-                    )
-                    .onAppear {
-                        newJobs.removeAll()
-                        identifyNewJobsNotInEmployeeList(from: jobsResponse)
-                    }
-                    .onDisappear {
-                        selectedJobs.removeAll()
-                    }
-                }
-            }
-            
-            HStack {
-                Button {
-                    addJob()
-                    isAdding = false
-                } label: {
-                    Text(LocalizedStringKey("Add"))
-                }
-                .foregroundStyle(addJobButtonColor)
-                .disabled(isAddJobButtonDisabled)
-                
-                Button {
-                    isAdding.toggle()
-                } label: {
-                    Text(LocalizedStringKey("Cancel"))
-                }
-                .foregroundStyle(Color.gray)
-            }
-            .padding(.horizontal, 10)
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity,
-                alignment: .topLeading
-            )
-        }
-        .font(.subheadline)
-        .padding(.horizontal)
-    }
-    
+
     var headerSectionView: some View {
         ZStack {
             Color.theme
@@ -224,14 +177,15 @@ extension EmployeeDetailsView {
     
     var jobsListView: some View {
         VStack(
-            alignment: .leading
+            alignment: .leading,
+            spacing: 0
         ) {
             Text(LocalizedStringKey("Jobs"))
                 .font(.title2)
                 .fontWeight(.bold)
-                .padding(.top)
-                .padding(.horizontal)
-            
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.silver.opacity(0.3))
             
             if employeeListModel.isLoadingJobs {
                 CustomProgressView()
@@ -241,7 +195,7 @@ extension EmployeeDetailsView {
                         employeeListModel.jobs,
                         id: \.self
                     ) { job in
-                        Text("• \(job.name).")
+                        Text(job.name)
                             .listRowSeparator(.hidden)
                             .padding(.horizontal)
                     }
@@ -288,25 +242,19 @@ extension EmployeeDetailsView {
         employeeListModel.deleteEmployee(username: employee.username)
     }
     
-    private func addJob() {
-        var newJobs = employeeListModel.jobs
-        
-        newJobs.append(contentsOf: selectedJobs)
-        employeeListModel.updateEmployeeJob(
-            employeeId: employee.id,
-            jobs: newJobs
-        )
-    }
-    
     private func identifyNewJobsNotInEmployeeList(
         from jobsResponse: JobsResponse
     ) {
-        let employeeJobsNames = employeeListModel.jobs.compactMap { $0.name }
-        let managerJobsNames = jobsResponse.jobs.compactMap { $0.name }
+        let employeeJobsNames = employeeListModel.jobs.compactMap { $0.name } // ios android
+        let managerJobsNames = jobsResponse.jobs.compactMap { $0.name } // ios android qa
         
-        for index in managerJobsNames.indices {
-            if !employeeJobsNames.contains(managerJobsNames[index]) {
-                newJobs.append(jobsResponse.jobs[index])
+        for index in employeeJobsNames.indices {
+            if managerJobsNames.contains(employeeJobsNames[index]) {
+                if let managerJobIndex = managerJobsNames.firstIndex(of: employeeJobsNames[index]) {
+                    oldSelectedJobs.append(jobsResponse.jobs[managerJobIndex])
+                }
+                /// ios
+                /// android
             }
         }
     }

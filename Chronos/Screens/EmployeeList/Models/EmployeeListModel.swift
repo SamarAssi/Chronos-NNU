@@ -15,8 +15,15 @@ class EmployeeListModel: ObservableObject {
     var employeeJobsUpdateResponse: EmployeeJobsUpdateResponse?
     var jobsResponse: JobsResponse?
     var employeeDetailsResponse: LoginResponse?
+    var registerEmployeeResponse: LoginResponse?
+
     var jobs: [Job] = []
+    var selectedJobs: [Job] = []
+
+    var textFields: [TextFieldModel] = TextFieldModel.addEmployeeData
     
+    var isLoadingEmployeeList = false
+    var isUsernameInvalid = false
     var isLoading = false
     var isLoadingJobs = false
     
@@ -106,17 +113,6 @@ class EmployeeListModel: ObservableObject {
     private func hideLoading() {
         isLoading = false
     }
-    
-    
-    
-    var textFields: [TextFieldModel] = TextFieldModel.addEmployeeData
-
-    var registerEmployeeResponse: LoginResponse?
-    
-    var selectedJobs: [Job] = []
-    
-    var isLoadingEmployeeList = false
-    var isUsernameInvalid = false
     
     @MainActor
     func handleRegistrationResponse(

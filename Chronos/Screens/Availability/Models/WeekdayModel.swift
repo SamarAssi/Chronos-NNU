@@ -23,6 +23,7 @@ class WeekdayModel: ObservableObject {
 
     @Published var updatedAvailabilities: Availabilities?
     @Published var availabilities: Availabilities?
+    @Published var comment = ""
 
     var selectedIndices: [Int] {
         weekdays
@@ -37,6 +38,7 @@ class WeekdayModel: ObservableObject {
         Task {
             do {
                 availabilities = try await AvailabilityClient.getAvailability()
+                comment = availabilities?.comment ?? ""
                 await MainActor.run { [weak self] in
                     guard let self = self else { return }
 
@@ -89,7 +91,8 @@ class WeekdayModel: ObservableObject {
             friday: weekdays[5].day,
             saturday: weekdays[6].day,
             sunday: weekdays[0].day,
-            isPendingApproval: true
+            isPendingApproval: true,
+            comment: comment
         )
 
         isSubmitting = true
