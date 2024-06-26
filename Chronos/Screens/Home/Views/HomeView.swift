@@ -150,15 +150,17 @@ extension HomeView {
             .padding(.bottom, 100)
             .padding(.horizontal, 18)
             .background(
-                //                        Color.clear
-                //                            .onChange(
-                //                                of: proxy.frame(in: .named("ScrollView")).minY
-                //                            ) { newValue, oldValue in
-                //                                adjustShowHeaderState(
-                //                                    oldVal: oldValue,
-                //                                    newVal: newValue
-                //                                )
-                //                            }
+                GeometryReader { proxy in
+                    Color.clear
+                        .onChange(
+                            of: proxy.frame(in: .named("ScrollView")).minY
+                        ) { newValue, oldValue in
+                            adjustShowHeaderState(
+                                oldVal: oldValue,
+                                newVal: newValue
+                            )
+                        }
+                }
             )
         }
         .coordinateSpace(name: "ScrollView")
