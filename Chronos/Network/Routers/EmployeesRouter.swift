@@ -15,7 +15,6 @@ enum EmployeesRouter: BaseRouter {
         firstName: String,
         lastName: String,
         username: String,
-        phone: String,
         employeeDetails: EmployeeDetails,
         password: String
     )
@@ -61,7 +60,6 @@ enum EmployeesRouter: BaseRouter {
             let firstName,
             let lastName,
             let username,
-            let phone,
             let employeeDetails,
             let password
         ):
@@ -71,7 +69,6 @@ enum EmployeesRouter: BaseRouter {
                 "firstName": firstName,
                 "lastName": lastName,
                 "username": username,
-                "phone": phone,
                 "employeeDetails": employeeDetailsJson,
                 "password": password
             ]

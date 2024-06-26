@@ -118,9 +118,9 @@ extension RegistrationView {
             TextFieldView(textFieldModel: textFieldModel)
                 .listRowSeparator(.hidden)
                 .padding(.horizontal, 10)
-                .onChange(of: registrationModel.textFieldModels[4].text) {
+                .onChange(of: registrationModel.textFieldModels[3].text) {
                     PasswordValidationManager.shared.validatePassword(
-                        password: registrationModel.textFieldModels[4].text
+                        password: registrationModel.textFieldModels[3].text
                     )
                 }
 
@@ -142,11 +142,11 @@ extension RegistrationView {
             buttonText: "Register",
             backgroundColor: registerButtonBackgroundColor,
             action: {
-                isPhoneNumberInvalid = !isValidPhoneNumber(
-                    registrationModel.textFieldModels[3].text
-                )
+//                isPhoneNumberInvalid = !isValidPhoneNumber(
+//                    registrationModel.textFieldModels[3].text
+//                )
                 isSamePassword = !checkIsSamePassword()
-                if !isPhoneNumberInvalid && checkIsSamePassword() {
+                if checkIsSamePassword() {
                     register()
                 }
             }
@@ -185,7 +185,7 @@ extension RegistrationView {
 
     private func areEmptyFields() -> Bool {
         for index in registrationModel.textFieldModels.indices {
-            if registrationModel.textFieldModels[index].text.isEmpty && index != 3 {
+            if registrationModel.textFieldModels[index].text.isEmpty {
                 return true
             }
         }
@@ -193,7 +193,7 @@ extension RegistrationView {
     }
 
     private func checkIsSamePassword() -> Bool {
-        return registrationModel.textFieldModels[4].text == registrationModel.textFieldModels[5].text
+        return registrationModel.textFieldModels[3].text == registrationModel.textFieldModels[4].text
     }
 
     private func register() {

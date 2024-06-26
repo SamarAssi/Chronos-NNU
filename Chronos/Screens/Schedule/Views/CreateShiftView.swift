@@ -78,7 +78,7 @@ struct CreateShiftView: View {
             spacing: 0
         ) {
             HStack {
-                Text("Create Shift")
+                Text(LocalizedStringKey("Create Shift"))
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.theme)
@@ -171,7 +171,7 @@ struct CreateShiftView: View {
 
     private var descriptionView: some View {
         VStack(alignment: .leading) {
-            Text("Description: ")
+            Text(LocalizedStringKey("Description: "))
                 .foregroundColor(.theme)
 
             TextEditor(text: $viewModel.description)

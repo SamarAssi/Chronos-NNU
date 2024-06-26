@@ -2,7 +2,7 @@
 //  AIFeatureView.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 24/06/2024.
+//  Created by Samar Assi on 24/06/2024.
 //
 
 import SwiftUI
@@ -22,7 +22,7 @@ struct AIFeatureView: View {
 
     private var contentView: some View {
         VStack {
-            Text("AI Feature")
+            Text(LocalizedStringKey("AI Feature"))
                 .font(.largeTitle)
                 .padding()
 

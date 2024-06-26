@@ -22,9 +22,8 @@ class EmployeesClient: BaseClient {
             firstName: textFields[0].text,
             lastName: textFields[1].text,
             username: textFields[2].text,
-            phone: textFields[3].text,
             employeeDetails: employeeDetails,
-            password: textFields[5].text
+            password: textFields[4].text
         )
         return try await performRequest(router: router)
     }

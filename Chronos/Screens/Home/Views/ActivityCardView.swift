@@ -83,7 +83,7 @@ extension ActivityCardView {
     
     var employeeNameView: some View {
         Text(employeeName)
-            .font(.title3)
+            .font(.system(size: 16))
             .fontWeight(.bold)
     }
     

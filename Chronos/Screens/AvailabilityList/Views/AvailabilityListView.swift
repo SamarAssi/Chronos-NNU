@@ -40,7 +40,10 @@ struct AvailabilityListView: View {
                     if response.requests.isEmpty {
                         noRequestView
                     } else {
-                        requestsListView(response: response, requestsUIModels: availabilityListModel.availabilityRowUIModel)
+                        requestsListView(
+                            response: response,
+                            requestsUIModels: availabilityListModel.availabilityRowUIModel
+                        )
                     }
                 }
             }
@@ -130,12 +133,12 @@ extension AvailabilityListView {
         ) { index in
 
             AvailabilityRowView(rowModel: requestsUIModels[index])
-            .listRowSeparator(.hidden)
-            .listRowInsets(.init(top: 8, leading: 22, bottom: 0, trailing: 0))
-            .onTapGesture {
-                self.index = index
-                selectedRequest = response.requests[index]
-            }
+                .listRowSeparator(.hidden)
+                .listRowInsets(.init(top: 8, leading: 8, bottom: 0, trailing: 8))
+                .onTapGesture {
+                    self.index = index
+                    selectedRequest = response.requests[index]
+                }
 
         }
         .listStyle(PlainListStyle())
