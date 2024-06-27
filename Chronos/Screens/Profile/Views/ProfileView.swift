@@ -210,30 +210,7 @@ extension ProfileView {
                 isShowAlert = false
             }
             Button("Log Out", role: .destructive) {
-                _ = KeychainManager.shared.delete(
-                    key: KeychainKeys.accessToken.rawValue
-                )
-                
-                _ = KeychainManager.shared.delete(
-                    key: KeychainKeys.employeeType.rawValue
-                )
-                
-                _ = KeychainManager.shared.delete(
-                    key: KeychainKeys.fullName.rawValue
-                )
-                
-                _ = KeychainManager.shared.delete(
-                    key: KeychainKeys.firstName.rawValue
-                )
-                
-                _ = KeychainManager.shared.delete(
-                    key: KeychainKeys.lastName.rawValue
-                )
-                
-                _ = KeychainManager.shared.delete(
-                    key: KeychainKeys.phoneNumber.rawValue
-                )
-                
+                UserDefaultManager.clear()
                 navigationRouter.isLoggedIn = false
                 navigationRouter.navigateTo(.login)
             }
@@ -295,23 +272,12 @@ extension ProfileView {
     }
     
     private func fetchEmployeeType() -> Int {
-        if let employeeType = KeychainManager.shared.fetch(
-            key: KeychainKeys.employeeType.rawValue
-        ) {
-            return Int(employeeType) ?? -1
-        }
-        
+        let employeeType = UserDefaultManager.employeeType ?? 0
         return -1
     }
     
     private func fetchFullName() -> String {
-        if let fullName = KeychainManager.shared.fetch(
-            key: KeychainKeys.fullName.rawValue
-        ) {
-            return fullName
-        }
-        
-        return ""
+        return UserDefaultManager.fullName ?? ""
     }
 }
 

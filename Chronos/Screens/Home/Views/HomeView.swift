@@ -340,13 +340,7 @@ extension HomeView {
     }
     
     private func fetchEmployeeType() -> Int {
-        if let employeeType = KeychainManager.shared.fetch(
-            key: KeychainKeys.employeeType.rawValue
-        ) {
-            return Int(employeeType) ?? -1
-        }
-        
-        return -1
+        return UserDefaultManager.employeeType ?? -1
     }
 }
 

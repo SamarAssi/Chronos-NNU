@@ -102,10 +102,7 @@ extension ManagerView {
     }
 
     private func editEmployeeType() {
-        KeychainManager.shared.save(
-            String(1),
-            key: KeychainKeys.employeeType.rawValue
-        )
+        UserDefaultManager.employeeType = 1
     }
 }
 
