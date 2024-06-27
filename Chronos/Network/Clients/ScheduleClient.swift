@@ -36,8 +36,8 @@ class ScheduleClient: BaseClient {
         try await performVoidRequest(router: router)
     }
 
-    static func suggestShifts(message: String) async throws -> Shifts {
-        let router: ScheduleRouter = .suggestShifts(message: message)
+    static func suggestShifts(answers: [Answer]) async throws -> Shifts {
+        let router: ScheduleRouter = .suggestShifts(answers: answers)
         return try await performRequest(router: router)
     }
 

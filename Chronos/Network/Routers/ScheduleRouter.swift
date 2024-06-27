@@ -18,7 +18,7 @@ enum ScheduleRouter: BaseRouter {
         jobDescription: String
     )
     case deleteShift(id: String)
-    case suggestShifts(message: String)
+    case suggestShifts(answers: [Answer])
     case createShifts(shifts: Shifts)
 
     var path: String {
@@ -70,9 +70,9 @@ enum ScheduleRouter: BaseRouter {
             ]
         case .deleteShift:
             return nil
-        case .suggestShifts(let message):
+        case .suggestShifts(let answers):
             return [
-                "message": message
+                "answers": answers.compactMap { $0.encodeToDictionary() }
             ]
 
         case .createShifts(let shifts):

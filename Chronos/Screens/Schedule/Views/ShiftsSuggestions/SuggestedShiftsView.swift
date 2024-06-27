@@ -125,8 +125,10 @@ struct SuggestedShiftsView: View {
             } catch {
                 print(error)
             }
-            isSubmitting = false
-            presentationMode.wrappedValue.dismiss()
+            await MainActor.run {
+                isSubmitting = false
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }

@@ -23,13 +23,77 @@ struct ShiftsSuggestionsView: View {
     @State private var jobs: [JobChoice] = []
     @State private var employees: [EmployeeChoice] = []
     @State private var description: String = ""
+    @State private var isLoading = false
 
-    var selectedJobs: [JobChoice] {
-        jobs.filter { $0.isSelected }
-    }
+    @State var showShiftsView = false
+    @State var errorMsg: LocalizedStringKey = ""
+    @State var showToast = false
+    @State var suggestedShifts: [Shift] = []
 
     var body: some View {
-        VStack {
+        NavigationStack {
+            ZStack {
+                contendView
+
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .theme))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black.opacity(0.2))
+                        .ignoresSafeArea()
+                }
+            }
+            .navigationTitle("Shifts Suggestions")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(isPresented: $showShiftsView) {
+                SuggestedShiftsView(shifts: suggestedShifts)
+            }
+            .simpleToast(
+                isPresented: $showToast,
+                options: SimpleToastOptions(
+                    alignment: .top,
+                    hideAfter: 5,
+                    animation: .linear(duration: 0.3),
+                    modifierType: .slide,
+                    dismissOnTap: true
+                )) {
+                    ToastView(
+                        type: .error,
+                        message: errorMsg
+                    )
+                    .padding(.horizontal, 30)
+                }
+                .onAppear {
+                    Task {
+                        do {
+                            async let jobs = JobsClient.getJobs()
+                            async let employees = try EmployeesClient.getEmployees()
+
+                            let (jobsResponse, employeesResponse) = try await (jobs, employees)
+
+                            self.jobs = jobsResponse.jobs.map {
+                                JobChoice(
+                                    job: $0,
+                                    isSelected: false
+                                )
+                            }
+                            self.employees = employeesResponse.employees.map {
+                                EmployeeChoice(
+                                    employee: $0,
+                                    isSelected: false
+                                )
+                            }
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+        }
+    }
+
+    private var contendView: some View {
+        VStack(spacing: 0) {
+            Divider()
             questionsTabView
             Spacer()
             HStack {
@@ -39,8 +103,8 @@ struct ShiftsSuggestionsView: View {
                             selectedStep = selectedStep - 1
                         }
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 10)
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 7)
                     .foregroundStyle(Color.white)
                     .background(.theme)
                     .clipShape(Capsule())
@@ -51,44 +115,19 @@ struct ShiftsSuggestionsView: View {
                 Button(selectedStep == questions.count - 1 ? "Submit" : "Next") {
                     withAnimation {
                         if selectedStep == questions.count - 1 {
-                            // Submit
+                            submit()
                         } else {
                             selectedStep = selectedStep + 1
                         }
                     }
                 }
-                .padding(.horizontal, 10)
-                .padding(.vertical, 10)
+                .padding(.horizontal, 15)
+                .padding(.vertical, 7)
                 .foregroundStyle(Color.white)
                 .background(.theme)
                 .clipShape(Capsule())
             }
             .padding()
-        }
-        .onAppear {
-            Task {
-                do {
-                    async let jobs = JobsClient.getJobs()
-                    async let employees = try EmployeesClient.getEmployees()
-
-                    let (jobsResponse, employeesResponse) = try await (jobs, employees)
-
-                    self.jobs = jobsResponse.jobs.map {
-                        JobChoice(
-                            job: $0,
-                            isSelected: false
-                        )
-                    }
-                    self.employees = employeesResponse.employees.map {
-                        EmployeeChoice(
-                            employee: $0,
-                            isSelected: false
-                        )
-                    }
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
         }
     }
 
@@ -99,16 +138,17 @@ struct ShiftsSuggestionsView: View {
                     questions.indices,
                     id: \.self
                 ) { index in
-                    List {
+                    VStack(alignment: .leading, spacing: 0) {
                         Text(questions[index])
-                            .font(.title)
-                            .padding()
-
+                            .font(.subheadline)
+                            .padding(20)
+                        Divider()
                         getQuestionView(number: index)
+                            .tag(index)
                     }
-                    .tag(index)
                 }
             }
+            .background(.white)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -126,59 +166,159 @@ struct ShiftsSuggestionsView: View {
             EmptyView()
         }
     }
-    
+
     @ViewBuilder
     private var jobsView: some View {
-        ForEach($jobs) { $choice in
-            Toggle(isOn: $choice.isSelected) {
-                Text(choice.job.name)
-            }
-        }
-    }
-    
-    @ViewBuilder
-    private var employeesView: some View {
-        ForEach($employees) { $choice in
-            Toggle(isOn: $choice.isSelected) {
-                Text(choice.employee.firstName + " " + choice.employee.lastName)
-            }
-        }
-    }
-    
-    @ViewBuilder
-    private var employeesPerJobView: some View {
-        ForEach(selectedJobs) { jobChoice in
-            HStack {
-                Text(jobChoice.job.name)
-                Spacer()
-                TextField(
-                    "Count",
-                    value: .constant(""),
-                    formatter: NumberFormatter()
+        List {
+            ForEach($jobs) { $choice in
+                checkBox(
+                    value: $choice.isSelected,
+                    label: choice.job.name
                 )
             }
         }
-        .background(.red)
+    }
+
+    @ViewBuilder
+    private var employeesView: some View {
+        List {
+            checkBox(
+                value: Binding(
+                    get: { employees.allSatisfy { $0.isSelected } },
+                    set: { newValue in
+                        employees.indices.forEach { employees[$0].isSelected = newValue }
+                    }),
+                label: "Select all employees"
+            )
+            ForEach($employees) { $choice in
+
+                checkBox(
+                    value: $choice.isSelected,
+                    label: choice.employee.firstName + " " + choice.employee.lastName
+                )
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var employeesPerJobView: some View {
+        List {
+            if jobs.filter({ $0.isSelected }).isEmpty {
+                Text("Please select jobs first")
+                    .foregroundColor(.red)
+            } else {
+                ForEach($jobs) { $jobChoice in
+                    if jobChoice.isSelected {
+                        HStack {
+                            Text(jobChoice.job.name)
+                            Spacer()
+                            NumberInputView(number: $jobChoice.numberOfEmployees)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @ViewBuilder
     private var extraInformationView: some View {
-        TextEditor(text: $description)
-            .font(.system(size: 15))
-            .textInputAutocapitalization(.never)
-            .tint(Color.theme)
-            .scrollContentBackground(.hidden)
-            .padding(8)
-            .frame(height: 300)
-            .background(Color.gray.opacity(0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+        List {
+            TextEditor(text: $description)
+                .font(.system(size: 15))
+                .textInputAutocapitalization(.never)
+                .tint(Color.theme)
+                .scrollContentBackground(.hidden)
+                .padding(8)
+                .frame(height: 300)
+                .background(Color.gray.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
     }
 
-    struct JobChoice: Identifiable {
+    private func checkBox(
+        value: Binding<Bool>,
+        label: String
+    ) -> some View {
+        HStack {
+            Image(
+                systemName: value.wrappedValue ?
+                "checkmark.square" :
+                "square"
+            )
+                .foregroundColor(value.wrappedValue ? .theme : .gray)
+            Text(label)
+            Spacer()
+        }
+        .onTapGesture {
+            value.wrappedValue.toggle()
+        }
+    }
+
+    func submit() {
+        isLoading = true
+        Task {
+            do {
+                let answers = getAnswers()
+                let response = try await ScheduleClient.suggestShifts(answers: answers)
+                suggestedShifts = response.shifts
+                if suggestedShifts.isEmpty {
+                    self.errorMsg = LocalizedStringKey(
+                        "No result, please try again."
+                    )
+                    self.showToast.toggle()
+                } else {
+                    showShiftsView.toggle()
+                }
+            } catch {
+                self.errorMsg = LocalizedStringKey( error.localizedDescription
+                )
+                self.showToast.toggle()
+            }
+            isLoading = false
+        }
+    }
+
+    private func getAnswers() -> [Answer] {
+        [
+            Answer(
+                question: questions[0],
+                answer: jobs
+                    .filter({ $0.isSelected })
+                    .map { $0.job.name }
+                    .joined(separator: ", ")
+            ),
+            Answer(
+                question: questions[1],
+                answer: employees
+                    .filter({ $0.isSelected })
+                    .map { $0.employee.firstName + " " + $0.employee.lastName }
+                    .joined(separator: ", ")
+            ),
+            Answer(
+                question: questions[2],
+                answer: jobs
+                    .filter({ $0.isSelected })
+                    .compactMap { jobChoice in
+                        if let count = jobChoice.numberOfEmployees {
+                            return "\(jobChoice.job.name): \(count)"
+                        } else {
+                            return nil
+                        }
+                    }
+                    .joined(separator: ", ")
+            ),
+            Answer(
+                question: questions[3],
+                answer: description
+            )
+        ]
+    }
+
+    struct JobChoice: Identifiable, Equatable {
         var id = UUID()
         var job: Job
         var isSelected: Bool
-        var numberOfEmployees: Int = 0
+        var numberOfEmployees: Int? = nil
     }
 
     struct EmployeeChoice: Identifiable {
@@ -190,4 +330,28 @@ struct ShiftsSuggestionsView: View {
 
 #Preview {
     ShiftsSuggestionsView()
+}
+
+struct Answer: Codable {
+    var question: String
+    var answer: String
+}
+
+// Subview using Binding
+struct NumberInputView: View {
+    @Binding var number: Int?
+
+    var body: some View {
+        TextField("Count", text: Binding<String>(
+            get: {
+                // When the number is nil, display an empty string
+                self.number.map(String.init) ?? ""
+            },
+            set: {
+                // Convert the input string back to an Int?
+                self.number = Int($0)
+            }
+        ))
+
+    }
 }

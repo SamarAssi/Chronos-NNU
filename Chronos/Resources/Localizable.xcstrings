@@ -308,6 +308,9 @@
     "No requests found" : {
 
     },
+    "No result, please try again." : {
+
+    },
     "No selected jobs until now" : {
 
     },
@@ -364,6 +367,9 @@
       }
     },
     "Pending" : {
+
+    },
+    "Please select jobs first" : {
 
     },
     "Previous" : {
@@ -434,6 +440,9 @@
 
     },
     "Setup check in/out" : {
+
+    },
+    "Shifts Suggestions" : {
 
     },
     "Start Date" : {
