@@ -105,6 +105,9 @@ struct RequestTimeOffView: View {
                 }
             }
             .tint(Color.theme)
+            .disabled(screenState == .view)
+
+            
             if showButtons {
                 if screenState != .view {
                     MainButton(
@@ -141,7 +144,6 @@ struct RequestTimeOffView: View {
             }
 
         }
-        .disabled(screenState == .view && UserDefaultManager.employeeType != 1)
     }
 
     func submit() {

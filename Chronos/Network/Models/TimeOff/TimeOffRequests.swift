@@ -14,7 +14,7 @@ struct TimeOffRequests: Codable {
 
 // MARK: - TimeOffRequest
 struct TimeOffRequest: Codable {
-    let id, username, startDate, endDate: String?
+    let id, username, startDate, endDate, employeeId: String?
     let type: String?
     let status: Int?
     let isFullDay: Bool?

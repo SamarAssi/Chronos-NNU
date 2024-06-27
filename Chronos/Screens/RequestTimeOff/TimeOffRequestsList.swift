@@ -15,7 +15,7 @@ struct TimeOffRequestsList: View {
     
     @State var showRequestDetails = false
     @State var request: TimeOffRequest? = nil
-
+    let acronymManager = AcronymManager()
     var filteredRequests: [TimeOffRequest] {
         return timeOffRequests.filter { $0.status == selectedCategory.rawValue }
     }
@@ -102,9 +102,9 @@ struct TimeOffRequestsList: View {
             HStack {
                 Circle()
                     .foregroundColor(
-                        AcronymManager().getAcronymAndColor(
+                        acronymManager.getAcronymAndColor(
                             name: request.username,
-                            id: request.id ?? ""
+                            id: request.employeeId ?? ""
                         ).1
                     )
                     .frame(
@@ -113,9 +113,9 @@ struct TimeOffRequestsList: View {
                     )
                     .overlay(
                         Text(
-                            AcronymManager().getAcronymAndColor(
+                            acronymManager.getAcronymAndColor(
                                 name: request.username,
-                                id: request.id ?? ""
+                                id: request.employeeId ?? ""
                             ).0
                         )
                         .foregroundColor(.white)

@@ -21,22 +21,19 @@ extension ProfileRowModel {
             ProfileRowModel(
                 name: LocalizedStringKey("My Profile"),
                 icon: "person"
-            )
-        ]
-
-        if UserDefaultManager.employeeType != 1 {
-            content.insert(ProfileRowModel (
-                name: "Request Time Off",
-                icon: "person.badge.clock"
-            ), at: 1)
-        }
-
-        content.append(
+            ),
             ProfileRowModel(
                 name: LocalizedStringKey("Time Off Requests"),
                 icon: "list.bullet"
             )
-        )
+        ]
+
+        if UserDefaultManager.employeeType != 1 {
+            content.append(ProfileRowModel (
+                name: "Request Time Off",
+                icon: "person.badge.clock"
+            ))
+        }
 
         return content
     }

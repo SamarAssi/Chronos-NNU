@@ -264,10 +264,10 @@ extension ProfileView {
             )
 
         case 1:
-            selectedDestination = AnyView(RequestTimeOffView())
+            selectedDestination = AnyView(TimeOffRequestsList())
 
         case 2:
-            selectedDestination = AnyView(TimeOffRequestsList())
+            selectedDestination = AnyView(RequestTimeOffView())
 
         default:
             selectedDestination = AnyView(
