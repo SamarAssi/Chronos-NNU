@@ -27,8 +27,8 @@ class Weekday: Identifiable, ObservableObject {
 
     var day: Day {
         return Day(
-            start: startTime.timeIntervalSince1970,
-            end: endTime.timeIntervalSince1970,
+            start: startTime.toString(),
+            end: endTime.toString(),
             isAvailableAllDay: isAvailableAllDay,
             isNotAvailable: !isAvailable
         )

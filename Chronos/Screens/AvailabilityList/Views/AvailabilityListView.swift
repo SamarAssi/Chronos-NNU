@@ -52,7 +52,7 @@ struct AvailabilityListView: View {
         .fullScreenCover(item: $selectedRequest) { request in
             AvailabilityChangeDetailsView(
                 availabilityListModel: availabilityListModel,
-                date: Date(timeIntervalSince1970: request.date / 1000),
+                date: request.date.date ?? Date(),
                 index: index ?? 0
             )
         }

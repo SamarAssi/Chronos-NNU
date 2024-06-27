@@ -25,8 +25,8 @@ struct SuggestedShiftsView: View {
             let (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: id ?? "")
 
             let timezone = shift.isNew == true ? nil : TimeZone.current
-            let startTime = shift.startTime?.timeAndDate(in: timezone) ?? "--"
-            let endTime = shift.endTime?.timeAndDate(in: timezone) ?? "--"
+            let startTime = shift.startTime?.timeAndDate() ?? "--"
+            let endTime = shift.endTime?.timeAndDate() ?? "--"
             let titleString: String = name ?? "--"
 
             return ShiftRowUIModel(
@@ -137,8 +137,8 @@ struct SuggestedShiftsView: View {
         Shift(
             id: "1",
             role: "Manager",
-            startTime: 1719392400,
-            endTime: 1624622400,
+            startTime: "1719392400",
+            endTime: "1624622400",
             jobDescription: "Managerial duties",
             employeeID: "1",
             employeeName: "John Doe",
@@ -147,18 +147,5 @@ struct SuggestedShiftsView: View {
     ]
     return NavigationStack {
         SuggestedShiftsView(shifts: shifts)
-    }
-}
-
-extension Int {
-    func timeAndDate(in timeZone: TimeZone? = nil) -> String {
-        let date = Date(timeIntervalSince1970: TimeInterval(self))
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a 'on' MMMM dd"
-        
-        // Set the timezone if provided, otherwise use the date's original timezone
-        formatter.timeZone = timeZone ?? TimeZone(secondsFromGMT: 0)
-        
-        return formatter.string(from: date)
     }
 }

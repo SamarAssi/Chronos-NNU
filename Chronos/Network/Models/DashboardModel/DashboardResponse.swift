@@ -14,7 +14,7 @@ struct DashboardResponse: Codable, Hashable {
 }
 
 struct CheckInOutTable: Codable, Hashable {
-    let checkInTime: Int
-    let checkOutTime: Int?
+    let checkInTime: String
+    let checkOutTime: String?
     let employeeName: String
 }

@@ -46,7 +46,7 @@ class AvailabilityListModel: ObservableObject {
                     return AvailabilityRowUIModel(
                         initials: initials,
                         name: name,
-                        date: Date(timeIntervalSince1970: $0.date / 1000),
+                        date: $0.date.date ?? Date(),
                         backgroundColor: backgroundColor
                     )
                 } ?? []

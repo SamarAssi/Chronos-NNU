@@ -16,7 +16,7 @@ struct Shifts: Codable {
 struct Shift: Codable {
     let id: String?
     let role: String?
-    let startTime, endTime: Int?
+    let startTime, endTime: String?
     let jobDescription, employeeID, employeeName: String?
     let isNew: Bool?
 
