@@ -273,7 +273,7 @@ extension ProfileView {
     
     private func fetchEmployeeType() -> Int {
         let employeeType = UserDefaultManager.employeeType ?? 0
-        return -1
+        return employeeType
     }
     
     private func fetchFullName() -> String {
