@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct ShiftDetailsView: View {
 
     @Environment(\.dismiss) var dismiss
@@ -95,13 +97,13 @@ extension ShiftDetailsView {
         ) {
             Text(LocalizedStringKey("Start Time: "))
                 .bold() +
-            Text(shift.startTime.toString().timeAndDate())
+            Text(formattedDate(shift.startTime))
                 .foregroundStyle(Color.gray)
                 .font(.subheadline)
             
             Text(LocalizedStringKey("End Time: "))
                 .bold() +
-            Text(shift.endTime.toString().timeAndDate())
+            Text(formattedDate(shift.endTime))
                 .foregroundStyle(Color.gray)
                 .font(.subheadline)
         }
