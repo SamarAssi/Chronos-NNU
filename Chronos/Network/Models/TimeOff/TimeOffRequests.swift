@@ -18,5 +18,5 @@ struct TimeOffRequest: Codable {
     let type: String?
     let status: Int?
     let isFullDay: Bool?
-    let comment: String?
+    let comment, description: String?
 }

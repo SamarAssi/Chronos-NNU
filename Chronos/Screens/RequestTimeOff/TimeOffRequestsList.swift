@@ -11,8 +11,10 @@ struct TimeOffRequestsList: View {
 
     @State var isLoading = false
     @State private var selectedCategory: TimeOffStatus = .Pending
-
     @State var timeOffRequests: [TimeOffRequest] = []
+    
+    @State var showRequestDetails = false
+    @State var request: TimeOffRequest? = nil
 
     var filteredRequests: [TimeOffRequest] {
         return timeOffRequests.filter { $0.status == selectedCategory.rawValue }
@@ -50,6 +52,9 @@ struct TimeOffRequestsList: View {
                     isLoading = false
                 }
             }
+            .navigationDestination(isPresented: $showRequestDetails) {
+                RequestTimeOffView(request: request)
+            }
     }
 
     @ViewBuilder
@@ -80,6 +85,10 @@ struct TimeOffRequestsList: View {
             } else {
                 List(filteredRequests, id: \.id) { item in
                     requestRow(request: item)
+                        .onTapGesture {
+                            request = item
+                            showRequestDetails.toggle()
+                        }
                 }
                 .listStyle(.plain)
             }

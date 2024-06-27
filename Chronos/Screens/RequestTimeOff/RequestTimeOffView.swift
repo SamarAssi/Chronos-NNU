@@ -12,16 +12,42 @@ struct RequestTimeOffView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var selectedType = TimeOffType.Unlimited
-    @State private var selectedDuration = TimeOffDuration.fullDay
-    @State private var startDate = Date()
-    @State private var endDate = Date()
-    @State private var description = ""
+    @State private var selectedType: TimeOffType
+    @State private var startDate: Date
+    @State private var endDate: Date
+    @State private var description: String
     @State private var isSubmitting = false
 
     @State private var showToast = false
     @State private var errorMsg: LocalizedStringKey = ""
     @State var isButtonEnabled: Bool = false
+
+    @State var comment: String? = nil
+    @State var screenState: ScreenState
+    private var showButtons = true
+
+    enum ScreenState {
+        case add
+        case view
+    }
+
+    init(request: TimeOffRequest? = nil) {
+        if let request = request {
+            screenState = .view
+            selectedType = TimeOffType(rawValue: request.type ?? "") ?? .Unlimited
+            startDate = request.startDate?.date ?? Date()
+            endDate = request.endDate?.date ?? Date()
+            description = request.description ?? ""
+            comment = request.comment
+            showButtons = request.status == 0
+        } else {
+            selectedType = .Unlimited
+            startDate = Date()
+            endDate = Date()
+            description = ""
+            screenState = .add
+        }
+    }
 
     var body: some View {
         contentView
@@ -56,17 +82,8 @@ struct RequestTimeOffView: View {
                 }
                 .pickerStyle(.automatic)
 
-                Picker("Duration", selection: $selectedDuration) {
-                    ForEach(TimeOffDuration.allCases, id: \.self) {
-                        Text($0.rawValue)
-                    }
-                }
-                .pickerStyle(.inline)
-
-                if selectedDuration == .custom {
-                    DatePicker("Start Date", selection: $startDate)
-                    DatePicker("End Date", selection: $endDate)
-                }
+                DatePicker("Start Date", selection: $startDate)
+                DatePicker("End Date", selection: $endDate)
 
                 VStack(alignment: .leading) {
                     Text(LocalizedStringKey("Description: "))
@@ -76,23 +93,55 @@ struct RequestTimeOffView: View {
                         .font(.system(size: 15))
                         .textInputAutocapitalization(.never)
                         .scrollContentBackground(.hidden)
+                        .padding(.horizontal, 7)
                         .background(Color.gray.opacity(0.1))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .frame(height: 200)
                 }
+
+                if let comment {
+                    Text("Comment: \(comment)")
+                        .foregroundColor(.black)
+                }
             }
             .tint(Color.theme)
+            if showButtons {
+                if screenState != .view {
+                    MainButton(
+                        isLoading: $isSubmitting,
+                        isEnable: $isButtonEnabled,
+                        buttonText: "Submit",
+                        backgroundColor: .theme
+                    ) {
+                        submit()
+                    }
+                    .padding(20)
+                } else if screenState == .view && UserDefaultManager.employeeType == 1 {
+                    HStack {
+                        MainButton(
+                            isLoading: .constant(false),
+                            isEnable: .constant(true),
+                            buttonText: "Approve",
+                            backgroundColor: .green
+                        ) {
+                            approve()
+                        }
 
-            MainButton(
-                isLoading: $isSubmitting,
-                isEnable: $isButtonEnabled,
-                buttonText: "Submit",
-                backgroundColor: .theme
-            ) {
-                submit()
+                        MainButton(
+                            isLoading: .constant(false),
+                            isEnable: .constant(true),
+                            buttonText: "Reject",
+                            backgroundColor: .red
+                        ) {
+                            reject()
+                        }
+                    }
+                    .padding(20)
+                }
             }
-            .padding(20)
+
         }
+        .disabled(screenState == .view && UserDefaultManager.employeeType != 1)
     }
 
     func submit() {
@@ -101,7 +150,7 @@ struct RequestTimeOffView: View {
             do {
                 let _ = try await RTOClient.createPTO(
                     type: selectedType.rawValue,
-                    isFullDay: selectedDuration == .fullDay,
+                    isFullDay: false,
                     startDate: startDate,
                     endDate: endDate,
                     description: description
@@ -116,6 +165,12 @@ struct RequestTimeOffView: View {
                 self.showToast.toggle()
             }
         }
+    }
+
+    func approve() {
+    }
+
+    func reject() {
     }
 }
 

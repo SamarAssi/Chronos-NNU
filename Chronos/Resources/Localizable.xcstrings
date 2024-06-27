@@ -123,6 +123,9 @@
     "Comment (optional)" : {
 
     },
+    "Comment: %@" : {
+
+    },
     "Company Location" : {
 
     },
@@ -166,9 +169,6 @@
 
     },
     "Done" : {
-
-    },
-    "Duration" : {
 
     },
     "Edit" : {
@@ -379,6 +379,9 @@
 
     },
     "Register Company" : {
+
+    },
+    "Reject" : {
 
     },
     "Remove" : {
