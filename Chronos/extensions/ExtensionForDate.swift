@@ -30,6 +30,7 @@ extension Date {
     func toString(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.string(from: self)
     }
 }

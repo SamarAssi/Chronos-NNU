@@ -16,11 +16,25 @@ struct ProfileRowModel: Identifiable {
 
 extension ProfileRowModel {
     static var data: [ProfileRowModel] {
-        [
+
+        var content = [
             ProfileRowModel(
                 name: LocalizedStringKey("My Profile"),
                 icon: "person"
+            ),
+            ProfileRowModel(
+                name: LocalizedStringKey("Time Off Requests"),
+                icon: "list.bullet"
             )
         ]
+
+        if UserDefaultManager.employeeType != 1 {
+            content.append(ProfileRowModel (
+                name: "Request Time Off",
+                icon: "person.badge.clock"
+            ))
+        }
+
+        return content
     }
 }

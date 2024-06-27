@@ -21,6 +21,13 @@ extension String {
         formatter.dateFormat = "h:mm a 'on' MMMM dd"
         return formatter.string(from: date)
     }
+    
+    func dateString() -> String {
+        guard let date = date else { return "--" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd"
+        return formatter.string(from: date)
+    }
 
     var stringTime: String {
         guard let date = date else { return "--" }

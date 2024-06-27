@@ -4,6 +4,9 @@
     "" : {
 
     },
+    " - " : {
+
+    },
     " (Optional)" : {
 
     },
@@ -102,6 +105,9 @@
     "Cancel" : {
 
     },
+    "Category" : {
+
+    },
     "Check In" : {
 
     },
@@ -121,6 +127,9 @@
 
     },
     "Comment (optional)" : {
+
+    },
+    "Comment: %@" : {
 
     },
     "Company Location" : {
@@ -311,6 +320,9 @@
     "Next" : {
 
     },
+    "No requests found" : {
+
+    },
     "No result, please try again." : {
 
     },
@@ -384,6 +396,9 @@
     "Register Company" : {
 
     },
+    "Reject" : {
+
+    },
     "Remove" : {
 
     },
@@ -391,6 +406,9 @@
 
     },
     "Request submitted on %@" : {
+
+    },
+    "Request Time Off" : {
 
     },
     "Requests List" : {
@@ -478,7 +496,13 @@
     "This is a wrong id" : {
 
     },
+    "Time Off Requests" : {
+
+    },
     "Today's Total Shifts Time:  " : {
+
+    },
+    "Type" : {
 
     },
     "Type your password" : {

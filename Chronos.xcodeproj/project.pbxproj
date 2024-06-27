@@ -113,6 +113,7 @@
 		8B31824D2C2AD4D8002B3383 /* SuggestedShiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31824C2C2AD4D8002B3383 /* SuggestedShiftsView.swift */; };
 		8B31824F2C2AD64F002B3383 /* ShiftRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */; };
 		8B37D1062C26DAAF001D4739 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */; };
+		8B39D1402C2D76AB00359FDD /* RequestTimeOffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39D13F2C2D76AB00359FDD /* RequestTimeOffView.swift */; };
 		8B44A8CA2C28638E00795567 /* GifImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44A8C92C28638E00795567 /* GifImageView.swift */; };
 		8B44A8D42C28672B00795567 /* aiButton.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8B44A8D32C28672B00795567 /* aiButton.gif */; };
 		8B586BAF2C2309E700F8DE98 /* CreateShiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */; };
@@ -128,11 +129,13 @@
 		8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */; };
 		8BDE91172C2D604C0055D913 /* String+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE91162C2D604C0055D913 /* String+Extenstions.swift */; };
 		8BDE91192C2D6C0C0055D913 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE91182C2D6C0C0055D913 /* UserDefaultsStorage.swift */; };
-		A3A313202C2D71E200844278 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3A3131F2C2D71E200844278 /* SimpleToast */; };
-		A3A313232C2D71E900844278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313222C2D71E900844278 /* Alamofire */; };
-		A3A3132A2C2D9FE800844278 /* ShiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A313292C2D9FE800844278 /* ShiftView.swift */; };
-		A3A3132C2C2DA04000844278 /* ShiftDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A3132B2C2DA04000844278 /* ShiftDetailsView.swift */; };
-		A3A3132E2C2DA0EE00844278 /* EmployeeShiftListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A3132D2C2DA0EE00844278 /* EmployeeShiftListView.swift */; };
+		8BFA9ED92C2D84A6005E6576 /* RTORouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9ED82C2D84A6005E6576 /* RTORouter.swift */; };
+		8BFA9EDB2C2D86B4005E6576 /* RTOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */; };
+		8BFA9EDF2C2D93D9005E6576 /* TimeOffRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */; };
+		8BFA9EE22C2D9484005E6576 /* TimeOffRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EE12C2D9484005E6576 /* TimeOffRequests.swift */; };
+		A3A313392C2DA8AF00844278 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313382C2DA8AF00844278 /* SimpleToast */; };
+		A3A3133C2C2DA8B600844278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3A3133B2C2DA8B600844278 /* Alamofire */; };
+		A3A313412C2DA8BE00844278 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313402C2DA8BE00844278 /* KeychainSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,6 +246,7 @@
 		8B31824C2C2AD4D8002B3383 /* SuggestedShiftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedShiftsView.swift; sourceTree = "<group>"; };
 		8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftRowView.swift; sourceTree = "<group>"; };
 		8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		8B39D13F2C2D76AB00359FDD /* RequestTimeOffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTimeOffView.swift; sourceTree = "<group>"; };
 		8B44A8C92C28638E00795567 /* GifImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageView.swift; sourceTree = "<group>"; };
 		8B44A8D32C28672B00795567 /* aiButton.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = aiButton.gif; sourceTree = "<group>"; };
 		8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShiftView.swift; sourceTree = "<group>"; };
@@ -258,9 +262,10 @@
 		8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
 		8BDE91162C2D604C0055D913 /* String+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstions.swift"; sourceTree = "<group>"; };
 		8BDE91182C2D6C0C0055D913 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
-		A3A313292C2D9FE800844278 /* ShiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftView.swift; sourceTree = "<group>"; };
-		A3A3132B2C2DA04000844278 /* ShiftDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftDetailsView.swift; sourceTree = "<group>"; };
-		A3A3132D2C2DA0EE00844278 /* EmployeeShiftListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeShiftListView.swift; sourceTree = "<group>"; };
+		8BFA9ED82C2D84A6005E6576 /* RTORouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTORouter.swift; sourceTree = "<group>"; };
+		8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTOClient.swift; sourceTree = "<group>"; };
+		8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOffRequestsList.swift; sourceTree = "<group>"; };
+		8BFA9EE12C2D9484005E6576 /* TimeOffRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOffRequests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,8 +273,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3A313202C2D71E200844278 /* SimpleToast in Frameworks */,
-				A3A313232C2D71E900844278 /* Alamofire in Frameworks */,
+				A3A313392C2DA8AF00844278 /* SimpleToast in Frameworks */,
+				A3A313412C2DA8BE00844278 /* KeychainSwift in Frameworks */,
+				A3A3133C2C2DA8B600844278 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +475,7 @@
 		2F7942EE2BC050FD00387D3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8B39D13E2C2D767F00359FDD /* RequestTimeOff */,
 				8B2829E62C22E82600CE9220 /* Schedule */,
 				2F7446F82C0BDB0E0059899C /* EmployeeList */,
 				2F7446DF2C0B5E5B0059899C /* JobsList */,
@@ -540,6 +547,7 @@
 		2F7943382BC47EE700387D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8BFA9EE02C2D9475005E6576 /* TimeOff */,
 				8B586BB42C231EFB00F8DE98 /* Schedule */,
 				2F7447032C0BDCD80059899C /* Employees */,
 				2F7446EA2C0B60DA0059899C /* Jobs */,
@@ -573,6 +581,7 @@
 				2F7446FF2C0BDC400059899C /* EmployeesRouter.swift */,
 				8B586BB02C231C4900F8DE98 /* ScheduleRouter.swift */,
 				2FEFBB6B2C272FCA005E3FB4 /* OnboardingRouter.swift */,
+				8BFA9ED82C2D84A6005E6576 /* RTORouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -588,6 +597,7 @@
 				2F7447012C0BDCC20059899C /* EmployeesClient.swift */,
 				8B586BB22C231D1500F8DE98 /* ScheduleClient.swift */,
 				2FEFBB652C272E07005E3FB4 /* OnboardingClient.swift */,
+				8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -828,6 +838,15 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
+		8B39D13E2C2D767F00359FDD /* RequestTimeOff */ = {
+			isa = PBXGroup;
+			children = (
+				8B39D13F2C2D76AB00359FDD /* RequestTimeOffView.swift */,
+				8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */,
+			);
+			path = RequestTimeOff;
+			sourceTree = "<group>";
+		};
 		8B586BB42C231EFB00F8DE98 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,9 +862,6 @@
 				8B2829E92C22E84900CE9220 /* ScheduleView.swift */,
 				8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */,
 				8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */,
-				A3A313292C2D9FE800844278 /* ShiftView.swift */,
-				A3A3132B2C2DA04000844278 /* ShiftDetailsView.swift */,
-				A3A3132D2C2DA0EE00844278 /* EmployeeShiftListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -887,6 +903,14 @@
 			path = ShiftsSuggestions;
 			sourceTree = "<group>";
 		};
+		8BFA9EE02C2D9475005E6576 /* TimeOff */ = {
+			isa = PBXGroup;
+			children = (
+				8BFA9EE12C2D9484005E6576 /* TimeOffRequests.swift */,
+			);
+			path = TimeOff;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -904,8 +928,9 @@
 			);
 			name = Chronos;
 			packageProductDependencies = (
-				A3A3131F2C2D71E200844278 /* SimpleToast */,
-				A3A313222C2D71E900844278 /* Alamofire */,
+				A3A313382C2DA8AF00844278 /* SimpleToast */,
+				A3A3133B2C2DA8B600844278 /* Alamofire */,
+				A3A313402C2DA8BE00844278 /* KeychainSwift */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -936,8 +961,9 @@
 			);
 			mainGroup = 2F7942D42BC050A500387D3E;
 			packageReferences = (
-				A3A3131E2C2D71E200844278 /* XCRemoteSwiftPackageReference "SimpleToast" */,
-				A3A313212C2D71E900844278 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A3A313372C2DA8AF00844278 /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				A3A3133A2C2DA8B600844278 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A3A3133F2C2DA8BE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -970,7 +996,6 @@
 			files = (
 				2F731BDE2C02A65200B3501D /* AvailabilityApprovalResponse.swift in Sources */,
 				2FDECA9D2BEFB2CD00B3129B /* CheckInOutResponse.swift in Sources */,
-				A3A3132C2C2DA04000844278 /* ShiftDetailsView.swift in Sources */,
 				2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */,
 				8B586BB12C231C4900F8DE98 /* ScheduleRouter.swift in Sources */,
 				2FEFBB252C1F8F2D005E3FB4 /* ScrollableListView.swift in Sources */,
@@ -989,7 +1014,6 @@
 				2FD24D562C292848009D1EDD /* ExtenstionForEncodable.swift in Sources */,
 				2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */,
 				2FEFBB702C273AA0005E3FB4 /* LocationSelectionOptionsView.swift in Sources */,
-				A3A3132A2C2D9FE800844278 /* ShiftView.swift in Sources */,
 				2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */,
 				8B586BB32C231D1500F8DE98 /* ScheduleClient.swift in Sources */,
 				2FD24D582C2A6F7C009D1EDD /* CustomTabStyle.swift in Sources */,
@@ -1000,17 +1024,18 @@
 				2F7447052C0BDCEB0059899C /* EmployeesResponse.swift in Sources */,
 				2F7943122BC3284900387D3E /* HomeView.swift in Sources */,
 				8B44A8CA2C28638E00795567 /* GifImageView.swift in Sources */,
+				8BFA9ED92C2D84A6005E6576 /* RTORouter.swift in Sources */,
 				2FEFBB2A2C1FAC1B005E3FB4 /* ListCellView.swift in Sources */,
 				2F7447152C11299B0059899C /* EmployeeJobsUpdateResponse.swift in Sources */,
 				2F7446F42C0B97E00059899C /* UpdateJobResponse.swift in Sources */,
 				2F7943462BC58A5A00387D3E /* RegistrationView.swift in Sources */,
 				2F7943052BC2DDB400387D3E /* MainButton.swift in Sources */,
 				8B586BBB2C23433900F8DE98 /* CreateShiftViewModel.swift in Sources */,
+				8BFA9EDB2C2D86B4005E6576 /* RTOClient.swift in Sources */,
 				2F7446F22C0B937B0059899C /* AddJobView.swift in Sources */,
 				2F74470F2C0CE8BE0059899C /* EmployeeDetailsView.swift in Sources */,
 				2F731BCD2C0297AB00B3501D /* AvailabilityListView.swift in Sources */,
 				2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */,
-				A3A3132E2C2DA0EE00844278 /* EmployeeShiftListView.swift in Sources */,
 				2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */,
 				8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */,
 				2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */,
@@ -1061,6 +1086,7 @@
 				2F7446E52C0B5E8A0059899C /* JobsListView.swift in Sources */,
 				2FEFBB642C272D7B005E3FB4 /* LocationManager.swift in Sources */,
 				2F41CBBF2BE7E30F000AC5B0 /* OnboardingView.swift in Sources */,
+				8BFA9EE22C2D9484005E6576 /* TimeOffRequests.swift in Sources */,
 				2F41CBD42BE81448000AC5B0 /* CalendarItemView.swift in Sources */,
 				8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */,
 				2FEFBB6C2C272FCA005E3FB4 /* OnboardingRouter.swift in Sources */,
@@ -1079,8 +1105,10 @@
 				2F79432C2BC4209200387D3E /* ContentView.swift in Sources */,
 				2F41CBC72BE7F956000AC5B0 /* EmployeeView.swift in Sources */,
 				2F7446E92C0B60920059899C /* JobsClient.swift in Sources */,
+				8BFA9EDF2C2D93D9005E6576 /* TimeOffRequestsList.swift in Sources */,
 				2FF8ADD22BF4D12800DB9C4E /* AvailabilityView.swift in Sources */,
 				2F731BE22C03DEAC00B3501D /* AvailabilityUpdateRequestResponse.swift in Sources */,
+				8B39D1402C2D76AB00359FDD /* RequestTimeOffView.swift in Sources */,
 				2F7943342BC464CB00387D3E /* NavigationRouter.swift in Sources */,
 				2F41CBDC2BE81C9A000AC5B0 /* AuthenticationRouter.swift in Sources */,
 				2F731BD82C0299C300B3501D /* DashboardRouter.swift in Sources */,
@@ -1302,7 +1330,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A3A3131E2C2D71E200844278 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+		A3A313372C2DA8AF00844278 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
 			requirement = {
@@ -1310,7 +1338,7 @@
 				minimumVersion = 0.8.1;
 			};
 		};
-		A3A313212C2D71E900844278 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		A3A3133A2C2DA8B600844278 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1318,18 +1346,31 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		A3A3133F2C2DA8BE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A3A3131F2C2D71E200844278 /* SimpleToast */ = {
+		A3A313382C2DA8AF00844278 /* SimpleToast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A3A3131E2C2D71E200844278 /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			package = A3A313372C2DA8AF00844278 /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
 		};
-		A3A313222C2D71E900844278 /* Alamofire */ = {
+		A3A3133B2C2DA8B600844278 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A3A313212C2D71E900844278 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = A3A3133A2C2DA8B600844278 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		A3A313402C2DA8BE00844278 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3A3133F2C2DA8BE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
