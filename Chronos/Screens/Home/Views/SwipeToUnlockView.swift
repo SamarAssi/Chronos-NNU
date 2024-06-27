@@ -120,7 +120,6 @@ extension SwipeToUnlockView {
             }
 
             currentDragOffsetX = 0
-            homeModel.handleDashboardResponse(selectedDate: selectedDate, employeeId: "")
         }
     }
 

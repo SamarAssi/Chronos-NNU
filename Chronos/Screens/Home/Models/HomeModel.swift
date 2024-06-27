@@ -56,6 +56,7 @@ class HomeModel: ObservableObject {
         selectedDate: Date,
         completion: @escaping (Bool) -> Void
     ) {
+        showLoading()
         Task {
             do {
                 let currentLatitude = location.coordinate.latitude
@@ -71,7 +72,9 @@ class HomeModel: ObservableObject {
                     employeeId: ""
                 )
                 completion(true)
+                handleDashboardResponse(selectedDate: selectedDate, employeeId: "")
             } catch let error {
+                handleDashboardResponse(selectedDate: selectedDate, employeeId: "")
                 print(error)
                 completion(false)
             }
