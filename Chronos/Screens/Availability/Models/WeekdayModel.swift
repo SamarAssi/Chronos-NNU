@@ -23,6 +23,7 @@ class WeekdayModel: ObservableObject {
 
     @Published var updatedAvailabilities: Availabilities?
     @Published var availabilities: Availabilities?
+    
     @Published var comment = ""
 
     var selectedIndices: [Int] {
@@ -51,6 +52,7 @@ class WeekdayModel: ObservableObject {
                             )
                         }
                     }
+                    updatedAvailabilities = availabilities
                     isLoading = false
                 }
             } catch {
@@ -92,7 +94,10 @@ class WeekdayModel: ObservableObject {
             saturday: weekdays[6].day,
             sunday: weekdays[0].day,
             isPendingApproval: true,
-            comment: comment
+            comment: comment,
+            isRejected: false,
+            isApproved: false,
+            lastUpdateDate: Date().toString()
         )
 
         isSubmitting = true
@@ -109,6 +114,7 @@ class WeekdayModel: ObservableObject {
                 updatedAvailabilities = try await AvailabilityClient.updateAvailability(
                     availability: availabilities
                 )
+                comment = updatedAvailabilities?.comment ?? ""
                 isSentRequest = true
                 isFailedRequest = false
             } catch let error {
