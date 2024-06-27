@@ -10,7 +10,7 @@ import SwiftUI
 
 @Observable
 class AvailabilityListModel: ObservableObject {
-
+    
     var availabilityResponse: AvailabilityRequestsListResponse?
     var approvalResponse: AvailabilityApprovalResponse?
     var rejectionResponse: AvailabilityApprovalResponse?
@@ -18,7 +18,7 @@ class AvailabilityListModel: ObservableObject {
     
     var availabilityRowUIModel: [AvailabilityRowUIModel] = []
     var comment: String = ""
-
+    
     var conflict: [AvailabilityConflict] {
         availabilityChangesResponse?.conflicts ?? []
     }
@@ -28,11 +28,11 @@ class AvailabilityListModel: ObservableObject {
     var isLoading = false
     
     @ObservationIgnored private lazy var acronymManager = AcronymManager()
-
+    
     @MainActor
     func handleAvailabilityRequests() {
         showLoading()
-
+        
         Task {
             do {
                 availabilityResponse = try await performAvailabilityRequest()
@@ -57,7 +57,7 @@ class AvailabilityListModel: ObservableObject {
             }
         }
     }
-
+    
     @MainActor
     func handleApprovalResponse(
         at index: Int
@@ -73,7 +73,7 @@ class AvailabilityListModel: ObservableObject {
             }
         }
     }
-
+    
     @MainActor
     func handleRejectionResponse(
         at index: Int
@@ -89,7 +89,7 @@ class AvailabilityListModel: ObservableObject {
             }
         }
     }
-
+    
     @MainActor
     func handleAvailabilityChangesResponse(
         at index: Int
@@ -102,62 +102,71 @@ class AvailabilityListModel: ObservableObject {
             }
         }
     }
-
+    
     private func performAvailabilityRequest() async throws -> AvailabilityRequestsListResponse {
         return try await AvailabilityClient.availabilityRequestsList()
     }
-
+    
     private func performAvailabilityApprovalRequest(
         at index: Int
     ) async throws -> AvailabilityApprovalResponse {
-
+        
         if let availabilityResponse = availabilityResponse {
             let response = try await AvailabilityClient.approveAvailabilityRequest(
                 id: availabilityResponse.requests[index].id,
                 comment: comment
             )
-
+            
             comment = ""
             return response
-
+            
         } else {
             throw ErrorDescription.invalidId
         }
     }
-
+    
     private func performAvailabilityRejectionRequest(
         at index: Int
     ) async throws -> AvailabilityApprovalResponse {
-
+        
         if let availabilityResponse = availabilityResponse {
             let response = try await AvailabilityClient.rejectAvailabilityRequest(
                 id: availabilityResponse.requests[index].id,
                 comment: comment
             )
-
+            
             comment = ""
             return response
         } else {
             throw ErrorDescription.invalidId
         }
     }
-
+    
     private func performAvailabilityChangesRequest(
         at index: Int
     ) async throws -> AvailabilityUpdateRequestResponse {
-
+        
         if let availabilityResponse = availabilityResponse {
-            return try await AvailabilityClient.getAvailabilityChangeRequest(
+            var response = try await AvailabilityClient.getAvailabilityChangeRequest(
                 id: availabilityResponse.requests[index].id
             )
+            
+            let fixedConflicts = response.conflicts.compactMap { availabilityConflict in
+                let day = availabilityConflict.start?.dayString
+                return  AvailabilityConflict(id: UUID(), day: day, start: availabilityConflict.start, end: availabilityConflict.end)
+            }
+            
+            response.conflicts = fixedConflicts
+            
+            return response
         }
         throw ErrorDescription.invalidId
     }
-
+    
     private func showLoading() {
         isLoading = true
     }
-
+    
     private func hideLoading() {
         isLoading = false
     }

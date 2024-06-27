@@ -28,4 +28,11 @@ extension String {
         dateFormatter.dateFormat = "h:mm a"
         return dateFormatter.string(from: date)
     }
+    
+    var dayString: String {
+        guard let date = date else { return "--" }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter.string(from: date)
+    }
 }
