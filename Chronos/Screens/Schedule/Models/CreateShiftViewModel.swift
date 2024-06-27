@@ -92,9 +92,10 @@ class CreateShiftViewModel: ObservableObject {
             employeeName: shift.employeeName ?? "",
             role: shift.role ?? "",
             title: shift.jobDescription ?? "",
-            startTime: startTime.date ?? Date(),
-            endTime: endTime.date ?? Date(),
-            backgroundColor: backgroundColor
+            startTime: shift.startTime?.date ?? Date(),
+            endTime: shift.endTime?.date ?? Date(),
+            backgroundColor: backgroundColor,
+            isNew: shift.isNew ?? false
         )
 
         await MainActor.run {

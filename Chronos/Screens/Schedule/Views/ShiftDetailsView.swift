@@ -144,7 +144,8 @@ extension ShiftDetailsView {
             title: "iOS Developer",
             startTime: Date(),
             endTime: Date(),
-            backgroundColor: Color.green
+            backgroundColor: Color.green,
+            isNew: false
         )
     )
 }

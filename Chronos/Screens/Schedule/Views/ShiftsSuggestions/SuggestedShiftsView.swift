@@ -31,22 +31,11 @@ struct SuggestedShiftsView: View {
                 employeeName: shift.employeeName ?? "",
                 role: shift.role ?? "Developer",
                 title: titleString,
-                startTime: parseDate(startTime),
-                endTime: parseDate(endTime),
-                backgroundColor: backgroundColor
+                startTime: shift.startTime?.date ?? Date(),
+                endTime: shift.endTime?.date ?? Date(),
+                backgroundColor: backgroundColor,
+                isNew: shift.isNew ?? false
             )
-        }
-    }
-    private func parseDate(_ dateString: String) -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a 'on' MMMM d"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        if let date = formatter.date(from: dateString) {
-            return date
-        } else {
-            print("Failed to parse date string: \(dateString)")
-            return Date()
         }
     }
     

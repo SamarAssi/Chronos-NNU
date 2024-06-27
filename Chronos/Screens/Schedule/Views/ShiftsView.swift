@@ -313,6 +313,7 @@ struct ShiftRowUI: Identifiable, Hashable {
     let startTime: Date
     let endTime: Date
     let backgroundColor: Color
+    let isNew: Bool
 }
 
 #Preview {

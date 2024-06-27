@@ -19,7 +19,7 @@ class ScheduleViewModel: ObservableObject {
             }
         }
     }
-    var shifts: [ShiftRowUIModel] = []
+    
     var isDatePickerPresented: Bool = false
     var isLoading = false
     var newShifts: [ShiftRowUI] = []
@@ -32,38 +32,6 @@ class ScheduleViewModel: ObservableObject {
         .blue, .indigo, .purple, .pink,
         .brown, .white, .gray, .black
     ]
-    
-    private func parseDate(_ dateString: String) -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a 'on' MMMM d"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        if let date = formatter.date(from: dateString) {
-            return date
-        } else {
-            print("Failed to parse date string: \(dateString)")
-            return Date()
-        }
-    }
-    
-    func convertToShiftRowUI() {
-        newShifts = shifts.map { shift in
-            let startTime = shift.startTime.date ?? Date()
-            let endTime = shift.endTime.date ?? Date()
-            
-            return ShiftRowUI(
-                id: shift.id,
-                employeeID: shift.employeeID,
-                initials: shift.initials,
-                employeeName: shift.employeeName,
-                role: shift.role,
-                title: shift.title,
-                startTime: startTime,
-                endTime: endTime,
-                backgroundColor: shift.backgroundColor
-            )
-        }
-    }
 
     
     func handleShiftDeletion(id: String) {
@@ -89,7 +57,7 @@ class ScheduleViewModel: ObservableObject {
             let response = try await ScheduleClient.getShifts(date: date)
             acronymManager.resetColors()
 
-            let shifts = response.shifts.compactMap { shift in
+            newShifts = response.shifts.compactMap { shift in
 
                 let name = shift.employeeName
                 let id = shift.employeeID
@@ -102,24 +70,22 @@ class ScheduleViewModel: ObservableObject {
 
                 let titleString: String = name ?? "--"
 
-                return ShiftRowUIModel(
+                return ShiftRowUI(
                     id: shift.id ?? "",
                     employeeID: shift.employeeID ?? "",
                     initials: initials,
                     employeeName: shift.employeeName ?? "",
                     role: shift.role ?? "Developer",
                     title: titleString,
-                    startTime: startTime,
-                    endTime: endTime,
+                    startTime: shift.startTime?.date ?? Date(),
+                    endTime: shift.endTime?.date ?? Date(),
                     backgroundColor: backgroundColor,
                     isNew: shift.isNew == true
                 )
             }
             
             await MainActor.run {
-                self.shifts = shifts
                 self.isLoading = false
-                convertToShiftRowUI()
             }
         } catch {
             print(error)

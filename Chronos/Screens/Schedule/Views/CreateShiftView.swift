@@ -107,13 +107,11 @@ struct CreateShiftView: View {
         List {
             pickerRow(
                 label: "Start Date",
-                selection: $viewModel.startDate,
-                in: Date()...
+                selection: $viewModel.startDate
             )
             pickerRow(
                 label: "End Date",
-                selection: $viewModel.endDate,
-                in: viewModel.startDate...
+                selection: $viewModel.endDate
             )
             selectRow(
                 label: "Employee",
@@ -140,13 +138,11 @@ struct CreateShiftView: View {
 
     private func pickerRow(
         label: LocalizedStringKey,
-        selection: Binding<Date>,
-        in range: PartialRangeFrom<Date>
+        selection: Binding<Date>
     ) -> some View {
 
         DatePicker(
             selection: selection,
-            in: range,
             displayedComponents: [.date, .hourAndMinute]
         ) {
             Text(label)

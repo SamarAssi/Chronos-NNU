@@ -284,9 +284,6 @@
     "Lat" : {
 
     },
-    "Loading..." : {
-
-    },
     "Log out" : {
 
     },
@@ -327,9 +324,6 @@
 
     },
     "No selected jobs." : {
-
-    },
-    "No shifts available" : {
 
     },
     "NoAccountQuestion" : {
@@ -384,10 +378,10 @@
     "Please select jobs first" : {
 
     },
-    "Previous" : {
-        
-    },
     "PM" : {
+
+    },
+    "Previous" : {
 
     },
     "Radius" : {
@@ -423,13 +417,7 @@
     "Save" : {
 
     },
-    "Schedule" : {
-
-    },
     "Search Maps" : {
-
-    },
-    "Select a date" : {
 
     },
     "Select the job/s:" : {
@@ -473,9 +461,6 @@
 
     },
     "Start:" : {
-
-    },
-    "Start: " : {
 
     },
     "Submit" : {
