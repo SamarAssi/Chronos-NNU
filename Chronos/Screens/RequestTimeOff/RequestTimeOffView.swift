@@ -80,6 +80,7 @@ struct RequestTimeOffView: View {
             } message: {
                 Text("Would you like to submit a comment with your action?")
             }
+            .progressLoader($isSubmitting)
             .simpleToast(
                 isPresented: $showToast,
                 options: SimpleToastOptions(
@@ -134,8 +135,7 @@ struct RequestTimeOffView: View {
             }
             .tint(Color.theme)
             .disabled(screenState == .view)
-
-            
+        
                 if showSubmitButton {
                     MainButton(
                         isLoading: $isSubmitting,
@@ -198,9 +198,8 @@ struct RequestTimeOffView: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             } catch {
-                self.errorMsg = LocalizedStringKey(
-                    error.localizedDescription
-                )
+                isSubmitting = false
+                self.errorMsg = "Cannot request time off for a day with a scheduled shift"
                 self.showToast.toggle()
             }
         }
@@ -238,6 +237,7 @@ struct RequestTimeOffView: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             } catch {
+                isSubmitting = false
                 self.errorMsg = LocalizedStringKey(
                     error.localizedDescription
                 )
