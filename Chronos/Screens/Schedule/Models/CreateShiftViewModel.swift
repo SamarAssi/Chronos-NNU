@@ -73,7 +73,7 @@ class CreateShiftViewModel: ObservableObject {
         let shift = try await ScheduleClient.createShift(
             role: selectedJobName ?? "",
             startTime: startDate.toString(),
-            endTime: startDate.toString(),
+            endTime: endDate.toString(),
             employeeId: selectedEmployeeID ?? "",
             jobDescription: description
         )
@@ -92,26 +92,13 @@ class CreateShiftViewModel: ObservableObject {
             employeeName: shift.employeeName ?? "",
             role: shift.role ?? "",
             title: shift.jobDescription ?? "",
-            startTime: parseDate(startTime),
-            endTime: parseDate(endTime),
+            startTime: startTime.date ?? Date(),
+            endTime: endTime.date ?? Date(),
             backgroundColor: backgroundColor
         )
 
         await MainActor.run {
             isSubmitting = false
-        }
-    }
-    
-    private func parseDate(_ dateString: String) -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a 'on' MMMM d"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        if let date = formatter.date(from: dateString) {
-            return date
-        } else {
-            print("Failed to parse date string: \(dateString)")
-            return Date()
         }
     }
 }

@@ -48,8 +48,8 @@ class ScheduleViewModel: ObservableObject {
     
     func convertToShiftRowUI() {
         newShifts = shifts.map { shift in
-            let startTime = parseDate(shift.startTime)
-            let endTime = parseDate(shift.endTime)
+            let startTime = shift.startTime.date ?? Date()
+            let endTime = shift.endTime.date ?? Date()
             
             return ShiftRowUI(
                 id: shift.id,
