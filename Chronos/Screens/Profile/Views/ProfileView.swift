@@ -262,6 +262,13 @@ extension ProfileView {
                         }
                     }
             )
+
+        case 1:
+            selectedDestination = AnyView(RequestTimeOffView())
+
+        case 2:
+            selectedDestination = AnyView(TimeOffRequestsList())
+
         default:
             selectedDestination = AnyView(
                 NewScreen(

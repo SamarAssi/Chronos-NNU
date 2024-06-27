@@ -4,6 +4,9 @@
     "" : {
 
     },
+    " ---> " : {
+
+    },
     " (Optional)" : {
 
     },
@@ -96,6 +99,9 @@
     "Cancel" : {
 
     },
+    "Category" : {
+
+    },
     "Check In" : {
 
     },
@@ -160,6 +166,9 @@
 
     },
     "Done" : {
+
+    },
+    "Duration" : {
 
     },
     "Edit" : {
@@ -299,6 +308,9 @@
     "Next" : {
 
     },
+    "No requests found" : {
+
+    },
     "No result, please try again." : {
 
     },
@@ -378,6 +390,9 @@
     "Request submitted on %@" : {
 
     },
+    "Request Time Off" : {
+
+    },
     "Requests List" : {
 
     },
@@ -418,9 +433,6 @@
     "Send Request" : {
 
     },
-    "Settings" : {
-
-    },
     "Setup check in/out" : {
 
     },
@@ -448,9 +460,6 @@
     "Suggested Shifts" : {
 
     },
-    "Teams & Conditions" : {
-
-    },
     "The job already exists!" : {
 
     },
@@ -466,7 +475,13 @@
     "This is a wrong id" : {
 
     },
+    "Time Off Requests" : {
+
+    },
     "Today's Total Shifts Time:  " : {
+
+    },
+    "Type" : {
 
     },
     "Type your password" : {
