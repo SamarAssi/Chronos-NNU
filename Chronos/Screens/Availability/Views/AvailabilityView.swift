@@ -9,9 +9,9 @@ import SwiftUI
 import SimpleToast
 
 struct AvailabilityView: View {
-
+    
     @StateObject private var weekdayModel = WeekdayModel()
-
+    
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
         hideAfter: 5,
@@ -19,7 +19,7 @@ struct AvailabilityView: View {
         modifierType: .slide,
         dismissOnTap: true
     )
-
+    
     var body: some View {
         VStack(
             alignment: .leading,
@@ -42,15 +42,21 @@ struct AvailabilityView: View {
                 pendingApprovalLabelView
             }
             
-            if !weekdayModel.comment.isEmpty {
+            let isCommentEmpty = weekdayModel.comment.isEmpty
+            let isPendingRequest = weekdayModel.updatedAvailabilities?.isPendingApproval ?? false
+            
+            if !isCommentEmpty && !isPendingRequest {
                 commentView
             }
-
+            
             schedulingView
             sendRequestButtonView
         }
         .progressLoader($weekdayModel.isLoading)
         .fontDesign(.rounded)
+        .onAppear {
+            weekdayModel.isLoading = true
+        }
         .task {
             weekdayModel.getData()
         }
@@ -78,7 +84,7 @@ struct AvailabilityView: View {
 }
 
 extension AvailabilityView {
-
+    
     var titleView: some View {
         Text(LocalizedStringKey("Availability"))
             .font(.title2)
@@ -88,26 +94,44 @@ extension AvailabilityView {
     }
     
     var commentView: some View {
-        HStack {
+        let color: Color
+          if weekdayModel.updatedAvailabilities?.isApproved == true && weekdayModel.updatedAvailabilities?.isRejected == false {
+              color = Color.green
+          } else if weekdayModel.updatedAvailabilities?.isApproved == false && weekdayModel.updatedAvailabilities?.isRejected == true {
+              color = Color.red
+          } else {
+              color = Color.gray
+          }
+
+        let date = weekdayModel.updatedAvailabilities?.lastUpdateDate.dateString() ?? "--"
+        
+        return HStack {
             Image(systemName: "ellipsis.message")
                 .font(.title3)
-
+            
             Text(weekdayModel.comment)
                 .fontWeight(.bold)
                 .font(.subheadline)
+            
+            Spacer()
+            
+            Text(date)
+                .fontWeight(.medium)
+                .font(.caption)
+                .padding(.leading)
         }
-        .foregroundStyle(Color.gray)
+        .foregroundStyle(color)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
-        .padding(.horizontal, 6)
-        .background(Color.gray.opacity(0.1))
+          .padding(.horizontal, 6)
+          .background(color.opacity(0.1))
     }
-
+    
     var pendingApprovalLabelView: some View {
         HStack {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.title3)
-
+            
             Text(LocalizedStringKey("Your request is awaiting approval"))
                 .fontWeight(.bold)
                 .font(.subheadline)
@@ -118,7 +142,7 @@ extension AvailabilityView {
         .padding(.horizontal, 6)
         .background(Color.darkYellow.opacity(0.1))
     }
-
+    
     var schedulingView: some View {
         Group {
             if weekdayModel.selectedIndices.isEmpty {
@@ -131,7 +155,7 @@ extension AvailabilityView {
             }
         }
     }
-
+    
     var unavailableLabelView: some View {
         Text(LocalizedStringKey("You're unavailable for all days"))
             .frame(
@@ -141,7 +165,7 @@ extension AvailabilityView {
             )
             .foregroundStyle(Color.gray)
     }
-
+    
     var availabilityTimeLabelsView: some View {
         HStack(
             spacing: 25
@@ -157,7 +181,7 @@ extension AvailabilityView {
         .font(.system(size: 14))
         .frame(maxWidth: .infinity, alignment: .trailing)
     }
-
+    
     var availabilityListView: some View {
         List(
             weekdayModel.selectedIndices,
@@ -169,11 +193,13 @@ extension AvailabilityView {
         .listStyle(PlainListStyle())
         .scrollIndicators(.hidden)
     }
-
-    var sendRequestButtonView: some View {
+    
+    var sendRequestButtonView: some View {        
         MainButton(
             isLoading: $weekdayModel.isSubmitting,
-            isEnable: .constant(true),
+            isEnable: Binding(get: {
+                weekdayModel.updatedAvailabilities?.isPendingApproval == false
+            }, set: { _ in }),
             buttonText: "Send Request",
             backgroundColor: Color.theme,
             action: {
@@ -185,7 +211,7 @@ extension AvailabilityView {
 }
 
 extension AvailabilityView {
-
+    
     private func datePickerView(index: Int) -> some View {
         HStack(
             spacing: 10
@@ -197,12 +223,12 @@ extension AvailabilityView {
             )
             .labelsHidden()
             .frame(width: 50)
-
+            
             Image(systemName: "arrow.right")
                 .fontWeight(.bold)
                 .foregroundStyle(Color.theme)
                 .frame(width: 50)
-
+            
             DatePicker(
                 "End Time",
                 selection: $weekdayModel.weekdays[index].endTime,
@@ -212,19 +238,19 @@ extension AvailabilityView {
             .frame(width: 50)
         }
     }
-
+    
     private func schedule(index: Int) -> some View {
         HStack {
             Text(weekdayModel.weekdays[index].dayTitle)
                 .frame(width: 40, alignment: .leading)
-
+            
             Divider()
-
+            
             datePickerView(index: index)
                 .frame(width: 220)
-
+            
             Divider()
-
+            
             Toggle(
                 isOn: $weekdayModel.weekdays[index].isAvailableAllDay
             ) {
@@ -238,7 +264,7 @@ extension AvailabilityView {
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
-
+    
     private func handleToggleChange(at index: Int) {
         if weekdayModel.weekdays[index].isAvailableAllDay {
             weekdayModel.weekdays[index].startTime = Calendar.current.date(

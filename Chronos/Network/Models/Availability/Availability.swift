@@ -13,6 +13,8 @@ struct Availabilities: Hashable, Codable {
     let friday, saturday, sunday: Day?
     let isPendingApproval: Bool?
     let comment: String
+    let isRejected, isApproved: Bool
+    let lastUpdateDate: String
 
     func value(weekday: WeekdayModel.Weekdays) -> Day? {
         switch weekday {
