@@ -25,6 +25,9 @@
     "%@" : {
 
     },
+    "%lld" : {
+
+    },
     "• %@" : {
 
     },
@@ -68,6 +71,9 @@
 
     },
     "Already have an account?" : {
+
+    },
+    "AM" : {
 
     },
     "AppName" : {
@@ -206,6 +212,9 @@
     "END TIME" : {
 
     },
+    "End Time: " : {
+
+    },
     "End: " : {
 
     },
@@ -260,6 +269,9 @@
     "Job" : {
 
     },
+    "Job Description: " : {
+
+    },
     "Job Name:" : {
 
     },
@@ -273,9 +285,6 @@
 
     },
     "Lat" : {
-
-    },
-    "Loading..." : {
 
     },
     "Log out" : {
@@ -318,9 +327,6 @@
 
     },
     "No selected jobs." : {
-
-    },
-    "No shifts available" : {
 
     },
     "NoAccountQuestion" : {
@@ -375,6 +381,9 @@
     "Please select jobs first" : {
 
     },
+    "PM" : {
+
+    },
     "Previous" : {
 
     },
@@ -411,13 +420,7 @@
     "Save" : {
 
     },
-    "Schedule" : {
-
-    },
     "Search Maps" : {
-
-    },
-    "Select a date" : {
 
     },
     "Select the job/s:" : {
@@ -457,10 +460,10 @@
     "START TIME" : {
 
     },
-    "Start:" : {
+    "Start Time: " : {
 
     },
-    "Start: " : {
+    "Start:" : {
 
     },
     "Submit" : {

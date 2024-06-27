@@ -50,7 +50,7 @@ struct ShiftsSuggestionsView: View {
             .navigationTitle("Shifts Suggestions")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: $showShiftsView) {
-                SuggestedShiftsView(shifts: suggestedShifts)
+                //SuggestedShiftsView(shifts: suggestedShifts)
             }
             .simpleToast(
                 isPresented: $showToast,

@@ -8,9 +8,10 @@
 import SwiftUI
 
 @MainActor
+@Observable
 class ScheduleViewModel: ObservableObject {
 
-    @Published var selectedDate: Date = Date() {
+    var selectedDate: Date = Date() {
         didSet {
             isDatePickerPresented = false
             Task {
@@ -18,11 +19,11 @@ class ScheduleViewModel: ObservableObject {
             }
         }
     }
-    @Published var shifts: [ShiftRowUIModel] = []
-    @Published var isDatePickerPresented: Bool = false
-    @Published var isLoading = false
-
-
+    
+    var isDatePickerPresented: Bool = false
+    var isLoading = false
+    var newShifts: [ShiftRowUI] = []
+    
     private var employeeColor: [String: Color] = [:]
     
     private var colors: [Color] = [
@@ -31,6 +32,7 @@ class ScheduleViewModel: ObservableObject {
         .blue, .indigo, .purple, .pink,
         .brown, .white, .gray, .black
     ]
+
     
     func handleShiftDeletion(id: String) {
         Task {
@@ -49,12 +51,13 @@ class ScheduleViewModel: ObservableObject {
         await MainActor.run {
             self.isLoading = true
         }
-
+        
         do {
             let date = selectedDate.toString()
             let response = try await ScheduleClient.getShifts(date: date)
             acronymManager.resetColors()
-            let shifts = response.shifts.compactMap { shift in
+
+            newShifts = response.shifts.compactMap { shift in
 
                 let name = shift.employeeName
                 let id = shift.employeeID
@@ -67,19 +70,21 @@ class ScheduleViewModel: ObservableObject {
 
                 let titleString: String = name ?? "--"
 
-                return ShiftRowUIModel(
+                return ShiftRowUI(
                     id: shift.id ?? "",
+                    employeeID: shift.employeeID ?? "",
                     initials: initials,
+                    employeeName: shift.employeeName ?? "",
+                    role: shift.role ?? "Developer",
                     title: titleString,
-                    startTime: startTime,
-                    endTime: endTime,
+                    startTime: shift.startTime?.date ?? Date(),
+                    endTime: shift.endTime?.date ?? Date(),
                     backgroundColor: backgroundColor,
                     isNew: shift.isNew == true
                 )
             }
             
             await MainActor.run {
-                self.shifts = shifts
                 self.isLoading = false
             }
         } catch {
@@ -90,11 +95,13 @@ class ScheduleViewModel: ObservableObject {
 
 struct ShiftRowUIModel: Identifiable {
     let id: String
+    let employeeID: String
     let initials: String
+    let employeeName: String
+    let role: String
     let title: String
     let startTime: String
     let endTime: String
     let backgroundColor: Color
     let isNew: Bool
 }
- // open github

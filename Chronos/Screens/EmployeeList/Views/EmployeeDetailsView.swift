@@ -181,7 +181,6 @@ extension EmployeeDetailsView {
             spacing: 0
         ) {
             Text(LocalizedStringKey("Jobs"))
-                .font(.title2)
                 .fontWeight(.bold)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -196,8 +195,6 @@ extension EmployeeDetailsView {
                         id: \.self
                     ) { job in
                         Text(job.name)
-                            .listRowSeparator(.hidden)
-                            .padding(.horizontal)
                     }
                     .onDelete { indexSet in
                         deleteJob(
@@ -245,16 +242,14 @@ extension EmployeeDetailsView {
     private func identifyNewJobsNotInEmployeeList(
         from jobsResponse: JobsResponse
     ) {
-        let employeeJobsNames = employeeListModel.jobs.compactMap { $0.name } // ios android
-        let managerJobsNames = jobsResponse.jobs.compactMap { $0.name } // ios android qa
+        let employeeJobsNames = employeeListModel.jobs.compactMap { $0.name }
+        let managerJobsNames = jobsResponse.jobs.compactMap { $0.name }
         
         for index in employeeJobsNames.indices {
             if managerJobsNames.contains(employeeJobsNames[index]) {
                 if let managerJobIndex = managerJobsNames.firstIndex(of: employeeJobsNames[index]) {
                     oldSelectedJobs.append(jobsResponse.jobs[managerJobIndex])
                 }
-                /// ios
-                /// android
             }
         }
     }
