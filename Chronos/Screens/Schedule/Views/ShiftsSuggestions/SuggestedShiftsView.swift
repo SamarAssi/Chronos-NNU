@@ -24,9 +24,8 @@ struct SuggestedShiftsView: View {
             let id = shift.employeeID
             let (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: id ?? "")
 
-            let timezone = shift.isNew == true ? nil : TimeZone.current
-            let startTime = shift.startTime?.timeAndDate() ?? "--"
-            let endTime = shift.endTime?.timeAndDate() ?? "--"
+            let startTime = shift.startTime?.stringTime ?? "--"
+            let endTime = shift.endTime?.stringTime ?? "--"
             let titleString: String = name ?? "--"
 
             return ShiftRowUIModel(
