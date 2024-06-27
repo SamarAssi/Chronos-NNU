@@ -20,14 +20,6 @@ extension ProfileRowModel {
             ProfileRowModel(
                 name: LocalizedStringKey("My Profile"),
                 icon: "person"
-            ),
-            ProfileRowModel(
-                name: LocalizedStringKey("Settings"),
-                icon: "gearshape"
-            ),
-            ProfileRowModel(
-                name: LocalizedStringKey("Teams & Conditions"),
-                icon: "list.bullet.rectangle"
             )
         ]
     }

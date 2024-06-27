@@ -9,11 +9,11 @@ import Alamofire
 
 enum ScheduleRouter: BaseRouter {
 
-    case getShifts(date: Int)
+    case getShifts(date: String)
     case createShift(
         role: String,
-        startTime: Int,
-        endTime: Int,
+        startTime: String,
+        endTime: String,
         employeeId: String,
         jobDescription: String
     )

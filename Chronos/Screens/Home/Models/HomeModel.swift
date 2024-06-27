@@ -93,7 +93,7 @@ class HomeModel: ObservableObject {
         employeeId: String
     ) async throws -> DashboardResponse {
         return try await DashboardClient.dashboard(
-            date: Int(selectedDate.timeIntervalSince1970),
+            date: selectedDate.toString(),
             employeeId: employeeId
         )
     }

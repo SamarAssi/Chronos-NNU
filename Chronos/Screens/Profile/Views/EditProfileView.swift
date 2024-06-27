@@ -90,43 +90,19 @@ extension EditProfileView {
     }
 
     private func fetchFullName() -> String {
-        if let fullName = KeychainManager.shared.fetch(
-            key: KeychainKeys.fullName.rawValue
-        ) {
-            return fullName
-        }
-
-        return ""
+        return UserDefaultManager.fullName ?? ""
     }
     
     private func fetchFirstName() -> String {
-        if let firstName = KeychainManager.shared.fetch(
-            key: KeychainKeys.firstName.rawValue
-        ) {
-            return firstName
-        }
-
-        return ""
+        return UserDefaultManager.firstName ?? ""
     }
     
     private func fetchLastName() -> String {
-        if let lastName = KeychainManager.shared.fetch(
-            key: KeychainKeys.lastName.rawValue
-        ) {
-            return lastName
-        }
-
-        return ""
+        return UserDefaultManager.lastName ?? ""
     }
     
     private func fetchPhoneNumber() -> String {
-        if let phoneNumber = KeychainManager.shared.fetch(
-            key: KeychainKeys.phoneNumber.rawValue
-        ) {
-            return phoneNumber
-        }
-
-        return ""
+        return UserDefaultManager.phoneNumber ?? ""
     }
 }
 

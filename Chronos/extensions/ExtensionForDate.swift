@@ -26,4 +26,10 @@ extension Date {
     static func isSameDay(_ date1: Date, as date2: Date) -> Bool {
         return Calendar.current.isDate(date1, inSameDayAs: date2)
     }
+
+    func toString(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
 }

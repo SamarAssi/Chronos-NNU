@@ -56,7 +56,7 @@ extension BaseRouter {
         completion: @escaping (Result<URLRequest, Error>) -> Void
     ) {
         var request = urlRequest
-        if let token = KeychainManager.shared.fetch(key: KeychainKeys.accessToken.rawValue) {
+        if let token = UserDefaultManager.accessToken {
             request.setValue(
                 "Bearer \(token)",
                 forHTTPHeaderField: NetworkConstants.HTTPHeaderField.authentication
@@ -112,6 +112,7 @@ extension BaseRouter {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = self.method.rawValue
         urlRequest.headers = self.defaultHeaders
+        urlRequest.timeoutInterval = TimeInterval.infinity
         if let parameters = self.parameters {
             do {
                 urlRequest.httpBody = try JSONSerialization.data(

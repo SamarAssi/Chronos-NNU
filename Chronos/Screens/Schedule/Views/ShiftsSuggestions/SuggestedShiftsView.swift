@@ -1,10 +1,3 @@
-//
-//  SuggestedShiftsView.swift
-//  Chronos
-//
-//  Created by Bassam Hillo on 25/06/2024.
-//
-
 import SwiftUI
 
 struct SuggestedShiftsView: View {

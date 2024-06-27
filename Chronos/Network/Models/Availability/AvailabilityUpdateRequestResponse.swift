@@ -16,6 +16,6 @@ struct AvailabilityUpdateRequestResponse: Hashable, Codable {
 struct AvailabilityConflict: Hashable, Codable, Identifiable {
     var id: UUID? = UUID()
     var day: String?
-    var start: Double?
-    var end: Double?
+    var start: String?
+    var end: String?
 }

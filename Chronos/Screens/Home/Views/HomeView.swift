@@ -270,9 +270,7 @@ extension HomeView {
                         ActivityCardView(
                             icon: "tray.and.arrow.up",
                             title: "Check Out",
-                            date: Date(
-                                timeIntervalSince1970: Double(checkout / 1000)
-                            ),
+                            date: checkout.date ?? Date(),
                             iconColor: Color.red,
                             employeeName: activity.employeeName
                         )
@@ -283,9 +281,7 @@ extension HomeView {
                     ActivityCardView(
                         icon: "tray.and.arrow.down",
                         title: "Check In",
-                        date: Date(
-                            timeIntervalSince1970: Double(activity.checkInTime / 1000)
-                        ),
+                        date: activity.checkInTime.date ?? Date(),
                         iconColor: Color.theme,
                         employeeName: activity.employeeName
                     )
@@ -346,13 +342,7 @@ extension HomeView {
     }
     
     private func fetchEmployeeType() -> Int {
-        if let employeeType = KeychainManager.shared.fetch(
-            key: KeychainKeys.employeeType.rawValue
-        ) {
-            return Int(employeeType) ?? -1
-        }
-        
-        return -1
+        return UserDefaultManager.employeeType ?? -1
     }
 }
 

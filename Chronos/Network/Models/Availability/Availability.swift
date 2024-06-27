@@ -36,6 +36,6 @@ struct Availabilities: Hashable, Codable {
 
 // MARK: - Day
 struct Day: Hashable, Codable {
-    let start, end: Double?
+    let start, end: String?
     let isAvailableAllDay, isNotAvailable: Bool?
 }

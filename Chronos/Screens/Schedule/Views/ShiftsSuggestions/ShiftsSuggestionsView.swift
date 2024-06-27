@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SimpleToast
 
 struct ShiftsSuggestionsView: View {
 
@@ -14,6 +15,8 @@ struct ShiftsSuggestionsView: View {
     @State var isSubmitting = false
     @State var showShiftsView = false
 
+    @State var errorMsg: LocalizedStringKey = ""
+    @State var showToast = false
     @State var suggestedShifts: [Shift] = []
 
     var body: some View {
@@ -43,6 +46,21 @@ struct ShiftsSuggestionsView: View {
             .navigationDestination(isPresented: $showShiftsView) {
                 //SuggestedShiftsView(shifts: suggestedShifts)
             }
+            .simpleToast(
+                isPresented: $showToast,
+                options: SimpleToastOptions(
+                    alignment: .top,
+                    hideAfter: 5,
+                    animation: .linear(duration: 0.3),
+                    modifierType: .slide,
+                    dismissOnTap: true
+                )) {
+                    ToastView(
+                        type: .error,
+                        message: errorMsg
+                    )
+                    .padding(.horizontal, 30)
+                }
         }
     }
 
@@ -81,9 +99,18 @@ struct ShiftsSuggestionsView: View {
         Task {
             do {
                 self.suggestedShifts = try await ScheduleClient.suggestShifts(message: text).shifts
-                showShiftsView.toggle()
+                if suggestedShifts.isEmpty {
+                    self.errorMsg = LocalizedStringKey(
+                        "No result, please try again."
+                    )
+                    self.showToast.toggle()
+                } else {
+                    showShiftsView.toggle()
+                }
             } catch {
-                print(error)
+                self.errorMsg = LocalizedStringKey( error.localizedDescription
+                )
+                self.showToast.toggle()
             }
             isSubmitting = false
         }

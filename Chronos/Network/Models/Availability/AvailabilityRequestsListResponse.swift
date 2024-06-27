@@ -47,9 +47,9 @@ class AvailabilityRequestsListResponse: Hashable, Codable {
 
         var id: String
         var employeeName: String
-        var date: Double
+        var date: String
 
-        init(id: String, employeeName: String, date: Double) {
+        init(id: String, employeeName: String, date: String) {
             self.id = id
             self.employeeName = employeeName
             self.date = date
@@ -59,7 +59,7 @@ class AvailabilityRequestsListResponse: Hashable, Codable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             id = try container.decode(String.self, forKey: .id)
             employeeName = try container.decode(String.self, forKey: .employeeName)
-            date = try container.decode(Double.self, forKey: .date)
+            date = try container.decode(String.self, forKey: .date)
         }
 
         func encode(to encoder: Encoder) throws {

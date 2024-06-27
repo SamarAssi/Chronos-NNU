@@ -376,9 +376,9 @@ extension AvailabilityChangeDetailsView {
                     Text(LocalizedStringKey("Not Available"))
                 } else if !isAvailableAllDay {
                     Text(
-                        formatTime(dateTimeInterval: start)
+                        start.stringTime
                         + " - " +
-                        formatTime(dateTimeInterval: end)
+                        end.stringTime
                     )
                 } else if isAvailableAllDay {
                     Text(LocalizedStringKey("All Day"))
@@ -434,13 +434,6 @@ extension AvailabilityChangeDetailsView {
         default:
             return false
         }
-    }
-
-    private func formatTime(dateTimeInterval: Double) -> String {
-        let date = Date(timeIntervalSince1970: dateTimeInterval / 1000)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
-        return formatter.string(from: date)
     }
 }
 

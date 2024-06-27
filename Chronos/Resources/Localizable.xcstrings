@@ -302,10 +302,16 @@
     "My Profile" : {
 
     },
+    "New" : {
+
+    },
     "New availability is the same as the current availability" : {
 
     },
     "Next" : {
+
+    },
+    "No result, please try again." : {
 
     },
     "No selected jobs until now" : {

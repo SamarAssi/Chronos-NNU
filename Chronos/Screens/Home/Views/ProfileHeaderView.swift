@@ -73,23 +73,11 @@ extension ProfileHeaderView {
 extension ProfileHeaderView {
 
     private func fetchEmployeeType() -> Int {
-        if let employeeType = KeychainManager.shared.fetch(
-            key: KeychainKeys.employeeType.rawValue
-        ) {
-            return Int(employeeType) ?? -1
-        }
-
-        return -1
+        return UserDefaultManager.employeeType ?? -1
     }
 
     private func fetchFullName() -> String {
-        if let fullName = KeychainManager.shared.fetch(
-            key: KeychainKeys.fullName.rawValue
-        ) {
-            return fullName
-        }
-
-        return ""
+        return UserDefaultManager.fullName ?? ""
     }
 }
 

@@ -11,7 +11,7 @@ import Foundation
 enum DashboardRouter: BaseRouter {
 
     case checkInOut(currentLatitude: Double, currentLongitude: Double)
-    case dashboard(date: Int, employeeId: String? = nil)
+    case dashboard(date: String, employeeId: String? = nil)
 
     var path: String {
         switch self {

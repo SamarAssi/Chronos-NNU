@@ -69,8 +69,8 @@ class WeekdayModel: ObservableObject {
     ) -> Weekday? {
         guard let day else { return nil }
 
-        let startTime = Date(timeIntervalSince1970: TimeInterval(day.start ?? 0))
-        let endTime = Date(timeIntervalSince1970: TimeInterval(day.end ?? 0))
+        let startTime = day.start?.date ?? Date()
+        let endTime = day.end?.date ?? Date()
         return Weekday(
             dayName: dayName,
             startTime: startTime,
