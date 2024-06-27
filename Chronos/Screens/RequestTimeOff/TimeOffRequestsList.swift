@@ -117,20 +117,14 @@ struct TimeOffRequestsList: View {
                     Text(request.username ?? "--")
                         .font(.system(size: 16, weight: .semibold))
                     HStack {
-                        Text(request.startDate?.timeAndDate() ?? "--")
+                        Text(request.startDate?.dateString() ?? "--")
                             .font(.system(size: 14))
 
-                        Text(" ---> ")
+                        Text(" - ")
                             .font(.system(size: 14))
 
-                        Text(request.endDate?.timeAndDate() ?? "--")
+                        Text(request.endDate?.dateString() ?? "--")
                             .font(.system(size: 14))
-
-                        Spacer()
-
-                        Text(LocalizedStringKey("Pending"))
-                            .font(.system(size: 15))
-                            .foregroundStyle(Color.theme)
                     }
                 }
                 .padding(.trailing, 22)

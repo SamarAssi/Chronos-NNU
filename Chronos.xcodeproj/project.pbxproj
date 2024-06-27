@@ -133,9 +133,9 @@
 		8BFA9EDB2C2D86B4005E6576 /* RTOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */; };
 		8BFA9EDF2C2D93D9005E6576 /* TimeOffRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */; };
 		8BFA9EE22C2D9484005E6576 /* TimeOffRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EE12C2D9484005E6576 /* TimeOffRequests.swift */; };
-		A3A313202C2D71E200844278 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3A3131F2C2D71E200844278 /* SimpleToast */; };
-		A3A313232C2D71E900844278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313222C2D71E900844278 /* Alamofire */; };
-		A3A313282C2D71EE00844278 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313272C2D71EE00844278 /* KeychainSwift */; };
+		A3A313392C2DA8AF00844278 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313382C2DA8AF00844278 /* SimpleToast */; };
+		A3A3133C2C2DA8B600844278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3A3133B2C2DA8B600844278 /* Alamofire */; };
+		A3A313412C2DA8BE00844278 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313402C2DA8BE00844278 /* KeychainSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -273,9 +273,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3A313202C2D71E200844278 /* SimpleToast in Frameworks */,
-				A3A313282C2D71EE00844278 /* KeychainSwift in Frameworks */,
-				A3A313232C2D71E900844278 /* Alamofire in Frameworks */,
+				A3A313392C2DA8AF00844278 /* SimpleToast in Frameworks */,
+				A3A313412C2DA8BE00844278 /* KeychainSwift in Frameworks */,
+				A3A3133C2C2DA8B600844278 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,9 +928,9 @@
 			);
 			name = Chronos;
 			packageProductDependencies = (
-				A3A3131F2C2D71E200844278 /* SimpleToast */,
-				A3A313222C2D71E900844278 /* Alamofire */,
-				A3A313272C2D71EE00844278 /* KeychainSwift */,
+				A3A313382C2DA8AF00844278 /* SimpleToast */,
+				A3A3133B2C2DA8B600844278 /* Alamofire */,
+				A3A313402C2DA8BE00844278 /* KeychainSwift */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -961,9 +961,9 @@
 			);
 			mainGroup = 2F7942D42BC050A500387D3E;
 			packageReferences = (
-				A3A3131E2C2D71E200844278 /* XCRemoteSwiftPackageReference "SimpleToast" */,
-				A3A313212C2D71E900844278 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				A3A313262C2D71EE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				A3A313372C2DA8AF00844278 /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				A3A3133A2C2DA8B600844278 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A3A3133F2C2DA8BE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -1330,7 +1330,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A3A3131E2C2D71E200844278 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+		A3A313372C2DA8AF00844278 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
 			requirement = {
@@ -1338,7 +1338,7 @@
 				minimumVersion = 0.8.1;
 			};
 		};
-		A3A313212C2D71E900844278 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		A3A3133A2C2DA8B600844278 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1346,7 +1346,7 @@
 				minimumVersion = 5.9.1;
 			};
 		};
-		A3A313262C2D71EE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+		A3A3133F2C2DA8BE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
@@ -1357,19 +1357,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A3A3131F2C2D71E200844278 /* SimpleToast */ = {
+		A3A313382C2DA8AF00844278 /* SimpleToast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A3A3131E2C2D71E200844278 /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			package = A3A313372C2DA8AF00844278 /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
 		};
-		A3A313222C2D71E900844278 /* Alamofire */ = {
+		A3A3133B2C2DA8B600844278 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A3A313212C2D71E900844278 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = A3A3133A2C2DA8B600844278 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		A3A313272C2D71EE00844278 /* KeychainSwift */ = {
+		A3A313402C2DA8BE00844278 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A3A313262C2D71EE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			package = A3A3133F2C2DA8BE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
