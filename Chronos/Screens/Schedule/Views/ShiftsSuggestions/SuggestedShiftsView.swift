@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SuggestedShiftsView: View {
 
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @State var uiModels: [ShiftRowUIModel]
     @State var isSubmitting = false
     private let shifts: [Shift]
@@ -83,7 +83,7 @@ struct SuggestedShiftsView: View {
                 title: "REJECT",
                 backgroundColor: .red,
                 action: {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
             )
 
@@ -127,7 +127,7 @@ struct SuggestedShiftsView: View {
             }
             await MainActor.run {
                 isSubmitting = false
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }
         }
     }

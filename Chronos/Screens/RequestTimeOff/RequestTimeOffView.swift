@@ -22,13 +22,28 @@ struct RequestTimeOffView: View {
     @State private var errorMsg: LocalizedStringKey = ""
     @State var isButtonEnabled: Bool = false
 
-    @State var comment: String? = nil
+    var comment: String?
     @State var screenState: ScreenState
     private var showButtons = true
-
+    private var id: String = ""
+    @State var commentText: String = ""
+    @State var showingAlert = false
+    @State private var status: Int = 0
     enum ScreenState {
         case add
         case view
+    }
+
+    private var showSubmitButton: Bool {
+        showButtons && screenState == .add
+    }
+
+    private var showApproveRejectButtons: Bool {
+        showButtons && screenState == .view && UserDefaultManager.employeeType == 1
+    }
+
+    private var showDeleteButton: Bool {
+        showButtons && screenState == .view && UserDefaultManager.employeeType != 1
     }
 
     init(request: TimeOffRequest? = nil) {
@@ -40,18 +55,31 @@ struct RequestTimeOffView: View {
             description = request.description ?? ""
             comment = request.comment
             showButtons = request.status == 0
+            id = request.id ?? ""
         } else {
             selectedType = .Unlimited
             startDate = Date()
             endDate = Date()
             description = ""
             screenState = .add
+            comment = nil
         }
     }
 
     var body: some View {
         contentView
             .navigationTitle("Request Time Off")
+            .alert("Comment", isPresented: $showingAlert) {
+                TextField("Comment (optional)", text: $commentText)
+                Button("Continue") {
+                    changeRequestStatus(status: status)
+                }
+                    .foregroundStyle(Color.green)
+                Button("Cancel", role: .cancel) {}
+                    .foregroundStyle(Color.black)
+            } message: {
+                Text("Would you like to submit a comment with your action?")
+            }
             .simpleToast(
                 isPresented: $showToast,
                 options: SimpleToastOptions(
@@ -108,8 +136,7 @@ struct RequestTimeOffView: View {
             .disabled(screenState == .view)
 
             
-            if showButtons {
-                if screenState != .view {
+                if showSubmitButton {
                     MainButton(
                         isLoading: $isSubmitting,
                         isEnable: $isButtonEnabled,
@@ -119,7 +146,7 @@ struct RequestTimeOffView: View {
                         submit()
                     }
                     .padding(20)
-                } else if screenState == .view && UserDefaultManager.employeeType == 1 {
+                } else if showApproveRejectButtons {
                     HStack {
                         MainButton(
                             isLoading: .constant(false),
@@ -127,7 +154,8 @@ struct RequestTimeOffView: View {
                             buttonText: "Approve",
                             backgroundColor: .green
                         ) {
-                            approve()
+                            self.status = 1
+                            self.showingAlert = true
                         }
 
                         MainButton(
@@ -136,13 +164,22 @@ struct RequestTimeOffView: View {
                             buttonText: "Reject",
                             backgroundColor: .red
                         ) {
-                            reject()
+                            self.status = 2
+                            self.showingAlert = true
                         }
                     }
                     .padding(20)
+                } else if showDeleteButton {
+                    MainButton(
+                        isLoading: .constant(false),
+                        isEnable: .constant(true),
+                        buttonText: "Delete",
+                        backgroundColor: .red
+                    ) {
+                        delete()
+                    }
+                    .padding(20)
                 }
-            }
-
         }
     }
 
@@ -169,10 +206,44 @@ struct RequestTimeOffView: View {
         }
     }
 
-    func approve() {
+    func changeRequestStatus(
+        status: Int
+    ) {
+        isSubmitting = true
+        Task {
+            do {
+                let _ = try await RTOClient.updateTimeOffStatus(
+                    status: status,
+                    timeOffId: id,
+                    comment: commentText
+                )
+                await MainActor.run {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            } catch {
+                self.errorMsg = LocalizedStringKey(
+                    error.localizedDescription
+                )
+                self.showToast.toggle()
+            }
+        }
     }
 
-    func reject() {
+    func delete() {
+        isSubmitting = true
+        Task {
+            do {
+                let _ = try await RTOClient.deleteRequest(timeOffId: id)
+                await MainActor.run {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            } catch {
+                self.errorMsg = LocalizedStringKey(
+                    error.localizedDescription
+                )
+                self.showToast.toggle()
+            }
+        }
     }
 }
 

@@ -30,6 +30,10 @@ struct ShiftsSuggestionsView: View {
     @State var showToast = false
     @State var suggestedShifts: [Shift] = []
 
+    private var mainButtonText: String {
+        selectedStep == questions.count - 1 ? "Submit" : "Next"
+    }
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -97,22 +101,22 @@ struct ShiftsSuggestionsView: View {
             questionsTabView
             Spacer()
             HStack {
+
                 if selectedStep > 0 {
                     Button("Previous") {
                         withAnimation {
                             selectedStep = selectedStep - 1
                         }
                     }
+                    .frame(maxWidth: .infinity)
                     .padding(.horizontal, 15)
-                    .padding(.vertical, 7)
+                    .padding(.vertical, 10)
                     .foregroundStyle(Color.white)
                     .background(.theme)
                     .clipShape(Capsule())
                 }
 
-                Spacer()
-
-                Button(selectedStep == questions.count - 1 ? "Submit" : "Next") {
+                Button(mainButtonText) {
                     withAnimation {
                         if selectedStep == questions.count - 1 {
                             submit()
@@ -121,8 +125,9 @@ struct ShiftsSuggestionsView: View {
                         }
                     }
                 }
+                .frame(maxWidth: .infinity)
                 .padding(.horizontal, 15)
-                .padding(.vertical, 7)
+                .padding(.vertical, 10)
                 .foregroundStyle(Color.white)
                 .background(.theme)
                 .clipShape(Capsule())

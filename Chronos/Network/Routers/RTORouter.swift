@@ -18,6 +18,12 @@ enum RTORouter: BaseRouter {
         description: String
     )
     case getRequests
+    case updateTimeOffStatus(
+        status: Int,
+        timeOffId: String,
+        comment: String?
+    )
+    case deleteRequest(timeOffId: String)
 
     var path: String {
         switch self {
@@ -25,15 +31,21 @@ enum RTORouter: BaseRouter {
             return "timeOff/addTimeOffRequest"
         case .getRequests:
             return "timeOff/timeOffRequests"
+        case .updateTimeOffStatus:
+            return "timeOff/updateTimeOffStatus"
+        case .deleteRequest(timeOffId: let timeOffId):
+            return "timeOff/removeTimeOffRequest/\(timeOffId)"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .createPTO:
+        case .createPTO, .updateTimeOffStatus:
             return .post
         case .getRequests:
             return .get
+        case .deleteRequest:
+            return .delete
         }
     }
 
@@ -54,8 +66,18 @@ enum RTORouter: BaseRouter {
                 "description": description
             ]
 
-        case .getRequests:
+        case .getRequests, .deleteRequest:
             return nil
+        case .updateTimeOffStatus(
+            let status,
+            let timeOffId,
+            let comment
+        ):
+            return [
+                "status": status,
+                "timeOffId": timeOffId,
+                "comment": comment ?? ""
+            ]
         }
     }
 }
