@@ -43,10 +43,7 @@ class ManagerModel: ObservableObject {
 
     private func saveCompanyInvitationId() {
         if let response = managerResponse {
-            KeychainManager.shared.save(
-                response.companyInvitationId,
-                key: KeychainKeys.companyInvitationId.rawValue
-            )
+            UserDefaultManager.companyInvitationId = response.companyInvitationId
         }
     }
 

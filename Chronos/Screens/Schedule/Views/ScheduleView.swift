@@ -216,10 +216,8 @@ struct ScheduleView: View {
     }
     
     private func isManager() -> Bool {
-        let employeeType = KeychainManager.shared.fetch(
-            key: KeychainKeys.employeeType.rawValue
-        ) ?? ""
-        return Int(employeeType) == 1
+        let employeeType = UserDefaultManager.employeeType ?? 0
+        return employeeType == 1
     }
 }
 

@@ -15,10 +15,7 @@ class NavigationRouter: ObservableObject {
         case onboarding
     }
 
-    @Published var isLoggedIn = KeychainManager.shared.fetch(
-        key: KeychainKeys.accessToken.rawValue
-    )?.isEmpty == false
-
+    @Published var isLoggedIn = UserDefaultManager.accessToken != nil
     @Published var path: [AuthScreens] = []
 
     func navigateTo(_ route: AuthScreens) {

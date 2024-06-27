@@ -120,10 +120,7 @@ extension LoginView {
 
     private func saveEmployeeType() {
         if let response = loginModel.response {
-            KeychainManager.shared.save(
-                String(response.employeeDetails.employeeType),
-                key: KeychainKeys.employeeType.rawValue
-            )
+            UserDefaultManager.employeeType = response.employeeDetails.employeeType
         }
     }
 }

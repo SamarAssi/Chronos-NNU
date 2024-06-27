@@ -49,38 +49,35 @@ class LoginModel: ObservableObject {
 
     private func saveAccessToken() {
         if let response = response {
-            KeychainManager.shared.save(
-                response.accessToken,
-                key: KeychainKeys.accessToken.rawValue
-            )
+            UserDefaultManager.accessToken = response.accessToken
         }
     }
 
     private func saveFullName() {
         if let response = response {
             let name = response.firstName + " " + response.lastName
-            KeychainManager.shared.save(name, key: KeychainKeys.fullName.rawValue)
+            UserDefaultManager.fullName = name
         }
     }
     
     private func saveFirstName() {
         if let response = response {
             let firstName = response.firstName
-            KeychainManager.shared.save(firstName, key: KeychainKeys.firstName.rawValue)
+            UserDefaultManager.firstName = firstName
         }
     }
     
     private func saveLastName() {
         if let response = response {
             let lastName = response.lastName
-            KeychainManager.shared.save(lastName, key: KeychainKeys.lastName.rawValue)
+            UserDefaultManager.lastName = lastName
         }
     }
     
     private func savePhoneNumber() {
         if let response = response {
             let phone = response.phone
-            KeychainManager.shared.save(phone, key: KeychainKeys.phoneNumber.rawValue)
+            UserDefaultManager.phoneNumber = phone
         }
     }
 
