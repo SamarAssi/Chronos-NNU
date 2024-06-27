@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 class CreateShiftViewModel: ObservableObject {
 
     @Published var startDate: Date = Date()
@@ -25,6 +26,7 @@ class CreateShiftViewModel: ObservableObject {
             isButtonEnabled = !description.isEmpty
         }
     }
+    @Published var createdShift: ShiftRowUI?
     @Published var isLoading: Bool = false
     @Published var isSubmitting: Bool = false
     @Published var isButtonEnabled: Bool = false
@@ -44,6 +46,8 @@ class CreateShiftViewModel: ObservableObject {
 
         return selectedJobName
     }
+    
+    @ObservationIgnored private lazy var acronymManager = AcronymManager()
 
     func getData() async {
         await MainActor.run {
@@ -66,12 +70,31 @@ class CreateShiftViewModel: ObservableObject {
         await MainActor.run {
             isSubmitting = true
         }
-        let _ = try await ScheduleClient.createShift(
+        let shift = try await ScheduleClient.createShift(
             role: selectedJobName ?? "",
             startTime: startDate.toString(),
             endTime: endDate.toString(),
             employeeId: selectedEmployeeID ?? "",
             jobDescription: description
+        )
+        
+        let initials: String
+        let backgroundColor: Color
+        (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: shift.employeeName ?? "", id: shift.employeeID ?? "")
+        
+        let startTime = shift.startTime?.stringTime ?? "--"
+        let endTime = shift.endTime?.stringTime ?? "--"
+        
+        createdShift = ShiftRowUI(
+            id: shift.id ?? "",
+            employeeID: shift.employeeID ?? "",
+            initials: initials,
+            employeeName: shift.employeeName ?? "",
+            role: shift.role ?? "",
+            title: shift.jobDescription ?? "",
+            startTime: startTime.date ?? Date(),
+            endTime: endTime.date ?? Date(),
+            backgroundColor: backgroundColor
         )
 
         await MainActor.run {

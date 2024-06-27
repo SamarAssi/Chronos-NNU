@@ -22,7 +22,7 @@ struct DashboardTabView: View {
                     .tabItem { Image(systemName: "list.clipboard") }
             }
 
-            ScheduleView()
+            ShiftsView()
                 .tabItem { Image(systemName: "calendar") }
 
             Group {

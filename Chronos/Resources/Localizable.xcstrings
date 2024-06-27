@@ -25,6 +25,9 @@
     "%@" : {
 
     },
+    "%lld" : {
+
+    },
     "• %@" : {
 
     },
@@ -68,6 +71,9 @@
 
     },
     "Already have an account?" : {
+
+    },
+    "AM" : {
 
     },
     "AppName" : {
@@ -203,6 +209,9 @@
     "END TIME" : {
 
     },
+    "End Time: " : {
+
+    },
     "End: " : {
 
     },
@@ -255,6 +264,9 @@
 
     },
     "Job" : {
+
+    },
+    "Job Description: " : {
 
     },
     "Job Name:" : {
@@ -373,6 +385,9 @@
 
     },
     "Previous" : {
+        
+    },
+    "PM" : {
 
     },
     "Radius" : {
@@ -452,6 +467,9 @@
 
     },
     "START TIME" : {
+
+    },
+    "Start Time: " : {
 
     },
     "Start:" : {
