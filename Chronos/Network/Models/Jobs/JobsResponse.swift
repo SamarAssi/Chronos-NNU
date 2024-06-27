@@ -13,7 +13,7 @@ struct JobsResponse: Hashable, Codable {
 
 struct Job: Hashable, Codable, Identifiable, LabelRepresentable {
     let id: String?
-    let name: String
+    var name: String
     var label: String {
         return name
     }

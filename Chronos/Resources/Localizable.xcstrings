@@ -114,9 +114,6 @@
     "Clear" : {
 
     },
-    "Close" : {
-
-    },
     "Comment" : {
 
     },
@@ -139,6 +136,9 @@
 
     },
     "Conflicted Shift" : {
+
+    },
+    "Count" : {
 
     },
     "Create" : {
@@ -242,9 +242,6 @@
     "Forgot Password?" : {
 
     },
-    "Give me a brief description about the shifts you want to create." : {
-
-    },
     "ID:" : {
 
     },
@@ -311,9 +308,6 @@
     "No requests found" : {
 
     },
-    "No result, please try again." : {
-
-    },
     "No selected jobs until now" : {
 
     },
@@ -370,6 +364,9 @@
       }
     },
     "Pending" : {
+
+    },
+    "Previous" : {
 
     },
     "Radius" : {
@@ -455,9 +452,6 @@
 
     },
     "Submit" : {
-
-    },
-    "Suggest Shifts" : {
 
     },
     "Suggested Shifts" : {
