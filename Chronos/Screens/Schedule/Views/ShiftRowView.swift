@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShiftRowView: View {
 
+    @ObservedObject var scheduleViewModel = ScheduleViewModel()
     var model: ShiftRowUIModel
 
     var body: some View {
@@ -54,17 +55,34 @@ struct ShiftRowView: View {
         }
         .background(model.backgroundColor.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 20))
-
+        .overlay(alignment: .topTrailing) {
+            cancelButtonView
+                .padding(.top, 12)
+                .padding(.trailing, 15)
+        }
+    }
+    
+    var cancelButtonView: some View {
+        Image(systemName: "xmark")
+            .scaleEffect(0.8)
+            .onTapGesture {
+                scheduleViewModel.handleShiftDeletion(id: model.id)
+            }
     }
 }
 
 #Preview {
-    ShiftRowView(model: ShiftRowUIModel(
-        id: "1",
-        initials: "MS",
-        title: "Morning Shift",
-        startTime: "8:00 AM",
-        endTime: "12:00 PM",
-        backgroundColor: .theme
-    ))
+    ShiftRowView(
+        model: ShiftRowUIModel(
+            id: "1",
+            employeeID: "2",
+            initials: "MS",
+            employeeName: "",
+            role: "",
+            title: "Morning Shift",
+            startTime: "8:00 AM",
+            endTime: "12:00 PM",
+            backgroundColor: .theme
+        )
+    )
 }

@@ -41,7 +41,7 @@ struct ShiftsSuggestionsView: View {
                 }
             }
             .navigationDestination(isPresented: $showShiftsView) {
-                SuggestedShiftsView(shifts: suggestedShifts)
+                //SuggestedShiftsView(shifts: suggestedShifts)
             }
         }
     }

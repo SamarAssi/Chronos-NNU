@@ -19,7 +19,7 @@ struct ScheduleView: View {
     var body: some View {
         contentView
             .sheet(isPresented: $showCreateEventView) {
-                CreateShiftView(selectedDate: $viewModel.selectedDate)
+                //CreateShiftView(selectedDate: $viewModel.selectedDate)
             }
             .sheet(isPresented: $showAIFeature) {
                 ShiftsSuggestionsView()
@@ -44,7 +44,7 @@ struct ScheduleView: View {
                     }
                 }
                 .sheet(isPresented: $showCreateEventView) {
-                    CreateShiftView(selectedDate: $viewModel.selectedDate)
+                   // CreateShiftView(selectedDate: $viewModel.selectedDate)
                 }
         }
         .fontDesign(.rounded)

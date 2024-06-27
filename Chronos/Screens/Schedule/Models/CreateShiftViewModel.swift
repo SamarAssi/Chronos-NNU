@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 class CreateShiftViewModel: ObservableObject {
 
     @Published var startDate: Date = Date()
@@ -25,6 +26,7 @@ class CreateShiftViewModel: ObservableObject {
             isButtonEnabled = !description.isEmpty
         }
     }
+    @Published var createdShift: ShiftRowUI?
     @Published var isLoading: Bool = false
     @Published var isSubmitting: Bool = false
     @Published var isButtonEnabled: Bool = false
@@ -44,6 +46,8 @@ class CreateShiftViewModel: ObservableObject {
 
         return selectedJobName
     }
+    
+    @ObservationIgnored private lazy var acronymManager = AcronymManager()
 
     func getData() async {
         await MainActor.run {
@@ -66,16 +70,48 @@ class CreateShiftViewModel: ObservableObject {
         await MainActor.run {
             isSubmitting = true
         }
-        let _ = try await ScheduleClient.createShift(
+        let shift = try await ScheduleClient.createShift(
             role: selectedJobName ?? "",
             startTime: Int(startDate.timeIntervalSince1970),
             endTime: Int(endDate.timeIntervalSince1970),
             employeeId: selectedEmployeeID ?? "",
             jobDescription: description
         )
+        
+        let initials: String
+        let backgroundColor: Color
+        (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: shift.employeeName ?? "", id: shift.employeeID ?? "")
+        
+        let startTime = shift.startTime?.timeAndDate(in: TimeZone.current) ?? "--"
+        let endTime = shift.endTime?.timeAndDate(in: TimeZone.current) ?? "--"
+        
+        createdShift = ShiftRowUI(
+            id: shift.id ?? "",
+            employeeID: shift.employeeID ?? "",
+            initials: initials,
+            employeeName: shift.employeeName ?? "",
+            role: shift.role ?? "",
+            title: shift.jobDescription ?? "",
+            startTime: parseDate(startTime),
+            endTime: parseDate(endTime),
+            backgroundColor: backgroundColor
+        )
 
         await MainActor.run {
             isSubmitting = false
+        }
+    }
+    
+    private func parseDate(_ dateString: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a 'on' MMMM d"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        if let date = formatter.date(from: dateString) {
+            return date
+        } else {
+            print("Failed to parse date string: \(dateString)")
+            return Date()
         }
     }
 }

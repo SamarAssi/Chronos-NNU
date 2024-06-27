@@ -13,6 +13,7 @@ struct CreateShiftView: View {
     @State private var showEmployeePicker = false
     @State private var showJobPicker = false
     @Binding var selectedDate: Date
+    @Binding var filteredShifts: [ShiftRowUI]
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -60,6 +61,9 @@ struct CreateShiftView: View {
                                 await MainActor.run {
                                     dismiss.callAsFunction()
                                     selectedDate = Date()
+                                }
+                                if let createdShift = viewModel.createdShift {
+                                    filteredShifts.append(createdShift)
                                 }
                             } catch {
                                 print(error.localizedDescription)
@@ -205,5 +209,8 @@ struct CreateShiftView: View {
 }
 
 #Preview {
-    CreateShiftView(selectedDate: .constant(Date()))
+    CreateShiftView(
+        selectedDate: .constant(Date()),
+        filteredShifts: .constant([])
+    )
 }
