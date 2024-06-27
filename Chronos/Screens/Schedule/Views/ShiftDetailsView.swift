@@ -95,13 +95,13 @@ extension ShiftDetailsView {
         ) {
             Text(LocalizedStringKey("Start Time: "))
                 .bold() +
-            Text(formattedDate(shift.startTime))
+            Text(shift.startTime.toString().timeAndDate())
                 .foregroundStyle(Color.gray)
                 .font(.subheadline)
             
             Text(LocalizedStringKey("End Time: "))
                 .bold() +
-            Text(formattedDate(shift.endTime))
+            Text(shift.endTime.toString().timeAndDate())
                 .foregroundStyle(Color.gray)
                 .font(.subheadline)
         }
