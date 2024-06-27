@@ -68,8 +68,8 @@ class CreateShiftViewModel: ObservableObject {
         }
         let _ = try await ScheduleClient.createShift(
             role: selectedJobName ?? "",
-            startTime: Int(startDate.timeIntervalSince1970),
-            endTime: Int(endDate.timeIntervalSince1970),
+            startTime: startDate.toString(),
+            endTime: startDate.toString(),
             employeeId: selectedEmployeeID ?? "",
             jobDescription: description
         )

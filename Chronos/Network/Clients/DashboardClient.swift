@@ -10,7 +10,7 @@ import Foundation
 class DashboardClient: BaseClient {
 
     static func dashboard(
-        date: Int,
+        date: String,
         employeeId: String
     ) async throws -> DashboardResponse {
         let router: DashboardRouter = .dashboard(date: date, employeeId: employeeId)

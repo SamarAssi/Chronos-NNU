@@ -11,8 +11,8 @@ class ScheduleClient: BaseClient {
 
     static func createShift(
         role: String,
-        startTime: Int,
-        endTime: Int,
+        startTime: String,
+        endTime: String,
         employeeId: String,
         jobDescription: String
     ) async throws -> Shift {
@@ -26,7 +26,7 @@ class ScheduleClient: BaseClient {
         return try await performRequest(router: router)
     }
 
-    static func getShifts(date: Int) async throws -> Shifts {
+    static func getShifts(date: String) async throws -> Shifts {
         let router: ScheduleRouter = .getShifts(date: date)
         return try await performRequest(router: router)
     }

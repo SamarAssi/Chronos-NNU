@@ -51,7 +51,7 @@ class ScheduleViewModel: ObservableObject {
         }
 
         do {
-            let date = Int(selectedDate.timeIntervalSince1970)
+            let date = selectedDate.toString()
             let response = try await ScheduleClient.getShifts(date: date)
             acronymManager.resetColors()
             let shifts = response.shifts.compactMap { shift in

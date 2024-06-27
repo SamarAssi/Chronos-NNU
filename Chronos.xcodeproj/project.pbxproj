@@ -77,9 +77,6 @@
 		2F928D542BD32DB7004AAED3 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F928D532BD32DB7004AAED3 /* ProfileHeaderView.swift */; };
 		2FD24D562C292848009D1EDD /* ExtenstionForEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D552C292848009D1EDD /* ExtenstionForEncodable.swift */; };
 		2FD24D582C2A6F7C009D1EDD /* CustomTabStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D572C2A6F7C009D1EDD /* CustomTabStyle.swift */; };
-		2FD24D682C2B0F7D009D1EDD /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D672C2B0F7D009D1EDD /* KeychainSwift */; };
-		2FD24D6B2C2B0F83009D1EDD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D6A2C2B0F83009D1EDD /* Alamofire */; };
-		2FD24D702C2B0F8C009D1EDD /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D6F2C2B0F8C009D1EDD /* SimpleToast */; };
 		2FD24D722C2B9227009D1EDD /* EmployeeJobsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D712C2B9226009D1EDD /* EmployeeJobsListView.swift */; };
 		2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA812BE9153C00B3129B /* ManagerOnboardingResponse.swift */; };
 		2FDECA862BE974A600B3129B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA852BE974A600B3129B /* ToastView.swift */; };
@@ -132,6 +129,9 @@
 		8B9B00122C295BF5007EDAF9 /* AcronymManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B00102C295BF5007EDAF9 /* AcronymManager.swift */; };
 		8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */; };
 		8BDE91172C2D604C0055D913 /* String+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE91162C2D604C0055D913 /* String+Extenstions.swift */; };
+		A3A313122C2D691E00844278 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313112C2D691E00844278 /* KeychainSwift */; };
+		A3A313152C2D692400844278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313142C2D692400844278 /* Alamofire */; };
+		A3A3131A2C2D692900844278 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313192C2D692900844278 /* SimpleToast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -265,9 +265,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FD24D702C2B0F8C009D1EDD /* SimpleToast in Frameworks */,
-				2FD24D682C2B0F7D009D1EDD /* KeychainSwift in Frameworks */,
-				2FD24D6B2C2B0F83009D1EDD /* Alamofire in Frameworks */,
+				A3A3131A2C2D692900844278 /* SimpleToast in Frameworks */,
+				A3A313122C2D691E00844278 /* KeychainSwift in Frameworks */,
+				A3A313152C2D692400844278 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,9 +908,9 @@
 			);
 			name = Chronos;
 			packageProductDependencies = (
-				2FD24D672C2B0F7D009D1EDD /* KeychainSwift */,
-				2FD24D6A2C2B0F83009D1EDD /* Alamofire */,
-				2FD24D6F2C2B0F8C009D1EDD /* SimpleToast */,
+				A3A313112C2D691E00844278 /* KeychainSwift */,
+				A3A313142C2D692400844278 /* Alamofire */,
+				A3A313192C2D692900844278 /* SimpleToast */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -941,9 +941,9 @@
 			);
 			mainGroup = 2F7942D42BC050A500387D3E;
 			packageReferences = (
-				2FD24D662C2B0F7D009D1EDD /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				2FD24D692C2B0F83009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */,
-				2FD24D6E2C2B0F8C009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				A3A313102C2D691E00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				A3A313132C2D692400844278 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A3A313182C2D692900844278 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -1306,7 +1306,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2FD24D662C2B0F7D009D1EDD /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+		A3A313102C2D691E00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
@@ -1314,7 +1314,7 @@
 				minimumVersion = 24.0.0;
 			};
 		};
-		2FD24D692C2B0F83009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		A3A313132C2D692400844278 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1322,7 +1322,7 @@
 				minimumVersion = 5.9.1;
 			};
 		};
-		2FD24D6E2C2B0F8C009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+		A3A313182C2D692900844278 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
 			requirement = {
@@ -1333,19 +1333,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2FD24D672C2B0F7D009D1EDD /* KeychainSwift */ = {
+		A3A313112C2D691E00844278 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FD24D662C2B0F7D009D1EDD /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			package = A3A313102C2D691E00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
 		};
-		2FD24D6A2C2B0F83009D1EDD /* Alamofire */ = {
+		A3A313142C2D692400844278 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FD24D692C2B0F83009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = A3A313132C2D692400844278 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		2FD24D6F2C2B0F8C009D1EDD /* SimpleToast */ = {
+		A3A313192C2D692900844278 /* SimpleToast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FD24D6E2C2B0F8C009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			package = A3A313182C2D692900844278 /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
 		};
 /* End XCSwiftPackageProductDependency section */
