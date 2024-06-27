@@ -130,7 +130,9 @@
 		8BDE91192C2D6C0C0055D913 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE91182C2D6C0C0055D913 /* UserDefaultsStorage.swift */; };
 		A3A313202C2D71E200844278 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3A3131F2C2D71E200844278 /* SimpleToast */; };
 		A3A313232C2D71E900844278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313222C2D71E900844278 /* Alamofire */; };
-		A3A313282C2D71EE00844278 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3A313272C2D71EE00844278 /* KeychainSwift */; };
+		A3A3132A2C2D9FE800844278 /* ShiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A313292C2D9FE800844278 /* ShiftView.swift */; };
+		A3A3132C2C2DA04000844278 /* ShiftDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A3132B2C2DA04000844278 /* ShiftDetailsView.swift */; };
+		A3A3132E2C2DA0EE00844278 /* EmployeeShiftListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A3132D2C2DA0EE00844278 /* EmployeeShiftListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -256,6 +258,9 @@
 		8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
 		8BDE91162C2D604C0055D913 /* String+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstions.swift"; sourceTree = "<group>"; };
 		8BDE91182C2D6C0C0055D913 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
+		A3A313292C2D9FE800844278 /* ShiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftView.swift; sourceTree = "<group>"; };
+		A3A3132B2C2DA04000844278 /* ShiftDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftDetailsView.swift; sourceTree = "<group>"; };
+		A3A3132D2C2DA0EE00844278 /* EmployeeShiftListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeShiftListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,7 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3A313202C2D71E200844278 /* SimpleToast in Frameworks */,
-				A3A313282C2D71EE00844278 /* KeychainSwift in Frameworks */,
 				A3A313232C2D71E900844278 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -839,6 +843,9 @@
 				8B2829E92C22E84900CE9220 /* ScheduleView.swift */,
 				8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */,
 				8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */,
+				A3A313292C2D9FE800844278 /* ShiftView.swift */,
+				A3A3132B2C2DA04000844278 /* ShiftDetailsView.swift */,
+				A3A3132D2C2DA0EE00844278 /* EmployeeShiftListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -899,7 +906,6 @@
 			packageProductDependencies = (
 				A3A3131F2C2D71E200844278 /* SimpleToast */,
 				A3A313222C2D71E900844278 /* Alamofire */,
-				A3A313272C2D71EE00844278 /* KeychainSwift */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -932,7 +938,6 @@
 			packageReferences = (
 				A3A3131E2C2D71E200844278 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 				A3A313212C2D71E900844278 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				A3A313262C2D71EE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -965,6 +970,7 @@
 			files = (
 				2F731BDE2C02A65200B3501D /* AvailabilityApprovalResponse.swift in Sources */,
 				2FDECA9D2BEFB2CD00B3129B /* CheckInOutResponse.swift in Sources */,
+				A3A3132C2C2DA04000844278 /* ShiftDetailsView.swift in Sources */,
 				2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */,
 				8B586BB12C231C4900F8DE98 /* ScheduleRouter.swift in Sources */,
 				2FEFBB252C1F8F2D005E3FB4 /* ScrollableListView.swift in Sources */,
@@ -983,6 +989,7 @@
 				2FD24D562C292848009D1EDD /* ExtenstionForEncodable.swift in Sources */,
 				2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */,
 				2FEFBB702C273AA0005E3FB4 /* LocationSelectionOptionsView.swift in Sources */,
+				A3A3132A2C2D9FE800844278 /* ShiftView.swift in Sources */,
 				2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */,
 				8B586BB32C231D1500F8DE98 /* ScheduleClient.swift in Sources */,
 				2FD24D582C2A6F7C009D1EDD /* CustomTabStyle.swift in Sources */,
@@ -1003,6 +1010,7 @@
 				2F74470F2C0CE8BE0059899C /* EmployeeDetailsView.swift in Sources */,
 				2F731BCD2C0297AB00B3501D /* AvailabilityListView.swift in Sources */,
 				2F7943662BCAFCC700387D3E /* ActivityCardView.swift in Sources */,
+				A3A3132E2C2DA0EE00844278 /* EmployeeShiftListView.swift in Sources */,
 				2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */,
 				8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */,
 				2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */,
@@ -1310,14 +1318,6 @@
 				minimumVersion = 5.9.1;
 			};
 		};
-		A3A313262C2D71EE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 24.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1330,11 +1330,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A3A313212C2D71E900844278 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		A3A313272C2D71EE00844278 /* KeychainSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A3A313262C2D71EE00844278 /* XCRemoteSwiftPackageReference "keychain-swift" */;
-			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -92,7 +92,8 @@ struct ShiftRowView: View {
             title: "Morning Shift",
             startTime: "8:00 AM",
             endTime: "12:00 PM",
-            backgroundColor: .theme
+            backgroundColor: .theme,
+            isNew: true
         )
     )
 }

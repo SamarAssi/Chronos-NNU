@@ -82,8 +82,8 @@ class CreateShiftViewModel: ObservableObject {
         let backgroundColor: Color
         (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: shift.employeeName ?? "", id: shift.employeeID ?? "")
         
-        let startTime = shift.startTime?.timeAndDate(in: TimeZone.current) ?? "--"
-        let endTime = shift.endTime?.timeAndDate(in: TimeZone.current) ?? "--"
+        let startTime = shift.startTime?.stringTime ?? "--"
+        let endTime = shift.endTime?.stringTime ?? "--"
         
         createdShift = ShiftRowUI(
             id: shift.id ?? "",
