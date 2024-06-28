@@ -192,7 +192,19 @@ extension AddJobView {
 extension AddJobView {
     
     private func addJob() {
-        var jobs = jobsNames.compactMap { Job(id: nil, name: $0) }
+        var jobs = jobsNames.compactMap { 
+            Job(
+                id: nil,
+                name: $0,
+                sundaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                mondaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                tuesdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                wednesdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                thursdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                fridaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                saturdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1)
+            )
+        }
         
         for job in jobsListModel.jobs {
             if jobsNames.contains(job.name) {
@@ -220,7 +232,19 @@ extension AddJobView {
             }
         }
         
-        let newJobs = names.compactMap { Job(id: nil, name: $0) }
+        let newJobs = names.compactMap {
+            Job(
+                id: nil,
+                name: $0,
+                sundaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                mondaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                tuesdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                wednesdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                thursdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                fridaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
+                saturdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1)
+            )
+        }
         
         jobsListModel.handleUpdateJobResponse(jobs: newJobs)
     }
