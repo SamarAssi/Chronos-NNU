@@ -180,30 +180,26 @@ extension EmployeeDetailsView {
             alignment: .leading,
             spacing: 0
         ) {
-            Text(LocalizedStringKey("Jobs"))
-                .fontWeight(.bold)
-                .padding(20)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color.silver.opacity(0.3))
-            
+
             if employeeListModel.isLoadingJobs {
                 CustomProgressView()
             } else {
                 List {
-                    ForEach(
-                        employeeListModel.jobs,
-                        id: \.self
-                    ) { job in
-                        Text(job.name)
-                    }
-                    .onDelete { indexSet in
-                        deleteJob(
-                            at: indexSet,
-                            from: employeeListModel.jobs
-                        )
+                    Section("Jobs") {
+                        ForEach(
+                            employeeListModel.jobs,
+                            id: \.self
+                        ) { job in
+                            Text(job.name)
+                        }
+                        .onDelete { indexSet in
+                            deleteJob(
+                                at: indexSet,
+                                from: employeeListModel.jobs
+                            )
+                        }
                     }
                 }
-                .listStyle(PlainListStyle())
             }
         }
     }

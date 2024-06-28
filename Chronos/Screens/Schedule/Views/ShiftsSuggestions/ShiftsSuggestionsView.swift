@@ -177,7 +177,6 @@ struct ShiftsSuggestionsView: View {
                     }
                 }
             }
-            .background(.white)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
