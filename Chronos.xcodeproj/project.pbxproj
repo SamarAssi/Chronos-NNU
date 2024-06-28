@@ -81,6 +81,8 @@
 		2FD24D992C2DCE6C009D1EDD /* ShiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D982C2DCE6C009D1EDD /* ShiftsView.swift */; };
 		2FD24D9B2C2DCEB0009D1EDD /* ShiftDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D9A2C2DCEB0009D1EDD /* ShiftDetailsView.swift */; };
 		2FD24D9D2C2DCF94009D1EDD /* EmployeeShiftListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D9C2C2DCF93009D1EDD /* EmployeeShiftListView.swift */; };
+		2FD24DA02C2DFFA5009D1EDD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D9F2C2DFFA5009D1EDD /* Alamofire */; };
+		2FD24DA52C2DFFAF009D1EDD /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24DA42C2DFFAF009D1EDD /* SimpleToast */; };
 		2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA812BE9153C00B3129B /* ManagerOnboardingResponse.swift */; };
 		2FDECA862BE974A600B3129B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA852BE974A600B3129B /* ToastView.swift */; };
 		2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA8D2BEBE1C300B3129B /* ProfileView.swift */; };
@@ -113,7 +115,6 @@
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
 		8B31824D2C2AD4D8002B3383 /* SuggestedShiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31824C2C2AD4D8002B3383 /* SuggestedShiftsView.swift */; };
-		8B31824F2C2AD64F002B3383 /* ShiftRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */; };
 		8B37D1062C26DAAF001D4739 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */; };
 		8B39D1402C2D76AB00359FDD /* RequestTimeOffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39D13F2C2D76AB00359FDD /* RequestTimeOffView.swift */; };
 		8B44A8CA2C28638E00795567 /* GifImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44A8C92C28638E00795567 /* GifImageView.swift */; };
@@ -135,8 +136,6 @@
 		8BFA9EDB2C2D86B4005E6576 /* RTOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */; };
 		8BFA9EDF2C2D93D9005E6576 /* TimeOffRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */; };
 		8BFA9EE22C2D9484005E6576 /* TimeOffRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EE12C2D9484005E6576 /* TimeOffRequests.swift */; };
-		A32A87CD2C2DF709004335DA /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A32A87CC2C2DF709004335DA /* SimpleToast */; };
-		A32A87D02C2DF711004335DA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A32A87CF2C2DF711004335DA /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -247,7 +246,6 @@
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		8B31824C2C2AD4D8002B3383 /* SuggestedShiftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedShiftsView.swift; sourceTree = "<group>"; };
-		8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftRowView.swift; sourceTree = "<group>"; };
 		8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		8B39D13F2C2D76AB00359FDD /* RequestTimeOffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTimeOffView.swift; sourceTree = "<group>"; };
 		8B44A8C92C28638E00795567 /* GifImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageView.swift; sourceTree = "<group>"; };
@@ -276,8 +274,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A32A87CD2C2DF709004335DA /* SimpleToast in Frameworks */,
-				A32A87D02C2DF711004335DA /* Alamofire in Frameworks */,
+				2FD24DA02C2DFFA5009D1EDD /* Alamofire in Frameworks */,
+				2FD24DA52C2DFFAF009D1EDD /* SimpleToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,7 +863,6 @@
 				2FD24D9A2C2DCEB0009D1EDD /* ShiftDetailsView.swift */,
 				2FD24D9C2C2DCF93009D1EDD /* EmployeeShiftListView.swift */,
 				8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */,
-				8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -932,8 +929,8 @@
 			);
 			name = Chronos;
 			packageProductDependencies = (
-				A32A87CC2C2DF709004335DA /* SimpleToast */,
-				A32A87CF2C2DF711004335DA /* Alamofire */,
+				2FD24D9F2C2DFFA5009D1EDD /* Alamofire */,
+				2FD24DA42C2DFFAF009D1EDD /* SimpleToast */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -964,8 +961,8 @@
 			);
 			mainGroup = 2F7942D42BC050A500387D3E;
 			packageReferences = (
-				A32A87CB2C2DF709004335DA /* XCRemoteSwiftPackageReference "SimpleToast" */,
-				A32A87CE2C2DF711004335DA /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2FD24D9E2C2DFFA5009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2FD24DA32C2DFFAF009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -1095,7 +1092,6 @@
 				8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */,
 				2FEFBB6C2C272FCA005E3FB4 /* OnboardingRouter.swift in Sources */,
 				2F731BC82C02943700B3501D /* AvailabilityRequestsListResponse.swift in Sources */,
-				8B31824F2C2AD64F002B3383 /* ShiftRowView.swift in Sources */,
 				2F41CBC12BE7E659000AC5B0 /* RadioButtonView.swift in Sources */,
 				2F74470B2C0CA0DA0059899C /* PasswordValidationManager.swift in Sources */,
 				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
@@ -1334,15 +1330,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A32A87CB2C2DF709004335DA /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.8.1;
-			};
-		};
-		A32A87CE2C2DF711004335DA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		2FD24D9E2C2DFFA5009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1350,18 +1338,26 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		2FD24DA32C2DFFAF009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A32A87CC2C2DF709004335DA /* SimpleToast */ = {
+		2FD24D9F2C2DFFA5009D1EDD /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A32A87CB2C2DF709004335DA /* XCRemoteSwiftPackageReference "SimpleToast" */;
-			productName = SimpleToast;
-		};
-		A32A87CF2C2DF711004335DA /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A32A87CE2C2DF711004335DA /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 2FD24D9E2C2DFFA5009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		2FD24DA42C2DFFAF009D1EDD /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FD24DA32C2DFFAF009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

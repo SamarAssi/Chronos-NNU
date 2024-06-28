@@ -16,7 +16,7 @@ struct ShiftsSuggestionsView: View {
         "Jobs to be scheduled",
         "Who needs to be scheduled",
         "How how many employees for each job",
-        "extra information"
+        "Extra information"
     ]
 
     // State to track the selected choices
@@ -46,7 +46,7 @@ struct ShiftsSuggestionsView: View {
             .navigationTitle("Shifts Suggestions")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: $showShiftsView) {
-                //SuggestedShiftsView(shifts: suggestedShifts)
+                SuggestedShiftsView(shifts: suggestedShifts)
             }
             .simpleToast(
                 isPresented: $showToast,
@@ -270,8 +270,7 @@ struct ShiftsSuggestionsView: View {
                     showShiftsView.toggle()
                 }
             } catch {
-                self.errorMsg = LocalizedStringKey( error.localizedDescription
-                )
+                self.errorMsg = LocalizedStringKey(error.localizedDescription)
                 self.showToast.toggle()
             }
             isLoading = false

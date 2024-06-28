@@ -1,12 +1,16 @@
 import SwiftUI
 
 struct SuggestedShiftsView: View {
+
     @Environment(\.dismiss) var dismiss
-    @State var uiModels: [ShiftRowUI] = []
-    @State var isSubmitting = false
-    let hourWidth = 100.0
-   private let shifts: [Shift]
+    
     @State private var selectedShift: ShiftRowUI?
+    @State private var count = 0
+    @State var uiModels: [ShiftRowUI]
+    @State private var isSubmitting = false
+    
+    let hourWidth = 100.0
+    private let shifts: [Shift]
     
     init(shifts: [Shift]) {
         self.shifts = shifts
@@ -17,10 +21,7 @@ struct SuggestedShiftsView: View {
             let name = shift.employeeName
             let id = shift.employeeID
             let (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: id ?? "")
-            
-            let startTime = shift.startTime?.stringTime ?? "--"
-            let endTime = shift.endTime?.stringTime ?? "--"
-            
+
             let jobDescription = shift.jobDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
             let titleString: String = (jobDescription?.isEmpty == false ? jobDescription : name) ?? "--"
             
@@ -88,7 +89,7 @@ struct SuggestedShiftsView: View {
                     
                     Color.gray.opacity(0.5)
                         .frame(width: 1)
-                        .frame(height: UIScreen.main.bounds.height)
+                        .frame(height: uiModels.count > 3 ? UIScreen.main.bounds.height * CGFloat(uiModels.count) : UIScreen.main.bounds.height)
                     
                 }
                 .frame(width: hourWidth)
@@ -101,8 +102,11 @@ struct SuggestedShiftsView: View {
             alignment: .leading,
             spacing: 0
         ) {
-            ForEach(uiModels) { shift in
+            ForEach(uiModels, id: \.self) { shift in
                 shiftCell(shift: shift)
+                    .onAppear {
+                        count += 1
+                    }
             }
             .padding(.leading, hourWidth / 2)
         }
@@ -166,13 +170,18 @@ struct SuggestedShiftsView: View {
     
     private func shiftCell(shift: ShiftRowUI) -> some View {
         VStack(alignment: .leading) {
+            if shift.isNew {
+                Text("New")
+                    .bold()
+                    .font(.headline)
+            }
             Text(shift.employeeName)
             Text(shift.role)
             Text(formattedDate(shift.startTime))
             Text(formattedDate(shift.endTime))
         }
         .font(.caption)
-        .frame(maxHeight: 80, alignment: .leading)
+        .frame(maxHeight: 100, alignment: .leading)
         .frame(
             width: max(
                 0,
@@ -219,9 +228,9 @@ struct SuggestedShiftsView: View {
 
 #Preview {
     let shifts: [Shift] = []
-     return NavigationStack {
-         SuggestedShiftsView(shifts: shifts)
-     }
+    return NavigationStack {
+        SuggestedShiftsView(shifts: shifts)
+    }
 }
 
 
