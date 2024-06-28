@@ -74,15 +74,13 @@ struct JobsListView: View {
                             .padding()
                             .onTapGesture {
                                 self.selectedIndex = index
-                                DispatchQueue.main.async {
-                                    self.showSheet = true
-                                }
+                                self.showSheet = true
                             }
                     }
                     .onDelete(perform: delete)
                 }
                 .sheet(isPresented: $showSheet) {
-                    AddJobView(jobs: $jobs, selectedIndex: selectedIndex)
+                    AddJobView(jobs: $jobs, selectedIndex: $selectedIndex)
                 }
             }
         }

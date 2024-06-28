@@ -12,18 +12,8 @@ struct AddJobView: View {
     
     @Environment (\.dismiss) var dismiss
     @Binding var jobs: [Job]
-    @State var name: String
-    let selectedIndex: Int?
-
-    init(jobs: Binding<[Job]>, selectedIndex: Int?) {
-        self._jobs = jobs
-        self.selectedIndex = selectedIndex
-        if let selectedIndex = selectedIndex {
-            self.name = jobs[selectedIndex].name.wrappedValue
-        } else {
-            self.name = ""
-        }
-    }
+    @State var name: String = ""
+    @Binding var selectedIndex: Int?
 
     var body: some View {
         contentView
@@ -64,6 +54,12 @@ struct AddJobView: View {
                             .bold()
                     }
                 }
+            }.onAppear {
+                if let selectedIndex = selectedIndex {
+                    self.name = jobs[selectedIndex].name
+                } else {
+                    self.name = ""
+                }
             }
         }
     }
@@ -77,6 +73,6 @@ struct AddJobView: View {
                 Job(id: "2", name: "Job 2")
             ]
         ),
-        selectedIndex: nil
+        selectedIndex: .constant(nil)
     )
 }
