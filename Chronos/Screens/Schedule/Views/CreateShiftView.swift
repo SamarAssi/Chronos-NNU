@@ -10,10 +10,15 @@ import SwiftUI
 struct CreateShiftView: View {
 
     @ObservedObject private var viewModel = CreateShiftViewModel()
+    
     @State private var showEmployeePicker = false
     @State private var showJobPicker = false
+    
     @Binding var selectedDate: Date
+    @Binding var shifts: [ShiftRowUI]
     @Binding var filteredShifts: [ShiftRowUI]
+    @Binding var showAllEmployees: Bool
+
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -62,9 +67,16 @@ struct CreateShiftView: View {
                                     dismiss.callAsFunction()
                                     selectedDate = Date()
                                 }
+                                
                                 if let createdShift = viewModel.createdShift {
-                                    filteredShifts.append(createdShift)
+                                    if showAllEmployees {
+                                        shifts.append(createdShift)
+                                    } else {
+                                        filteredShifts.append(createdShift)
+                                    }
                                 }
+                                
+                               // showAllEmployees = true
                             } catch {
                                 print(error.localizedDescription)
                             }
@@ -107,11 +119,13 @@ struct CreateShiftView: View {
         List {
             pickerRow(
                 label: "Start Date",
-                selection: $viewModel.startDate
+                selection: $viewModel.startDate,
+                in: Date()...
             )
             pickerRow(
                 label: "End Date",
-                selection: $viewModel.endDate
+                selection: $viewModel.endDate,
+                in: viewModel.startDate...
             )
             selectRow(
                 label: "Employee",
@@ -138,11 +152,13 @@ struct CreateShiftView: View {
 
     private func pickerRow(
         label: LocalizedStringKey,
-        selection: Binding<Date>
+        selection: Binding<Date>,
+        in range: PartialRangeFrom<Date>
     ) -> some View {
 
         DatePicker(
             selection: selection,
+            in: range,
             displayedComponents: [.date, .hourAndMinute]
         ) {
             Text(label)
@@ -207,6 +223,8 @@ struct CreateShiftView: View {
 #Preview {
     CreateShiftView(
         selectedDate: .constant(Date()),
-        filteredShifts: .constant([])
+        shifts: .constant([]),
+        filteredShifts: .constant([]),
+        showAllEmployees: .constant(false)
     )
 }

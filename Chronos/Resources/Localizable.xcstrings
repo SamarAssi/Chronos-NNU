@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "  " : {
+
+    },
     " - " : {
 
     },
@@ -20,9 +23,6 @@
 
     },
     "." : {
-
-    },
-    "%@" : {
 
     },
     "%lld" : {
@@ -62,6 +62,9 @@
 
     },
     "ALL DAY" : {
+
+    },
+    "All Employees" : {
 
     },
     "Allow check in/out frome anywhere" : {
@@ -216,9 +219,6 @@
 
     },
     "End Time: " : {
-
-    },
-    "End: " : {
 
     },
     "Enroll to Chronos" : {
@@ -423,6 +423,9 @@
     "Search Maps" : {
 
     },
+    "Select a date" : {
+
+    },
     "Select the job/s:" : {
 
     },
@@ -461,9 +464,6 @@
 
     },
     "Start Time: " : {
-
-    },
-    "Start:" : {
 
     },
     "Submit" : {
