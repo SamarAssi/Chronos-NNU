@@ -28,11 +28,11 @@ extension EmployeeCellView {
             spacing: 5
         ) {
             Text(employee.firstName + " " + employee.lastName)
-                .font(.system(size: 15, weight: .bold))
+                .font(.system(size: 18, weight: .bold))
 
             if employee.jobs.isEmpty {
                 Text(LocalizedStringKey("No selected jobs."))
-                    .font(.system(size: 12))
+                    .font(.system(size: 14))
                     .foregroundStyle(Color.gray)
             } else {
                 HStack(

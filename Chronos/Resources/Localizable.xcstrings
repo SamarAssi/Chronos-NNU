@@ -284,9 +284,6 @@
     "Lat" : {
 
     },
-    "Log out" : {
-
-    },
     "Log Out" : {
 
     },
@@ -350,6 +347,9 @@
 
     },
     "Oops, No requests to see here" : {
+
+    },
+    "Overlapping shifts found" : {
 
     },
     "Password" : {

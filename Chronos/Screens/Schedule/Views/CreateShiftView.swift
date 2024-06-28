@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SimpleToast
 
 struct CreateShiftView: View {
 
@@ -13,6 +14,7 @@ struct CreateShiftView: View {
     
     @State private var showEmployeePicker = false
     @State private var showJobPicker = false
+    @State private var showToast = false
     
     @Binding var selectedDate: Date
     @Binding var shifts: [ShiftRowUI]
@@ -20,6 +22,14 @@ struct CreateShiftView: View {
     @Binding var showAllEmployees: Bool
 
     @Environment(\.dismiss) var dismiss
+    
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 5,
+        animation: .linear(duration: 0.3),
+        modifierType: .slide,
+        dismissOnTap: true
+    )
 
     var body: some View {
         contentView()
@@ -32,7 +42,7 @@ struct CreateShiftView: View {
                 pickerView(
                     title: "Employee",
                     selection: $viewModel.selectedEmployeeID,
-                    items: viewModel.employees.map { ($0.username, $0.id) }
+                    items: viewModel.employees.map { ($0.firstName + " " + $0.lastName, $0.id) }
                 )
             }
             .sheet(isPresented: $showJobPicker) {
@@ -41,6 +51,11 @@ struct CreateShiftView: View {
                     selection: $viewModel.selectedJobName,
                     items: viewModel.jobs.map { ($0.name, $0.name) }
                 )
+            }
+            .simpleToast(isPresented: $showToast, options: toastOptions) {
+                ToastView(type: .error, message: "Overlapping shifts found")
+                    .padding(.horizontal)
+                    .padding(.top)
             }
     }
 
@@ -75,9 +90,9 @@ struct CreateShiftView: View {
                                         filteredShifts.append(createdShift)
                                     }
                                 }
-                                
-                               // showAllEmployees = true
                             } catch {
+                                showToast = true
+                                viewModel.isSubmitting = false
                                 print(error.localizedDescription)
                             }
                         }
