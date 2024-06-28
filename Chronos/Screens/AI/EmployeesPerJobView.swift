@@ -10,6 +10,7 @@ import SwiftUI
 struct EmployeesPerJobView: View {
 
     @Binding var jobs: [JobChoice]
+    let question: String
 
     var body: some View {
         List {
@@ -27,7 +28,7 @@ struct EmployeesPerJobView: View {
                     .foregroundColor(.red)
             } else {
 
-                Text("Select employees")
+                Text(question)
                     .font(.subheadline)
                     .foregroundStyle(.gray)
                     .listRowSeparator(.hidden)
@@ -74,7 +75,7 @@ struct EmployeesPerJobView: View {
                     isSelected: false
                 )
             ]
-        )
+        ), question: "How many employees do you need for each job?"
     )
 }
 
@@ -83,7 +84,7 @@ struct NumberInputView: View {
     @Binding var number: Int?
 
     var body: some View {
-        TextField("Employee Count", text: Binding<String>(
+        TextField("Count", text: Binding<String>(
             get: {
                 // When the number is nil, display an empty string
                 self.number.map(String.init) ?? ""
@@ -93,5 +94,7 @@ struct NumberInputView: View {
                 self.number = Int($0)
             }
         ))
+        .padding(5)
+        .padding(.bottom, 7)
     }
 }

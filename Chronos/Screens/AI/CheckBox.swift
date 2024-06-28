@@ -13,20 +13,21 @@ struct CheckBox: View {
     let label: String
 
     var body: some View {
-        HStack {
+        HStack(spacing: 15) {
             Image(
                 systemName: value ?
                 "checkmark.square.fill" :
                 "square"
             )
             .resizable()
-            .frame(width: 25, height: 25)
+            .frame(width: 20, height: 20)
             .foregroundColor(value ? .theme : .gray)
 
             Text(label)
-            Spacer()
+                .font(.system(size: 14))
         }
         .padding(5)
+        .padding(.bottom, 7)
         .onTapGesture {
             value.toggle()
         }

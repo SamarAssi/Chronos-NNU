@@ -34,15 +34,7 @@ struct ShiftsSuggestionsView: View {
         if questions.count - 1 == selectedStep {
             return "Submit"
         } else {
-            if selectedStep == 0 && jobs.filter({ $0.isSelected }).isEmpty {
-                return "Skip"
-            } else if selectedStep == 1 && employees.filter({ $0.isSelected }).isEmpty {
-                return "Skip"
-            } else if selectedStep == 2 && jobs.allSatisfy({ $0.numberOfEmployees == nil }) {
-                return "Skip"
-            } else {
-                return "Next"
-            }
+            return "Next"
         }
     }
 
@@ -56,6 +48,33 @@ struct ShiftsSuggestionsView: View {
                         .ignoresSafeArea()
                 } else {
                     contendView
+                }
+            }
+            .toolbar {
+                if selectedStep > 0 {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            withAnimation {
+                                selectedStep = selectedStep - 1
+                            }
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundStyle(.theme)
+                                .bold()
+                        }
+                    }
+                }
+
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        withAnimation {
+                            selectedStep = selectedStep + 1
+                        }
+                    } label: {
+                        Text(mainButtonText)
+                            .foregroundStyle(.theme)
+                            .bold()
+                    }
                 }
             }
             .animation(.easeInOut, value: isLoading)
@@ -118,8 +137,6 @@ struct ShiftsSuggestionsView: View {
         VStack(spacing: 0) {
             progressLine
             questionsTabView
-            Spacer()
-            buttonsView
         }
     }
 
@@ -131,14 +148,11 @@ struct ShiftsSuggestionsView: View {
                     id: \.self
                 ) { index in
                     VStack(spacing: 0) {
-                        Text(questions[index])
-                            .font(.subheadline)
-                            .padding(10)
-                            .padding(.bottom, 10)
-
-                        Divider()
-                        getQuestionView(number: index)
-                            .tag(index)
+                        getQuestionView(
+                            number: index,
+                            question: questions[index]
+                        )
+                        .tag(index)
                     }
                 }
             }
@@ -150,56 +164,27 @@ struct ShiftsSuggestionsView: View {
     }
 
     @ViewBuilder
-    private func getQuestionView(number: Int) -> some View {
+    private func getQuestionView(number: Int, question: String) -> some View {
         switch number {
-        case 0 : JobsSelectorView(jobs: $jobs)
-        case 1: EmployeesSelectorView(employees: $employees)
-        case 2: EmployeesPerJobView(jobs: $jobs)
-        case 3: ExtraInformationView(description: $description)
+        case 0 : JobsSelectorView(
+            jobs: $jobs,
+            question: question
+        )
+        case 1: EmployeesSelectorView(
+            employees: $employees,
+            question: question
+        )
+        case 2: EmployeesPerJobView(
+            jobs: $jobs,
+            question: question
+        )
+        case 3: ExtraInformationView(
+            description: $description,
+            question: question
+        )
         default:
             EmptyView()
         }
-    }
-
-    @ViewBuilder
-    private var buttonsView: some View {
-        HStack {
-            if selectedStep > 0 {
-                Button {
-                    withAnimation {
-                        selectedStep = selectedStep - 1
-                    }
-                } label: {
-                    Text("Previous")
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 15)
-                        .padding(.vertical, 10)
-                        .foregroundStyle(Color.white)
-                        .background(.theme)
-                        .clipShape(Capsule())
-                }
-            }
-
-            Button {
-                withAnimation {
-                    if selectedStep == questions.count - 1 {
-                        submit()
-                    } else {
-                        selectedStep = selectedStep + 1
-                    }
-                }
-            } label: {
-                Text(mainButtonText)
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 10)
-                    .foregroundStyle(Color.white)
-                    .background(.theme)
-                    .clipShape(Capsule())
-            }
-
-        }
-        .padding()
     }
 
     @ViewBuilder

@@ -17,6 +17,7 @@ struct JobChoice: Identifiable, Equatable {
 struct JobsSelectorView: View {
 
     @Binding var jobs: [JobChoice]
+    let question: String
 
     var body: some View {
         List {
@@ -30,7 +31,7 @@ struct JobsSelectorView: View {
                 .padding(.bottom, 10)
 
 
-            Text("Select jobs")
+            Text(question)
                 .font(.subheadline)
                 .foregroundStyle(.gray)
                 .listRowSeparator(.hidden)
@@ -71,7 +72,7 @@ struct JobsSelectorView: View {
                     isSelected: false
                 )
             ]
-        )
+        ), question: "Select all jobs"
     )
 }
 

@@ -16,10 +16,10 @@ struct EmployeeChoice: Identifiable {
 struct EmployeesSelectorView: View {
 
     @Binding var employees: [EmployeeChoice]
+    let question: String
 
     var body: some View {
         List {
-
             Image("employee")
                 .resizable()
                 .scaledToFit()
@@ -28,7 +28,7 @@ struct EmployeesSelectorView: View {
                 .padding(.top, 20)
                 .padding(.bottom, 10)
 
-            Text("Select employees")
+            Text(question)
                 .font(.subheadline)
                 .foregroundStyle(.gray)
                 .listRowSeparator(.hidden)
@@ -45,8 +45,8 @@ struct EmployeesSelectorView: View {
                     }),
                 label: "Select all employees"
             )
-            ForEach($employees) { $choice in
 
+            ForEach($employees) { $choice in
                 CheckBox(
                     value: $choice.isSelected,
                     label: choice.employee.firstName + " " + choice.employee.lastName
@@ -82,6 +82,6 @@ struct EmployeesSelectorView: View {
                 )
 
             ]
-        )
+        ), question: "Select employees to assign to the shift"
     )
 }

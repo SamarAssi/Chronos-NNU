@@ -10,6 +10,7 @@ import SwiftUI
 struct ExtraInformationView: View {
 
     @Binding var description: String
+    let question: String
 
     var body: some View {
         List {
@@ -22,7 +23,7 @@ struct ExtraInformationView: View {
                 .padding(.bottom, 10)
                 .listRowSeparator(.hidden)
 
-            Text("Provide any extra information")
+            Text(question)
                 .font(.subheadline)
                 .foregroundStyle(.gray)
                 .listRowSeparator(.hidden)
@@ -46,5 +47,8 @@ struct ExtraInformationView: View {
 }
 
 #Preview {
-    ExtraInformationView(description: .constant(""))
+    ExtraInformationView(
+        description: .constant(""),
+        question: "Any extra information?"
+    )
 }
