@@ -25,6 +25,9 @@
     "." : {
 
     },
+    "%@" : {
+
+    },
     "%lld" : {
 
     },
@@ -151,6 +154,9 @@
 
     },
     "Continue" : {
+        
+    },
+    "Conflicts" : {
 
     },
     "Count" : {
@@ -219,6 +225,9 @@
 
     },
     "End Time: " : {
+
+    },
+    "End: " : {
 
     },
     "Enroll to Chronos" : {
@@ -473,6 +482,9 @@
 
     },
     "Start Time: " : {
+
+    },
+    "Start:" : {
 
     },
     "Submit" : {
