@@ -30,4 +30,22 @@ class RTOClient: BaseClient {
         let router = RTORouter.getRequests
         return try await performRequest(router: router)
     }
+
+    static func updateTimeOffStatus(
+        status: Int,
+        timeOffId: String,
+        comment: String?
+    ) async throws -> TimeOffRequests  {
+        let router = RTORouter.updateTimeOffStatus(
+            status: status,
+            timeOffId: timeOffId,
+            comment: comment
+        )
+        return try await performRequest(router: router)
+    }
+
+    static func deleteRequest(timeOffId: String) async throws -> TimeOffRequests {
+        let router = RTORouter.deleteRequest(timeOffId: timeOffId)
+        return try await performRequest(router: router)
+    }
 }

@@ -111,6 +111,9 @@
     "Cancel" : {
 
     },
+    "Cannot request time off for a day with a scheduled shift" : {
+
+    },
     "Category" : {
 
     },
@@ -151,6 +154,8 @@
 
     },
     "Conflicts" : {
+    },
+    "Continue" : {
 
     },
     "Count" : {
@@ -394,9 +399,6 @@
 
     },
     "PM" : {
-
-    },
-    "Previous" : {
 
     },
     "Radius" : {
