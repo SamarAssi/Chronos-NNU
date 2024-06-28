@@ -150,9 +150,6 @@
     "Confirm Password" : {
 
     },
-    "Conflicted Shift" : {
-
-    },
     "Conflicts" : {
 
     },
@@ -329,9 +326,6 @@
     "My Profile" : {
 
     },
-    "New" : {
-
-    },
     "New availability is the same as the current availability" : {
 
     },
@@ -424,6 +418,9 @@
 
     },
     "Remove employee" : {
+
+    },
+    "Request issues" : {
 
     },
     "Request submitted on %@" : {
@@ -560,6 +557,9 @@
 
     },
     "Username is invalid" : {
+
+    },
+    "Warnings" : {
 
     },
     "Wednesday" : {

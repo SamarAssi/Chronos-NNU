@@ -11,6 +11,7 @@ struct AvailabilityUpdateRequestResponse: Hashable, Codable {
     var oldAvailability: Availabilities
     var newAvailability: Availabilities
     var conflicts: [AvailabilityConflict]
+    let warnings: [String]
 }
 
 struct AvailabilityConflict: Hashable, Codable, Identifiable {

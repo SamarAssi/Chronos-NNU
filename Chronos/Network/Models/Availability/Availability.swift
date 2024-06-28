@@ -15,7 +15,6 @@ struct Availabilities: Hashable, Codable {
     let comment: String
     let isRejected, isApproved: Bool
     let lastUpdateDate: String
-    let warnings: [String]
 
     func value(weekday: WeekdayModel.Weekdays) -> Day? {
         switch weekday {
