@@ -9,105 +9,93 @@ import SwiftUI
 
 struct JobsListView: View {
     
-    @StateObject private var jobsListModel = JobsListModel()
     @Environment(\.dismiss) var dismiss
-    
-    @State private var isEditing = true
-    @State private var isShowAddJobView = false
-    @State private var selectedJobs: [Job] = []
-    @State private var selectedJob: Job?
-    
+    @State var jobs: [Job] = []
+    @State var isLoading = false
+    @State var isSubmitting = false
+    @State var showSheet = false
+    @State var selectedIndex: Int? = nil
+
     var body: some View {
-        ZStack(
-            alignment: .bottom
-        ) {
-            if jobsListModel.isLoading {
-                CustomProgressView()
+        contentView
+            .navigationTitle("Jobs")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundStyle(.theme)
+                            .bold()
+                    }
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+
+                if !isLoading {
+                    VStack(spacing: 0) {
+                        HStack {
+                            Spacer()
+                            FloatingActionButton
+                        }
+
+                        MainButton(
+                            isLoading: $isSubmitting,
+                            isEnable: .constant(true),
+                            buttonText: "Save",
+                            backgroundColor: .theme) {
+                                save()
+                            }
+                            .padding()
+                    }
+                }
+            }
+            .onAppear {
+                fetchJobs()
+            }
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
+        if isLoading {
+            ProgressView()
+        } else {
+            if jobs.isEmpty {
+                Text("No Jobs")
+                    .padding()
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity
+                    )
             } else {
-                if jobsListModel.jobs.isEmpty {
-                    emptyView
-                } else {
-                    List {
-                        ForEach(
-                            jobsListModel.jobs,
-                            id: \.self
-                        ) { job in
-                            JobCellView(
-                                isSelected: isSelectedJob(job: job),
-                                isEditing: isEditing,
-                                jobName: job.name
-                            )
+                List {
+                    ForEach(jobs.indices, id: \.self) { index in
+                        Text(jobs[index].name)
+                            .padding()
                             .onTapGesture {
-                                if isEditing {
-                                    selectedJob = job
-                                } else {
-                                    toggleSelection(job: job)
+                                self.selectedIndex = index
+                                DispatchQueue.main.async {
+                                    self.showSheet = true
                                 }
                             }
-                            .onChange(of: isEditing) {
-                                updateSelectionStatus()
-                            }
-                            .onDisappear {
-                                jobsListModel.getJobsList()
-                            }
-                        }
-                        .onDelete { indexSet in
-                            deleteJob(
-                                at: indexSet,
-                                from: jobsListModel.jobs
-                            )
-                        }
                     }
-                    .listStyle(PlainListStyle())
-                    .scrollIndicators(.hidden)
+                    .onDelete(perform: delete)
+                }
+                .sheet(isPresented: $showSheet) {
+                    AddJobView(jobs: $jobs, selectedIndex: selectedIndex)
                 }
             }
-            
-            FloatingActionButton
-                .frame(maxWidth: .infinity, alignment: .trailing)
-        }
-        .fontDesign(.rounded)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                backButtonView
-            }
-            
-            ToolbarItem(placement: .topBarLeading) {
-                titleView
-            }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                if isEditing {
-                    editButtonView
-                } else {
-                    deleteButtonView
-                }
-            }
-        }
-        .onAppear {
-            jobsListModel.getJobsList()
-        }
-        .fullScreenCover(item: $selectedJob) { selectedJob in
-            AddJobView(
-                jobsListModel: jobsListModel,
-                isEditing: $isEditing,
-                selectedJob: selectedJob
-            )
-        }
-        .fullScreenCover(isPresented: $isShowAddJobView) {
-            AddJobView(
-                jobsListModel: jobsListModel,
-                isEditing: $isEditing
-            )
         }
     }
-}
 
-extension JobsListView {
-    
+    @ViewBuilder
     private var FloatingActionButton: some View {
         Button(action: {
-            isShowAddJobView.toggle()
+            selectedIndex = nil
+
+            DispatchQueue.main.async {
+                self.showSheet = true
+            }
         }) {
             Circle()
                 .foregroundColor(.theme)
@@ -121,130 +109,39 @@ extension JobsListView {
                 .padding()
         }
     }
-    
-    var titleView: some View {
-        Text(LocalizedStringKey("Jobs List"))
-            .font(.title2)
-            .fontWeight(.bold)
-    }
-    
-    var editButtonView: some View {
-        Button {
-            isEditing.toggle()
-        } label: {
-            Text(LocalizedStringKey("Edit"))
-                .fontWeight(.bold)
-                .fontDesign(.rounded)
-                .foregroundStyle(jobsListModel.jobs.isEmpty ? Color.gray : Color.black)
-                .padding(.vertical, 25)
-        }
-        .disabled(jobsListModel.jobs.isEmpty)
-    }
-    
-    var emptyView: some View {
-        VStack {
-            Image(.SAMAR_911)
-                .resizable()
-                .scaledToFit()
-                .frame(height: 100)
-            
-            Text(LocalizedStringKey("Oops, No jobs until now"))
-                .font(.subheadline)
-                .fontWeight(.bold)
-        }
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: .center
-        )
-    }
-    
-    var backButtonView: some View {
-        Image(systemName: "chevron.left")
-            .scaleEffect(0.9)
-            .onTapGesture {
-                dismiss.callAsFunction()
-            }
-    }
-    
-    var deleteButtonView: some View {
-        Button {
-            if !selectedJobs.isEmpty {
-                if let responseJob = jobsListModel.jobsResponse {
-                    deleteMultipleJobs(from: responseJob.jobs)
-                }
-            }
-            isEditing = true
-        } label: {
-            Text(LocalizedStringKey("Delete"))
-                .fontWeight(.bold)
-                .fontDesign(.rounded)
-                .foregroundStyle(Color.red)
-            
-            Image(systemName: "trash")
-                .foregroundStyle(Color.red)
-        }
-    }
-}
 
-extension JobsListView {
-    
-    private func isSelectedJob(job: Job) -> Binding<Bool> {
-        return Binding(
-            get: { selectedJobs.contains(job) },
-            set: { isSelected in
-                if isSelected {
-                    selectedJobs.append(job)
-                } else {
-                    selectedJobs.removeAll(where: { $0 == job })
-                }
+    private func delete(at offsets: IndexSet) {
+        jobs.remove(atOffsets: offsets)
+    }
+
+    private func fetchJobs() {
+        isLoading = true
+        Task {
+            do {
+                let response = try await JobsClient.getJobs()
+                jobs = response.jobs
+            } catch {
+                print(error)
             }
-        )
-    }
-    
-    private func toggleSelection(job: Job) {
-        if let index = selectedJobs.firstIndex(of: job) {
-            selectedJobs.remove(at: index)
-        } else {
-            selectedJobs.append(job)
-        }
-    }
-    
-    private func updateSelectionStatus() {
-        if !isEditing {
-            selectedJobs.removeAll()
-        }
-    }
-    
-    private func deleteJob(
-        at indices: IndexSet,
-        from jobs: [Job]
-    ) {
-        var newJobs = jobs
-        
-        indices.forEach { index in
-            newJobs.remove(at: index)
-            jobsListModel.handleUpdateJobResponse(jobs: newJobs)
-            jobsListModel.getJobsList()
-        }
-    }
-    
-    private func deleteMultipleJobs(from jobs: [Job]) {
-        var newJobs = jobs
-        
-        for selectedJob in selectedJobs {
-            if newJobs.contains(selectedJob) {
-                if let index = newJobs.firstIndex(of: selectedJob) {
-                    newJobs.remove(at: index)
-                }
+            await MainActor.run {
+                isLoading = false
             }
         }
-        
-        if jobs.isEmpty {
-            selectedJobs.removeAll()
+    }
+
+    private func save() {
+        isSubmitting = true
+        Task {
+            do {
+                let response = try await JobsClient.updateJob(jobs: jobs)
+                print(response)
+            } catch {
+                print(error)
+            }
+            await MainActor.run {
+                dismiss()
+            }
         }
-        
-        jobsListModel.handleUpdateJobResponse(jobs: newJobs)
     }
 }
 

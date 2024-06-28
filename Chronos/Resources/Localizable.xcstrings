@@ -31,9 +31,6 @@
     "%lld" : {
 
     },
-    "• %@" : {
-
-    },
     "• At least 8 characters" : {
 
     },
@@ -56,9 +53,6 @@
 
     },
     "Add Job" : {
-
-    },
-    "Added jobs:" : {
 
     },
     "All Day" : {
@@ -129,6 +123,9 @@
     "Clear" : {
 
     },
+    "Close" : {
+
+    },
     "Comment" : {
 
     },
@@ -189,7 +186,7 @@
     "Done" : {
 
     },
-    "Edit" : {
+    "Edit Job" : {
 
     },
     "Edit Jobs" : {
@@ -290,6 +287,9 @@
     "Job Description: " : {
 
     },
+    "Job Name" : {
+
+    },
     "Job Name:" : {
 
     },
@@ -329,13 +329,13 @@
     "My Profile" : {
 
     },
-    "New" : {
-
-    },
     "New availability is the same as the current availability" : {
 
     },
     "Next" : {
+
+    },
+    "No Jobs" : {
 
     },
     "No requests found" : {
@@ -368,9 +368,6 @@
 
     },
     "Oops, No employees until now" : {
-
-    },
-    "Oops, No jobs until now" : {
 
     },
     "Oops, No requests to see here" : {
@@ -438,9 +435,6 @@
     "Saturday" : {
 
     },
-    "save" : {
-
-    },
     "Save" : {
 
     },
@@ -505,9 +499,6 @@
     "Sunday" : {
 
     },
-    "The job already exists!" : {
-
-    },
     "The request is approved" : {
 
     },
@@ -545,9 +536,6 @@
 
     },
     "Update" : {
-
-    },
-    "Update Job" : {
 
     },
     "Use the map" : {

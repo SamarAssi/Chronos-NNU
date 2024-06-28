@@ -24,6 +24,7 @@ struct MainButton: View {
                 )
                 .scaleEffect(1.5, anchor: .center)
                 .frame(maxWidth: .infinity, alignment: .center)
+                .frame(height: 45)
         } else {
             Button(action: action) {
                 Text(buttonText)

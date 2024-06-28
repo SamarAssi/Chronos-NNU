@@ -41,7 +41,6 @@
 		2F7446E72C0B5FA60059899C /* JobsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446E62C0B5FA60059899C /* JobsRouter.swift */; };
 		2F7446E92C0B60920059899C /* JobsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446E82C0B60920059899C /* JobsClient.swift */; };
 		2F7446EE2C0B611E0059899C /* JobsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446ED2C0B611E0059899C /* JobsResponse.swift */; };
-		2F7446F02C0B67BF0059899C /* JobsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446EF2C0B67BF0059899C /* JobsListModel.swift */; };
 		2F7446F22C0B937B0059899C /* AddJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446F12C0B937B0059899C /* AddJobView.swift */; };
 		2F7446F42C0B97E00059899C /* UpdateJobResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446F32C0B97E00059899C /* UpdateJobResponse.swift */; };
 		2F7446F72C0B99560059899C /* ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7446F62C0B99560059899C /* ErrorDescription.swift */; };
@@ -56,7 +55,6 @@
 		2F7447132C0FDFCF0059899C /* EmployeeDeletionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7447122C0FDFCF0059899C /* EmployeeDeletionResponse.swift */; };
 		2F7447152C11299B0059899C /* EmployeeJobsUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7447142C11299B0059899C /* EmployeeJobsUpdateResponse.swift */; };
 		2F74471B2C14A2370059899C /* ToastTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74471A2C14A2370059899C /* ToastTypes.swift */; };
-		2F7447202C14FEA40059899C /* JobCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74471F2C14FEA40059899C /* JobCellView.swift */; };
 		2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7942E02BC050A500387D3E /* ChronosApp.swift */; };
 		2F7942E52BC050A800387D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E42BC050A800387D3E /* Assets.xcassets */; };
 		2F7942E82BC050A800387D3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7942E72BC050A800387D3E /* Preview Assets.xcassets */; };
@@ -184,7 +182,6 @@
 		2F7446E62C0B5FA60059899C /* JobsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsRouter.swift; sourceTree = "<group>"; };
 		2F7446E82C0B60920059899C /* JobsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsClient.swift; sourceTree = "<group>"; };
 		2F7446ED2C0B611E0059899C /* JobsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsResponse.swift; sourceTree = "<group>"; };
-		2F7446EF2C0B67BF0059899C /* JobsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsListModel.swift; sourceTree = "<group>"; };
 		2F7446F12C0B937B0059899C /* AddJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobView.swift; sourceTree = "<group>"; };
 		2F7446F32C0B97E00059899C /* UpdateJobResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateJobResponse.swift; sourceTree = "<group>"; };
 		2F7446F62C0B99560059899C /* ErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDescription.swift; sourceTree = "<group>"; };
@@ -199,7 +196,6 @@
 		2F7447122C0FDFCF0059899C /* EmployeeDeletionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDeletionResponse.swift; sourceTree = "<group>"; };
 		2F7447142C11299B0059899C /* EmployeeJobsUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeJobsUpdateResponse.swift; sourceTree = "<group>"; };
 		2F74471A2C14A2370059899C /* ToastTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastTypes.swift; sourceTree = "<group>"; };
-		2F74471F2C14FEA40059899C /* JobCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCellView.swift; sourceTree = "<group>"; };
 		2F7942DD2BC050A500387D3E /* Chronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7942E02BC050A500387D3E /* ChronosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronosApp.swift; sourceTree = "<group>"; };
 		2F7942E42BC050A800387D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -360,7 +356,6 @@
 		2F7446DF2C0B5E5B0059899C /* JobsList */ = {
 			isa = PBXGroup;
 			children = (
-				2F7446E12C0B5E6A0059899C /* Models */,
 				2F7446E02C0B5E650059899C /* Views */,
 			);
 			path = JobsList;
@@ -370,18 +365,9 @@
 			isa = PBXGroup;
 			children = (
 				2F7446E42C0B5E8A0059899C /* JobsListView.swift */,
-				2F74471F2C14FEA40059899C /* JobCellView.swift */,
 				2F7446F12C0B937B0059899C /* AddJobView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		2F7446E12C0B5E6A0059899C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2F7446EF2C0B67BF0059899C /* JobsListModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		2F7446EA2C0B60DA0059899C /* Jobs */ = {
@@ -1086,7 +1072,6 @@
 				2F74471B2C14A2370059899C /* ToastTypes.swift in Sources */,
 				8B1C171D2C2EC0AB0091253E /* ExtraInformationView.swift in Sources */,
 				2F731BDA2C029AA100B3501D /* DashboardClient.swift in Sources */,
-				2F7446F02C0B67BF0059899C /* JobsListModel.swift in Sources */,
 				2F7447052C0BDCEB0059899C /* EmployeesResponse.swift in Sources */,
 				2F7943122BC3284900387D3E /* HomeView.swift in Sources */,
 				8B44A8CA2C28638E00795567 /* GifImageView.swift in Sources */,
@@ -1153,7 +1138,6 @@
 				8B9B00122C295BF5007EDAF9 /* AcronymManager.swift in Sources */,
 				2F41CBE02BE832B7000AC5B0 /* TextFieldModel.swift in Sources */,
 				2F41CBD82BE81BEA000AC5B0 /* DashboardTabView.swift in Sources */,
-				2F7447202C14FEA40059899C /* JobCellView.swift in Sources */,
 				2F7446E72C0B5FA60059899C /* JobsRouter.swift in Sources */,
 				2F41CBE42BE83381000AC5B0 /* RadioButtonModel.swift in Sources */,
 				2F7446E52C0B5E8A0059899C /* JobsListView.swift in Sources */,
