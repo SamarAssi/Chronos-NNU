@@ -77,18 +77,11 @@ struct JobsListView: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Menu {
+                if isEditing {
+                    editButtonView
+                } else {
                     deleteButtonView
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .bold()
                 }
-
-//                if isEditing {
-//                    editButtonView
-//                } else {
-//                    deleteButtonView
-//                }
             }
         }
         .onAppear {

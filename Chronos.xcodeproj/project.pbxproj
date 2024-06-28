@@ -83,6 +83,8 @@
 		2FD24D9D2C2DCF94009D1EDD /* EmployeeShiftListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D9C2C2DCF93009D1EDD /* EmployeeShiftListView.swift */; };
 		2FD24DA02C2DFFA5009D1EDD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D9F2C2DFFA5009D1EDD /* Alamofire */; };
 		2FD24DA52C2DFFAF009D1EDD /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24DA42C2DFFAF009D1EDD /* SimpleToast */; };
+		2FD24DA82C2E9E91009D1EDD /* ScheduledSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24DA72C2E9E91009D1EDD /* ScheduledSettings.swift */; };
+		2FD24DAC2C2EBEE1009D1EDD /* ScheduledCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24DAB2C2EBEE1009D1EDD /* ScheduledCellView.swift */; };
 		2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA812BE9153C00B3129B /* ManagerOnboardingResponse.swift */; };
 		2FDECA862BE974A600B3129B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA852BE974A600B3129B /* ToastView.swift */; };
 		2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA8D2BEBE1C300B3129B /* ProfileView.swift */; };
@@ -214,6 +216,8 @@
 		2FD24D982C2DCE6C009D1EDD /* ShiftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftsView.swift; sourceTree = "<group>"; };
 		2FD24D9A2C2DCEB0009D1EDD /* ShiftDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftDetailsView.swift; sourceTree = "<group>"; };
 		2FD24D9C2C2DCF93009D1EDD /* EmployeeShiftListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeShiftListView.swift; sourceTree = "<group>"; };
+		2FD24DA72C2E9E91009D1EDD /* ScheduledSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSettings.swift; sourceTree = "<group>"; };
+		2FD24DAB2C2EBEE1009D1EDD /* ScheduledCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledCellView.swift; sourceTree = "<group>"; };
 		2FDECA812BE9153C00B3129B /* ManagerOnboardingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerOnboardingResponse.swift; sourceTree = "<group>"; };
 		2FDECA852BE974A600B3129B /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2FDECA8D2BEBE1C300B3129B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -475,6 +479,7 @@
 		2F7942EE2BC050FD00387D3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				2FD24DA62C2E9E18009D1EDD /* ScheduledSettings */,
 				8B39D13E2C2D767F00359FDD /* RequestTimeOff */,
 				8B2829E62C22E82600CE9220 /* Schedule */,
 				2F7446F82C0BDB0E0059899C /* EmployeeList */,
@@ -618,6 +623,31 @@
 				2FD24D572C2A6F7C009D1EDD /* CustomTabStyle.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		2FD24DA62C2E9E18009D1EDD /* ScheduledSettings */ = {
+			isa = PBXGroup;
+			children = (
+				2FD24DAA2C2EA6AE009D1EDD /* Models */,
+				2FD24DA92C2EA6A8009D1EDD /* Views */,
+			);
+			path = ScheduledSettings;
+			sourceTree = "<group>";
+		};
+		2FD24DA92C2EA6A8009D1EDD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2FD24DA72C2E9E91009D1EDD /* ScheduledSettings.swift */,
+				2FD24DAB2C2EBEE1009D1EDD /* ScheduledCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2FD24DAA2C2EA6AE009D1EDD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2FDECA7F2BE914F200B3129B /* LoginModel */ = {
@@ -1045,6 +1075,7 @@
 				2F1C0E792BDF0DF400960980 /* LoginResponse.swift in Sources */,
 				2FD24D722C2B9227009D1EDD /* EmployeeJobsListView.swift in Sources */,
 				2F928D542BD32DB7004AAED3 /* ProfileHeaderView.swift in Sources */,
+				2FD24DA82C2E9E91009D1EDD /* ScheduledSettings.swift in Sources */,
 				2FD24D992C2DCE6C009D1EDD /* ShiftsView.swift in Sources */,
 				2F731BD12C0297F100B3501D /* AvailabilityListModel.swift in Sources */,
 				2F41CBD62BE814CA000AC5B0 /* FilteredCalendarCollectionView.swift in Sources */,
@@ -1074,6 +1105,7 @@
 				2FEFBB682C272F06005E3FB4 /* OnboardingCompanyResponse.swift in Sources */,
 				2F731BCF2C0297D300B3501D /* AvailabilityRowView.swift in Sources */,
 				2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */,
+				2FD24DAC2C2EBEE1009D1EDD /* ScheduledCellView.swift in Sources */,
 				2FD24D9B2C2DCEB0009D1EDD /* ShiftDetailsView.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				2FEFBB742C273BA2005E3FB4 /* SetupCheckInOutView.swift in Sources */,

@@ -265,8 +265,14 @@ extension ProfileView {
 
         case 1:
             selectedDestination = AnyView(TimeOffRequestsList())
-
+            
         case 2:
+            selectedDestination = AnyView(
+                ScheduledSettings()
+                    .navigationBarBackButtonHidden(true)
+            )
+
+        case 3:
             selectedDestination = AnyView(RequestTimeOffView())
 
         default:
