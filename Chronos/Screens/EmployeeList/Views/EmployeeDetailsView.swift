@@ -182,7 +182,7 @@ extension EmployeeDetailsView {
         ) {
             Text(LocalizedStringKey("Jobs"))
                 .fontWeight(.bold)
-                .padding()
+                .padding(20)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.silver.opacity(0.3))
             

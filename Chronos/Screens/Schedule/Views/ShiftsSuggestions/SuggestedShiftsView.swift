@@ -5,7 +5,6 @@ struct SuggestedShiftsView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var selectedShift: ShiftRowUI?
-    @State private var count = 0
     @State var uiModels: [ShiftRowUI]
     @State private var isSubmitting = false
     
@@ -104,9 +103,6 @@ struct SuggestedShiftsView: View {
         ) {
             ForEach(uiModels, id: \.self) { shift in
                 shiftCell(shift: shift)
-                    .onAppear {
-                        count += 1
-                    }
             }
             .padding(.leading, hourWidth / 2)
         }

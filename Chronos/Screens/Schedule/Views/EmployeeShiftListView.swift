@@ -21,13 +21,13 @@ struct EmployeeShiftListView: View {
             Section {
                 ForEach(employees) { employee in
                     Button(action: {
-                        selectedEmployee.0 = employee.username
+                        selectedEmployee.0 = employee.firstName + " " + employee.lastName
                         selectedEmployee.1 = employee.id
                         showAllEmployees = false
                         
                         dismiss.callAsFunction()
                     }) {
-                        Text(employee.username)
+                        Text(employee.firstName + " " + employee.lastName)
                     }
                 }
             }

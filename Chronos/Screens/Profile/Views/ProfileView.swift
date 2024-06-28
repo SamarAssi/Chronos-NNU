@@ -199,7 +199,7 @@ extension ProfileView {
                         .frame(width: 45, height: 45)
                 )
             
-            Text(LocalizedStringKey("Log out"))
+            Text(LocalizedStringKey("Log Out"))
         }
         .foregroundStyle(Color.red)
     }

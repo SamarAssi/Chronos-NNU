@@ -77,11 +77,18 @@ struct JobsListView: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                if isEditing {
-                    editButtonView
-                } else {
+                Menu {
                     deleteButtonView
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .bold()
                 }
+
+//                if isEditing {
+//                    editButtonView
+//                } else {
+//                    deleteButtonView
+//                }
             }
         }
         .onAppear {
@@ -179,6 +186,9 @@ extension JobsListView {
             Text(LocalizedStringKey("Delete"))
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
+                .foregroundStyle(Color.red)
+            
+            Image(systemName: "trash")
                 .foregroundStyle(Color.red)
         }
     }
