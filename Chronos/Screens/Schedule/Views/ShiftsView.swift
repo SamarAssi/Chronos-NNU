@@ -244,10 +244,17 @@ extension ShiftsView {
             alignment: .leading,
             spacing: 0
         ) {
-            ForEach(shifts) { shift in
-                shiftCell(shift: shift)
+            let dict = Dictionary(grouping: shifts, by: { "\($0.employeeID) \($0.startTime.toString(format: "yyyy-MM-dd"))" })
+            
+            
+            ForEach(dict.keys.sorted(), id: \.self) { shiftKey in
+                ZStack {
+                    ForEach(dict[shiftKey] ?? [], id: \.self) { shift in
+                        shiftCell(shift: shift)
+                    }
+                    .padding(.leading, hourWidth / 2)
+                }
             }
-            .padding(.leading, hourWidth / 2)
         }
     }
 }
