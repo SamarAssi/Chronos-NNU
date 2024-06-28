@@ -119,6 +119,8 @@
 		8B1C171D2C2EC0AB0091253E /* ExtraInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C171C2C2EC0AB0091253E /* ExtraInformationView.swift */; };
 		8B2DF1612C2EF3E400467404 /* AIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2DF1602C2EF3E400467404 /* AIDatePicker.swift */; };
 		8B2DF1642C2EF91E00467404 /* EmployeesReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2DF1632C2EF91E00467404 /* EmployeesReportView.swift */; };
+		8B2DF16B2C2F05D800467404 /* ScheduledCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2DF1672C2F05D800467404 /* ScheduledCellView.swift */; };
+		8B2DF16C2C2F05D800467404 /* ScheduledSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2DF1682C2F05D800467404 /* ScheduledSettings.swift */; };
 		8B31824D2C2AD4D8002B3383 /* SuggestedShiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31824C2C2AD4D8002B3383 /* SuggestedShiftsView.swift */; };
 		8B31824F2C2AD64F002B3383 /* ShiftRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */; };
 		8B37D1062C26DAAF001D4739 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */; };
@@ -260,6 +262,8 @@
 		8B1C171C2C2EC0AB0091253E /* ExtraInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraInformationView.swift; sourceTree = "<group>"; };
 		8B2DF1602C2EF3E400467404 /* AIDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDatePicker.swift; sourceTree = "<group>"; };
 		8B2DF1632C2EF91E00467404 /* EmployeesReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesReportView.swift; sourceTree = "<group>"; };
+		8B2DF1672C2F05D800467404 /* ScheduledCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledCellView.swift; sourceTree = "<group>"; };
+		8B2DF1682C2F05D800467404 /* ScheduledSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledSettings.swift; sourceTree = "<group>"; };
 		8B31824C2C2AD4D8002B3383 /* SuggestedShiftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedShiftsView.swift; sourceTree = "<group>"; };
 		8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftRowView.swift; sourceTree = "<group>"; };
 		8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
@@ -491,6 +495,7 @@
 		2F7942EE2BC050FD00387D3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8B2DF16A2C2F05D800467404 /* ScheduledSettings */,
 				8B2DF1622C2EF90800467404 /* Report */,
 				8B1C17132C2EB73F0091253E /* AI */,
 				8B39D13E2C2D767F00359FDD /* RequestTimeOff */,
@@ -867,6 +872,23 @@
 			path = Report;
 			sourceTree = "<group>";
 		};
+		8B2DF1692C2F05D800467404 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B2DF1672C2F05D800467404 /* ScheduledCellView.swift */,
+				8B2DF1682C2F05D800467404 /* ScheduledSettings.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8B2DF16A2C2F05D800467404 /* ScheduledSettings */ = {
+			isa = PBXGroup;
+			children = (
+				8B2DF1692C2F05D800467404 /* Views */,
+			);
+			path = ScheduledSettings;
+			sourceTree = "<group>";
+		};
 		8B37D1072C28049E001D4739 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1111,6 +1133,7 @@
 				2F7447072C0BE4780059899C /* EmployeeCellView.swift in Sources */,
 				2FEFBB6E2C273A05005E3FB4 /* ProfileModel.swift in Sources */,
 				2FEFBB6A2C272F84005E3FB4 /* UpdateCompanyRulesResponse.swift in Sources */,
+				8B2DF16B2C2F05D800467404 /* ScheduledCellView.swift in Sources */,
 				8B586BAF2C2309E700F8DE98 /* CreateShiftView.swift in Sources */,
 				8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */,
 				2FDECA862BE974A600B3129B /* ToastView.swift in Sources */,
@@ -1120,6 +1143,7 @@
 				2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */,
 				2FD24D9B2C2DCEB0009D1EDD /* ShiftDetailsView.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
+				8B2DF16C2C2F05D800467404 /* ScheduledSettings.swift in Sources */,
 				2FEFBB742C273BA2005E3FB4 /* SetupCheckInOutView.swift in Sources */,
 				2FF8ADEC2BF924B900DB9C4E /* ManagerModel.swift in Sources */,
 				8B9B00122C295BF5007EDAF9 /* AcronymManager.swift in Sources */,
