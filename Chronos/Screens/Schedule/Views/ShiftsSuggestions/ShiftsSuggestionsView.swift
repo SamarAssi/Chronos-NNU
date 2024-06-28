@@ -46,6 +46,7 @@ struct ShiftsSuggestionsView: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: .theme))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .ignoresSafeArea()
+                        .animation(.easeInOut, value: isLoading)
                 } else {
                     contendView
                 }
@@ -77,7 +78,6 @@ struct ShiftsSuggestionsView: View {
                     }
                 }
             }
-            .animation(.easeInOut, value: isLoading)
             .navigationTitle("Shifts Suggestions")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: $showShiftsView) {

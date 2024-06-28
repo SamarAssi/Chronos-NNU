@@ -150,6 +150,9 @@
     "Continue" : {
 
     },
+    "Count" : {
+
+    },
     "Create" : {
 
     },
@@ -198,9 +201,6 @@
       }
     },
     "Employee" : {
-
-    },
-    "Employee Count" : {
 
     },
     "Employees List" : {
@@ -387,12 +387,6 @@
     "PM" : {
 
     },
-    "Previous" : {
-
-    },
-    "Provide any extra information" : {
-
-    },
     "Radius" : {
 
     },
@@ -427,12 +421,6 @@
 
     },
     "Search Maps" : {
-
-    },
-    "Select employees" : {
-
-    },
-    "Select jobs" : {
 
     },
     "Select the job/s:" : {
