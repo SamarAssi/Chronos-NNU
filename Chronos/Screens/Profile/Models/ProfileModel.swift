@@ -11,7 +11,7 @@ class ProfileModel: ObservableObject {
     
     @Published var onboardingCompanyResponse: OnboardingCompanyResponse?
     @Published var updateCompanyRulesResponse: UpdateCompanyRulesResponse?
-    
+    @Published var showToast = false
     @Published var isOn: Bool = true
     @Published var isLoading = false
     @Published var isLoadingView = false
@@ -56,6 +56,7 @@ class ProfileModel: ObservableObject {
                     ignoreCheckInLocation: ignoreCheckInLocation
                 )
                 hideLoading()
+                showToast = true
             } catch let error {
                 print(error)
                 hideLoading()
