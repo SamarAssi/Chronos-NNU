@@ -14,9 +14,14 @@ struct JobsResponse: Hashable, Codable {
 struct Job: Hashable, Codable, Identifiable, LabelRepresentable {
     let id: String?
     var name: String
-    var sundaySettings, mondaySettings, tuesdaySettings: WeekdaysSettings
-    var wednesdaySettings, thursdaySettings, fridaySettings, saturdaySettings: WeekdaysSettings
-
+    var sundaySettings = WeekdaysSettings(minimumNumberOfEmployees: 1)
+    var mondaySettings = WeekdaysSettings(minimumNumberOfEmployees: 1)
+    var tuesdaySettings  = WeekdaysSettings(minimumNumberOfEmployees: 1)
+    var wednesdaySettings = WeekdaysSettings(minimumNumberOfEmployees: 1)
+    var thursdaySettings = WeekdaysSettings(minimumNumberOfEmployees: 1)
+    var fridaySettings = WeekdaysSettings(minimumNumberOfEmployees: 1)
+    var saturdaySettings = WeekdaysSettings(minimumNumberOfEmployees: 1)
+    
     var label: String {
         return name
     }
