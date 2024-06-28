@@ -81,6 +81,11 @@
 		2FD24D992C2DCE6C009D1EDD /* ShiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D982C2DCE6C009D1EDD /* ShiftsView.swift */; };
 		2FD24D9B2C2DCEB0009D1EDD /* ShiftDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D9A2C2DCEB0009D1EDD /* ShiftDetailsView.swift */; };
 		2FD24D9D2C2DCF94009D1EDD /* EmployeeShiftListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24D9C2C2DCF93009D1EDD /* EmployeeShiftListView.swift */; };
+		2FD24DA02C2DFFA5009D1EDD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24D9F2C2DFFA5009D1EDD /* Alamofire */; };
+		2FD24DA52C2DFFAF009D1EDD /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD24DA42C2DFFAF009D1EDD /* SimpleToast */; };
+		2FD24DA82C2E9E91009D1EDD /* ScheduledSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24DA72C2E9E91009D1EDD /* ScheduledSettings.swift */; };
+		2FD24DAC2C2EBEE1009D1EDD /* ScheduledCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24DAB2C2EBEE1009D1EDD /* ScheduledCellView.swift */; };
+		2FD24DAE2C2EF54D009D1EDD /* ShiftRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD24DAD2C2EF54D009D1EDD /* ShiftRowView.swift */; };
 		2FDECA822BE9153C00B3129B /* ManagerOnboardingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA812BE9153C00B3129B /* ManagerOnboardingResponse.swift */; };
 		2FDECA862BE974A600B3129B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA852BE974A600B3129B /* ToastView.swift */; };
 		2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDECA8D2BEBE1C300B3129B /* ProfileView.swift */; };
@@ -112,13 +117,7 @@
 		2FF8ADEE2BF9258700DB9C4E /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */; };
 		8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0810482BC9AA7300CB5930 /* BaseClient.swift */; };
 		8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */; };
-		8B1C17152C2EB75D0091253E /* EmployeesSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C17142C2EB75D0091253E /* EmployeesSelectorView.swift */; };
-		8B1C17172C2EB78C0091253E /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C17162C2EB78C0091253E /* CheckBox.swift */; };
-		8B1C17192C2EBBF30091253E /* JobsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C17182C2EBBF30091253E /* JobsSelectorView.swift */; };
-		8B1C171B2C2EBF070091253E /* EmployeesPerJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C171A2C2EBF070091253E /* EmployeesPerJobView.swift */; };
-		8B1C171D2C2EC0AB0091253E /* ExtraInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C171C2C2EC0AB0091253E /* ExtraInformationView.swift */; };
 		8B31824D2C2AD4D8002B3383 /* SuggestedShiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31824C2C2AD4D8002B3383 /* SuggestedShiftsView.swift */; };
-		8B31824F2C2AD64F002B3383 /* ShiftRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */; };
 		8B37D1062C26DAAF001D4739 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */; };
 		8B39D1402C2D76AB00359FDD /* RequestTimeOffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39D13F2C2D76AB00359FDD /* RequestTimeOffView.swift */; };
 		8B44A8CA2C28638E00795567 /* GifImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44A8C92C28638E00795567 /* GifImageView.swift */; };
@@ -140,8 +139,6 @@
 		8BFA9EDB2C2D86B4005E6576 /* RTOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */; };
 		8BFA9EDF2C2D93D9005E6576 /* TimeOffRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */; };
 		8BFA9EE22C2D9484005E6576 /* TimeOffRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EE12C2D9484005E6576 /* TimeOffRequests.swift */; };
-		A32A87D32C2E187D004335DA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A32A87D22C2E187D004335DA /* Alamofire */; };
-		A32A87D62C2E1884004335DA /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A32A87D52C2E1884004335DA /* SimpleToast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +217,9 @@
 		2FD24D982C2DCE6C009D1EDD /* ShiftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftsView.swift; sourceTree = "<group>"; };
 		2FD24D9A2C2DCEB0009D1EDD /* ShiftDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftDetailsView.swift; sourceTree = "<group>"; };
 		2FD24D9C2C2DCF93009D1EDD /* EmployeeShiftListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeShiftListView.swift; sourceTree = "<group>"; };
+		2FD24DA72C2E9E91009D1EDD /* ScheduledSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSettings.swift; sourceTree = "<group>"; };
+		2FD24DAB2C2EBEE1009D1EDD /* ScheduledCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledCellView.swift; sourceTree = "<group>"; };
+		2FD24DAD2C2EF54D009D1EDD /* ShiftRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftRowView.swift; sourceTree = "<group>"; };
 		2FDECA812BE9153C00B3129B /* ManagerOnboardingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerOnboardingResponse.swift; sourceTree = "<group>"; };
 		2FDECA852BE974A600B3129B /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2FDECA8D2BEBE1C300B3129B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -251,13 +251,7 @@
 		2FF8ADED2BF9258700DB9C4E /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 		8B0810482BC9AA7300CB5930 /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
 		8B08104A2BCAB44300CB5930 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
-		8B1C17142C2EB75D0091253E /* EmployeesSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesSelectorView.swift; sourceTree = "<group>"; };
-		8B1C17162C2EB78C0091253E /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
-		8B1C17182C2EBBF30091253E /* JobsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsSelectorView.swift; sourceTree = "<group>"; };
-		8B1C171A2C2EBF070091253E /* EmployeesPerJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesPerJobView.swift; sourceTree = "<group>"; };
-		8B1C171C2C2EC0AB0091253E /* ExtraInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraInformationView.swift; sourceTree = "<group>"; };
 		8B31824C2C2AD4D8002B3383 /* SuggestedShiftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedShiftsView.swift; sourceTree = "<group>"; };
-		8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftRowView.swift; sourceTree = "<group>"; };
 		8B37D1052C26DAAF001D4739 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		8B39D13F2C2D76AB00359FDD /* RequestTimeOffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTimeOffView.swift; sourceTree = "<group>"; };
 		8B44A8C92C28638E00795567 /* GifImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageView.swift; sourceTree = "<group>"; };
@@ -286,8 +280,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A32A87D62C2E1884004335DA /* SimpleToast in Frameworks */,
-				A32A87D32C2E187D004335DA /* Alamofire in Frameworks */,
+				2FD24DA02C2DFFA5009D1EDD /* Alamofire in Frameworks */,
+				2FD24DA52C2DFFAF009D1EDD /* SimpleToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +481,7 @@
 		2F7942EE2BC050FD00387D3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				8B1C17132C2EB73F0091253E /* AI */,
+				2FD24DA62C2E9E18009D1EDD /* ScheduledSettings */,
 				8B39D13E2C2D767F00359FDD /* RequestTimeOff */,
 				8B2829E62C22E82600CE9220 /* Schedule */,
 				2F7446F82C0BDB0E0059899C /* EmployeeList */,
@@ -631,6 +625,31 @@
 				2FD24D572C2A6F7C009D1EDD /* CustomTabStyle.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		2FD24DA62C2E9E18009D1EDD /* ScheduledSettings */ = {
+			isa = PBXGroup;
+			children = (
+				2FD24DAA2C2EA6AE009D1EDD /* Models */,
+				2FD24DA92C2EA6A8009D1EDD /* Views */,
+			);
+			path = ScheduledSettings;
+			sourceTree = "<group>";
+		};
+		2FD24DA92C2EA6A8009D1EDD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2FD24DA72C2E9E91009D1EDD /* ScheduledSettings.swift */,
+				2FD24DAB2C2EBEE1009D1EDD /* ScheduledCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2FD24DAA2C2EA6AE009D1EDD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2FDECA7F2BE914F200B3129B /* LoginModel */ = {
@@ -832,18 +851,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		8B1C17132C2EB73F0091253E /* AI */ = {
-			isa = PBXGroup;
-			children = (
-				8B1C17142C2EB75D0091253E /* EmployeesSelectorView.swift */,
-				8B1C17162C2EB78C0091253E /* CheckBox.swift */,
-				8B1C17182C2EBBF30091253E /* JobsSelectorView.swift */,
-				8B1C171A2C2EBF070091253E /* EmployeesPerJobView.swift */,
-				8B1C171C2C2EC0AB0091253E /* ExtraInformationView.swift */,
-			);
-			path = AI;
-			sourceTree = "<group>";
-		};
 		8B2829E62C22E82600CE9220 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -888,7 +895,7 @@
 				2FD24D9A2C2DCEB0009D1EDD /* ShiftDetailsView.swift */,
 				2FD24D9C2C2DCF93009D1EDD /* EmployeeShiftListView.swift */,
 				8B586BAE2C2309E700F8DE98 /* CreateShiftView.swift */,
-				8B31824E2C2AD64F002B3383 /* ShiftRowView.swift */,
+				2FD24DAD2C2EF54D009D1EDD /* ShiftRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -955,8 +962,8 @@
 			);
 			name = Chronos;
 			packageProductDependencies = (
-				A32A87D22C2E187D004335DA /* Alamofire */,
-				A32A87D52C2E1884004335DA /* SimpleToast */,
+				2FD24D9F2C2DFFA5009D1EDD /* Alamofire */,
+				2FD24DA42C2DFFAF009D1EDD /* SimpleToast */,
 			);
 			productName = Chronos;
 			productReference = 2F7942DD2BC050A500387D3E /* Chronos.app */;
@@ -987,8 +994,8 @@
 			);
 			mainGroup = 2F7942D42BC050A500387D3E;
 			packageReferences = (
-				A32A87D12C2E187D004335DA /* XCRemoteSwiftPackageReference "Alamofire" */,
-				A32A87D42C2E1884004335DA /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				2FD24D9E2C2DFFA5009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2FD24DA32C2DFFAF009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 2F7942DE2BC050A500387D3E /* Products */;
 			projectDirPath = "";
@@ -1023,7 +1030,6 @@
 				2FDECA9D2BEFB2CD00B3129B /* CheckInOutResponse.swift in Sources */,
 				2FF8ADE62BF607D600DB9C4E /* LoginModel.swift in Sources */,
 				8B586BB12C231C4900F8DE98 /* ScheduleRouter.swift in Sources */,
-				8B1C17172C2EB78C0091253E /* CheckBox.swift in Sources */,
 				2FEFBB252C1F8F2D005E3FB4 /* ScrollableListView.swift in Sources */,
 				2F41CBDE2BE82C51000AC5B0 /* ExtensionForDate.swift in Sources */,
 				2F41CBC52BE7F94A000AC5B0 /* ManagerView.swift in Sources */,
@@ -1045,7 +1051,6 @@
 				2FD24D582C2A6F7C009D1EDD /* CustomTabStyle.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
 				2F74471B2C14A2370059899C /* ToastTypes.swift in Sources */,
-				8B1C171D2C2EC0AB0091253E /* ExtraInformationView.swift in Sources */,
 				2F731BDA2C029AA100B3501D /* DashboardClient.swift in Sources */,
 				2F7446F02C0B67BF0059899C /* JobsListModel.swift in Sources */,
 				2F7447052C0BDCEB0059899C /* EmployeesResponse.swift in Sources */,
@@ -1066,6 +1071,7 @@
 				2FF8ADD82BF51DF300DB9C4E /* WeekdaysView.swift in Sources */,
 				2FD24D9D2C2DCF94009D1EDD /* EmployeeShiftListView.swift in Sources */,
 				8B81C2AC2C026663000DA507 /* AvailabilityClient.swift in Sources */,
+				2FD24DAE2C2EF54D009D1EDD /* ShiftRowView.swift in Sources */,
 				2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */,
 				2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */,
 				2F7446FC2C0BDB860059899C /* EmployeeListView.swift in Sources */,
@@ -1073,6 +1079,7 @@
 				2F1C0E792BDF0DF400960980 /* LoginResponse.swift in Sources */,
 				2FD24D722C2B9227009D1EDD /* EmployeeJobsListView.swift in Sources */,
 				2F928D542BD32DB7004AAED3 /* ProfileHeaderView.swift in Sources */,
+				2FD24DA82C2E9E91009D1EDD /* ScheduledSettings.swift in Sources */,
 				2FD24D992C2DCE6C009D1EDD /* ShiftsView.swift in Sources */,
 				2F731BD12C0297F100B3501D /* AvailabilityListModel.swift in Sources */,
 				2F41CBD62BE814CA000AC5B0 /* FilteredCalendarCollectionView.swift in Sources */,
@@ -1082,7 +1089,6 @@
 				2F7446F72C0B99560059899C /* ErrorDescription.swift in Sources */,
 				2F731B922BFEA47800B3501D /* AvailabilityChangeDetailsView.swift in Sources */,
 				2F7447132C0FDFCF0059899C /* EmployeeDeletionResponse.swift in Sources */,
-				8B1C17152C2EB75D0091253E /* EmployeesSelectorView.swift in Sources */,
 				2FEFBB762C273E29005E3FB4 /* SecondaryButton.swift in Sources */,
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2FDECAA32BEFBD0800B3129B /* OnboardingEmployeeRespone.swift in Sources */,
@@ -1103,6 +1109,7 @@
 				2FEFBB682C272F06005E3FB4 /* OnboardingCompanyResponse.swift in Sources */,
 				2F731BCF2C0297D300B3501D /* AvailabilityRowView.swift in Sources */,
 				2FF8ADDE2BF51F7D00DB9C4E /* Weekday.swift in Sources */,
+				2FD24DAC2C2EBEE1009D1EDD /* ScheduledCellView.swift in Sources */,
 				2FD24D9B2C2DCEB0009D1EDD /* ShiftDetailsView.swift in Sources */,
 				2F7942F42BC0568500387D3E /* TextFieldView.swift in Sources */,
 				2FEFBB742C273BA2005E3FB4 /* SetupCheckInOutView.swift in Sources */,
@@ -1115,14 +1122,12 @@
 				2F41CBE42BE83381000AC5B0 /* RadioButtonModel.swift in Sources */,
 				2F7446E52C0B5E8A0059899C /* JobsListView.swift in Sources */,
 				2FEFBB642C272D7B005E3FB4 /* LocationManager.swift in Sources */,
-				8B1C171B2C2EBF070091253E /* EmployeesPerJobView.swift in Sources */,
 				2F41CBBF2BE7E30F000AC5B0 /* OnboardingView.swift in Sources */,
 				8BFA9EE22C2D9484005E6576 /* TimeOffRequests.swift in Sources */,
 				2F41CBD42BE81448000AC5B0 /* CalendarItemView.swift in Sources */,
 				8B08104B2BCAB44300CB5930 /* NetworkConstants.swift in Sources */,
 				2FEFBB6C2C272FCA005E3FB4 /* OnboardingRouter.swift in Sources */,
 				2F731BC82C02943700B3501D /* AvailabilityRequestsListResponse.swift in Sources */,
-				8B31824F2C2AD64F002B3383 /* ShiftRowView.swift in Sources */,
 				2F41CBC12BE7E659000AC5B0 /* RadioButtonView.swift in Sources */,
 				2F74470B2C0CA0DA0059899C /* PasswordValidationManager.swift in Sources */,
 				2F79435A2BC6CFF900387D3E /* SwipeToUnlockView.swift in Sources */,
@@ -1144,7 +1149,6 @@
 				2F41CBDC2BE81C9A000AC5B0 /* AuthenticationRouter.swift in Sources */,
 				2F731BD82C0299C300B3501D /* DashboardRouter.swift in Sources */,
 				8B37D1062C26DAAF001D4739 /* ScheduleViewModel.swift in Sources */,
-				8B1C17192C2EBBF30091253E /* JobsSelectorView.swift in Sources */,
 				2F7446EE2C0B611E0059899C /* JobsResponse.swift in Sources */,
 				2F41CBE22BE832E3000AC5B0 /* AttendanceCardModel.swift in Sources */,
 			);
@@ -1362,7 +1366,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A32A87D12C2E187D004335DA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		2FD24D9E2C2DFFA5009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1370,7 +1374,7 @@
 				minimumVersion = 5.9.1;
 			};
 		};
-		A32A87D42C2E1884004335DA /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+		2FD24DA32C2DFFAF009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
 			requirement = {
@@ -1381,14 +1385,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A32A87D22C2E187D004335DA /* Alamofire */ = {
+		2FD24D9F2C2DFFA5009D1EDD /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A32A87D12C2E187D004335DA /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 2FD24D9E2C2DFFA5009D1EDD /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		A32A87D52C2E1884004335DA /* SimpleToast */ = {
+		2FD24DA42C2DFFAF009D1EDD /* SimpleToast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A32A87D42C2E1884004335DA /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			package = 2FD24DA32C2DFFAF009D1EDD /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -23,7 +23,8 @@ class ScheduleViewModel: ObservableObject {
     var isDatePickerPresented: Bool = false
     var isLoading = false
     var newShifts: [ShiftRowUI] = []
-    
+    var employees: [Employee] = []
+
     private var employeeColor: [String: Color] = [:]
     
     private var colors: [Color] = [
@@ -65,8 +66,8 @@ class ScheduleViewModel: ObservableObject {
                 let backgroundColor: Color
                 (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: id ?? "")
                 
-                let startTime = shift.startTime?.timeAndDate() ?? "--"
-                let endTime = shift.endTime?.timeAndDate() ?? "--"
+//                let startTime = shift.startTime?.timeAndDate() ?? "--"
+//                let endTime = shift.endTime?.timeAndDate() ?? "--"
 
                 let titleString: String = name ?? "--"
 
@@ -91,9 +92,20 @@ class ScheduleViewModel: ObservableObject {
             print(error)
         }
     }
+    
+    func getEmployeesList() {
+        Task {
+            do {
+                let employeesResponse = try await EmployeesClient.getEmployees()
+                employees = employeesResponse.employees
+            } catch let error {
+                print(error)
+            }
+        }
+    }
 }
 
-struct ShiftRowUIModel: Identifiable {
+struct ShiftRowUIModel: Identifiable, Hashable {
     let id: String
     let employeeID: String
     let initials: String
