@@ -105,7 +105,7 @@ class ScheduleViewModel: ObservableObject {
     }
 }
 
-struct ShiftRowUIModel: Identifiable {
+struct ShiftRowUIModel: Identifiable, Hashable {
     let id: String
     let employeeID: String
     let initials: String
