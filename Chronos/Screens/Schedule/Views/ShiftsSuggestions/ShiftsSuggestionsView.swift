@@ -31,26 +31,38 @@ struct ShiftsSuggestionsView: View {
     @State var suggestedShifts: [Shift] = []
 
     private var mainButtonText: String {
-        selectedStep == questions.count - 1 ? "Submit" : "Next"
+        if questions.count - 1 == selectedStep {
+            return "Submit"
+        } else {
+            if selectedStep == 0 && jobs.filter({ $0.isSelected }).isEmpty {
+                return "Skip"
+            } else if selectedStep == 1 && employees.filter({ $0.isSelected }).isEmpty {
+                return "Skip"
+            } else if selectedStep == 2 && jobs.allSatisfy({ $0.numberOfEmployees == nil }) {
+                return "Skip"
+            } else {
+                return "Next"
+            }
+        }
     }
 
     var body: some View {
         NavigationStack {
             ZStack {
-                contendView
-
                 if isLoading {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .theme))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.black.opacity(0.2))
                         .ignoresSafeArea()
+                } else {
+                    contendView
                 }
             }
+            .animation(.easeInOut, value: isLoading)
             .navigationTitle("Shifts Suggestions")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: $showShiftsView) {
-                //SuggestedShiftsView(shifts: suggestedShifts)
+                SuggestedShiftsView(shifts: suggestedShifts)
             }
             .simpleToast(
                 isPresented: $showToast,
@@ -68,6 +80,7 @@ struct ShiftsSuggestionsView: View {
                     .padding(.horizontal, 30)
                 }
                 .onAppear {
+                    isLoading = true
                     Task {
                         do {
                             async let jobs = JobsClient.getJobs()
@@ -88,7 +101,13 @@ struct ShiftsSuggestionsView: View {
                                 )
                             }
                         } catch {
-                            print(error.localizedDescription)
+                            self.errorMsg = LocalizedStringKey( error.localizedDescription
+                            )
+                            self.showToast.toggle()
+                        }
+
+                        await MainActor.run {
+                            isLoading = false
                         }
                     }
                 }
@@ -97,42 +116,10 @@ struct ShiftsSuggestionsView: View {
 
     private var contendView: some View {
         VStack(spacing: 0) {
-            Divider()
+            progressLine
             questionsTabView
             Spacer()
-            HStack {
-
-                if selectedStep > 0 {
-                    Button("Previous") {
-                        withAnimation {
-                            selectedStep = selectedStep - 1
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 10)
-                    .foregroundStyle(Color.white)
-                    .background(.theme)
-                    .clipShape(Capsule())
-                }
-
-                Button(mainButtonText) {
-                    withAnimation {
-                        if selectedStep == questions.count - 1 {
-                            submit()
-                        } else {
-                            selectedStep = selectedStep + 1
-                        }
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, 15)
-                .padding(.vertical, 10)
-                .foregroundStyle(Color.white)
-                .background(.theme)
-                .clipShape(Capsule())
-            }
-            .padding()
+            buttonsView
         }
     }
 
@@ -143,10 +130,12 @@ struct ShiftsSuggestionsView: View {
                     questions.indices,
                     id: \.self
                 ) { index in
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(spacing: 0) {
                         Text(questions[index])
                             .font(.subheadline)
-                            .padding(20)
+                            .padding(10)
+                            .padding(.bottom, 10)
+
                         Divider()
                         getQuestionView(number: index)
                             .tag(index)
@@ -163,100 +152,67 @@ struct ShiftsSuggestionsView: View {
     @ViewBuilder
     private func getQuestionView(number: Int) -> some View {
         switch number {
-        case 0 : jobsView
-        case 1: employeesView
-        case 2: employeesPerJobView
-        case 3: extraInformationView
+        case 0 : JobsSelectorView(jobs: $jobs)
+        case 1: EmployeesSelectorView(employees: $employees)
+        case 2: EmployeesPerJobView(jobs: $jobs)
+        case 3: ExtraInformationView(description: $description)
         default:
             EmptyView()
         }
     }
 
     @ViewBuilder
-    private var jobsView: some View {
-        List {
-            ForEach($jobs) { $choice in
-                checkBox(
-                    value: $choice.isSelected,
-                    label: choice.job.name
-                )
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var employeesView: some View {
-        List {
-            checkBox(
-                value: Binding(
-                    get: { employees.allSatisfy { $0.isSelected } },
-                    set: { newValue in
-                        employees.indices.forEach { employees[$0].isSelected = newValue }
-                    }),
-                label: "Select all employees"
-            )
-            ForEach($employees) { $choice in
-
-                checkBox(
-                    value: $choice.isSelected,
-                    label: choice.employee.firstName + " " + choice.employee.lastName
-                )
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var employeesPerJobView: some View {
-        List {
-            if jobs.filter({ $0.isSelected }).isEmpty {
-                Text("Please select jobs first")
-                    .foregroundColor(.red)
-            } else {
-                ForEach($jobs) { $jobChoice in
-                    if jobChoice.isSelected {
-                        HStack {
-                            Text(jobChoice.job.name)
-                            Spacer()
-                            NumberInputView(number: $jobChoice.numberOfEmployees)
-                        }
+    private var buttonsView: some View {
+        HStack {
+            if selectedStep > 0 {
+                Button {
+                    withAnimation {
+                        selectedStep = selectedStep - 1
                     }
+                } label: {
+                    Text("Previous")
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 15)
+                        .padding(.vertical, 10)
+                        .foregroundStyle(Color.white)
+                        .background(.theme)
+                        .clipShape(Capsule())
                 }
             }
+
+            Button {
+                withAnimation {
+                    if selectedStep == questions.count - 1 {
+                        submit()
+                    } else {
+                        selectedStep = selectedStep + 1
+                    }
+                }
+            } label: {
+                Text(mainButtonText)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 10)
+                    .foregroundStyle(Color.white)
+                    .background(.theme)
+                    .clipShape(Capsule())
+            }
+
         }
+        .padding()
     }
 
     @ViewBuilder
-    private var extraInformationView: some View {
-        List {
-            TextEditor(text: $description)
-                .font(.system(size: 15))
-                .textInputAutocapitalization(.never)
-                .tint(Color.theme)
-                .scrollContentBackground(.hidden)
-                .padding(8)
-                .frame(height: 300)
-                .background(Color.gray.opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+    private var progressLine: some View {
+        HStack(spacing: 0) {
+            Rectangle()
+                .foregroundColor(.theme)
+                .frame(width: CGFloat(selectedStep + 1) / CGFloat(questions.count) * UIScreen.main.bounds.width)
+            Rectangle()
+                .foregroundColor(.gray.opacity(0.15))
         }
-    }
-
-    private func checkBox(
-        value: Binding<Bool>,
-        label: String
-    ) -> some View {
-        HStack {
-            Image(
-                systemName: value.wrappedValue ?
-                "checkmark.square" :
-                "square"
-            )
-                .foregroundColor(value.wrappedValue ? .theme : .gray)
-            Text(label)
-            Spacer()
-        }
-        .onTapGesture {
-            value.wrappedValue.toggle()
-        }
+        .animation(.easeInOut, value: selectedStep)
+        .frame(height: 5)
     }
 
     func submit() {
@@ -318,19 +274,6 @@ struct ShiftsSuggestionsView: View {
             )
         ]
     }
-
-    struct JobChoice: Identifiable, Equatable {
-        var id = UUID()
-        var job: Job
-        var isSelected: Bool
-        var numberOfEmployees: Int? = nil
-    }
-
-    struct EmployeeChoice: Identifiable {
-        var id = UUID()
-        var employee: Employee
-        var isSelected: Bool
-    }
 }
 
 #Preview {
@@ -340,23 +283,4 @@ struct ShiftsSuggestionsView: View {
 struct Answer: Codable {
     var question: String
     var answer: String
-}
-
-// Subview using Binding
-struct NumberInputView: View {
-    @Binding var number: Int?
-
-    var body: some View {
-        TextField("Count", text: Binding<String>(
-            get: {
-                // When the number is nil, display an empty string
-                self.number.map(String.init) ?? ""
-            },
-            set: {
-                // Convert the input string back to an Int?
-                self.number = Int($0)
-            }
-        ))
-
-    }
 }
