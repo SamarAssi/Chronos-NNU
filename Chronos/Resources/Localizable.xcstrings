@@ -147,9 +147,6 @@
     "Confirm Password" : {
 
     },
-    "Conflicted Shift" : {
-
-    },
     "Conflicts" : {
 
     },
@@ -423,6 +420,9 @@
     "Remove employee" : {
 
     },
+    "Request issues" : {
+
+    },
     "Request submitted on %@" : {
 
     },
@@ -548,6 +548,9 @@
 
     },
     "Username is invalid" : {
+
+    },
+    "Warnings" : {
 
     },
     "Wednesday" : {

@@ -145,6 +145,7 @@
 		8BFA9EE22C2D9484005E6576 /* TimeOffRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EE12C2D9484005E6576 /* TimeOffRequests.swift */; };
 		A32A87D32C2E187D004335DA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A32A87D22C2E187D004335DA /* Alamofire */; };
 		A32A87D62C2E1884004335DA /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = A32A87D52C2E1884004335DA /* SimpleToast */; };
+		A35B47EC2C2F135300D45E10 /* ConfictsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B47EB2C2F135300D45E10 /* ConfictsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -285,6 +286,7 @@
 		8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTOClient.swift; sourceTree = "<group>"; };
 		8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOffRequestsList.swift; sourceTree = "<group>"; };
 		8BFA9EE12C2D9484005E6576 /* TimeOffRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOffRequests.swift; sourceTree = "<group>"; };
+		A35B47EB2C2F135300D45E10 /* ConfictsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfictsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 				2F731BCC2C0297AB00B3501D /* AvailabilityListView.swift */,
 				2F731BCE2C0297D300B3501D /* AvailabilityRowView.swift */,
 				2F731B912BFEA47800B3501D /* AvailabilityChangeDetailsView.swift */,
+				A35B47EB2C2F135300D45E10 /* ConfictsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1094,6 +1097,7 @@
 				2FDECA8E2BEBE1C300B3129B /* ProfileView.swift in Sources */,
 				2F7943412BC5816800387D3E /* AuthenticationClient.swift in Sources */,
 				2F7446FC2C0BDB860059899C /* EmployeeListView.swift in Sources */,
+				A35B47EC2C2F135300D45E10 /* ConfictsView.swift in Sources */,
 				2F731B942BFEA4E100B3501D /* AvailabilityButtonModel.swift in Sources */,
 				2F1C0E792BDF0DF400960980 /* LoginResponse.swift in Sources */,
 				2FD24D722C2B9227009D1EDD /* EmployeeJobsListView.swift in Sources */,
