@@ -140,6 +140,7 @@
 		8BDAD7082BFA852C00893D5F /* WeekdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */; };
 		8BDE91172C2D604C0055D913 /* String+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE91162C2D604C0055D913 /* String+Extenstions.swift */; };
 		8BDE91192C2D6C0C0055D913 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE91182C2D6C0C0055D913 /* UserDefaultsStorage.swift */; };
+		8BEBDF9D2C2F0C71002CDD85 /* JobSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBDF9C2C2F0C71002CDD85 /* JobSettingsSection.swift */; };
 		8BFA9ED92C2D84A6005E6576 /* RTORouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9ED82C2D84A6005E6576 /* RTORouter.swift */; };
 		8BFA9EDB2C2D86B4005E6576 /* RTOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */; };
 		8BFA9EDF2C2D93D9005E6576 /* TimeOffRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */; };
@@ -283,6 +284,7 @@
 		8BDAD7072BFA852C00893D5F /* WeekdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayModel.swift; sourceTree = "<group>"; };
 		8BDE91162C2D604C0055D913 /* String+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstions.swift"; sourceTree = "<group>"; };
 		8BDE91182C2D6C0C0055D913 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
+		8BEBDF9C2C2F0C71002CDD85 /* JobSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSettingsSection.swift; sourceTree = "<group>"; };
 		8BFA9ED82C2D84A6005E6576 /* RTORouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTORouter.swift; sourceTree = "<group>"; };
 		8BFA9EDA2C2D86B4005E6576 /* RTOClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTOClient.swift; sourceTree = "<group>"; };
 		8BFA9EDE2C2D93D9005E6576 /* TimeOffRequestsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOffRequestsList.swift; sourceTree = "<group>"; };
@@ -877,6 +879,7 @@
 			children = (
 				8B2DF1672C2F05D800467404 /* ScheduledCellView.swift */,
 				8B2DF1682C2F05D800467404 /* ScheduledSettings.swift */,
+				8BEBDF9C2C2F0C71002CDD85 /* JobSettingsSection.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1124,6 +1127,7 @@
 				2F7942E12BC050A500387D3E /* ChronosApp.swift in Sources */,
 				2FDECAA32BEFBD0800B3129B /* OnboardingEmployeeRespone.swift in Sources */,
 				2FEFBB2C2C20D1BF005E3FB4 /* ItemsListView.swift in Sources */,
+				8BEBDF9D2C2F0C71002CDD85 /* JobSettingsSection.swift in Sources */,
 				2FEFBB662C272E07005E3FB4 /* OnboardingClient.swift in Sources */,
 				8B81C2AA2C0265CC000DA507 /* AvailabilityRouter.swift in Sources */,
 				2F7943482BC5927900387D3E /* FooterButton.swift in Sources */,

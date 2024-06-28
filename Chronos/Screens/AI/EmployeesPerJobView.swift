@@ -38,8 +38,11 @@ struct EmployeesPerJobView: View {
                         HStack {
                             Text(jobChoice.job.name)
                             Spacer()
-                            NumberInputView(number: $jobChoice.numberOfEmployees)
-                                .multilineTextAlignment(.trailing)
+                            NumberInputView(
+                                title: "Count",
+                                number: $jobChoice.numberOfEmployees
+                            )
+                            .multilineTextAlignment(.trailing)
                         }
                     }
                 }
@@ -81,10 +84,11 @@ struct EmployeesPerJobView: View {
 
 // Subview using Binding
 struct NumberInputView: View {
+    let title: String
     @Binding var number: Int?
 
     var body: some View {
-        TextField("Count", text: Binding<String>(
+        TextField(title, text: Binding<String>(
             get: {
                 // When the number is nil, display an empty string
                 self.number.map(String.init) ?? ""
