@@ -15,7 +15,6 @@ struct AvailabilityChangeDetailsView: View {
 
     @State private var buttons: [AvailabilityButtonModel] = AvailabilityButtonModel.data
     @State private var showingAlert = false
-    @State private var showSheet = false
     @State var currentAction = 0
 
     var date: Date
@@ -54,12 +53,12 @@ struct AvailabilityChangeDetailsView: View {
             spacing: 0
         ) {
             List {
-//                if let conflicts = availabilityListModel.availabilityChangesResponse?.conflicts,
-//                   conflicts.isEmpty == false {
-//                    conflictsView(conflicts: conflicts)
-//                    .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
-//                    .listRowSeparator(.hidden)
-//                }
+                if let conflicts = availabilityListModel.availabilityChangesResponse?.conflicts,
+                   conflicts.isEmpty == false {
+                    conflictsView(conflicts: conflicts)
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
+                    .listRowSeparator(.hidden)
+                }
 
                 newAvailabilityView
                     .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
@@ -88,26 +87,8 @@ struct AvailabilityChangeDetailsView: View {
             ToolbarItem(placement: .topBarLeading) {
                 titleView
             }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                if let conflicts = availabilityListModel.availabilityChangesResponse?.conflicts,
-                   conflicts.isEmpty == false {
-                    Button(action: {
-                        showSheet.toggle()
-                    }, label: {
-                        Text("Conflicts")
-                            .bold()
-                            .foregroundStyle(Color.red)
-                    })
-                }
-            }
         }
         .fontDesign(.rounded)
-        .sheet(isPresented: $showSheet) {
-            if let conflicts = availabilityListModel.availabilityChangesResponse?.conflicts {
-                conflictsView(conflicts: conflicts)
-            }
-        }
     }
 
     func handleAction() {

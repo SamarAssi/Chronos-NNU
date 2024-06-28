@@ -39,17 +39,6 @@ struct LocationSelectionOptionsView: View {
                 label: useMapLabelView,
                 borderColor: Color.theme,
                 action: {
-                    if textFieldModels[0].text == "0.0" && textFieldModels[1].text == "0.0" {
-                        if let location = locationManager.location {
-                            
-                            region.center.latitude = location.coordinate.latitude
-                            region.center.longitude = location.coordinate.longitude
-                            
-                            selectedLocation = Location(
-                                coordinate: region.center
-                            )
-                        }
-                    }
                     showMap.toggle()
                 }
             )

@@ -180,9 +180,6 @@ extension JobsListView {
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundStyle(Color.red)
-            
-            Image(systemName: "trash")
-                .foregroundStyle(Color.red)
         }
     }
 }

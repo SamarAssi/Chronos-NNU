@@ -199,7 +199,7 @@ extension ProfileView {
                         .frame(width: 45, height: 45)
                 )
             
-            Text(LocalizedStringKey("Log Out"))
+            Text(LocalizedStringKey("Log out"))
         }
         .foregroundStyle(Color.red)
     }
@@ -265,14 +265,8 @@ extension ProfileView {
 
         case 1:
             selectedDestination = AnyView(TimeOffRequestsList())
-            
-        case 2:
-            selectedDestination = AnyView(
-                ScheduledSettings()
-                    .navigationBarBackButtonHidden(true)
-            )
 
-        case 3:
+        case 2:
             selectedDestination = AnyView(RequestTimeOffView())
 
         default:

@@ -230,7 +230,7 @@ extension HomeView {
                         employeeId: employeeId ?? ""
                     )
                 } label: {
-                    Text(employee.firstName + " " + employee.lastName)
+                    Text(employee.username)
                 }
             }
             

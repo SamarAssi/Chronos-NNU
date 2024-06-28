@@ -22,14 +22,6 @@ struct SetupCheckInOutView: View {
         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     )
     
-    private let toastOptions = SimpleToastOptions(
-        alignment: .top,
-        hideAfter: 5,
-        animation: .linear(duration: 0.3),
-        modifierType: .slide,
-        dismissOnTap: true
-    )
-    
     var isSaveButtonDisabled: Bool {
         return areEmptyFields()
     }
@@ -71,10 +63,6 @@ struct SetupCheckInOutView: View {
         }
         .onAppear {
             profileModel.getCompanyLocation()
-        }
-        .simpleToast(isPresented: $profileModel.showToast, options: toastOptions) {
-            ToastView(type: .success, message: "The saving process was completed successfully")
-                .padding(.horizontal)
         }
     }
 }

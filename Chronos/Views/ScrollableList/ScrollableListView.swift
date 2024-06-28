@@ -53,17 +53,9 @@ extension ScrollableListView {
         selectedItems: .constant([]),
         label: "Select the job/s:",
         items: [
-            Job(
-                id: nil,
-                name: "",
-                sundaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
-                mondaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
-                tuesdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
-                wednesdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
-                thursdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
-                fridaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1),
-                saturdaySettings: WeekdaysSettings(minimumNumberOfEmployees: 1)
-            )
+            Job(id: nil, name: "iOS"),
+            Job(id: nil, name: "Android"),
+            Job(id: nil, name: "Backend")
         ],
         withIcon: false
     )

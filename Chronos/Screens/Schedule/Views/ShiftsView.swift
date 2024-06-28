@@ -15,16 +15,15 @@ struct ShiftsView: View {
     @State private var showEmployeesNamesList = false
     @State private var showCreateEventView = false
     @State private var showAIFeature = false
-    @State private var showAllEmployees = true
     @State private var buttonAnimation = false
     @State private var selectedEmployee: (String?, String?)
     @State private var filteredShifts: [ShiftRowUI] = []
- 
+    
     let hourWidth = 100.0
     var currentDate: Date = Date()
     
     var shifts: [ShiftRowUI] {
-        fetchEmployeeType() == 1 && !showAllEmployees ?
+        fetchEmployeeType() == 1 ?
         filteredShifts :
         viewModel.newShifts
     }
@@ -34,7 +33,14 @@ struct ShiftsView: View {
             alignment: .leading,
             spacing: 0
         ) {
-            dateView
+            HStack {
+                dateView
+                
+                if fetchEmployeeType() == 1 {
+                    Spacer()
+                    aiButton
+                }
+            }
             
             if viewModel.isLoading {
                 CustomProgressView()
@@ -60,7 +66,6 @@ struct ShiftsView: View {
             Task {
                 await viewModel.getData()
             }
-            viewModel.getEmployeesList()
         }
         .sheet(item: $selectedShift) { shift in
             ShiftDetailsView(
@@ -73,18 +78,14 @@ struct ShiftsView: View {
         .sheet(isPresented: $showEmployeesNamesList) {
             EmployeeShiftListView(
                 selectedEmployee: $selectedEmployee,
-                showAllEmployees: $showAllEmployees,
-                shifts: filterShifts(),
-                employees: viewModel.employees
+                shifts: filterShifts()
             )
             .presentationDetents([.height(300)])
         }
         .sheet(isPresented: $showCreateEventView) {
             CreateShiftView(
                 selectedDate: $viewModel.selectedDate,
-                shifts: $viewModel.newShifts,
-                filteredShifts: $filteredShifts,
-                showAllEmployees: $showAllEmployees
+                filteredShifts: $filteredShifts
             )
         }
         .sheet(isPresented: $showAIFeature) {
@@ -104,21 +105,8 @@ struct ShiftsView: View {
 
 extension ShiftsView {
     
-    var datePickerView: some View {
-        DatePicker(
-            selection: $viewModel.selectedDate,
-            displayedComponents: [.date],
-            label: {
-                Text(LocalizedStringKey("Select a date"))
-                    .foregroundColor(.theme)
-            }
-        )
-        .datePickerStyle(.compact)
-        .tint(Color.theme)
-    }
-    
     var selectButtonView: some View {
-        Text(showAllEmployees ? "All Employees" : selectedEmployee.0 ?? "Select Employee")
+        Text(selectedEmployee.0 ?? "Select an employee")
             .font(.subheadline)
             .foregroundStyle(Color.white)
             .bold()
@@ -181,26 +169,14 @@ extension ShiftsView {
     var dateView: some View {
         VStack(alignment: .leading) {
             HStack {
-                VStack(alignment: .leading) {
-                    Text(viewModel.selectedDate.formatted(.dateTime.day().month()))
-                        .bold()
-                        .font(.title)
-                    +
-                    Text("  ")
-                    +
-                    Text(viewModel.selectedDate.formatted(.dateTime.year()))
-                        .font(.title)
-                    
-                    Text(viewModel.selectedDate.formatted(.dateTime.weekday(.wide)))
-                }
+                Text(currentDate.formatted(.dateTime.day().month()))
+                    .bold()
                 
-                if fetchEmployeeType() == 1 {
-                    Spacer()
-                    aiButton
-                }
+                Text(currentDate.formatted(.dateTime.year()))
             }
+            .font(.title)
             
-            datePickerView
+            Text(currentDate.formatted(.dateTime.weekday(.wide)))
         }
         .padding()
     }
@@ -211,6 +187,7 @@ extension ShiftsView {
                 ZStack(alignment: .topLeading) {
                     VStack {
                         hoursView
+                        
                     }
                     shiftsListView
                 }
@@ -232,7 +209,8 @@ extension ShiftsView {
                     
                     Color.gray.opacity(0.5)
                         .frame(width: 1)
-                        .frame(height: shifts.count > 3 ? UIScreen.main.bounds.height * CGFloat(shifts.count) : UIScreen.main.bounds.height)
+                        .frame(height: UIScreen.main.bounds.height)
+                    
                 }
                 .frame(width: hourWidth)
             }

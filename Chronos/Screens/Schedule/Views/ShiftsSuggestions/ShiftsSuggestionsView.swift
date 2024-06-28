@@ -16,7 +16,7 @@ struct ShiftsSuggestionsView: View {
         "Jobs to be scheduled",
         "Who needs to be scheduled",
         "How how many employees for each job",
-        "Extra information"
+        "extra information"
     ]
 
     // State to track the selected choices
@@ -220,7 +220,8 @@ struct ShiftsSuggestionsView: View {
                     showShiftsView.toggle()
                 }
             } catch {
-                self.errorMsg = LocalizedStringKey(error.localizedDescription)
+                self.errorMsg = LocalizedStringKey( error.localizedDescription
+                )
                 self.showToast.toggle()
             }
             isLoading = false

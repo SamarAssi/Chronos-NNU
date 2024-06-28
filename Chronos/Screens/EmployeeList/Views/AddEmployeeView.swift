@@ -224,7 +224,9 @@ extension AddEmployeeView {
                 return true
             }
         }
-        
+        if employeeListModel.selectedJobs.isEmpty {
+            return true
+        }
         return false
     }
     

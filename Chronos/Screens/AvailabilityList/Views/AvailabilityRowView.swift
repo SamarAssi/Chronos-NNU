@@ -31,7 +31,7 @@ struct AvailabilityRowView: View {
             HStack {
                 Circle()
                     .foregroundColor(rowModel.backgroundColor)
-                    .frame(width: 45, height: 45)
+                    .frame(width: 40, height: 40)
                     .overlay(
                         Text(rowModel.initials)
                             .foregroundColor(.white)
@@ -40,10 +40,10 @@ struct AvailabilityRowView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(rowModel.name)
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: 20, weight: .bold))
                     HStack {
                         Text(formattedDate)
-                            .font(.system(size: 14))
+                            .font(.system(size: 15))
 
                         Spacer()
 

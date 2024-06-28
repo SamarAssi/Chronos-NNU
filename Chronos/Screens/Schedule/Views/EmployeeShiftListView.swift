@@ -11,34 +11,20 @@ struct EmployeeShiftListView: View {
 
     @Environment(\.dismiss) var dismiss
     @Binding var selectedEmployee: (String?, String?)
-    @Binding var showAllEmployees: Bool
 
     var shifts: [ShiftRowUI]
-    var employees: [Employee]
-
+    
     var body: some View {
-        List {
-            Section {
-                ForEach(employees) { employee in
-                    Button(action: {
-                        selectedEmployee.0 = employee.firstName + " " + employee.lastName
-                        selectedEmployee.1 = employee.id
-                        showAllEmployees = false
-                        
-                        dismiss.callAsFunction()
-                    }) {
-                        Text(employee.firstName + " " + employee.lastName)
-                    }
-                }
-            }
-            
-            Section {
-                Button(action: {
-                    showAllEmployees = true
-                    dismiss.callAsFunction()
-                }, label: {
-                    Text(LocalizedStringKey("All Employees"))
-                })
+        List(
+            shifts,
+            id: \.id
+        ) { shift in
+            Button(action: {
+                selectedEmployee.0 = shift.employeeName
+                selectedEmployee.1 = shift.employeeID
+                dismiss()
+            }) {
+                Text(shift.employeeName)
             }
         }
         .listStyle(.plain)
@@ -48,8 +34,6 @@ struct EmployeeShiftListView: View {
 #Preview {
     EmployeeShiftListView(
         selectedEmployee: .constant((nil, nil)),
-        showAllEmployees: .constant(false),
-        shifts: [],
-        employees: []
+        shifts: []
     )
 }

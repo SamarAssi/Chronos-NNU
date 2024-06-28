@@ -97,8 +97,7 @@ class WeekdayModel: ObservableObject {
             comment: comment,
             isRejected: false,
             isApproved: false,
-            lastUpdateDate: Date().toString(),
-            warnings: []
+            lastUpdateDate: Date().toString()
         )
 
         isSubmitting = true

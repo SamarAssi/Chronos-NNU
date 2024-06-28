@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 class CreateShiftViewModel: ObservableObject {
-    
+
     @Published var startDate: Date = Date()
     @Published var endDate: Date = Date()
     @Published var selectedJobName: String?
@@ -20,7 +20,7 @@ class CreateShiftViewModel: ObservableObject {
             jobs = selectedJobs
         }
     }
-    
+
     @Published var description: String = "" {
         didSet {
             isButtonEnabled = !description.isEmpty
@@ -30,32 +30,30 @@ class CreateShiftViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var isSubmitting: Bool = false
     @Published var isButtonEnabled: Bool = false
-    
+
     private(set) var employees: [Employee] = []
-    
+
     var selectedEmployeeName: String? {
-        let first = employees.first { $0.id == selectedEmployeeID }
-        let fullName = (first?.firstName ?? "") + " " + (first?.lastName ?? "")
-        return fullName
+        employees.first { $0.id == selectedEmployeeID }?.username
     }
-    
+
     var jobs: [Job] = []
-    
+
     var JobTitle: String? {
         guard !jobs.isEmpty else {
             return "No Jobs"
         }
-        
+
         return selectedJobName
     }
     
     @ObservationIgnored private lazy var acronymManager = AcronymManager()
-    
+
     func getData() async {
         await MainActor.run {
             isLoading = true
         }
-        
+
         do {
             let response = try await EmployeesClient.getEmployees()
             await MainActor.run {
@@ -67,12 +65,11 @@ class CreateShiftViewModel: ObservableObject {
             print(error)
         }
     }
-    
+
     func createShift() async throws {
         await MainActor.run {
             isSubmitting = true
         }
-        
         let shift = try await ScheduleClient.createShift(
             role: selectedJobName ?? "",
             startTime: startDate.toString(),

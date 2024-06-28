@@ -6,30 +6,15 @@
 //
 
 import SwiftUI
-import SimpleToast
 
 struct CreateShiftView: View {
 
     @ObservedObject private var viewModel = CreateShiftViewModel()
-    
     @State private var showEmployeePicker = false
     @State private var showJobPicker = false
-    @State private var showToast = false
-    
     @Binding var selectedDate: Date
-    @Binding var shifts: [ShiftRowUI]
     @Binding var filteredShifts: [ShiftRowUI]
-    @Binding var showAllEmployees: Bool
-
     @Environment(\.dismiss) var dismiss
-    
-    private let toastOptions = SimpleToastOptions(
-        alignment: .top,
-        hideAfter: 5,
-        animation: .linear(duration: 0.3),
-        modifierType: .slide,
-        dismissOnTap: true
-    )
 
     var body: some View {
         contentView()
@@ -42,7 +27,7 @@ struct CreateShiftView: View {
                 pickerView(
                     title: "Employee",
                     selection: $viewModel.selectedEmployeeID,
-                    items: viewModel.employees.map { ($0.firstName + " " + $0.lastName, $0.id) }
+                    items: viewModel.employees.map { ($0.username, $0.id) }
                 )
             }
             .sheet(isPresented: $showJobPicker) {
@@ -51,11 +36,6 @@ struct CreateShiftView: View {
                     selection: $viewModel.selectedJobName,
                     items: viewModel.jobs.map { ($0.name, $0.name) }
                 )
-            }
-            .simpleToast(isPresented: $showToast, options: toastOptions) {
-                ToastView(type: .error, message: "Overlapping shifts found")
-                    .padding(.horizontal)
-                    .padding(.top)
             }
     }
 
@@ -82,17 +62,10 @@ struct CreateShiftView: View {
                                     dismiss.callAsFunction()
                                     selectedDate = Date()
                                 }
-                                
                                 if let createdShift = viewModel.createdShift {
-                                    if showAllEmployees {
-                                        shifts.append(createdShift)
-                                    } else {
-                                        filteredShifts.append(createdShift)
-                                    }
+                                    filteredShifts.append(createdShift)
                                 }
                             } catch {
-                                showToast = true
-                                viewModel.isSubmitting = false
                                 print(error.localizedDescription)
                             }
                         }
@@ -134,13 +107,11 @@ struct CreateShiftView: View {
         List {
             pickerRow(
                 label: "Start Date",
-                selection: $viewModel.startDate,
-                in: Date()...
+                selection: $viewModel.startDate
             )
             pickerRow(
                 label: "End Date",
-                selection: $viewModel.endDate,
-                in: viewModel.startDate...
+                selection: $viewModel.endDate
             )
             selectRow(
                 label: "Employee",
@@ -167,13 +138,11 @@ struct CreateShiftView: View {
 
     private func pickerRow(
         label: LocalizedStringKey,
-        selection: Binding<Date>,
-        in range: PartialRangeFrom<Date>
+        selection: Binding<Date>
     ) -> some View {
 
         DatePicker(
             selection: selection,
-            in: range,
             displayedComponents: [.date, .hourAndMinute]
         ) {
             Text(label)
@@ -238,8 +207,6 @@ struct CreateShiftView: View {
 #Preview {
     CreateShiftView(
         selectedDate: .constant(Date()),
-        shifts: .constant([]),
-        filteredShifts: .constant([]),
-        showAllEmployees: .constant(false)
+        filteredShifts: .constant([])
     )
 }
