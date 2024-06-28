@@ -8,15 +8,15 @@
 import SwiftUI
 import SimpleToast
 
-
 struct ShiftsSuggestionsView: View {
 
     @State private var selectedStep = 0
     let questions = [
-        "Jobs to be scheduled",
-        "Who needs to be scheduled",
-        "How how many employees for each job",
-        "extra information"
+        "What jobs need to be scheduled?",
+        "Who needs to be scheduled?",
+        "What are the start and end dates for the shifts?",
+        "How many employees are required for each job?",
+        "Any extra information?"
     ]
 
     // State to track the selected choices
@@ -24,6 +24,23 @@ struct ShiftsSuggestionsView: View {
     @State private var employees: [EmployeeChoice] = []
     @State private var description: String = ""
     @State private var isLoading = false
+
+    @State var startDate: Date = {
+        let calendar = Calendar.current
+        return calendar.date(
+            byAdding: .day,
+            value: 1,
+            to: calendar.startOfDay(for: Date())
+        )!
+    }()
+    @State var endDate: Date = {
+        let calendar = Calendar.current
+        return calendar.date(
+            byAdding: .day,
+            value: 2,
+            to: calendar.startOfDay(for: Date())
+        )!
+    }()
 
     @State var showShiftsView = false
     @State var errorMsg: LocalizedStringKey = ""
@@ -178,11 +195,17 @@ struct ShiftsSuggestionsView: View {
             employees: $employees,
             question: question
         )
-        case 2: EmployeesPerJobView(
+        case 2:
+            AIDatePicker(
+                startDate: $startDate,
+                endDate: $endDate,
+                label: question
+            )
+        case 3: EmployeesPerJobView(
             jobs: $jobs,
             question: question
         )
-        case 3: ExtraInformationView(
+        case 4: ExtraInformationView(
             description: $description,
             question: question
         )
@@ -205,6 +228,10 @@ struct ShiftsSuggestionsView: View {
     }
 
     func submit() {
+        guard isLoading == false else {
+            return
+        }
+
         isLoading = true
         Task {
             do {
@@ -243,6 +270,10 @@ struct ShiftsSuggestionsView: View {
                     .filter({ $0.isSelected })
                     .map { $0.employee.firstName + " " + $0.employee.lastName }
                     .joined(separator: ", ")
+            ),
+            Answer(
+                question: questions[2],
+                answer: "\(startDate.toString()) - \(endDate.toString())"
             ),
             Answer(
                 question: questions[2],

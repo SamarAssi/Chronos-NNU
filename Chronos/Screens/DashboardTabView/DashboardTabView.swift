@@ -36,6 +36,7 @@ struct DashboardTabView: View {
 
             ProfileView(isShowTabView: $isShowTabView)
                 .tabItem { Image(systemName: "person") }
+
         }
         .customTabStyle()
     }

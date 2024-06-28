@@ -23,8 +23,8 @@ struct HomeView: View {
     
     @State private var scrollOffset: CGFloat = 0
     @State private var lastScrollOffset: CGFloat = 0
-    
-    
+    @State private var showReport = false
+
     let startDate = Calendar.current.date(
         byAdding: .day,
         value: -30,
@@ -70,8 +70,24 @@ struct HomeView: View {
             )
             .padding(.top, 20)
             .padding(.bottom)
-            
+
             dashboardContent
+                .safeAreaInset(edge: .bottom) {
+                    if UserDefaultManager.employeeType == 1 {
+                        MainButton(
+                            isLoading: $homeModel.isLoading,
+                            isEnable: .constant(true),
+                            buttonText: "Employees Report",
+                            backgroundColor: .theme
+                        ) {
+                            showReport = true
+                        }
+                        .padding()
+                    }
+                }
+        }
+        .sheet(isPresented: $showReport) {
+            EmployeesReportView()
         }
         .fontDesign(.rounded)
         .animation(.easeInOut, value: isShowProfileHeader)

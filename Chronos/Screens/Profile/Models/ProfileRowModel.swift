@@ -25,7 +25,7 @@ extension ProfileRowModel {
             ProfileRowModel(
                 name: LocalizedStringKey("Time Off Requests"),
                 icon: "list.bullet"
-            )
+            ),
         ]
 
         if UserDefaultManager.employeeType != 1 {
