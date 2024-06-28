@@ -29,7 +29,7 @@ struct Job: Hashable, Codable, Identifiable, LabelRepresentable {
 }
 
 struct WeekdaysSettings: Hashable, Codable {
-    var minimumNumberOfEmployees: Int
+    var minimumNumberOfEmployees: Int?
 }
 
 protocol LabelRepresentable {

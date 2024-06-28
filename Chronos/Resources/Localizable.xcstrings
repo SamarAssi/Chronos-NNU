@@ -153,13 +153,10 @@
     "Conflicted Shift" : {
 
     },
-    "Continue" : {
-        
-    },
     "Conflicts" : {
 
     },
-    "Count" : {
+    "Continue" : {
 
     },
     "Create" : {
@@ -269,6 +266,9 @@
     "Forgot Password?" : {
 
     },
+    "Friday" : {
+
+    },
     "Generate Report" : {
 
     },
@@ -299,9 +299,6 @@
     "Jobs List" : {
 
     },
-    "Jobs Settings" : {
-
-    },
     "Last Name" : {
 
     },
@@ -324,6 +321,9 @@
 
     },
     "Min" : {
+
+    },
+    "Monday" : {
 
     },
     "My Profile" : {
@@ -435,6 +435,9 @@
     "Requests List" : {
 
     },
+    "Saturday" : {
+
+    },
     "save" : {
 
     },
@@ -499,6 +502,9 @@
     "Suggested Shifts" : {
 
     },
+    "Sunday" : {
+
+    },
     "The job already exists!" : {
 
     },
@@ -517,10 +523,16 @@
     "This is a wrong id" : {
 
     },
+    "Thursday" : {
+
+    },
     "Time Off Requests" : {
 
     },
     "Today's Total Shifts Time:  " : {
+
+    },
+    "Tuesday" : {
 
     },
     "Type" : {
@@ -548,6 +560,9 @@
 
     },
     "Username is invalid" : {
+
+    },
+    "Wednesday" : {
 
     },
     "Would you like to submit a comment with your action?" : {
