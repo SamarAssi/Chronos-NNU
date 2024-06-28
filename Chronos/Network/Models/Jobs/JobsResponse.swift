@@ -22,6 +22,7 @@ struct Job: Hashable, Codable, Identifiable, LabelRepresentable {
     var fridaySettings = WeekdaysSettings(minimumNumberOfEmployees: 1)
     var saturdaySettings = WeekdaysSettings(minimumNumberOfEmployees: 1)
     
+
     var label: String {
         return name
     }
