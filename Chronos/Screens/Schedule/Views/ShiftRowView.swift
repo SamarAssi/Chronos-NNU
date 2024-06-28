@@ -2,7 +2,7 @@
 //  ShiftRowView.swift
 //  Chronos
 //
-//  Created by Bassam Hillo on 25/06/2024.
+//  Created by Samar Assi on 28/06/2024.
 //
 
 import SwiftUI
@@ -65,19 +65,6 @@ struct ShiftRowView: View {
         }
         .background(model.backgroundColor.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 20))
-        .overlay(alignment: .topTrailing) {
-            cancelButtonView
-                .padding(.top, 12)
-                .padding(.trailing, 15)
-        }
-    }
-    
-    var cancelButtonView: some View {
-        Image(systemName: "xmark")
-            .scaleEffect(0.8)
-            .onTapGesture {
-                scheduleViewModel.handleShiftDeletion(id: model.id)
-            }
     }
 }
 

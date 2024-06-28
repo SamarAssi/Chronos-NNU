@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "  " : {
+
+    },
     " - " : {
 
     },
@@ -62,6 +65,9 @@
 
     },
     "ALL DAY" : {
+
+    },
+    "All Employees" : {
 
     },
     "Allow check in/out frome anywhere" : {
@@ -148,6 +154,9 @@
 
     },
     "Continue" : {
+        
+    },
+    "Conflicts" : {
 
     },
     "Count" : {
@@ -290,13 +299,13 @@
     "Jobs List" : {
 
     },
+    "Jobs Settings" : {
+
+    },
     "Last Name" : {
 
     },
     "Lat" : {
-
-    },
-    "Log out" : {
 
     },
     "Log Out" : {
@@ -312,6 +321,9 @@
 
     },
     "Manager" : {
+
+    },
+    "Min" : {
 
     },
     "My Profile" : {
@@ -362,6 +374,9 @@
 
     },
     "Oops, No requests to see here" : {
+
+    },
+    "Overlapping shifts found" : {
 
     },
     "Password" : {
@@ -426,7 +441,13 @@
     "Save" : {
 
     },
+    "Scheduled Settings" : {
+
+    },
     "Search Maps" : {
+
+    },
+    "Select a date" : {
 
     },
     "Select the job/s:" : {
@@ -485,6 +506,9 @@
 
     },
     "The request is rejected" : {
+
+    },
+    "The saving process was completed successfully" : {
 
     },
     "There is no activities yet!" : {

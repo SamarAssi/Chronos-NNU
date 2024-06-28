@@ -247,8 +247,7 @@ struct ShiftsSuggestionsView: View {
                     showShiftsView.toggle()
                 }
             } catch {
-                self.errorMsg = LocalizedStringKey( error.localizedDescription
-                )
+                self.errorMsg = LocalizedStringKey(error.localizedDescription)
                 self.showToast.toggle()
             }
             isLoading = false
