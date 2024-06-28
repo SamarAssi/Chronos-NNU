@@ -17,12 +17,12 @@ struct SuggestedShiftsView: View {
             let id = shift.employeeID
             let (initials, backgroundColor) = acronymManager.getAcronymAndColor(name: name, id: id ?? "")
 
-            let startTime = shift.startTime?.stringTime ?? "--"
-            let endTime = shift.endTime?.stringTime ?? "--"
+            let startTime = shift.startTime?.timeAndDate() ?? "--"
+            let endTime = shift.endTime?.timeAndDate() ?? "--"
             let titleString: String = name ?? "--"
 
             return ShiftRowUIModel(
-                id: shift.id ?? "",
+                id: "\(UUID())",
                 employeeID: shift.employeeID ?? "",
                 initials: initials,
                 employeeName: shift.employeeName ?? "",
@@ -33,15 +33,6 @@ struct SuggestedShiftsView: View {
                 backgroundColor: backgroundColor,
                 isNew: shift.isNew == true
             )
-//            return ShiftRowUIModel(
-//                id: "\(UUID())",
-//                initials: initials,
-//                title: titleString,
-//                startTime: startTime,
-//                endTime: endTime,
-//                backgroundColor: backgroundColor
-//                //isNew: shift.isNew == true
-//            )
         }
     }
 

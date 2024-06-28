@@ -75,7 +75,7 @@ struct HomeView: View {
                 .safeAreaInset(edge: .bottom) {
                     if UserDefaultManager.employeeType == 1 {
                         MainButton(
-                            isLoading: $homeModel.isLoading,
+                            isLoading: .constant(false),
                             isEnable: .constant(true),
                             buttonText: "Employees Report",
                             backgroundColor: .theme

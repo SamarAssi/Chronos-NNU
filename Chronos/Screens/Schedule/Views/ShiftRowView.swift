@@ -25,7 +25,7 @@ struct ShiftRowView: View {
                 .padding(.leading, 15)
 
             VStack(alignment: .leading, spacing: 5) {
-                Text(model.title)
+                Text(model.title + " - " + model.role)
                     .font(.system(size: 15, weight: .semibold))
                     .fontWeight(.bold)
                     .foregroundColor(.black)
@@ -53,15 +53,15 @@ struct ShiftRowView: View {
 
             Spacer()
 
-            if model.isNew {
-                Text("New")
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundColor(.black)
-                    .padding(10)
-                    .background(Color.green.opacity(0.5))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding()
-            }
+//            if model.isNew {
+//                Text("New")
+//                    .font(.system(size: 15, weight: .semibold))
+//                    .foregroundColor(.black)
+//                    .padding(10)
+//                    .background(Color.green.opacity(0.5))
+//                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                    .padding()
+//            }
         }
         .background(model.backgroundColor.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 20))
