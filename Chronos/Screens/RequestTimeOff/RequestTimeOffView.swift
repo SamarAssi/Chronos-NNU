@@ -116,7 +116,6 @@ struct RequestTimeOffView: View {
 
                 VStack(alignment: .leading) {
                     Text(LocalizedStringKey("Description: "))
-                        .foregroundColor(.black)
 
                     TextEditor(text: $description)
                         .font(.system(size: 15))
@@ -130,7 +129,6 @@ struct RequestTimeOffView: View {
 
                 if let comment {
                     Text("Comment: \(comment)")
-                        .foregroundColor(.black)
                 }
             }
             .tint(Color.theme)

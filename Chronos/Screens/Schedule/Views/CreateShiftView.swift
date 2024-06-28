@@ -195,7 +195,7 @@ struct CreateShiftView: View {
                 .padding(.vertical, 5)
                 .padding(.horizontal, 10)
                 .background(Color.gray.opacity(0.2))
-                .foregroundColor(.black)
+                .foregroundColor(.blackAndWhite)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
         }
     }

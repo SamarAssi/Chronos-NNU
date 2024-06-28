@@ -35,7 +35,6 @@ struct AddJobView: View {
             List {
                 TextField("Job Name", text: $name)
                     .padding()
-                    .background(Color(.white))
                     .cornerRadius(8)
                     .listRowInsets(EdgeInsets())
             }

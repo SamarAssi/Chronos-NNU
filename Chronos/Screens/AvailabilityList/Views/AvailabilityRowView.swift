@@ -19,7 +19,7 @@ struct AvailabilityRowView: View {
 
     var body: some View {
         Rectangle()
-            .fill(Color.white)
+            .fill(Color.whiteAndBlack)
             .frame(height: 80)
             .overlay {
                 contentView

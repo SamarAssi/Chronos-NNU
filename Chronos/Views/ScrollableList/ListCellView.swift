@@ -11,17 +11,11 @@ struct ListCellView: View {
 
     @Binding var isSelected: Bool
     var name: String
-    
-    var icon: String {
-        isSelected ?
-        "checkmark" :
-        ""
-    }
-    
+
     var backgroundColor: Color {
         isSelected ?
-        Color.silver.opacity(0.3) :
-        Color.white
+        Color.blackAndWhite.opacity(0.1) :
+        Color.whiteAndBlack
     }
     
     var body: some View {
@@ -31,12 +25,9 @@ struct ListCellView: View {
 
 extension ListCellView {
     var listCellView: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(backgroundColor)
+        jobTitleView
             .frame(height: 45)
-            .overlay {
-                jobTitleView
-            }
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
     var jobTitleView: some View {
@@ -44,9 +35,11 @@ extension ListCellView {
             Text(name)
                 .font(.system(size: 15, design: .rounded))
             
-            Image(systemName: icon)
-                .font(.subheadline)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+            if isSelected {
+                Image(systemName: "checkmark")
+                    .font(.subheadline)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
         }
         .padding(.horizontal, 10)
     }

@@ -27,14 +27,11 @@ struct EmployeeJobsListView: View {
                     isSelected: isSelectedItem(job: job),
                     name: job.label
                 )
-                .listRowInsets(.init(top: 5, leading: 0, bottom: 5, trailing: 0))
                 .onTapGesture {
                     toggleSelection(job: job)
                 }
-                .listRowSeparator(.hidden)
             }
-            .padding()
-            .listStyle(PlainListStyle())
+            .navigationTitle("Jobs")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     cancelButtonView

@@ -260,7 +260,7 @@ extension HomeView {
             }
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")
-                .foregroundStyle(homeModel.employees.isEmpty ? Color.gray : Color.black)
+                .foregroundStyle(homeModel.employees.isEmpty ? Color.gray : Color.blackAndWhite)
         }
         .disabled(homeModel.employees.isEmpty)
     }

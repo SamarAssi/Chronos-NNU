@@ -12,7 +12,7 @@ struct EmployeeCellView: View {
 
     var body: some View {
         Rectangle()
-            .fill(Color.white)
+            .fill(Color.whiteAndBlack)
             .frame(height: 50)
             .overlay {
                 rowContentView
