@@ -69,7 +69,11 @@ struct ShiftsSuggestionsView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         withAnimation {
-                            selectedStep = selectedStep + 1
+                            if selectedStep == questions.count - 1 {
+                                submit()
+                            } else {
+                                selectedStep = selectedStep + 1
+                            }
                         }
                     } label: {
                         Text(mainButtonText)
