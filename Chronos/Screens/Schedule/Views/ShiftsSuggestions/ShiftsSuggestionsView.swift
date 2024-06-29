@@ -42,6 +42,35 @@ struct ShiftsSuggestionsView: View {
         )!
     }()
 
+    @State var startTime: Date = {
+        let now = Date()
+        // Get the current calendar
+        let calendar = Calendar.current
+
+        // Set the desired hour and minute
+        var dateComponents = calendar.dateComponents([.year, .month, .day], from: now)
+        dateComponents.hour = 9
+        dateComponents.minute = 0
+        dateComponents.second = 0
+
+        // Create the new date with the desired time
+        return calendar.date(from: dateComponents)!
+    }()
+    @State var endTime: Date = {
+        let now = Date()
+        // Get the current calendar
+        let calendar = Calendar.current
+
+        // Set the desired hour and minute
+        var dateComponents = calendar.dateComponents([.year, .month, .day], from: now)
+        dateComponents.hour = 17
+        dateComponents.minute = 0
+        dateComponents.second = 0
+
+        // Create the new date with the desired time
+        return calendar.date(from: dateComponents)!
+    }()
+
     @State var showShiftsView = false
     @State var errorMsg: LocalizedStringKey = ""
     @State var showToast = false
@@ -198,6 +227,8 @@ struct ShiftsSuggestionsView: View {
             AIDatePicker(
                 startDate: $startDate,
                 endDate: $endDate,
+                startTime: $startTime,
+                endTime: $endTime,
                 label: question
             )
         case 3: EmployeesPerJobView(
@@ -272,7 +303,7 @@ struct ShiftsSuggestionsView: View {
             ),
             Answer(
                 question: questions[2],
-                answer: "\(startDate.toString(format: dateFormate)) - \(endDate.toString(format: dateFormate))"
+                answer: "Date between: \(startDate.toString(format: dateFormate)) - \(endDate.toString(format: dateFormate)), in each day the time between: \(startTime.toString(format: "HH:mm")) - \(endTime.toString(format: "HH:mm"))"
             ),
             Answer(
                 question: questions[3],
