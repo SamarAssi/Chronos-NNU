@@ -37,12 +37,21 @@ struct EmployeesPerJobView: View {
                     if jobChoice.isSelected {
                         HStack {
                             Text(jobChoice.job.name)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             Spacer()
-                            NumberInputView(
-                                title: "Count",
-                                number: $jobChoice.numberOfEmployees
-                            )
-                            .multilineTextAlignment(.trailing)
+
+                            HStack {
+                                NumberInputView(
+                                    title: "Min",
+                                    number: $jobChoice.minNumberOfEmployees
+                                )
+                                .multilineTextAlignment(.trailing)
+                                NumberInputView(
+                                    title: "Max",
+                                    number: $jobChoice.maxNumberOfEmployees
+                                )
+                                .multilineTextAlignment(.trailing)
+                            }
                         }
                     }
                 }

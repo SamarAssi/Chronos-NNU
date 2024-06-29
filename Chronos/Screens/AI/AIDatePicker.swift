@@ -31,8 +31,16 @@ struct AIDatePicker: View {
                 .listRowSeparator(.hidden)
                 .padding(.bottom, 5)
 
-            DatePicker("Start Date", selection: $startDate)
-            DatePicker("End Date", selection: $endDate)
+            DatePicker(
+                "Start Date",
+                selection: $startDate,
+                displayedComponents: [.date]
+            )
+            DatePicker(
+                "End Date",
+                selection: $endDate,
+                displayedComponents: [.date]
+            )
         }
         .tint(.theme)
     }

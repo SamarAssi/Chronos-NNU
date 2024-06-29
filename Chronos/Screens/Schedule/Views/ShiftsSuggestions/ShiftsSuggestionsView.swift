@@ -220,7 +220,7 @@ struct ShiftsSuggestionsView: View {
                 .foregroundColor(.theme)
                 .frame(width: CGFloat(selectedStep + 1) / CGFloat(questions.count) * UIScreen.main.bounds.width)
             Rectangle()
-                .foregroundColor(.gray.opacity(0.15))
+                .foregroundColor(.gray.opacity(0.25))
         }
         .animation(.easeInOut, value: selectedStep)
         .frame(height: 5)
@@ -254,7 +254,8 @@ struct ShiftsSuggestionsView: View {
     }
 
     private func getAnswers() -> [Answer] {
-        [
+        let dateFormate = "yyyy-MM-dd'T'00:00:00"
+        return [
             Answer(
                 question: questions[0],
                 answer: jobs
@@ -271,23 +272,34 @@ struct ShiftsSuggestionsView: View {
             ),
             Answer(
                 question: questions[2],
-                answer: "\(startDate.toString()) - \(endDate.toString())"
+                answer: "\(startDate.toString(format: dateFormate)) - \(endDate.toString(format: dateFormate))"
             ),
             Answer(
-                question: questions[2],
+                question: questions[3],
                 answer: jobs
                     .filter({ $0.isSelected })
                     .compactMap { jobChoice in
-                        if let count = jobChoice.numberOfEmployees {
-                            return "\(jobChoice.job.name): \(count)"
+                        let minCount = jobChoice.minNumberOfEmployees
+                        let maxNumberOfEmployees = jobChoice.maxNumberOfEmployees
+                        
+                        var answer: String? = nil
+
+                        if let minCount = minCount, let maxNumberOfEmployees = maxNumberOfEmployees {
+                            answer = "\(minCount) - \(maxNumberOfEmployees)"
+                        } else if let minCount = minCount {
+                            answer = "\(minCount) or more"
+                        } else if let maxNumberOfEmployees = maxNumberOfEmployees {
+                            answer = "Up to \(maxNumberOfEmployees)"
                         } else {
                             return nil
                         }
+
+                        return "\(jobChoice.job.name): \(answer!)"
                     }
                     .joined(separator: ", ")
             ),
             Answer(
-                question: questions[3],
+                question: questions[4],
                 answer: description
             )
         ]

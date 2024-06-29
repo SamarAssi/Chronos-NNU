@@ -11,7 +11,8 @@ struct JobChoice: Identifiable, Equatable {
     var id = UUID()
     var job: Job
     var isSelected: Bool
-    var numberOfEmployees: Int? = nil
+    var minNumberOfEmployees: Int? = nil
+    var maxNumberOfEmployees: Int? = nil
 }
 
 struct JobsSelectorView: View {
