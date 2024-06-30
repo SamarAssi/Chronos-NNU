@@ -101,6 +101,7 @@ extension MapView {
                 Image(systemName: "mappin.circle.fill")
                     .padding()
                     .background(Color.white)
+                    .foregroundStyle(isPreviousLocationSameAsSelected ? Color.theme.opacity(0.5) : Color.theme)
                     .clipShape(Circle())
                     .shadow(radius: 2)
             }

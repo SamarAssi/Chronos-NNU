@@ -236,7 +236,7 @@ extension HomeView {
             let firstThreeCells = homeModel.timeOffRequestRowUIModel.prefix(3)
             ForEach(firstThreeCells) { rowModel in
                 OffEmployeeRowView(rowModel: rowModel)
-                    .shadow(radius: 1)
+                    .shadow(color: Color.blackAndWhite.opacity(0.3), radius: 1)
             }
         }
     }
@@ -334,7 +334,7 @@ extension HomeView {
                             iconColor: Color.red,
                             employeeName: activity.employeeName
                         )
-                        .shadow(radius: 1)
+                        .shadow(color: Color.blackAndWhite, radius: 1)
                         .padding(.vertical, 5)
                     }
                     
@@ -345,7 +345,7 @@ extension HomeView {
                         iconColor: Color.theme,
                         employeeName: activity.employeeName
                     )
-                    .shadow(radius: 1)
+                    .shadow(color: Color.blackAndWhite, radius: 1)
                     .padding(.vertical, 5)
                     
                 }
