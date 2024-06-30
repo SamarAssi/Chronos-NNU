@@ -210,11 +210,12 @@ extension AvailabilityChangeDetailsView {
                     buttonText: buttons[specificIndex].text,
                     backgroundColor: buttons[specificIndex].backgroundColor,
                     action: {
-                        if availabilityListModel.availabilityChangesResponse?.conflicts.isEmpty ?? true {
-                            self.currentAction = specificIndex
-                            self.showingAlert.toggle()
-                        } else {
+                        self.currentAction = specificIndex
+
+                        if !(availabilityListModel.availabilityChangesResponse?.conflicts.isEmpty ?? true) && specificIndex == 1 {
                             self.showConflictAlert.toggle()
+                        } else {
+                            self.showingAlert.toggle()
                         }
                     }
                 )
