@@ -116,6 +116,7 @@ extension MapView {
             .onSubmit {
                 search()
             }
+            .tint(Color.theme)
             .foregroundStyle(Color.black)
             .padding(.leading, 40)
             .frame(height: 45)

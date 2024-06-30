@@ -59,7 +59,7 @@ struct LoginView: View {
         .fontDesign(.rounded)
         .padding(.vertical, 20)
         .padding(.horizontal, 30)
-        .background(Color.white)
+//        .background(Color.white)
     }
 }
 

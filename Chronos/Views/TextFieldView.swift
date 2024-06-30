@@ -73,11 +73,13 @@ extension TextFieldView {
                     textFieldModel.placeholder,
                     text: $textFieldModel.text
                 )
+                .tint(Color.theme)
             } else {
                 TextField(
                     textFieldModel.placeholder,
                     text: $textFieldModel.text
                 )
+                .tint(Color.theme)
             }
         }
         .font(.system(size: 15))

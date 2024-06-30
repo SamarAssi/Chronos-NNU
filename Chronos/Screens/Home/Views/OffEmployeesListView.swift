@@ -36,7 +36,7 @@ extension OffEmployeesListView {
     var offEmployeeListView: some View {
         List(offEmployees) { offEmployee in
             OffEmployeeRowView(rowModel: offEmployee)
-                .shadow(radius: 1)
+                .shadow(color: Color.blackAndWhite, radius: 1)
                 .listRowSeparator(.hidden)
                 .listRowInsets(.init(top: 8, leading: 8, bottom: 8, trailing: 8))
         }
