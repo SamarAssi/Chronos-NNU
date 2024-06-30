@@ -64,7 +64,8 @@ class HomeModel: ObservableObject {
                 
                 checkInOutResponse = try await performCheckInOutRequest(
                     currentLatitude: currentLatitude,
-                    currentLongitude: currentLongitude
+                    currentLongitude: currentLongitude,
+                    date: Date()
                 )
                 
                 handleDashboardResponse(
@@ -83,11 +84,13 @@ class HomeModel: ObservableObject {
     
     private func performCheckInOutRequest(
         currentLatitude: Double,
-        currentLongitude: Double
+        currentLongitude: Double,
+        date: Date
     ) async throws -> CheckInOutResponse {
         return try await DashboardClient.updateCheckInOut(
             currentLatitude: currentLatitude,
-            currentLongitude: currentLongitude
+            currentLongitude: currentLongitude,
+            date: date.toString()
         )
     }
 

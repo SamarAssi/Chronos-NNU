@@ -15,18 +15,6 @@ struct ActivityCardView: View {
     var iconColor: Color
     var employeeName: String
     
-    var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd,yyyy"
-        return formatter.string(from: date)
-    }
-    
-    var formattedTime: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
-        return formatter.string(from: date)
-    }
-    
     var height: CGFloat {
         fetchEmployeeType() == 1 ?
         80 :
@@ -107,13 +95,13 @@ extension ActivityCardView {
     }
     
     var dateView: some View {
-        Text(formattedDate)
+        Text(date.toString(format: "MMMM dd,yyyy"))
             .font(.system(size: 13, design: .rounded))
             .foregroundStyle(Color.gray)
     }
     
     var timeView: some View {
-        Text(formattedTime)
+        Text(date.toString(format: "hh:mm a"))
             .font(
                 .system(
                     size: 16,

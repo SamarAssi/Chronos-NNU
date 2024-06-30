@@ -19,11 +19,13 @@ class DashboardClient: BaseClient {
 
     static func updateCheckInOut(
         currentLatitude: Double,
-        currentLongitude: Double
+        currentLongitude: Double,
+        date: String
     ) async throws -> CheckInOutResponse {
         let router: DashboardRouter = .checkInOut(
             currentLatitude: currentLatitude,
-            currentLongitude: currentLongitude
+            currentLongitude: currentLongitude,
+            date: date
         )
         return try await performRequest(router: router)
     }
