@@ -9,8 +9,8 @@ import Foundation
 
 class EmployeesClient: BaseClient {
     
-    static func getEmployees() async throws -> EmployeesResponse {
-        let router: EmployeesRouter = .getEmployees
+    static func getEmployees(includeAll: Bool = false) async throws -> EmployeesResponse {
+        let router: EmployeesRouter = .getEmployees(includeAll: includeAll)
         return try await performRequest(router: router)
     }
     

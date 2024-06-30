@@ -55,7 +55,7 @@ struct EmployeesReportView: View {
             isLoading = true
             Task {
                 do {
-                    let response = try await EmployeesClient.getEmployees()
+                    let response = try await EmployeesClient.getEmployees(includeAll: true)
                     employees = response.employees
                     if let firstEmployee = employees.first {
                         selectedEmployee = firstEmployee

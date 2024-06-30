@@ -10,7 +10,7 @@ import Alamofire
 
 enum EmployeesRouter: BaseRouter {
     
-    case getEmployees
+    case getEmployees(includeAll: Bool = false)
     case registerEmployee(
         firstName: String,
         lastName: String,
@@ -24,8 +24,8 @@ enum EmployeesRouter: BaseRouter {
     
     var path: String {
         switch self {
-        case .getEmployees:
-            return "manager/getEmployees"
+        case .getEmployees(let includeAll):
+            return "manager/getEmployees/\(includeAll)"
         case .registerEmployee:
             return "manager/registerEmployee"
         case .deleteEmployee:
