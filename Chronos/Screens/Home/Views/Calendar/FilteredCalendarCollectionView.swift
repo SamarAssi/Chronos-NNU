@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FilteredCalendarCollectionView: View {
+    @ObservedObject var homeModel: HomeModel
 
     @Binding var selectedDate: Date
     @Binding var dashboardResponse: DashboardResponse?
@@ -51,11 +52,15 @@ struct FilteredCalendarCollectionView: View {
             .scrollIndicators(.hidden)
         }
         .onChange(of: selectedDate) {
-            Task {
-                showLoading()
-                dashboardResponse = try await performDashboardRequest()
-                hideLoading()
-            }
+            homeModel.handleDashboardResponse(
+                selectedDate: selectedDate,
+                employeeId: ""
+            )
+//            Task {
+//                showLoading()
+//                dashboardResponse = try await performDashboardRequest()
+//                hideLoading()
+//            }
         }
     }
 }
@@ -95,6 +100,7 @@ extension FilteredCalendarCollectionView {
 
 #Preview {
     FilteredCalendarCollectionView(
+        homeModel: HomeModel(),
         selectedDate: .constant(Date()),
         dashboardResponse: .constant(nil),
         isLoading: .constant(false),

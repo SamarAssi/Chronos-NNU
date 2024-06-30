@@ -105,6 +105,7 @@ extension ProfileView {
                 }
                 
                 if fetchEmployeeType() == 1 {
+                    scheduledSettingsButtonView
                     jobsListButtonView
                     checkInOutSettingsButtonView
                 }
@@ -173,6 +174,21 @@ extension ProfileView {
             profileRowLabel(
                 icon: "list.clipboard",
                 name: "Jobs List"
+            )
+        }
+        .listRowBackground(Color.clear)
+    }
+    
+    var scheduledSettingsButtonView: some View {
+        Button {
+            selectedDestination = AnyView(
+                ScheduledSettings()
+                    .navigationBarBackButtonHidden(true)
+            )
+        } label: {
+            profileRowLabel(
+                icon: "gearshape",
+                name: LocalizedStringKey("Scheduled Settings")
             )
         }
         .listRowBackground(Color.clear)
@@ -267,12 +283,6 @@ extension ProfileView {
             selectedDestination = AnyView(TimeOffRequestsList())
             
         case 2:
-            selectedDestination = AnyView(
-                ScheduledSettings()
-                    .navigationBarBackButtonHidden(true)
-            )
-
-        case 3:
             selectedDestination = AnyView(RequestTimeOffView())
 
         default:

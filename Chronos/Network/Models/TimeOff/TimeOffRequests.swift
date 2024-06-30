@@ -8,12 +8,12 @@
 import Foundation
 
 // MARK: - TimeOffRequests
-struct TimeOffRequests: Codable {
+struct TimeOffRequests: Codable, Hashable {
     let timeOffRequests: [TimeOffRequest]?
 }
 
 // MARK: - TimeOffRequest
-struct TimeOffRequest: Codable {
+struct TimeOffRequest: Codable, Hashable {
     let id, username, startDate, endDate, employeeId: String?
     let type: String?
     let status: Int?

@@ -53,6 +53,9 @@ struct JobsListView: View {
             .onAppear {
                 fetchJobs()
             }
+            .sheet(isPresented: $showSheet) {
+                AddJobView(jobs: $jobs, selectedIndex: $selectedIndex)
+            }
     }
 
     @ViewBuilder
@@ -79,9 +82,6 @@ struct JobsListView: View {
                     }
                     .onDelete(perform: delete)
                 }
-                .sheet(isPresented: $showSheet) {
-                    AddJobView(jobs: $jobs, selectedIndex: $selectedIndex)
-                }
             }
         }
     }
@@ -90,7 +90,6 @@ struct JobsListView: View {
     private var FloatingActionButton: some View {
         Button(action: {
             selectedIndex = nil
-
             DispatchQueue.main.async {
                 self.showSheet = true
             }

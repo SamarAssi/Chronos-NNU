@@ -22,6 +22,15 @@ struct MapView: View {
     @Binding var region: MKCoordinateRegion
     @Binding var textFieldModels: [TextFieldModel]
     @Binding var showLocationSelectionOptionsView: Bool
+    @State private var previousLocation: Location?
+    
+    private var isPreviousLocationSameAsSelected: Bool {
+        guard let previousLocation = previousLocation, let selectedLocation = selectedLocation else {
+            return false
+        }
+        return previousLocation.coordinate.latitude == selectedLocation.coordinate.latitude &&
+        previousLocation.coordinate.longitude == selectedLocation.coordinate.longitude
+    }
     
     
     var body: some View {
@@ -35,6 +44,7 @@ struct MapView: View {
             .onAppear {
                 copiedRegion = region
                 selectedLocation = Location(coordinate: region.center)
+                previousLocation = selectedLocation
             }
             .gesture(
                 MagnificationGesture()
@@ -68,17 +78,44 @@ struct MapView: View {
                 }
             }
             .fontDesign(.rounded)
+            .overlay(alignment: .bottomTrailing) {
+                locationButtons
+            }
         }
     }
 }
 
 extension MapView {
     
+    var locationButtons: some View {
+        VStack(spacing: 10) {
+            Button(action: goToCurrentLocation) {
+                Image(systemName: "location.fill")
+                    .padding()
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .shadow(radius: 2)
+            }
+            
+            Button(action: goToSelectedLocation) {
+                Image(systemName: "mappin.circle.fill")
+                    .padding()
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .shadow(radius: 2)
+            }
+            .disabled(isPreviousLocationSameAsSelected)
+        }
+        .padding()
+        .padding(.bottom, 40)
+    }
+    
     var searchTextFieldView: some View {
         TextField("Search Maps", text: $searchText)
             .onSubmit {
                 search()
             }
+            .foregroundStyle(Color.black)
             .padding(.leading, 40)
             .frame(height: 45)
             .background(Color.white.opacity(0.8))
@@ -105,7 +142,7 @@ extension MapView {
         } label: {
             Text(LocalizedStringKey("Done"))
                 .fontWeight(.bold)
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.blackAndWhite)
         }
     }
     
@@ -130,6 +167,7 @@ extension MapView {
         Text("Selected: \(location.coordinate.latitude), \(location.coordinate.longitude)")
             .padding()
             .background(Color.white.opacity(0.8))
+            .foregroundStyle(Color.black)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding()
             .padding(.bottom)
@@ -169,6 +207,22 @@ extension MapView {
     
     private func handleDragingGesture(value: CGFloat) {
         currentAmount = value - 1
+    }
+    
+    private func goToCurrentLocation() {
+        if let location = locationManager.location {
+            withAnimation {
+                region.center = previousLocation?.coordinate ?? location.coordinate
+            }
+        }
+    }
+    
+    private func goToSelectedLocation() {
+        if let location = selectedLocation {
+            withAnimation {
+                region.center = location.coordinate
+            }
+        }
     }
 }
 

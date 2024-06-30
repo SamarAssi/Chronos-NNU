@@ -107,8 +107,11 @@ struct JobSettingsSection: View {
                         .font(.headline)
                         .foregroundColor(.gray)
                     Spacer()
-                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+//                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+//                        .foregroundColor(.gray)
+                    Image(systemName: "chevron.down")
                         .foregroundColor(.gray)
+                        .rotationEffect(Angle(degrees: isExpanded ? -180 : -0))
                 }
             }
         }

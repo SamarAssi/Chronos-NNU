@@ -22,6 +22,8 @@
 		2F41CBE02BE832B7000AC5B0 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41CBDF2BE832B7000AC5B0 /* TextFieldModel.swift */; };
 		2F41CBE22BE832E3000AC5B0 /* AttendanceCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41CBE12BE832E3000AC5B0 /* AttendanceCardModel.swift */; };
 		2F41CBE42BE83381000AC5B0 /* RadioButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41CBE32BE83381000AC5B0 /* RadioButtonModel.swift */; };
+		2F6B529F2C30C4DA00635C59 /* OffEmployeesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B529E2C30C4DA00635C59 /* OffEmployeesListView.swift */; };
+		2F6B52A12C30C50800635C59 /* OffEmployeeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B52A02C30C50800635C59 /* OffEmployeeRowView.swift */; };
 		2F731B922BFEA47800B3501D /* AvailabilityChangeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B912BFEA47800B3501D /* AvailabilityChangeDetailsView.swift */; };
 		2F731B942BFEA4E100B3501D /* AvailabilityButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B932BFEA4E100B3501D /* AvailabilityButtonModel.swift */; };
 		2F731B962C00088A00B3501D /* PasswordConstraintsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F731B952C00088A00B3501D /* PasswordConstraintsModel.swift */; };
@@ -164,6 +166,8 @@
 		2F41CBDF2BE832B7000AC5B0 /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
 		2F41CBE12BE832E3000AC5B0 /* AttendanceCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCardModel.swift; sourceTree = "<group>"; };
 		2F41CBE32BE83381000AC5B0 /* RadioButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonModel.swift; sourceTree = "<group>"; };
+		2F6B529E2C30C4DA00635C59 /* OffEmployeesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffEmployeesListView.swift; sourceTree = "<group>"; };
+		2F6B52A02C30C50800635C59 /* OffEmployeeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffEmployeeRowView.swift; sourceTree = "<group>"; };
 		2F731B912BFEA47800B3501D /* AvailabilityChangeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityChangeDetailsView.swift; sourceTree = "<group>"; };
 		2F731B932BFEA4E100B3501D /* AvailabilityButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityButtonModel.swift; sourceTree = "<group>"; };
 		2F731B952C00088A00B3501D /* PasswordConstraintsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordConstraintsModel.swift; sourceTree = "<group>"; };
@@ -754,6 +758,8 @@
 			children = (
 				2F7943112BC3284900387D3E /* HomeView.swift */,
 				2F928D532BD32DB7004AAED3 /* ProfileHeaderView.swift */,
+				2F6B529E2C30C4DA00635C59 /* OffEmployeesListView.swift */,
+				2F6B52A02C30C50800635C59 /* OffEmployeeRowView.swift */,
 				2F7943652BCAFCC700387D3E /* ActivityCardView.swift */,
 				2F7943592BC6CFF900387D3E /* SwipeToUnlockView.swift */,
 				2F41CBD22BE81407000AC5B0 /* Calendar */,
@@ -1072,6 +1078,7 @@
 				8B586BB32C231D1500F8DE98 /* ScheduleClient.swift in Sources */,
 				2FD24D582C2A6F7C009D1EDD /* CustomTabStyle.swift in Sources */,
 				2F7942FA2BC0804400387D3E /* LoginView.swift in Sources */,
+				2F6B529F2C30C4DA00635C59 /* OffEmployeesListView.swift in Sources */,
 				2F74471B2C14A2370059899C /* ToastTypes.swift in Sources */,
 				8B1C171D2C2EC0AB0091253E /* ExtraInformationView.swift in Sources */,
 				2F731BDA2C029AA100B3501D /* DashboardClient.swift in Sources */,
@@ -1161,6 +1168,7 @@
 				2FF8ADCB2BF41B9600DB9C4E /* HomeModel.swift in Sources */,
 				2F7446DC2C085A040059899C /* AddEmployeeView.swift in Sources */,
 				2FF8ADC42BF3965800DB9C4E /* ProfileRowModel.swift in Sources */,
+				2F6B52A12C30C50800635C59 /* OffEmployeeRowView.swift in Sources */,
 				2FF8ADE02BF6046900DB9C4E /* RegistrationModel.swift in Sources */,
 				2F7943432BC5824400387D3E /* BaseRouter.swift in Sources */,
 				8B0810492BC9AA7300CB5930 /* BaseClient.swift in Sources */,
