@@ -12,6 +12,7 @@ struct DashboardResponse: Codable, Hashable {
     let activities: [CheckInOutTable]
     let shouldShowOnboarding: Bool
     let numberOfTimeOffRequest: Int
+    let offEmployees: [TimeOffRequest]
 }
 
 struct CheckInOutTable: Codable, Hashable {

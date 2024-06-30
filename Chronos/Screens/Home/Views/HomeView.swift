@@ -17,6 +17,7 @@ struct HomeView: View {
     @State private var showFullScreen = false
     @State private var isCheckedIn = false
     @State private var isInvalidCheckInOut = false
+    @State private var showOffEmployeesSheet = false
     
     @State private var selectedDate: Date = Date()
     @State private var employeeId: String?
@@ -24,7 +25,7 @@ struct HomeView: View {
     @State private var scrollOffset: CGFloat = 0
     @State private var lastScrollOffset: CGFloat = 0
     @State private var showReport = false
-
+    
     let startDate = Calendar.current.date(
         byAdding: .day,
         value: -30,
@@ -70,7 +71,7 @@ struct HomeView: View {
             )
             .padding(.top, 20)
             .padding(.bottom)
-
+            
             dashboardContent
                 .safeAreaInset(edge: .bottom) {
                     if UserDefaultManager.employeeType == 1 {
@@ -88,6 +89,11 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showReport) {
             EmployeesReportView()
+        }
+        .sheet(isPresented: $showOffEmployeesSheet) {
+            OffEmployeesListView(
+                offEmployees: homeModel.timeOffRequestRowUIModel
+            )
         }
         .fontDesign(.rounded)
         .animation(.easeInOut, value: isShowProfileHeader)
@@ -160,6 +166,11 @@ extension HomeView {
             ) {
                 
                 attendanceView
+                if !homeModel.timeOffRequestRowUIModel.isEmpty {
+                    offEmployeesListView
+                        .padding(.leading, 18)
+                        .padding(.trailing, 10)
+                }
                 activityView
             }
             .padding(.top, 20)
@@ -204,6 +215,38 @@ extension HomeView {
                 Text(dashboardResponse.shiftsTotalTime)
                     .font(.title2)
             }
+        }
+    }
+    
+    var offEmployeesListView: some View {
+        HStack(alignment: .top) {
+            VStack(alignment: .leading) {
+                Text(LocalizedStringKey("How's Out"))
+                    .fontWeight(.bold)
+                
+                VStack {
+                    let firstThreeCells = homeModel.timeOffRequestRowUIModel.prefix(3)
+                    ForEach(firstThreeCells) { rowModel in
+                        OffEmployeeRowView(rowModel: rowModel)
+                            .shadow(radius: 1)
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            if homeModel.timeOffRequestRowUIModel.count > 3 {
+                viewAllButton
+            }
+        }
+    }
+    
+    var viewAllButton: some View {
+        Button {
+            showOffEmployeesSheet = true
+        } label: {
+            Text(LocalizedStringKey("View all"))
+                .foregroundStyle(Color.theme)
         }
     }
     

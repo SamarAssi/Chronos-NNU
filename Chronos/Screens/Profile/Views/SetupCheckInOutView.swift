@@ -132,7 +132,7 @@ extension SetupCheckInOutView {
             showLocationSelectionOptionsView.toggle()
         } label: {
             Image(systemName: "square.and.pencil")
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.blackAndWhite)
         }
         .offset(y: 8)
     }
