@@ -222,7 +222,7 @@ extension HomeView {
     var offEmployeesListView: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
-                Text(LocalizedStringKey("How's Out"))
+                Text(LocalizedStringKey("Who's Out"))
                     .fontWeight(.bold)
                 
                 Spacer()

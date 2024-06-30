@@ -26,7 +26,7 @@ struct OffEmployeesListView: View {
 extension OffEmployeesListView {
     
     var titleView: some View {
-        Text(LocalizedStringKey("How's Out"))
+        Text(LocalizedStringKey("Who's Out"))
             .font(.title2)
             .fontWeight(.bold)
             .padding(.horizontal, 22)
