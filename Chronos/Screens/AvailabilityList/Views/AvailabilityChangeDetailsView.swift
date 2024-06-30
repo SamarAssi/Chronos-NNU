@@ -18,7 +18,8 @@ struct AvailabilityChangeDetailsView: View {
     @State var currentAction = 0
     
     @State private var showSheet = false
-    
+    @State private var showConflictAlert = false
+
     var date: Date
     var index: Int
     
@@ -40,6 +41,12 @@ struct AvailabilityChangeDetailsView: View {
                 .foregroundStyle(Color.black)
         } message: {
             Text("Would you like to submit a comment with your action?")
+        }
+        .alert("Conflict", isPresented: $showConflictAlert) {
+            Button("OK", role: .cancel) {}
+                .foregroundStyle(Color.black)
+        } message: {
+            Text("There is a conflict with the availability changes, Please resolve all conflicts first")
         }
         .onAppear {
             availabilityListModel.handleAvailabilityChangesResponse(
@@ -203,8 +210,12 @@ extension AvailabilityChangeDetailsView {
                     buttonText: buttons[specificIndex].text,
                     backgroundColor: buttons[specificIndex].backgroundColor,
                     action: {
-                        self.currentAction = specificIndex
-                        self.showingAlert.toggle()
+                        if availabilityListModel.availabilityChangesResponse?.conflicts.isEmpty ?? true {
+                            self.currentAction = specificIndex
+                            self.showingAlert.toggle()
+                        } else {
+                            self.showConflictAlert.toggle()
+                        }
                     }
                 )
                 .shadow(radius: 2, x: 0, y: 2)

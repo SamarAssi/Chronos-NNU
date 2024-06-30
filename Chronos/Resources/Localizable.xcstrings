@@ -157,6 +157,9 @@
     "Confirm Password" : {
 
     },
+    "Conflict" : {
+
+    },
     "Conflicts" : {
 
     },
@@ -374,6 +377,9 @@
     "Not Available" : {
 
     },
+    "OK" : {
+
+    },
     "On Time" : {
 
     },
@@ -522,6 +528,9 @@
 
     },
     "The saving process was completed successfully" : {
+
+    },
+    "There is a conflict with the availability changes, Please resolve all conflicts first" : {
 
     },
     "There is no activities yet!" : {
