@@ -38,7 +38,7 @@ extension OffEmployeesListView {
             OffEmployeeRowView(rowModel: offEmployee)
                 .shadow(radius: 1)
                 .listRowSeparator(.hidden)
-                .listRowInsets(.init(top: 8, leading: 8, bottom: 0, trailing: 8))
+                .listRowInsets(.init(top: 8, leading: 8, bottom: 8, trailing: 8))
         }
         .listStyle(PlainListStyle())
         .scrollIndicators(.hidden)
